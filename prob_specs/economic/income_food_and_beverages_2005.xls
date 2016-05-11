@@ -1,0 +1,6182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="Generator" content="SAS Software Version 9.4, see www.sas.com">
+<meta http-equiv="Content-type" content="text/html; charset=windows-1252">
+<title>SAS Output</title>
+<style type="text/css">
+<!--
+.aftercaption
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+  padding-top: 4pt;
+}
+.batch
+{
+  background-color: #FAFBFE;
+  border: 1px solid #C1C1C1;
+  border-collapse: separate;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: 'SAS Monospace', 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  padding: 7px;
+}
+.beforecaption
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.body
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.bodydate
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  text-align: right;
+  vertical-align: top;
+  width: 100%;
+}
+.bycontentfolder
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.byline
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.bylinecontainer
+{
+  background-color: #FAFBFE;
+  border: 0px solid #000000;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.caption
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.cell
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.container
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.contentfolder
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.contentitem
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.contentproclabel
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.contentprocname
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.contents
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: decimal;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.contentsdate
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.contenttitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: bold;
+}
+.continued
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+  width: 100%;
+}
+.data
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.dataemphasis
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.dataemphasisfixed
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.dataempty
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.datafixed
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.datastrong
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.datastrongfixed
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.date
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.document
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+a:link {
+color:#0000FF
+}
+a:visited {
+color:#800080
+}
+a:active {
+color:#800080
+}
+.errorbanner
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.errorcontent
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.errorcontentfixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.extendedpage
+{
+  background-color: #FAFBFE;
+  border: 1pt solid #000000;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+  text-align: center;
+}
+.fatalbanner
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.fatalcontent
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.fatalcontentfixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.folderaction
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.footer
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.footeremphasis
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.footeremphasisfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.footerempty
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.footerfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.footerstrong
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.footerstrongfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.frame
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.graph
+{
+  background-color: #FAFBFE;
+  border: 1px solid #C1C1C1;
+  border-collapse: separate;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.header
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.headeremphasis
+{
+  background-color: #D8DBD3;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.headeremphasisfixed
+{
+  background-color: #D8DBD3;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.headerempty
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.headerfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.headersandfooters
+{
+  background-color: #EDF2F9;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.headerstrong
+{
+  background-color: #D8DBD3;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.headerstrongfixed
+{
+  background-color: #D8DBD3;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.index
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.indexaction
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.indexitem
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.indexprocname
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.indextitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: bold;
+}
+.layoutcontainer
+{
+  border: 0px solid #000000;
+  border-spacing: 30px;
+}
+.layoutregion
+{
+  border: 0px solid #000000;
+  border-spacing: 30px;
+}
+.linecontent
+{
+  background-color: #FAFBFE;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.list
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: disc;
+}
+.list10
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list2
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: circle;
+}
+.list3
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list4
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list5
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list6
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list7
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list8
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list9
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: disc;
+}
+.listitem10
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem2
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: circle;
+}
+.listitem3
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem4
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem5
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem6
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem7
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem8
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem9
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.note
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.notebanner
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.notecontent
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.notecontentfixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.output
+{
+  background-color: #FAFBFE;
+  border: 1px solid #C1C1C1;
+  border-collapse: separate;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.pageno
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+  text-align: right;
+  vertical-align: top;
+}
+.pages
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: decimal;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.pagesdate
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.pagesitem
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.pagesproclabel
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.pagesprocname
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.pagestitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: bold;
+}
+.paragraph
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.parskip
+{
+  border: 0px solid #000000;
+  border-spacing: 0px;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.prepage
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  text-align: left;
+}
+.proctitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.proctitlefixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowfooter
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowfooteremphasis
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.rowfooteremphasisfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.rowfooterempty
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowfooterfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.rowfooterstrong
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowfooterstrongfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowheader
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowheaderemphasis
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.rowheaderemphasisfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.rowheaderempty
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowheaderfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.rowheaderstrong
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowheaderstrongfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemfooter
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter10
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter2
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter3
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter4
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter5
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter6
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter7
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter8
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter9
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemtitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle10
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle2
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle3
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle4
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle5
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle6
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle7
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle8
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle9
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systitleandfootercontainer
+{
+  background-color: #FAFBFE;
+  border: 0px solid #000000;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.table
+{
+  border-bottom-width: 0px;
+  border-collapse: collapse;
+  border-color: #C1C1C1;
+  border-left-width: 1px;
+  border-right-width: 0px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-top-width: 1px;
+}
+.top_stacked_value
+{
+  padding-bottom: 1px;
+  border: 0;
+}
+.middle_stacked_value
+{
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border: 0;
+}
+.bottom_stacked_value
+{
+  padding-top: 1px;
+  border: 0;
+}
+.titleandnotecontainer
+{
+  background-color: #FAFBFE;
+  border: 0px solid #000000;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.titlesandfooters
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.usertext
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.warnbanner
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.warncontent
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.warncontentfixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.l {text-align: left }
+.c {text-align: center }
+.r {text-align: right }
+.d {text-align: right }
+.j {text-align: justify }
+.t {vertical-align: top }
+.m {vertical-align: middle }
+.b {vertical-align: bottom }
+TD, TH {vertical-align: top }
+.stacked_cell{padding: 0 }
+-->
+</style>
+<script language="javascript" type="text/javascript">
+<!-- 
+function startup(){
+
+}
+function shutdown(){
+
+}
+
+//-->
+</script>
+
+</head>
+<body onload="startup()" onunload="shutdown()" class="body">
+
+<script language="javascript" type="text/javascript">
+<!-- 
+var _info = navigator.userAgent
+var _ie = (_info.indexOf("MSIE") > 0
+          && _info.indexOf("Win") > 0
+          && _info.indexOf("Windows 3.1") < 0);
+var _ie64 = _info.indexOf("x64") > 0
+
+//-->
+</script>
+
+<div class="branch">
+<a name="IDX"></a>
+<div>
+<div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Print: Data Set WORK.P6420">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="l header" scope="col">H01</th>
+<th class="l header" scope="col">H02</th>
+<th class="l header" scope="col">H03</th>
+<th class="l header" scope="col">H04</th>
+<th class="l header" scope="col">H25</th>
+<th class="r header" scope="col">MO082005</th>
+<th class="r header" scope="col">MO092005</th>
+<th class="r header" scope="col">MO102005</th>
+<th class="r header" scope="col">MO112005</th>
+<th class="r header" scope="col">MO122005</th>
+<th class="r header" scope="col">MO012006</th>
+<th class="r header" scope="col">MO022006</th>
+<th class="r header" scope="col">MO032006</th>
+<th class="r header" scope="col">MO042006</th>
+<th class="r header" scope="col">MO052006</th>
+<th class="r header" scope="col">MO062006</th>
+<th class="r header" scope="col">MO072006</th>
+<th class="r header" scope="col">MO082006</th>
+<th class="r header" scope="col">MO092006</th>
+<th class="r header" scope="col">MO102006</th>
+<th class="r header" scope="col">MO112006</th>
+<th class="r header" scope="col">MO122006</th>
+<th class="r header" scope="col">MO012007</th>
+<th class="r header" scope="col">MO022007</th>
+<th class="r header" scope="col">MO032007</th>
+<th class="r header" scope="col">MO042007</th>
+<th class="r header" scope="col">MO052007</th>
+<th class="r header" scope="col">MO062007</th>
+<th class="r header" scope="col">MO072007</th>
+<th class="r header" scope="col">MO082007</th>
+<th class="r header" scope="col">MO092007</th>
+<th class="r header" scope="col">MO102007</th>
+<th class="r header" scope="col">MO112007</th>
+<th class="r header" scope="col">MO122007</th>
+<th class="r header" scope="col">MO012008</th>
+<th class="r header" scope="col">MO022008</th>
+<th class="r header" scope="col">MO032008</th>
+<th class="r header" scope="col">MO042008</th>
+<th class="r header" scope="col">MO052008</th>
+<th class="r header" scope="col">MO062008</th>
+<th class="r header" scope="col">MO072008</th>
+<th class="r header" scope="col">MO082008</th>
+<th class="r header" scope="col">MO092008</th>
+<th class="r header" scope="col">MO102008</th>
+<th class="r header" scope="col">MO112008</th>
+<th class="r header" scope="col">MO122008</th>
+<th class="r header" scope="col">MO012009</th>
+<th class="r header" scope="col">MO022009</th>
+<th class="r header" scope="col">MO032009</th>
+<th class="r header" scope="col">MO042009</th>
+<th class="r header" scope="col">MO052009</th>
+<th class="r header" scope="col">MO062009</th>
+<th class="r header" scope="col">MO072009</th>
+<th class="r header" scope="col">MO082009</th>
+<th class="r header" scope="col">MO092009</th>
+<th class="r header" scope="col">MO102009</th>
+<th class="r header" scope="col">MO112009</th>
+<th class="r header" scope="col">MO122009</th>
+<th class="r header" scope="col">MO012010</th>
+<th class="r header" scope="col">MO022010</th>
+<th class="r header" scope="col">MO032010</th>
+<th class="r header" scope="col">MO042010</th>
+<th class="r header" scope="col">MO052010</th>
+<th class="r header" scope="col">MO062010</th>
+<th class="r header" scope="col">MO072010</th>
+<th class="r header" scope="col">MO082010</th>
+<th class="r header" scope="col">MO092010</th>
+<th class="r header" scope="col">MO102010</th>
+<th class="r header" scope="col">MO112010</th>
+<th class="r header" scope="col">MO122010</th>
+<th class="r header" scope="col">MO012011</th>
+<th class="r header" scope="col">MO022011</th>
+<th class="r header" scope="col">MO032011</th>
+<th class="r header" scope="col">MO042011</th>
+<th class="r header" scope="col">MO052011</th>
+<th class="r header" scope="col">MO062011</th>
+<th class="r header" scope="col">MO072011</th>
+<th class="r header" scope="col">MO082011</th>
+<th class="r header" scope="col">MO092011</th>
+<th class="r header" scope="col">MO102011</th>
+<th class="r header" scope="col">MO112011</th>
+<th class="r header" scope="col">MO122011</th>
+<th class="r header" scope="col">MO012012</th>
+<th class="r header" scope="col">MO022012</th>
+<th class="r header" scope="col">MO032012</th>
+<th class="r header" scope="col">MO042012</th>
+<th class="r header" scope="col">MO052012</th>
+<th class="r header" scope="col">MO062012</th>
+<th class="r header" scope="col">MO072012</th>
+<th class="r header" scope="col">MO082012</th>
+<th class="r header" scope="col">MO092012</th>
+<th class="r header" scope="col">MO102012</th>
+<th class="r header" scope="col">MO112012</th>
+<th class="r header" scope="col">MO122012</th>
+<th class="r header" scope="col">MO012013</th>
+<th class="r header" scope="col">MO022013</th>
+<th class="r header" scope="col">MO032013</th>
+<th class="r header" scope="col">MO042013</th>
+<th class="r header" scope="col">MO052013</th>
+<th class="r header" scope="col">MO062013</th>
+<th class="r header" scope="col">MO072013</th>
+<th class="r header" scope="col">MO082013</th>
+<th class="r header" scope="col">MO092013</th>
+<th class="r header" scope="col">MO102013</th>
+<th class="r header" scope="col">MO112013</th>
+<th class="r header" scope="col">MO122013</th>
+<th class="r header" scope="col">MO012014</th>
+<th class="r header" scope="col">MO022014</th>
+<th class="r header" scope="col">MO032014</th>
+<th class="r header" scope="col">MO042014</th>
+<th class="r header" scope="col">MO052014</th>
+<th class="r header" scope="col">MO062014</th>
+<th class="r header" scope="col">MO072014</th>
+<th class="r header" scope="col">MO082014</th>
+<th class="r header" scope="col">MO092014</th>
+<th class="r header" scope="col">MO102014</th>
+<th class="r header" scope="col">MO112014</th>
+<th class="r header" scope="col">MO122014</th>
+<th class="r header" scope="col">MO012015</th>
+<th class="r header" scope="col">MO022015</th>
+<th class="r header" scope="col">MO032015</th>
+<th class="r header" scope="col">MO042015</th>
+<th class="r header" scope="col">MO052015</th>
+<th class="r header" scope="col">MO062015</th>
+<th class="r header" scope="col">MO072015</th>
+<th class="r header" scope="col">MO082015</th>
+<th class="r header" scope="col">MO092015</th>
+<th class="r header" scope="col">MO102015</th>
+<th class="r header" scope="col">MO112015</th>
+<th class="r header" scope="col">MO122015</th>
+<th class="r header" scope="col">MO012016</th>
+<th class="r header" scope="col">MO022016</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">A64201</td>
+<td class="l data">Income from food sales : Restaurants and coffee shops</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">674.7</td>
+<td class="r data">692.5</td>
+<td class="r data">702.9</td>
+<td class="r data">754.1</td>
+<td class="r data">917.4</td>
+<td class="r data">729.9</td>
+<td class="r data">705.0</td>
+<td class="r data">764.2</td>
+<td class="r data">769.7</td>
+<td class="r data">738.0</td>
+<td class="r data">721.1</td>
+<td class="r data">741.1</td>
+<td class="r data">727.9</td>
+<td class="r data">758.9</td>
+<td class="r data">747.4</td>
+<td class="r data">895.1</td>
+<td class="r data">1118.5</td>
+<td class="r data">813.9</td>
+<td class="r data">773.5</td>
+<td class="r data">811.7</td>
+<td class="r data">805.4</td>
+<td class="r data">772.4</td>
+<td class="r data">768.2</td>
+<td class="r data">784.9</td>
+<td class="r data">796.1</td>
+<td class="r data">820.4</td>
+<td class="r data">861.9</td>
+<td class="r data">984.7</td>
+<td class="r data">1147.1</td>
+<td class="r data">922.0</td>
+<td class="r data">909.0</td>
+<td class="r data">1009.4</td>
+<td class="r data">960.4</td>
+<td class="r data">925.0</td>
+<td class="r data">940.9</td>
+<td class="r data">941.1</td>
+<td class="r data">967.4</td>
+<td class="r data">1045.9</td>
+<td class="r data">1030.0</td>
+<td class="r data">1141.8</td>
+<td class="r data">1278.4</td>
+<td class="r data">977.9</td>
+<td class="r data">909.8</td>
+<td class="r data">1082.1</td>
+<td class="r data">928.8</td>
+<td class="r data">932.3</td>
+<td class="r data">916.2</td>
+<td class="r data">968.1</td>
+<td class="r data">973.0</td>
+<td class="r data">962.9</td>
+<td class="r data">985.4</td>
+<td class="r data">1033.5</td>
+<td class="r data">1136.6</td>
+<td class="r data">969.6</td>
+<td class="r data">911.2</td>
+<td class="r data">1030.2</td>
+<td class="r data">973.6</td>
+<td class="r data">974.9</td>
+<td class="r data">1050.9</td>
+<td class="r data">1022.1</td>
+<td class="r data">983.0</td>
+<td class="r data">994.7</td>
+<td class="r data">1016.8</td>
+<td class="r data">1037.7</td>
+<td class="r data">1314.2</td>
+<td class="r data">1024.0</td>
+<td class="r data">962.9</td>
+<td class="r data">1068.3</td>
+<td class="r data">1072.0</td>
+<td class="r data">991.3</td>
+<td class="r data">994.0</td>
+<td class="r data">1054.0</td>
+<td class="r data">1024.5</td>
+<td class="r data">1032.6</td>
+<td class="r data">1081.2</td>
+<td class="r data">1114.0</td>
+<td class="r data">1425.9</td>
+<td class="r data">1086.1</td>
+<td class="r data">1030.2</td>
+<td class="r data">1132.6</td>
+<td class="r data">1100.7</td>
+<td class="r data">1050.4</td>
+<td class="r data">1076.0</td>
+<td class="r data">1123.5</td>
+<td class="r data">1138.4</td>
+<td class="r data">1151.6</td>
+<td class="r data">1124.7</td>
+<td class="r data">1198.3</td>
+<td class="r data">1529.2</td>
+<td class="r data">1139.6</td>
+<td class="r data">1074.4</td>
+<td class="r data">1235.4</td>
+<td class="r data">1169.6</td>
+<td class="r data">1179.8</td>
+<td class="r data">1179.5</td>
+<td class="r data">1193.0</td>
+<td class="r data">1256.7</td>
+<td class="r data">1205.0</td>
+<td class="r data">1207.2</td>
+<td class="r data">1333.9</td>
+<td class="r data">1578.0</td>
+<td class="r data">1258.2</td>
+<td class="r data">1178.2</td>
+<td class="r data">1288.5</td>
+<td class="r data">1295.2</td>
+<td class="r data">1288.6</td>
+<td class="r data">1203.3</td>
+<td class="r data">1266.5</td>
+<td class="r data">1311.1</td>
+<td class="r data">1253.8</td>
+<td class="r data">1363.8</td>
+<td class="r data">1423.4</td>
+<td class="r data">1693.6</td>
+<td class="r data">1375.6</td>
+<td class="r data">1268.4</td>
+<td class="r data">1386.7</td>
+<td class="r data">1352.3</td>
+<td class="r data">1351.8</td>
+<td class="r data">1282.2</td>
+<td class="r data">1451.5</td>
+<td class="r data">1455.4</td>
+<td class="r data">1378.1</td>
+<td class="r data">1450.2</td>
+<td class="r data">1526.9</td>
+<td class="r data">1835.4</td>
+<td class="r data">1539.4</td>
+<td class="r data">1418.3</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">B64201</td>
+<td class="l data">Income from bar sales : Restaurants and coffee shops</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">188.1</td>
+<td class="r data">191.8</td>
+<td class="r data">178.4</td>
+<td class="r data">219.0</td>
+<td class="r data">249.8</td>
+<td class="r data">207.1</td>
+<td class="r data">199.4</td>
+<td class="r data">224.7</td>
+<td class="r data">209.7</td>
+<td class="r data">192.1</td>
+<td class="r data">222.9</td>
+<td class="r data">224.6</td>
+<td class="r data">215.1</td>
+<td class="r data">216.0</td>
+<td class="r data">213.3</td>
+<td class="r data">248.4</td>
+<td class="r data">274.4</td>
+<td class="r data">214.3</td>
+<td class="r data">205.2</td>
+<td class="r data">261.6</td>
+<td class="r data">281.3</td>
+<td class="r data">227.4</td>
+<td class="r data">245.4</td>
+<td class="r data">232.1</td>
+<td class="r data">253.7</td>
+<td class="r data">241.7</td>
+<td class="r data">244.6</td>
+<td class="r data">279.1</td>
+<td class="r data">337.8</td>
+<td class="r data">273.8</td>
+<td class="r data">285.6</td>
+<td class="r data">297.7</td>
+<td class="r data">275.9</td>
+<td class="r data">259.5</td>
+<td class="r data">245.2</td>
+<td class="r data">257.9</td>
+<td class="r data">258.7</td>
+<td class="r data">237.7</td>
+<td class="r data">270.6</td>
+<td class="r data">372.6</td>
+<td class="r data">338.1</td>
+<td class="r data">258.7</td>
+<td class="r data">244.3</td>
+<td class="r data">263.0</td>
+<td class="r data">269.7</td>
+<td class="r data">258.7</td>
+<td class="r data">248.4</td>
+<td class="r data">270.1</td>
+<td class="r data">257.9</td>
+<td class="r data">261.4</td>
+<td class="r data">285.9</td>
+<td class="r data">295.0</td>
+<td class="r data">318.5</td>
+<td class="r data">312.0</td>
+<td class="r data">267.4</td>
+<td class="r data">297.0</td>
+<td class="r data">280.2</td>
+<td class="r data">273.1</td>
+<td class="r data">322.3</td>
+<td class="r data">310.0</td>
+<td class="r data">273.8</td>
+<td class="r data">281.4</td>
+<td class="r data">310.3</td>
+<td class="r data">322.7</td>
+<td class="r data">428.2</td>
+<td class="r data">312.8</td>
+<td class="r data">296.6</td>
+<td class="r data">309.2</td>
+<td class="r data">308.9</td>
+<td class="r data">281.3</td>
+<td class="r data">278.3</td>
+<td class="r data">305.8</td>
+<td class="r data">298.1</td>
+<td class="r data">294.1</td>
+<td class="r data">313.5</td>
+<td class="r data">334.3</td>
+<td class="r data">438.2</td>
+<td class="r data">333.1</td>
+<td class="r data">312.2</td>
+<td class="r data">344.9</td>
+<td class="r data">329.4</td>
+<td class="r data">309.6</td>
+<td class="r data">316.0</td>
+<td class="r data">301.7</td>
+<td class="r data">312.8</td>
+<td class="r data">310.9</td>
+<td class="r data">311.6</td>
+<td class="r data">346.3</td>
+<td class="r data">527.6</td>
+<td class="r data">354.6</td>
+<td class="r data">327.1</td>
+<td class="r data">361.0</td>
+<td class="r data">312.6</td>
+<td class="r data">313.5</td>
+<td class="r data">308.6</td>
+<td class="r data">315.2</td>
+<td class="r data">334.1</td>
+<td class="r data">318.2</td>
+<td class="r data">319.2</td>
+<td class="r data">354.0</td>
+<td class="r data">494.0</td>
+<td class="r data">334.9</td>
+<td class="r data">320.4</td>
+<td class="r data">338.5</td>
+<td class="r data">339.8</td>
+<td class="r data">318.4</td>
+<td class="r data">305.5</td>
+<td class="r data">306.5</td>
+<td class="r data">338.2</td>
+<td class="r data">318.7</td>
+<td class="r data">353.2</td>
+<td class="r data">367.8</td>
+<td class="r data">437.9</td>
+<td class="r data">357.9</td>
+<td class="r data">342.4</td>
+<td class="r data">354.4</td>
+<td class="r data">338.8</td>
+<td class="r data">340.5</td>
+<td class="r data">308.0</td>
+<td class="r data">361.9</td>
+<td class="r data">386.5</td>
+<td class="r data">370.5</td>
+<td class="r data">405.3</td>
+<td class="r data">408.2</td>
+<td class="r data">509.6</td>
+<td class="r data">358.8</td>
+<td class="r data">382.1</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">C64201</td>
+<td class="l data">Other income : Restaurants and coffee shops</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">11.0</td>
+<td class="r data">8.2</td>
+<td class="r data">7.4</td>
+<td class="r data">11.8</td>
+<td class="r data">15.7</td>
+<td class="r data">15.3</td>
+<td class="r data">19.6</td>
+<td class="r data">21.6</td>
+<td class="r data">15.7</td>
+<td class="r data">12.9</td>
+<td class="r data">17.3</td>
+<td class="r data">9.8</td>
+<td class="r data">12.5</td>
+<td class="r data">16.1</td>
+<td class="r data">15.7</td>
+<td class="r data">15.7</td>
+<td class="r data">14.1</td>
+<td class="r data">10.6</td>
+<td class="r data">12.2</td>
+<td class="r data">14.9</td>
+<td class="r data">14.1</td>
+<td class="r data">14.1</td>
+<td class="r data">14.5</td>
+<td class="r data">14.1</td>
+<td class="r data">12.5</td>
+<td class="r data">16.1</td>
+<td class="r data">11.0</td>
+<td class="r data">11.4</td>
+<td class="r data">13.3</td>
+<td class="r data">16.5</td>
+<td class="r data">10.2</td>
+<td class="r data">16.5</td>
+<td class="r data">16.5</td>
+<td class="r data">27.4</td>
+<td class="r data">26.3</td>
+<td class="r data">32.5</td>
+<td class="r data">29.4</td>
+<td class="r data">35.3</td>
+<td class="r data">37.6</td>
+<td class="r data">35.7</td>
+<td class="r data">41.6</td>
+<td class="r data">31.4</td>
+<td class="r data">38.0</td>
+<td class="r data">42.0</td>
+<td class="r data">34.5</td>
+<td class="r data">33.7</td>
+<td class="r data">34.1</td>
+<td class="r data">33.3</td>
+<td class="r data">35.7</td>
+<td class="r data">39.2</td>
+<td class="r data">39.2</td>
+<td class="r data">65.5</td>
+<td class="r data">51.0</td>
+<td class="r data">46.7</td>
+<td class="r data">57.2</td>
+<td class="r data">81.2</td>
+<td class="r data">68.6</td>
+<td class="r data">65.9</td>
+<td class="r data">64.7</td>
+<td class="r data">72.1</td>
+<td class="r data">51.8</td>
+<td class="r data">75.3</td>
+<td class="r data">92.1</td>
+<td class="r data">99.2</td>
+<td class="r data">67.8</td>
+<td class="r data">75.7</td>
+<td class="r data">42.0</td>
+<td class="r data">89.0</td>
+<td class="r data">42.1</td>
+<td class="r data">40.7</td>
+<td class="r data">34.1</td>
+<td class="r data">41.9</td>
+<td class="r data">35.3</td>
+<td class="r data">21.7</td>
+<td class="r data">29.7</td>
+<td class="r data">33.3</td>
+<td class="r data">36.0</td>
+<td class="r data">27.7</td>
+<td class="r data">32.1</td>
+<td class="r data">28.5</td>
+<td class="r data">32.0</td>
+<td class="r data">31.3</td>
+<td class="r data">26.0</td>
+<td class="r data">33.1</td>
+<td class="r data">30.7</td>
+<td class="r data">37.3</td>
+<td class="r data">32.9</td>
+<td class="r data">38.0</td>
+<td class="r data">49.6</td>
+<td class="r data">35.6</td>
+<td class="r data">52.0</td>
+<td class="r data">41.1</td>
+<td class="r data">34.5</td>
+<td class="r data">33.2</td>
+<td class="r data">26.3</td>
+<td class="r data">30.6</td>
+<td class="r data">30.2</td>
+<td class="r data">33.9</td>
+<td class="r data">40.1</td>
+<td class="r data">41.2</td>
+<td class="r data">42.0</td>
+<td class="r data">30.3</td>
+<td class="r data">42.9</td>
+<td class="r data">44.4</td>
+<td class="r data">37.8</td>
+<td class="r data">36.5</td>
+<td class="r data">30.7</td>
+<td class="r data">28.9</td>
+<td class="r data">32.8</td>
+<td class="r data">33.2</td>
+<td class="r data">41.9</td>
+<td class="r data">40.6</td>
+<td class="r data">46.9</td>
+<td class="r data">40.8</td>
+<td class="r data">40.5</td>
+<td class="r data">43.9</td>
+<td class="r data">34.5</td>
+<td class="r data">37.1</td>
+<td class="r data">33.5</td>
+<td class="r data">28.9</td>
+<td class="r data">39.9</td>
+<td class="r data">39.7</td>
+<td class="r data">40.2</td>
+<td class="r data">50.1</td>
+<td class="r data">47.1</td>
+<td class="r data">27.8</td>
+<td class="r data">37.6</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">D64201</td>
+<td class="l data">Total income : Restaurants and coffee shops</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">873.8</td>
+<td class="r data">892.5</td>
+<td class="r data">888.7</td>
+<td class="r data">984.9</td>
+<td class="r data">1182.9</td>
+<td class="r data">952.3</td>
+<td class="r data">924.0</td>
+<td class="r data">1010.5</td>
+<td class="r data">995.1</td>
+<td class="r data">943.0</td>
+<td class="r data">961.3</td>
+<td class="r data">975.5</td>
+<td class="r data">955.5</td>
+<td class="r data">991.0</td>
+<td class="r data">976.4</td>
+<td class="r data">1159.2</td>
+<td class="r data">1407.0</td>
+<td class="r data">1038.8</td>
+<td class="r data">990.9</td>
+<td class="r data">1088.2</td>
+<td class="r data">1100.8</td>
+<td class="r data">1013.9</td>
+<td class="r data">1028.1</td>
+<td class="r data">1031.1</td>
+<td class="r data">1062.3</td>
+<td class="r data">1078.2</td>
+<td class="r data">1117.5</td>
+<td class="r data">1275.2</td>
+<td class="r data">1498.2</td>
+<td class="r data">1212.3</td>
+<td class="r data">1204.8</td>
+<td class="r data">1323.6</td>
+<td class="r data">1252.8</td>
+<td class="r data">1211.9</td>
+<td class="r data">1212.4</td>
+<td class="r data">1231.5</td>
+<td class="r data">1255.5</td>
+<td class="r data">1318.9</td>
+<td class="r data">1338.2</td>
+<td class="r data">1550.1</td>
+<td class="r data">1658.1</td>
+<td class="r data">1268.0</td>
+<td class="r data">1192.1</td>
+<td class="r data">1387.1</td>
+<td class="r data">1233.0</td>
+<td class="r data">1224.7</td>
+<td class="r data">1198.7</td>
+<td class="r data">1271.5</td>
+<td class="r data">1266.6</td>
+<td class="r data">1263.5</td>
+<td class="r data">1310.5</td>
+<td class="r data">1394.0</td>
+<td class="r data">1506.1</td>
+<td class="r data">1328.3</td>
+<td class="r data">1235.8</td>
+<td class="r data">1408.4</td>
+<td class="r data">1322.4</td>
+<td class="r data">1313.9</td>
+<td class="r data">1437.9</td>
+<td class="r data">1404.2</td>
+<td class="r data">1308.6</td>
+<td class="r data">1351.4</td>
+<td class="r data">1419.2</td>
+<td class="r data">1459.6</td>
+<td class="r data">1810.2</td>
+<td class="r data">1412.5</td>
+<td class="r data">1301.5</td>
+<td class="r data">1466.5</td>
+<td class="r data">1423.0</td>
+<td class="r data">1313.3</td>
+<td class="r data">1306.4</td>
+<td class="r data">1401.7</td>
+<td class="r data">1357.9</td>
+<td class="r data">1348.4</td>
+<td class="r data">1424.4</td>
+<td class="r data">1481.6</td>
+<td class="r data">1900.1</td>
+<td class="r data">1446.9</td>
+<td class="r data">1374.5</td>
+<td class="r data">1506.0</td>
+<td class="r data">1462.1</td>
+<td class="r data">1391.3</td>
+<td class="r data">1418.0</td>
+<td class="r data">1458.3</td>
+<td class="r data">1481.9</td>
+<td class="r data">1499.8</td>
+<td class="r data">1469.2</td>
+<td class="r data">1582.6</td>
+<td class="r data">2106.4</td>
+<td class="r data">1529.8</td>
+<td class="r data">1453.5</td>
+<td class="r data">1637.5</td>
+<td class="r data">1516.7</td>
+<td class="r data">1526.5</td>
+<td class="r data">1514.4</td>
+<td class="r data">1538.8</td>
+<td class="r data">1621.0</td>
+<td class="r data">1557.1</td>
+<td class="r data">1566.5</td>
+<td class="r data">1729.1</td>
+<td class="r data">2114.0</td>
+<td class="r data">1623.4</td>
+<td class="r data">1541.5</td>
+<td class="r data">1671.4</td>
+<td class="r data">1672.8</td>
+<td class="r data">1643.5</td>
+<td class="r data">1539.5</td>
+<td class="r data">1601.9</td>
+<td class="r data">1682.1</td>
+<td class="r data">1605.7</td>
+<td class="r data">1758.9</td>
+<td class="r data">1831.8</td>
+<td class="r data">2178.4</td>
+<td class="r data">1774.3</td>
+<td class="r data">1651.3</td>
+<td class="r data">1785.0</td>
+<td class="r data">1725.6</td>
+<td class="r data">1729.4</td>
+<td class="r data">1623.7</td>
+<td class="r data">1842.3</td>
+<td class="r data">1881.8</td>
+<td class="r data">1788.3</td>
+<td class="r data">1895.7</td>
+<td class="r data">1985.2</td>
+<td class="r data">2392.1</td>
+<td class="r data">1926.0</td>
+<td class="r data">1838.0</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">A64203</td>
+<td class="l data">Income from food sales : Take-away and fast food outlets</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">506.2</td>
+<td class="r data">520.3</td>
+<td class="r data">525.6</td>
+<td class="r data">540.2</td>
+<td class="r data">678.4</td>
+<td class="r data">501.1</td>
+<td class="r data">463.7</td>
+<td class="r data">516.3</td>
+<td class="r data">541.4</td>
+<td class="r data">541.4</td>
+<td class="r data">562.3</td>
+<td class="r data">615.2</td>
+<td class="r data">593.9</td>
+<td class="r data">670.6</td>
+<td class="r data">602.1</td>
+<td class="r data">638.3</td>
+<td class="r data">786.8</td>
+<td class="r data">612.4</td>
+<td class="r data">565.1</td>
+<td class="r data">613.9</td>
+<td class="r data">626.2</td>
+<td class="r data">613.8</td>
+<td class="r data">640.9</td>
+<td class="r data">650.4</td>
+<td class="r data">651.2</td>
+<td class="r data">678.6</td>
+<td class="r data">686.3</td>
+<td class="r data">709.2</td>
+<td class="r data">871.4</td>
+<td class="r data">655.1</td>
+<td class="r data">671.0</td>
+<td class="r data">897.4</td>
+<td class="r data">709.0</td>
+<td class="r data">774.3</td>
+<td class="r data">740.6</td>
+<td class="r data">737.9</td>
+<td class="r data">802.8</td>
+<td class="r data">774.9</td>
+<td class="r data">784.7</td>
+<td class="r data">827.2</td>
+<td class="r data">1102.8</td>
+<td class="r data">845.1</td>
+<td class="r data">778.2</td>
+<td class="r data">820.1</td>
+<td class="r data">852.3</td>
+<td class="r data">882.5</td>
+<td class="r data">816.3</td>
+<td class="r data">889.4</td>
+<td class="r data">872.3</td>
+<td class="r data">852.3</td>
+<td class="r data">877.4</td>
+<td class="r data">913.3</td>
+<td class="r data">1099.6</td>
+<td class="r data">856.5</td>
+<td class="r data">781.4</td>
+<td class="r data">850.9</td>
+<td class="r data">855.2</td>
+<td class="r data">904.9</td>
+<td class="r data">892.1</td>
+<td class="r data">914.7</td>
+<td class="r data">879.9</td>
+<td class="r data">880.9</td>
+<td class="r data">956.9</td>
+<td class="r data">971.8</td>
+<td class="r data">1192.9</td>
+<td class="r data">955.5</td>
+<td class="r data">895.7</td>
+<td class="r data">965.8</td>
+<td class="r data">1002.9</td>
+<td class="r data">980.4</td>
+<td class="r data">950.1</td>
+<td class="r data">1054.6</td>
+<td class="r data">967.9</td>
+<td class="r data">1026.3</td>
+<td class="r data">1089.6</td>
+<td class="r data">1075.9</td>
+<td class="r data">1377.8</td>
+<td class="r data">1023.6</td>
+<td class="r data">1005.1</td>
+<td class="r data">1101.2</td>
+<td class="r data">1093.7</td>
+<td class="r data">1083.7</td>
+<td class="r data">1136.3</td>
+<td class="r data">1161.4</td>
+<td class="r data">1169.1</td>
+<td class="r data">1168.1</td>
+<td class="r data">1199.6</td>
+<td class="r data">1241.9</td>
+<td class="r data">1556.1</td>
+<td class="r data">1126.7</td>
+<td class="r data">1095.0</td>
+<td class="r data">1278.2</td>
+<td class="r data">1180.6</td>
+<td class="r data">1260.4</td>
+<td class="r data">1253.2</td>
+<td class="r data">1257.2</td>
+<td class="r data">1302.8</td>
+<td class="r data">1243.4</td>
+<td class="r data">1253.0</td>
+<td class="r data">1378.4</td>
+<td class="r data">1626.9</td>
+<td class="r data">1249.9</td>
+<td class="r data">1222.6</td>
+<td class="r data">1329.9</td>
+<td class="r data">1305.0</td>
+<td class="r data">1396.2</td>
+<td class="r data">1336.8</td>
+<td class="r data">1376.3</td>
+<td class="r data">1445.7</td>
+<td class="r data">1320.1</td>
+<td class="r data">1452.6</td>
+<td class="r data">1500.8</td>
+<td class="r data">1835.2</td>
+<td class="r data">1483.5</td>
+<td class="r data">1321.9</td>
+<td class="r data">1465.0</td>
+<td class="r data">1476.3</td>
+<td class="r data">1490.7</td>
+<td class="r data">1391.2</td>
+<td class="r data">1530.7</td>
+<td class="r data">1566.2</td>
+<td class="r data">1459.5</td>
+<td class="r data">1597.8</td>
+<td class="r data">1616.4</td>
+<td class="r data">2010.6</td>
+<td class="r data">1552.6</td>
+<td class="r data">1476.6</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">B64203</td>
+<td class="l data">Income from bar sales : Take-away and fast food outlets</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">7.8</td>
+<td class="r data">7.5</td>
+<td class="r data">7.5</td>
+<td class="r data">6.5</td>
+<td class="r data">5.7</td>
+<td class="r data">4.4</td>
+<td class="r data">6.6</td>
+<td class="r data">7.8</td>
+<td class="r data">5.2</td>
+<td class="r data">4.9</td>
+<td class="r data">4.6</td>
+<td class="r data">4.9</td>
+<td class="r data">4.9</td>
+<td class="r data">5.4</td>
+<td class="r data">7.0</td>
+<td class="r data">7.4</td>
+<td class="r data">8.9</td>
+<td class="r data">6.5</td>
+<td class="r data">6.0</td>
+<td class="r data">6.8</td>
+<td class="r data">6.6</td>
+<td class="r data">6.3</td>
+<td class="r data">6.7</td>
+<td class="r data">6.7</td>
+<td class="r data">7.3</td>
+<td class="r data">6.7</td>
+<td class="r data">6.2</td>
+<td class="r data">6.4</td>
+<td class="r data">6.9</td>
+<td class="r data">6.1</td>
+<td class="r data">7.0</td>
+<td class="r data">7.3</td>
+<td class="r data">7.0</td>
+<td class="r data">6.8</td>
+<td class="r data">6.5</td>
+<td class="r data">6.5</td>
+<td class="r data">6.7</td>
+<td class="r data">7.0</td>
+<td class="r data">7.6</td>
+<td class="r data">7.6</td>
+<td class="r data">9.2</td>
+<td class="r data">6.2</td>
+<td class="r data">7.4</td>
+<td class="r data">6.5</td>
+<td class="r data">4.4</td>
+<td class="r data">5.7</td>
+<td class="r data">4.6</td>
+<td class="r data">5.3</td>
+<td class="r data">6.5</td>
+<td class="r data">10.5</td>
+<td class="r data">11.0</td>
+<td class="r data">11.3</td>
+<td class="r data">11.3</td>
+<td class="r data">13.1</td>
+<td class="r data">12.5</td>
+<td class="r data">14.1</td>
+<td class="r data">12.1</td>
+<td class="r data">13.6</td>
+<td class="r data">12.1</td>
+<td class="r data">13.7</td>
+<td class="r data">13.7</td>
+<td class="r data">13.6</td>
+<td class="r data">15.3</td>
+<td class="r data">15.3</td>
+<td class="r data">19.2</td>
+<td class="r data">13.6</td>
+<td class="r data">14.0</td>
+<td class="r data">15.7</td>
+<td class="r data">14.2</td>
+<td class="r data">13.8</td>
+<td class="r data">13.5</td>
+<td class="r data">13.9</td>
+<td class="r data">14.3</td>
+<td class="r data">15.1</td>
+<td class="r data">16.0</td>
+<td class="r data">15.7</td>
+<td class="r data">22.3</td>
+<td class="r data">15.1</td>
+<td class="r data">14.4</td>
+<td class="r data">18.3</td>
+<td class="r data">15.1</td>
+<td class="r data">19.1</td>
+<td class="r data">13.1</td>
+<td class="r data">15.5</td>
+<td class="r data">15.9</td>
+<td class="r data">14.7</td>
+<td class="r data">17.9</td>
+<td class="r data">19.5</td>
+<td class="r data">22.3</td>
+<td class="r data">21.5</td>
+<td class="r data">17.5</td>
+<td class="r data">19.1</td>
+<td class="r data">17.9</td>
+<td class="r data">19.3</td>
+<td class="r data">18.9</td>
+<td class="r data">18.2</td>
+<td class="r data">27.2</td>
+<td class="r data">26.5</td>
+<td class="r data">26.0</td>
+<td class="r data">25.8</td>
+<td class="r data">29.1</td>
+<td class="r data">24.4</td>
+<td class="r data">22.3</td>
+<td class="r data">22.6</td>
+<td class="r data">21.3</td>
+<td class="r data">24.0</td>
+<td class="r data">23.8</td>
+<td class="r data">25.7</td>
+<td class="r data">25.4</td>
+<td class="r data">23.5</td>
+<td class="r data">23.3</td>
+<td class="r data">27.6</td>
+<td class="r data">32.1</td>
+<td class="r data">26.7</td>
+<td class="r data">25.5</td>
+<td class="r data">30.1</td>
+<td class="r data">27.7</td>
+<td class="r data">28.4</td>
+<td class="r data">27.4</td>
+<td class="r data">31.0</td>
+<td class="r data">31.8</td>
+<td class="r data">25.4</td>
+<td class="r data">29.6</td>
+<td class="r data">30.5</td>
+<td class="r data">35.9</td>
+<td class="r data">31.1</td>
+<td class="r data">27.6</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">C64203</td>
+<td class="l data">Other income : Take-away and fast food outlets</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">1.7</td>
+<td class="r data">1.9</td>
+<td class="r data">1.8</td>
+<td class="r data">1.4</td>
+<td class="r data">1.3</td>
+<td class="r data">1.3</td>
+<td class="r data">1.5</td>
+<td class="r data">1.6</td>
+<td class="r data">1.3</td>
+<td class="r data">1.3</td>
+<td class="r data">1.6</td>
+<td class="r data">1.5</td>
+<td class="r data">1.6</td>
+<td class="r data">1.6</td>
+<td class="r data">1.4</td>
+<td class="r data">1.5</td>
+<td class="r data">1.8</td>
+<td class="r data">1.4</td>
+<td class="r data">1.5</td>
+<td class="r data">1.7</td>
+<td class="r data">1.5</td>
+<td class="r data">1.7</td>
+<td class="r data">1.7</td>
+<td class="r data">1.8</td>
+<td class="r data">1.7</td>
+<td class="r data">1.6</td>
+<td class="r data">2.1</td>
+<td class="r data">2.1</td>
+<td class="r data">2.2</td>
+<td class="r data">2.1</td>
+<td class="r data">2.4</td>
+<td class="r data">2.5</td>
+<td class="r data">2.8</td>
+<td class="r data">1.5</td>
+<td class="r data">1.8</td>
+<td class="r data">1.8</td>
+<td class="r data">2.2</td>
+<td class="r data">1.0</td>
+<td class="r data">1.8</td>
+<td class="r data">3.3</td>
+<td class="r data">1.4</td>
+<td class="r data">1.8</td>
+<td class="r data">1.6</td>
+<td class="r data">2.3</td>
+<td class="r data">1.9</td>
+<td class="r data">2.3</td>
+<td class="r data">1.9</td>
+<td class="r data">2.2</td>
+<td class="r data">1.9</td>
+<td class="r data">1.8</td>
+<td class="r data">2.0</td>
+<td class="r data">1.9</td>
+<td class="r data">1.7</td>
+<td class="r data">1.6</td>
+<td class="r data">1.9</td>
+<td class="r data">1.8</td>
+<td class="r data">1.8</td>
+<td class="r data">2.2</td>
+<td class="r data">1.9</td>
+<td class="r data">1.8</td>
+<td class="r data">1.8</td>
+<td class="r data">1.6</td>
+<td class="r data">1.7</td>
+<td class="r data">2.2</td>
+<td class="r data">2.5</td>
+<td class="r data">2.3</td>
+<td class="r data">2.4</td>
+<td class="r data">2.7</td>
+<td class="r data">2.4</td>
+<td class="r data">2.2</td>
+<td class="r data">2.2</td>
+<td class="r data">2.4</td>
+<td class="r data">2.0</td>
+<td class="r data">2.2</td>
+<td class="r data">2.4</td>
+<td class="r data">2.6</td>
+<td class="r data">2.4</td>
+<td class="r data">2.4</td>
+<td class="r data">2.4</td>
+<td class="r data">4.2</td>
+<td class="r data">2.5</td>
+<td class="r data">2.9</td>
+<td class="r data">2.8</td>
+<td class="r data">2.6</td>
+<td class="r data">2.9</td>
+<td class="r data">2.8</td>
+<td class="r data">2.8</td>
+<td class="r data">2.9</td>
+<td class="r data">3.6</td>
+<td class="r data">2.9</td>
+<td class="r data">3.3</td>
+<td class="r data">4.4</td>
+<td class="r data">1.4</td>
+<td class="r data">4.1</td>
+<td class="r data">4.1</td>
+<td class="r data">4.1</td>
+<td class="r data">4.3</td>
+<td class="r data">4.2</td>
+<td class="r data">4.2</td>
+<td class="r data">4.2</td>
+<td class="r data">4.2</td>
+<td class="r data">3.6</td>
+<td class="r data">4.1</td>
+<td class="r data">4.9</td>
+<td class="r data">5.5</td>
+<td class="r data">5.5</td>
+<td class="r data">5.6</td>
+<td class="r data">6.4</td>
+<td class="r data">5.7</td>
+<td class="r data">6.0</td>
+<td class="r data">6.1</td>
+<td class="r data">6.1</td>
+<td class="r data">3.5</td>
+<td class="r data">3.1</td>
+<td class="r data">3.1</td>
+<td class="r data">6.1</td>
+<td class="r data">5.2</td>
+<td class="r data">3.9</td>
+<td class="r data">4.1</td>
+<td class="r data">2.5</td>
+<td class="r data">2.5</td>
+<td class="r data">2.1</td>
+<td class="r data">2.7</td>
+<td class="r data">2.3</td>
+<td class="r data">2.7</td>
+<td class="r data">1.9</td>
+<td class="r data">1.7</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">D64203</td>
+<td class="l data">Total income : Take-away and fast food outlets</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">515.7</td>
+<td class="r data">529.7</td>
+<td class="r data">534.9</td>
+<td class="r data">548.1</td>
+<td class="r data">685.4</td>
+<td class="r data">506.8</td>
+<td class="r data">471.8</td>
+<td class="r data">525.7</td>
+<td class="r data">547.9</td>
+<td class="r data">547.6</td>
+<td class="r data">568.5</td>
+<td class="r data">621.6</td>
+<td class="r data">600.4</td>
+<td class="r data">677.6</td>
+<td class="r data">610.5</td>
+<td class="r data">647.2</td>
+<td class="r data">797.5</td>
+<td class="r data">620.3</td>
+<td class="r data">572.6</td>
+<td class="r data">622.4</td>
+<td class="r data">634.3</td>
+<td class="r data">621.8</td>
+<td class="r data">649.3</td>
+<td class="r data">658.9</td>
+<td class="r data">660.2</td>
+<td class="r data">686.9</td>
+<td class="r data">694.6</td>
+<td class="r data">717.7</td>
+<td class="r data">880.5</td>
+<td class="r data">663.3</td>
+<td class="r data">680.4</td>
+<td class="r data">907.2</td>
+<td class="r data">718.8</td>
+<td class="r data">782.6</td>
+<td class="r data">748.9</td>
+<td class="r data">746.2</td>
+<td class="r data">811.7</td>
+<td class="r data">782.9</td>
+<td class="r data">794.1</td>
+<td class="r data">838.1</td>
+<td class="r data">1113.4</td>
+<td class="r data">853.1</td>
+<td class="r data">787.2</td>
+<td class="r data">828.9</td>
+<td class="r data">858.6</td>
+<td class="r data">890.5</td>
+<td class="r data">822.8</td>
+<td class="r data">896.9</td>
+<td class="r data">880.7</td>
+<td class="r data">864.6</td>
+<td class="r data">890.4</td>
+<td class="r data">926.5</td>
+<td class="r data">1112.6</td>
+<td class="r data">871.2</td>
+<td class="r data">795.8</td>
+<td class="r data">866.8</td>
+<td class="r data">869.1</td>
+<td class="r data">920.7</td>
+<td class="r data">906.1</td>
+<td class="r data">930.2</td>
+<td class="r data">895.4</td>
+<td class="r data">896.1</td>
+<td class="r data">973.9</td>
+<td class="r data">989.3</td>
+<td class="r data">1214.6</td>
+<td class="r data">971.4</td>
+<td class="r data">912.1</td>
+<td class="r data">984.2</td>
+<td class="r data">1019.5</td>
+<td class="r data">996.4</td>
+<td class="r data">965.8</td>
+<td class="r data">1070.9</td>
+<td class="r data">984.2</td>
+<td class="r data">1043.6</td>
+<td class="r data">1108.0</td>
+<td class="r data">1094.2</td>
+<td class="r data">1402.5</td>
+<td class="r data">1041.1</td>
+<td class="r data">1021.9</td>
+<td class="r data">1123.7</td>
+<td class="r data">1111.3</td>
+<td class="r data">1105.7</td>
+<td class="r data">1152.2</td>
+<td class="r data">1179.5</td>
+<td class="r data">1187.9</td>
+<td class="r data">1185.6</td>
+<td class="r data">1220.3</td>
+<td class="r data">1264.3</td>
+<td class="r data">1582.0</td>
+<td class="r data">1151.1</td>
+<td class="r data">1115.8</td>
+<td class="r data">1301.7</td>
+<td class="r data">1199.9</td>
+<td class="r data">1283.8</td>
+<td class="r data">1276.2</td>
+<td class="r data">1279.5</td>
+<td class="r data">1334.3</td>
+<td class="r data">1274.1</td>
+<td class="r data">1283.2</td>
+<td class="r data">1408.4</td>
+<td class="r data">1660.2</td>
+<td class="r data">1277.9</td>
+<td class="r data">1249.0</td>
+<td class="r data">1357.4</td>
+<td class="r data">1331.8</td>
+<td class="r data">1425.7</td>
+<td class="r data">1366.2</td>
+<td class="r data">1408.4</td>
+<td class="r data">1476.8</td>
+<td class="r data">1349.6</td>
+<td class="r data">1482.0</td>
+<td class="r data">1534.5</td>
+<td class="r data">1870.8</td>
+<td class="r data">1513.3</td>
+<td class="r data">1350.5</td>
+<td class="r data">1501.2</td>
+<td class="r data">1509.2</td>
+<td class="r data">1523.0</td>
+<td class="r data">1422.7</td>
+<td class="r data">1564.2</td>
+<td class="r data">1600.5</td>
+<td class="r data">1487.0</td>
+<td class="r data">1630.1</td>
+<td class="r data">1649.2</td>
+<td class="r data">2049.2</td>
+<td class="r data">1585.6</td>
+<td class="r data">1505.9</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">A64209</td>
+<td class="l data">Income from food sales : Catering services</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">301.6</td>
+<td class="r data">307.0</td>
+<td class="r data">290.7</td>
+<td class="r data">328.8</td>
+<td class="r data">282.8</td>
+<td class="r data">276.2</td>
+<td class="r data">290.6</td>
+<td class="r data">305.2</td>
+<td class="r data">280.9</td>
+<td class="r data">289.7</td>
+<td class="r data">291.0</td>
+<td class="r data">308.5</td>
+<td class="r data">359.6</td>
+<td class="r data">360.9</td>
+<td class="r data">341.7</td>
+<td class="r data">374.5</td>
+<td class="r data">342.7</td>
+<td class="r data">305.5</td>
+<td class="r data">333.2</td>
+<td class="r data">351.3</td>
+<td class="r data">329.2</td>
+<td class="r data">353.2</td>
+<td class="r data">351.9</td>
+<td class="r data">358.3</td>
+<td class="r data">386.6</td>
+<td class="r data">388.5</td>
+<td class="r data">348.4</td>
+<td class="r data">385.5</td>
+<td class="r data">338.2</td>
+<td class="r data">312.9</td>
+<td class="r data">352.8</td>
+<td class="r data">355.3</td>
+<td class="r data">376.7</td>
+<td class="r data">384.9</td>
+<td class="r data">407.5</td>
+<td class="r data">424.2</td>
+<td class="r data">441.4</td>
+<td class="r data">430.3</td>
+<td class="r data">456.7</td>
+<td class="r data">458.3</td>
+<td class="r data">388.1</td>
+<td class="r data">301.9</td>
+<td class="r data">374.6</td>
+<td class="r data">333.2</td>
+<td class="r data">394.3</td>
+<td class="r data">444.8</td>
+<td class="r data">449.3</td>
+<td class="r data">392.7</td>
+<td class="r data">419.5</td>
+<td class="r data">405.4</td>
+<td class="r data">448.6</td>
+<td class="r data">452.3</td>
+<td class="r data">412.4</td>
+<td class="r data">364.6</td>
+<td class="r data">418.6</td>
+<td class="r data">452.9</td>
+<td class="r data">443.7</td>
+<td class="r data">470.3</td>
+<td class="r data">466.2</td>
+<td class="r data">451.9</td>
+<td class="r data">491.8</td>
+<td class="r data">496.9</td>
+<td class="r data">487.5</td>
+<td class="r data">515.5</td>
+<td class="r data">480.7</td>
+<td class="r data">400.8</td>
+<td class="r data">459.4</td>
+<td class="r data">485.9</td>
+<td class="r data">431.1</td>
+<td class="r data">449.8</td>
+<td class="r data">446.0</td>
+<td class="r data">434.2</td>
+<td class="r data">470.0</td>
+<td class="r data">505.7</td>
+<td class="r data">473.1</td>
+<td class="r data">509.4</td>
+<td class="r data">469.0</td>
+<td class="r data">444.5</td>
+<td class="r data">470.1</td>
+<td class="r data">487.7</td>
+<td class="r data">430.4</td>
+<td class="r data">485.3</td>
+<td class="r data">476.3</td>
+<td class="r data">467.9</td>
+<td class="r data">465.4</td>
+<td class="r data">488.9</td>
+<td class="r data">476.8</td>
+<td class="r data">496.7</td>
+<td class="r data">474.8</td>
+<td class="r data">421.5</td>
+<td class="r data">479.4</td>
+<td class="r data">485.5</td>
+<td class="r data">473.6</td>
+<td class="r data">490.5</td>
+<td class="r data">460.0</td>
+<td class="r data">471.0</td>
+<td class="r data">484.8</td>
+<td class="r data">501.0</td>
+<td class="r data">498.8</td>
+<td class="r data">480.1</td>
+<td class="r data">438.9</td>
+<td class="r data">410.7</td>
+<td class="r data">501.6</td>
+<td class="r data">478.6</td>
+<td class="r data">448.0</td>
+<td class="r data">484.9</td>
+<td class="r data">480.6</td>
+<td class="r data">482.1</td>
+<td class="r data">511.2</td>
+<td class="r data">511.6</td>
+<td class="r data">542.9</td>
+<td class="r data">556.3</td>
+<td class="r data">490.3</td>
+<td class="r data">446.2</td>
+<td class="r data">524.5</td>
+<td class="r data">566.4</td>
+<td class="r data">493.9</td>
+<td class="r data">499.0</td>
+<td class="r data">497.2</td>
+<td class="r data">504.6</td>
+<td class="r data">511.0</td>
+<td class="r data">526.4</td>
+<td class="r data">508.7</td>
+<td class="r data">560.1</td>
+<td class="r data">524.6</td>
+<td class="r data">467.4</td>
+<td class="r data">529.0</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">B64209</td>
+<td class="l data">Income from bar sales : Catering services</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">84.0</td>
+<td class="r data">80.9</td>
+<td class="r data">83.4</td>
+<td class="r data">83.4</td>
+<td class="r data">78.5</td>
+<td class="r data">70.2</td>
+<td class="r data">74.2</td>
+<td class="r data">74.0</td>
+<td class="r data">73.9</td>
+<td class="r data">79.2</td>
+<td class="r data">88.9</td>
+<td class="r data">87.3</td>
+<td class="r data">89.5</td>
+<td class="r data">98.2</td>
+<td class="r data">100.0</td>
+<td class="r data">89.4</td>
+<td class="r data">102.5</td>
+<td class="r data">80.7</td>
+<td class="r data">81.6</td>
+<td class="r data">87.7</td>
+<td class="r data">90.9</td>
+<td class="r data">94.8</td>
+<td class="r data">92.7</td>
+<td class="r data">91.9</td>
+<td class="r data">100.2</td>
+<td class="r data">107.5</td>
+<td class="r data">111.0</td>
+<td class="r data">119.5</td>
+<td class="r data">155.9</td>
+<td class="r data">82.2</td>
+<td class="r data">86.1</td>
+<td class="r data">93.7</td>
+<td class="r data">76.6</td>
+<td class="r data">81.8</td>
+<td class="r data">86.7</td>
+<td class="r data">82.2</td>
+<td class="r data">81.3</td>
+<td class="r data">78.7</td>
+<td class="r data">78.0</td>
+<td class="r data">78.2</td>
+<td class="r data">89.5</td>
+<td class="r data">68.4</td>
+<td class="r data">67.6</td>
+<td class="r data">69.8</td>
+<td class="r data">75.7</td>
+<td class="r data">81.2</td>
+<td class="r data">72.5</td>
+<td class="r data">77.4</td>
+<td class="r data">76.6</td>
+<td class="r data">73.8</td>
+<td class="r data">82.4</td>
+<td class="r data">88.9</td>
+<td class="r data">120.2</td>
+<td class="r data">98.9</td>
+<td class="r data">81.9</td>
+<td class="r data">95.1</td>
+<td class="r data">86.8</td>
+<td class="r data">83.5</td>
+<td class="r data">80.4</td>
+<td class="r data">82.1</td>
+<td class="r data">83.1</td>
+<td class="r data">89.8</td>
+<td class="r data">101.3</td>
+<td class="r data">106.7</td>
+<td class="r data">121.3</td>
+<td class="r data">78.4</td>
+<td class="r data">72.3</td>
+<td class="r data">89.9</td>
+<td class="r data">92.6</td>
+<td class="r data">94.2</td>
+<td class="r data">101.9</td>
+<td class="r data">99.1</td>
+<td class="r data">93.5</td>
+<td class="r data">98.9</td>
+<td class="r data">110.1</td>
+<td class="r data">112.5</td>
+<td class="r data">122.5</td>
+<td class="r data">104.6</td>
+<td class="r data">99.0</td>
+<td class="r data">109.5</td>
+<td class="r data">107.7</td>
+<td class="r data">98.3</td>
+<td class="r data">101.3</td>
+<td class="r data">101.3</td>
+<td class="r data">134.9</td>
+<td class="r data">161.6</td>
+<td class="r data">161.5</td>
+<td class="r data">164.6</td>
+<td class="r data">221.5</td>
+<td class="r data">143.5</td>
+<td class="r data">152.1</td>
+<td class="r data">160.8</td>
+<td class="r data">151.3</td>
+<td class="r data">145.8</td>
+<td class="r data">152.6</td>
+<td class="r data">150.7</td>
+<td class="r data">127.6</td>
+<td class="r data">138.8</td>
+<td class="r data">149.6</td>
+<td class="r data">160.7</td>
+<td class="r data">178.7</td>
+<td class="r data">135.8</td>
+<td class="r data">147.8</td>
+<td class="r data">141.8</td>
+<td class="r data">142.6</td>
+<td class="r data">139.3</td>
+<td class="r data">115.7</td>
+<td class="r data">119.3</td>
+<td class="r data">137.9</td>
+<td class="r data">133.7</td>
+<td class="r data">120.9</td>
+<td class="r data">142.4</td>
+<td class="r data">164.7</td>
+<td class="r data">116.5</td>
+<td class="r data">120.5</td>
+<td class="r data">143.3</td>
+<td class="r data">124.7</td>
+<td class="r data">122.4</td>
+<td class="r data">108.2</td>
+<td class="r data">122.2</td>
+<td class="r data">130.2</td>
+<td class="r data">125.8</td>
+<td class="r data">136.7</td>
+<td class="r data">135.8</td>
+<td class="r data">160.0</td>
+<td class="r data">111.5</td>
+<td class="r data">129.4</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">C64209</td>
+<td class="l data">Other income : Catering services</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">34.0</td>
+<td class="r data">52.7</td>
+<td class="r data">40.9</td>
+<td class="r data">34.6</td>
+<td class="r data">38.4</td>
+<td class="r data">27.4</td>
+<td class="r data">32.0</td>
+<td class="r data">31.4</td>
+<td class="r data">31.8</td>
+<td class="r data">28.9</td>
+<td class="r data">41.4</td>
+<td class="r data">30.8</td>
+<td class="r data">33.7</td>
+<td class="r data">38.2</td>
+<td class="r data">37.2</td>
+<td class="r data">44.0</td>
+<td class="r data">43.3</td>
+<td class="r data">40.6</td>
+<td class="r data">43.4</td>
+<td class="r data">56.0</td>
+<td class="r data">43.8</td>
+<td class="r data">46.8</td>
+<td class="r data">49.8</td>
+<td class="r data">40.2</td>
+<td class="r data">40.9</td>
+<td class="r data">46.8</td>
+<td class="r data">55.3</td>
+<td class="r data">62.7</td>
+<td class="r data">64.6</td>
+<td class="r data">53.7</td>
+<td class="r data">45.9</td>
+<td class="r data">60.4</td>
+<td class="r data">57.1</td>
+<td class="r data">100.3</td>
+<td class="r data">63.2</td>
+<td class="r data">42.2</td>
+<td class="r data">42.7</td>
+<td class="r data">64.7</td>
+<td class="r data">62.3</td>
+<td class="r data">76.9</td>
+<td class="r data">70.4</td>
+<td class="r data">39.1</td>
+<td class="r data">42.7</td>
+<td class="r data">48.2</td>
+<td class="r data">44.1</td>
+<td class="r data">36.2</td>
+<td class="r data">44.4</td>
+<td class="r data">30.5</td>
+<td class="r data">32.7</td>
+<td class="r data">58.1</td>
+<td class="r data">51.2</td>
+<td class="r data">46.6</td>
+<td class="r data">56.4</td>
+<td class="r data">50.4</td>
+<td class="r data">43.9</td>
+<td class="r data">60.1</td>
+<td class="r data">54.0</td>
+<td class="r data">54.7</td>
+<td class="r data">55.0</td>
+<td class="r data">45.4</td>
+<td class="r data">49.5</td>
+<td class="r data">52.2</td>
+<td class="r data">45.1</td>
+<td class="r data">45.8</td>
+<td class="r data">44.8</td>
+<td class="r data">43.5</td>
+<td class="r data">42.7</td>
+<td class="r data">52.1</td>
+<td class="r data">48.0</td>
+<td class="r data">48.5</td>
+<td class="r data">53.8</td>
+<td class="r data">53.6</td>
+<td class="r data">45.7</td>
+<td class="r data">49.2</td>
+<td class="r data">48.6</td>
+<td class="r data">53.5</td>
+<td class="r data">55.2</td>
+<td class="r data">44.0</td>
+<td class="r data">47.9</td>
+<td class="r data">53.5</td>
+<td class="r data">52.7</td>
+<td class="r data">49.0</td>
+<td class="r data">53.0</td>
+<td class="r data">49.6</td>
+<td class="r data">51.7</td>
+<td class="r data">54.9</td>
+<td class="r data">47.0</td>
+<td class="r data">60.8</td>
+<td class="r data">53.7</td>
+<td class="r data">46.4</td>
+<td class="r data">54.0</td>
+<td class="r data">56.1</td>
+<td class="r data">53.9</td>
+<td class="r data">54.0</td>
+<td class="r data">62.3</td>
+<td class="r data">61.6</td>
+<td class="r data">61.3</td>
+<td class="r data">59.9</td>
+<td class="r data">59.2</td>
+<td class="r data">58.5</td>
+<td class="r data">53.4</td>
+<td class="r data">52.7</td>
+<td class="r data">56.0</td>
+<td class="r data">61.9</td>
+<td class="r data">55.6</td>
+<td class="r data">60.3</td>
+<td class="r data">56.0</td>
+<td class="r data">56.6</td>
+<td class="r data">56.7</td>
+<td class="r data">57.9</td>
+<td class="r data">60.5</td>
+<td class="r data">61.3</td>
+<td class="r data">60.1</td>
+<td class="r data">51.4</td>
+<td class="r data">54.6</td>
+<td class="r data">61.2</td>
+<td class="r data">54.7</td>
+<td class="r data">53.8</td>
+<td class="r data">56.2</td>
+<td class="r data">59.7</td>
+<td class="r data">57.1</td>
+<td class="r data">53.7</td>
+<td class="r data">57.1</td>
+<td class="r data">71.6</td>
+<td class="r data">61.0</td>
+<td class="r data">56.9</td>
+<td class="r data">62.4</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">D64209</td>
+<td class="l data">Total income : Catering services</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">419.6</td>
+<td class="r data">440.6</td>
+<td class="r data">415.0</td>
+<td class="r data">446.8</td>
+<td class="r data">399.7</td>
+<td class="r data">373.8</td>
+<td class="r data">396.8</td>
+<td class="r data">410.6</td>
+<td class="r data">386.6</td>
+<td class="r data">397.8</td>
+<td class="r data">421.3</td>
+<td class="r data">426.6</td>
+<td class="r data">482.8</td>
+<td class="r data">497.3</td>
+<td class="r data">478.9</td>
+<td class="r data">507.9</td>
+<td class="r data">488.5</td>
+<td class="r data">426.8</td>
+<td class="r data">458.2</td>
+<td class="r data">495.0</td>
+<td class="r data">463.9</td>
+<td class="r data">494.8</td>
+<td class="r data">494.4</td>
+<td class="r data">490.4</td>
+<td class="r data">527.7</td>
+<td class="r data">542.8</td>
+<td class="r data">514.7</td>
+<td class="r data">567.7</td>
+<td class="r data">558.7</td>
+<td class="r data">448.8</td>
+<td class="r data">484.8</td>
+<td class="r data">509.4</td>
+<td class="r data">510.4</td>
+<td class="r data">567.0</td>
+<td class="r data">557.4</td>
+<td class="r data">548.6</td>
+<td class="r data">565.4</td>
+<td class="r data">573.7</td>
+<td class="r data">597.0</td>
+<td class="r data">613.4</td>
+<td class="r data">548.0</td>
+<td class="r data">409.4</td>
+<td class="r data">484.9</td>
+<td class="r data">451.2</td>
+<td class="r data">514.1</td>
+<td class="r data">562.2</td>
+<td class="r data">566.2</td>
+<td class="r data">500.6</td>
+<td class="r data">528.8</td>
+<td class="r data">537.3</td>
+<td class="r data">582.2</td>
+<td class="r data">587.8</td>
+<td class="r data">589.0</td>
+<td class="r data">513.9</td>
+<td class="r data">544.4</td>
+<td class="r data">608.1</td>
+<td class="r data">584.5</td>
+<td class="r data">608.5</td>
+<td class="r data">601.6</td>
+<td class="r data">579.4</td>
+<td class="r data">624.4</td>
+<td class="r data">638.9</td>
+<td class="r data">633.9</td>
+<td class="r data">668.0</td>
+<td class="r data">646.8</td>
+<td class="r data">522.7</td>
+<td class="r data">574.4</td>
+<td class="r data">627.9</td>
+<td class="r data">571.7</td>
+<td class="r data">592.5</td>
+<td class="r data">601.7</td>
+<td class="r data">586.9</td>
+<td class="r data">609.2</td>
+<td class="r data">653.8</td>
+<td class="r data">631.8</td>
+<td class="r data">675.4</td>
+<td class="r data">646.7</td>
+<td class="r data">593.1</td>
+<td class="r data">617.0</td>
+<td class="r data">650.7</td>
+<td class="r data">590.8</td>
+<td class="r data">632.6</td>
+<td class="r data">630.6</td>
+<td class="r data">618.8</td>
+<td class="r data">652.0</td>
+<td class="r data">705.4</td>
+<td class="r data">685.3</td>
+<td class="r data">722.1</td>
+<td class="r data">750.0</td>
+<td class="r data">611.4</td>
+<td class="r data">685.5</td>
+<td class="r data">702.4</td>
+<td class="r data">678.8</td>
+<td class="r data">690.3</td>
+<td class="r data">674.9</td>
+<td class="r data">683.3</td>
+<td class="r data">673.7</td>
+<td class="r data">699.7</td>
+<td class="r data">707.6</td>
+<td class="r data">699.3</td>
+<td class="r data">671.0</td>
+<td class="r data">599.2</td>
+<td class="r data">705.4</td>
+<td class="r data">682.3</td>
+<td class="r data">646.2</td>
+<td class="r data">684.5</td>
+<td class="r data">652.3</td>
+<td class="r data">658.0</td>
+<td class="r data">705.8</td>
+<td class="r data">703.2</td>
+<td class="r data">724.3</td>
+<td class="r data">760.0</td>
+<td class="r data">715.1</td>
+<td class="r data">614.1</td>
+<td class="r data">699.6</td>
+<td class="r data">770.9</td>
+<td class="r data">673.3</td>
+<td class="r data">675.2</td>
+<td class="r data">661.6</td>
+<td class="r data">686.5</td>
+<td class="r data">698.3</td>
+<td class="r data">705.9</td>
+<td class="r data">702.5</td>
+<td class="r data">767.5</td>
+<td class="r data">745.6</td>
+<td class="r data">635.8</td>
+<td class="r data">720.8</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">A64200</td>
+<td class="l data">Income from food sales : Total industry</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">1482.5</td>
+<td class="r data">1519.8</td>
+<td class="r data">1519.2</td>
+<td class="r data">1623.1</td>
+<td class="r data">1878.6</td>
+<td class="r data">1507.2</td>
+<td class="r data">1459.3</td>
+<td class="r data">1585.7</td>
+<td class="r data">1592.0</td>
+<td class="r data">1569.1</td>
+<td class="r data">1574.4</td>
+<td class="r data">1664.8</td>
+<td class="r data">1681.4</td>
+<td class="r data">1790.4</td>
+<td class="r data">1691.2</td>
+<td class="r data">1907.9</td>
+<td class="r data">2248.0</td>
+<td class="r data">1731.8</td>
+<td class="r data">1671.8</td>
+<td class="r data">1776.9</td>
+<td class="r data">1760.8</td>
+<td class="r data">1739.4</td>
+<td class="r data">1761.0</td>
+<td class="r data">1793.6</td>
+<td class="r data">1833.9</td>
+<td class="r data">1887.5</td>
+<td class="r data">1896.6</td>
+<td class="r data">2079.4</td>
+<td class="r data">2356.7</td>
+<td class="r data">1890.0</td>
+<td class="r data">1932.8</td>
+<td class="r data">2262.1</td>
+<td class="r data">2046.1</td>
+<td class="r data">2084.2</td>
+<td class="r data">2089.0</td>
+<td class="r data">2103.2</td>
+<td class="r data">2211.6</td>
+<td class="r data">2251.1</td>
+<td class="r data">2271.4</td>
+<td class="r data">2427.3</td>
+<td class="r data">2769.3</td>
+<td class="r data">2124.9</td>
+<td class="r data">2062.6</td>
+<td class="r data">2235.4</td>
+<td class="r data">2175.4</td>
+<td class="r data">2259.6</td>
+<td class="r data">2181.8</td>
+<td class="r data">2250.2</td>
+<td class="r data">2264.8</td>
+<td class="r data">2220.6</td>
+<td class="r data">2311.4</td>
+<td class="r data">2399.1</td>
+<td class="r data">2648.6</td>
+<td class="r data">2190.7</td>
+<td class="r data">2111.2</td>
+<td class="r data">2334.0</td>
+<td class="r data">2272.5</td>
+<td class="r data">2350.1</td>
+<td class="r data">2409.2</td>
+<td class="r data">2388.7</td>
+<td class="r data">2354.7</td>
+<td class="r data">2372.5</td>
+<td class="r data">2461.2</td>
+<td class="r data">2525.0</td>
+<td class="r data">2987.8</td>
+<td class="r data">2380.3</td>
+<td class="r data">2318.0</td>
+<td class="r data">2520.0</td>
+<td class="r data">2506.0</td>
+<td class="r data">2421.5</td>
+<td class="r data">2390.1</td>
+<td class="r data">2542.8</td>
+<td class="r data">2462.4</td>
+<td class="r data">2564.6</td>
+<td class="r data">2643.9</td>
+<td class="r data">2699.3</td>
+<td class="r data">3272.7</td>
+<td class="r data">2554.2</td>
+<td class="r data">2505.4</td>
+<td class="r data">2721.5</td>
+<td class="r data">2624.8</td>
+<td class="r data">2619.4</td>
+<td class="r data">2688.6</td>
+<td class="r data">2752.8</td>
+<td class="r data">2772.9</td>
+<td class="r data">2808.6</td>
+<td class="r data">2801.1</td>
+<td class="r data">2936.9</td>
+<td class="r data">3560.1</td>
+<td class="r data">2687.8</td>
+<td class="r data">2648.8</td>
+<td class="r data">2999.1</td>
+<td class="r data">2823.8</td>
+<td class="r data">2930.7</td>
+<td class="r data">2892.7</td>
+<td class="r data">2921.2</td>
+<td class="r data">3044.3</td>
+<td class="r data">2949.4</td>
+<td class="r data">2959.0</td>
+<td class="r data">3192.4</td>
+<td class="r data">3643.8</td>
+<td class="r data">2918.8</td>
+<td class="r data">2902.4</td>
+<td class="r data">3097.0</td>
+<td class="r data">3048.2</td>
+<td class="r data">3169.7</td>
+<td class="r data">3020.7</td>
+<td class="r data">3124.9</td>
+<td class="r data">3268.0</td>
+<td class="r data">3085.5</td>
+<td class="r data">3359.3</td>
+<td class="r data">3480.5</td>
+<td class="r data">4019.1</td>
+<td class="r data">3305.3</td>
+<td class="r data">3114.8</td>
+<td class="r data">3418.1</td>
+<td class="r data">3322.5</td>
+<td class="r data">3341.5</td>
+<td class="r data">3170.6</td>
+<td class="r data">3486.8</td>
+<td class="r data">3532.6</td>
+<td class="r data">3364.0</td>
+<td class="r data">3556.7</td>
+<td class="r data">3703.4</td>
+<td class="r data">4370.6</td>
+<td class="r data">3559.4</td>
+<td class="r data">3423.9</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">B64200</td>
+<td class="l data">Income from bar sales : Total industry</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">279.9</td>
+<td class="r data">280.2</td>
+<td class="r data">269.3</td>
+<td class="r data">308.9</td>
+<td class="r data">334.0</td>
+<td class="r data">281.7</td>
+<td class="r data">280.2</td>
+<td class="r data">306.5</td>
+<td class="r data">288.8</td>
+<td class="r data">276.2</td>
+<td class="r data">316.4</td>
+<td class="r data">316.8</td>
+<td class="r data">309.5</td>
+<td class="r data">319.6</td>
+<td class="r data">320.3</td>
+<td class="r data">345.2</td>
+<td class="r data">385.8</td>
+<td class="r data">301.5</td>
+<td class="r data">292.8</td>
+<td class="r data">356.1</td>
+<td class="r data">378.8</td>
+<td class="r data">328.5</td>
+<td class="r data">344.8</td>
+<td class="r data">330.7</td>
+<td class="r data">361.2</td>
+<td class="r data">355.9</td>
+<td class="r data">361.8</td>
+<td class="r data">405.0</td>
+<td class="r data">500.6</td>
+<td class="r data">362.1</td>
+<td class="r data">378.7</td>
+<td class="r data">398.7</td>
+<td class="r data">359.5</td>
+<td class="r data">348.1</td>
+<td class="r data">338.4</td>
+<td class="r data">346.6</td>
+<td class="r data">346.7</td>
+<td class="r data">323.4</td>
+<td class="r data">356.2</td>
+<td class="r data">458.4</td>
+<td class="r data">436.8</td>
+<td class="r data">333.3</td>
+<td class="r data">319.3</td>
+<td class="r data">339.3</td>
+<td class="r data">349.8</td>
+<td class="r data">345.6</td>
+<td class="r data">325.5</td>
+<td class="r data">352.8</td>
+<td class="r data">341.0</td>
+<td class="r data">345.7</td>
+<td class="r data">379.3</td>
+<td class="r data">395.2</td>
+<td class="r data">450.0</td>
+<td class="r data">424.0</td>
+<td class="r data">361.8</td>
+<td class="r data">406.2</td>
+<td class="r data">379.1</td>
+<td class="r data">370.2</td>
+<td class="r data">414.8</td>
+<td class="r data">405.8</td>
+<td class="r data">370.6</td>
+<td class="r data">384.8</td>
+<td class="r data">426.9</td>
+<td class="r data">444.7</td>
+<td class="r data">568.7</td>
+<td class="r data">404.8</td>
+<td class="r data">382.9</td>
+<td class="r data">414.8</td>
+<td class="r data">415.7</td>
+<td class="r data">389.3</td>
+<td class="r data">393.7</td>
+<td class="r data">418.8</td>
+<td class="r data">405.9</td>
+<td class="r data">408.1</td>
+<td class="r data">439.6</td>
+<td class="r data">462.5</td>
+<td class="r data">583.0</td>
+<td class="r data">452.8</td>
+<td class="r data">425.6</td>
+<td class="r data">472.7</td>
+<td class="r data">452.2</td>
+<td class="r data">427.0</td>
+<td class="r data">430.4</td>
+<td class="r data">418.5</td>
+<td class="r data">463.6</td>
+<td class="r data">487.2</td>
+<td class="r data">491.0</td>
+<td class="r data">530.4</td>
+<td class="r data">771.4</td>
+<td class="r data">519.6</td>
+<td class="r data">496.7</td>
+<td class="r data">540.9</td>
+<td class="r data">481.8</td>
+<td class="r data">478.6</td>
+<td class="r data">480.1</td>
+<td class="r data">484.1</td>
+<td class="r data">488.9</td>
+<td class="r data">483.5</td>
+<td class="r data">494.8</td>
+<td class="r data">540.5</td>
+<td class="r data">701.8</td>
+<td class="r data">495.1</td>
+<td class="r data">490.5</td>
+<td class="r data">502.9</td>
+<td class="r data">503.7</td>
+<td class="r data">481.7</td>
+<td class="r data">445.0</td>
+<td class="r data">451.5</td>
+<td class="r data">501.5</td>
+<td class="r data">475.9</td>
+<td class="r data">497.4</td>
+<td class="r data">537.8</td>
+<td class="r data">634.7</td>
+<td class="r data">501.1</td>
+<td class="r data">488.4</td>
+<td class="r data">527.8</td>
+<td class="r data">491.2</td>
+<td class="r data">491.3</td>
+<td class="r data">443.6</td>
+<td class="r data">515.1</td>
+<td class="r data">548.5</td>
+<td class="r data">521.7</td>
+<td class="r data">571.6</td>
+<td class="r data">574.5</td>
+<td class="r data">705.5</td>
+<td class="r data">501.4</td>
+<td class="r data">539.1</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">C64200</td>
+<td class="l data">Other income : Total industry</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">46.7</td>
+<td class="r data">62.8</td>
+<td class="r data">50.1</td>
+<td class="r data">47.8</td>
+<td class="r data">55.4</td>
+<td class="r data">44.0</td>
+<td class="r data">53.1</td>
+<td class="r data">54.6</td>
+<td class="r data">48.8</td>
+<td class="r data">43.1</td>
+<td class="r data">60.3</td>
+<td class="r data">42.1</td>
+<td class="r data">47.8</td>
+<td class="r data">55.9</td>
+<td class="r data">54.3</td>
+<td class="r data">61.2</td>
+<td class="r data">59.2</td>
+<td class="r data">52.6</td>
+<td class="r data">57.1</td>
+<td class="r data">72.6</td>
+<td class="r data">59.4</td>
+<td class="r data">62.6</td>
+<td class="r data">66.0</td>
+<td class="r data">56.1</td>
+<td class="r data">55.1</td>
+<td class="r data">64.5</td>
+<td class="r data">68.4</td>
+<td class="r data">76.2</td>
+<td class="r data">80.1</td>
+<td class="r data">72.3</td>
+<td class="r data">58.5</td>
+<td class="r data">79.4</td>
+<td class="r data">76.4</td>
+<td class="r data">129.2</td>
+<td class="r data">91.3</td>
+<td class="r data">76.5</td>
+<td class="r data">74.3</td>
+<td class="r data">101.0</td>
+<td class="r data">101.7</td>
+<td class="r data">115.9</td>
+<td class="r data">113.4</td>
+<td class="r data">72.3</td>
+<td class="r data">82.3</td>
+<td class="r data">92.5</td>
+<td class="r data">80.5</td>
+<td class="r data">72.2</td>
+<td class="r data">80.4</td>
+<td class="r data">66.0</td>
+<td class="r data">70.3</td>
+<td class="r data">99.1</td>
+<td class="r data">92.4</td>
+<td class="r data">114.0</td>
+<td class="r data">109.1</td>
+<td class="r data">98.7</td>
+<td class="r data">103.0</td>
+<td class="r data">143.1</td>
+<td class="r data">124.4</td>
+<td class="r data">122.8</td>
+<td class="r data">121.6</td>
+<td class="r data">119.3</td>
+<td class="r data">103.1</td>
+<td class="r data">129.1</td>
+<td class="r data">138.9</td>
+<td class="r data">147.2</td>
+<td class="r data">115.1</td>
+<td class="r data">121.5</td>
+<td class="r data">87.1</td>
+<td class="r data">143.8</td>
+<td class="r data">92.5</td>
+<td class="r data">91.4</td>
+<td class="r data">90.1</td>
+<td class="r data">97.9</td>
+<td class="r data">83.0</td>
+<td class="r data">73.1</td>
+<td class="r data">80.7</td>
+<td class="r data">89.4</td>
+<td class="r data">93.6</td>
+<td class="r data">74.1</td>
+<td class="r data">82.4</td>
+<td class="r data">86.2</td>
+<td class="r data">87.2</td>
+<td class="r data">83.2</td>
+<td class="r data">81.8</td>
+<td class="r data">85.3</td>
+<td class="r data">85.3</td>
+<td class="r data">95.0</td>
+<td class="r data">82.7</td>
+<td class="r data">101.7</td>
+<td class="r data">106.9</td>
+<td class="r data">84.9</td>
+<td class="r data">109.3</td>
+<td class="r data">101.6</td>
+<td class="r data">89.8</td>
+<td class="r data">91.3</td>
+<td class="r data">92.7</td>
+<td class="r data">96.3</td>
+<td class="r data">95.8</td>
+<td class="r data">98.0</td>
+<td class="r data">103.5</td>
+<td class="r data">103.9</td>
+<td class="r data">99.6</td>
+<td class="r data">86.6</td>
+<td class="r data">103.0</td>
+<td class="r data">111.2</td>
+<td class="r data">98.9</td>
+<td class="r data">102.3</td>
+<td class="r data">92.3</td>
+<td class="r data">91.9</td>
+<td class="r data">95.2</td>
+<td class="r data">97.1</td>
+<td class="r data">108.5</td>
+<td class="r data">108.0</td>
+<td class="r data">110.5</td>
+<td class="r data">95.3</td>
+<td class="r data">98.2</td>
+<td class="r data">111.2</td>
+<td class="r data">94.4</td>
+<td class="r data">94.8</td>
+<td class="r data">93.8</td>
+<td class="r data">91.1</td>
+<td class="r data">99.5</td>
+<td class="r data">95.5</td>
+<td class="r data">100.0</td>
+<td class="r data">124.0</td>
+<td class="r data">110.8</td>
+<td class="r data">86.6</td>
+<td class="r data">101.7</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">D64200</td>
+<td class="l data">Total income : Total industry</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">1809.1</td>
+<td class="r data">1862.8</td>
+<td class="r data">1838.6</td>
+<td class="r data">1979.8</td>
+<td class="r data">2268.0</td>
+<td class="r data">1832.9</td>
+<td class="r data">1792.6</td>
+<td class="r data">1946.8</td>
+<td class="r data">1929.6</td>
+<td class="r data">1888.4</td>
+<td class="r data">1951.1</td>
+<td class="r data">2023.7</td>
+<td class="r data">2038.7</td>
+<td class="r data">2165.9</td>
+<td class="r data">2065.8</td>
+<td class="r data">2314.3</td>
+<td class="r data">2693.0</td>
+<td class="r data">2085.9</td>
+<td class="r data">2021.7</td>
+<td class="r data">2205.6</td>
+<td class="r data">2199.0</td>
+<td class="r data">2130.5</td>
+<td class="r data">2171.8</td>
+<td class="r data">2180.4</td>
+<td class="r data">2250.2</td>
+<td class="r data">2307.9</td>
+<td class="r data">2326.8</td>
+<td class="r data">2560.6</td>
+<td class="r data">2937.4</td>
+<td class="r data">2324.4</td>
+<td class="r data">2370.0</td>
+<td class="r data">2740.2</td>
+<td class="r data">2482.0</td>
+<td class="r data">2561.5</td>
+<td class="r data">2518.7</td>
+<td class="r data">2526.3</td>
+<td class="r data">2632.6</td>
+<td class="r data">2675.5</td>
+<td class="r data">2729.3</td>
+<td class="r data">3001.6</td>
+<td class="r data">3319.5</td>
+<td class="r data">2530.5</td>
+<td class="r data">2464.2</td>
+<td class="r data">2667.2</td>
+<td class="r data">2605.7</td>
+<td class="r data">2677.4</td>
+<td class="r data">2587.7</td>
+<td class="r data">2669.0</td>
+<td class="r data">2676.1</td>
+<td class="r data">2665.4</td>
+<td class="r data">2783.1</td>
+<td class="r data">2908.3</td>
+<td class="r data">3207.7</td>
+<td class="r data">2713.4</td>
+<td class="r data">2576.0</td>
+<td class="r data">2883.3</td>
+<td class="r data">2776.0</td>
+<td class="r data">2843.1</td>
+<td class="r data">2945.6</td>
+<td class="r data">2913.8</td>
+<td class="r data">2828.4</td>
+<td class="r data">2886.4</td>
+<td class="r data">3027.0</td>
+<td class="r data">3116.9</td>
+<td class="r data">3671.6</td>
+<td class="r data">2906.6</td>
+<td class="r data">2788.0</td>
+<td class="r data">3078.6</td>
+<td class="r data">3014.2</td>
+<td class="r data">2902.2</td>
+<td class="r data">2873.9</td>
+<td class="r data">3059.5</td>
+<td class="r data">2951.3</td>
+<td class="r data">3045.8</td>
+<td class="r data">3164.2</td>
+<td class="r data">3251.2</td>
+<td class="r data">3949.3</td>
+<td class="r data">3081.1</td>
+<td class="r data">3013.4</td>
+<td class="r data">3280.4</td>
+<td class="r data">3164.2</td>
+<td class="r data">3129.6</td>
+<td class="r data">3200.8</td>
+<td class="r data">3256.6</td>
+<td class="r data">3321.8</td>
+<td class="r data">3390.8</td>
+<td class="r data">3374.8</td>
+<td class="r data">3569.0</td>
+<td class="r data">4438.4</td>
+<td class="r data">3292.3</td>
+<td class="r data">3254.8</td>
+<td class="r data">3641.6</td>
+<td class="r data">3395.4</td>
+<td class="r data">3500.6</td>
+<td class="r data">3465.5</td>
+<td class="r data">3501.6</td>
+<td class="r data">3629.0</td>
+<td class="r data">3530.9</td>
+<td class="r data">3557.3</td>
+<td class="r data">3836.8</td>
+<td class="r data">4445.2</td>
+<td class="r data">3500.5</td>
+<td class="r data">3495.9</td>
+<td class="r data">3711.1</td>
+<td class="r data">3650.8</td>
+<td class="r data">3753.7</td>
+<td class="r data">3558.0</td>
+<td class="r data">3668.3</td>
+<td class="r data">3864.7</td>
+<td class="r data">3658.5</td>
+<td class="r data">3965.2</td>
+<td class="r data">4126.3</td>
+<td class="r data">4764.3</td>
+<td class="r data">3901.7</td>
+<td class="r data">3701.4</td>
+<td class="r data">4057.1</td>
+<td class="r data">3908.1</td>
+<td class="r data">3927.6</td>
+<td class="r data">3708.0</td>
+<td class="r data">4093.0</td>
+<td class="r data">4180.6</td>
+<td class="r data">3981.2</td>
+<td class="r data">4228.3</td>
+<td class="r data">4401.9</td>
+<td class="r data">5186.9</td>
+<td class="r data">4147.4</td>
+<td class="r data">4064.7</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">A64201_CON</td>
+<td class="l data">Income from food sales : Restaurants and coffee shops</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">1303.3</td>
+<td class="r data">1279.9</td>
+<td class="r data">1409.1</td>
+<td class="r data">1328.3</td>
+<td class="r data">1261.1</td>
+<td class="r data">1261.8</td>
+<td class="r data">1248.9</td>
+<td class="r data">1287.5</td>
+<td class="r data">1390.7</td>
+<td class="r data">1315.6</td>
+<td class="r data">1452.7</td>
+<td class="r data">1614.4</td>
+<td class="r data">1230.3</td>
+<td class="r data">1134.9</td>
+<td class="r data">1339.4</td>
+<td class="r data">1135.2</td>
+<td class="r data">1132.0</td>
+<td class="r data">1106.6</td>
+<td class="r data">1163.8</td>
+<td class="r data">1169.2</td>
+<td class="r data">1149.5</td>
+<td class="r data">1169.0</td>
+<td class="r data">1222.2</td>
+<td class="r data">1326.4</td>
+<td class="r data">1126.1</td>
+<td class="r data">1053.6</td>
+<td class="r data">1187.6</td>
+<td class="r data">1117.0</td>
+<td class="r data">1112.1</td>
+<td class="r data">1195.0</td>
+<td class="r data">1158.9</td>
+<td class="r data">1112.5</td>
+<td class="r data">1118.1</td>
+<td class="r data">1137.3</td>
+<td class="r data">1152.2</td>
+<td class="r data">1455.7</td>
+<td class="r data">1130.1</td>
+<td class="r data">1053.7</td>
+<td class="r data">1162.9</td>
+<td class="r data">1159.3</td>
+<td class="r data">1067.8</td>
+<td class="r data">1066.7</td>
+<td class="r data">1128.4</td>
+<td class="r data">1093.0</td>
+<td class="r data">1098.3</td>
+<td class="r data">1136.4</td>
+<td class="r data">1169.6</td>
+<td class="r data">1488.5</td>
+<td class="r data">1118.0</td>
+<td class="r data">1058.8</td>
+<td class="r data">1157.5</td>
+<td class="r data">1107.0</td>
+<td class="r data">1049.3</td>
+<td class="r data">1073.3</td>
+<td class="r data">1119.8</td>
+<td class="r data">1132.9</td>
+<td class="r data">1146.1</td>
+<td class="r data">1116.5</td>
+<td class="r data">1173.0</td>
+<td class="r data">1489.3</td>
+<td class="r data">1102.1</td>
+<td class="r data">1037.6</td>
+<td class="r data">1183.8</td>
+<td class="r data">1112.4</td>
+<td class="r data">1114.0</td>
+<td class="r data">1104.5</td>
+<td class="r data">1112.9</td>
+<td class="r data">1168.5</td>
+<td class="r data">1117.8</td>
+<td class="r data">1118.2</td>
+<td class="r data">1222.1</td>
+<td class="r data">1429.0</td>
+<td class="r data">1135.1</td>
+<td class="r data">1061.6</td>
+<td class="r data">1151.7</td>
+<td class="r data">1143.7</td>
+<td class="r data">1132.1</td>
+<td class="r data">1046.9</td>
+<td class="r data">1095.7</td>
+<td class="r data">1121.9</td>
+<td class="r data">1072.3</td>
+<td class="r data">1166.8</td>
+<td class="r data">1208.3</td>
+<td class="r data">1428.0</td>
+<td class="r data">1157.4</td>
+<td class="r data">1064.9</td>
+<td class="r data">1160.9</td>
+<td class="r data">1126.1</td>
+<td class="r data">1110.0</td>
+<td class="r data">1045.2</td>
+<td class="r data">1177.7</td>
+<td class="r data">1175.8</td>
+<td class="r data">1112.3</td>
+<td class="r data">1166.3</td>
+<td class="r data">1222.5</td>
+<td class="r data">1467.5</td>
+<td class="r data">1216.0</td>
+<td class="r data">1112.7</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">B64201_CON</td>
+<td class="l data">Income from bar sales : Restaurants and coffee shops</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">396.3</td>
+<td class="r data">410.8</td>
+<td class="r data">416.6</td>
+<td class="r data">382.1</td>
+<td class="r data">357.7</td>
+<td class="r data">331.4</td>
+<td class="r data">346.7</td>
+<td class="r data">341.1</td>
+<td class="r data">313.0</td>
+<td class="r data">344.8</td>
+<td class="r data">472.8</td>
+<td class="r data">429.1</td>
+<td class="r data">326.6</td>
+<td class="r data">306.8</td>
+<td class="r data">326.7</td>
+<td class="r data">328.7</td>
+<td class="r data">312.5</td>
+<td class="r data">298.7</td>
+<td class="r data">322.6</td>
+<td class="r data">307.4</td>
+<td class="r data">311.9</td>
+<td class="r data">339.3</td>
+<td class="r data">347.0</td>
+<td class="r data">372.7</td>
+<td class="r data">362.6</td>
+<td class="r data">310.5</td>
+<td class="r data">342.8</td>
+<td class="r data">324.0</td>
+<td class="r data">314.4</td>
+<td class="r data">370.4</td>
+<td class="r data">354.9</td>
+<td class="r data">312.5</td>
+<td class="r data">313.5</td>
+<td class="r data">345.8</td>
+<td class="r data">359.8</td>
+<td class="r data">475.7</td>
+<td class="r data">344.9</td>
+<td class="r data">328.5</td>
+<td class="r data">335.0</td>
+<td class="r data">332.5</td>
+<td class="r data">301.0</td>
+<td class="r data">295.7</td>
+<td class="r data">323.2</td>
+<td class="r data">315.4</td>
+<td class="r data">306.9</td>
+<td class="r data">327.8</td>
+<td class="r data">348.7</td>
+<td class="r data">458.8</td>
+<td class="r data">348.8</td>
+<td class="r data">327.8</td>
+<td class="r data">353.8</td>
+<td class="r data">332.8</td>
+<td class="r data">310.2</td>
+<td class="r data">314.0</td>
+<td class="r data">298.8</td>
+<td class="r data">308.1</td>
+<td class="r data">305.6</td>
+<td class="r data">304.6</td>
+<td class="r data">338.7</td>
+<td class="r data">513.0</td>
+<td class="r data">344.2</td>
+<td class="r data">316.8</td>
+<td class="r data">348.6</td>
+<td class="r data">300.1</td>
+<td class="r data">300.9</td>
+<td class="r data">293.6</td>
+<td class="r data">303.8</td>
+<td class="r data">321.0</td>
+<td class="r data">305.7</td>
+<td class="r data">306.3</td>
+<td class="r data">340.4</td>
+<td class="r data">474.8</td>
+<td class="r data">319.9</td>
+<td class="r data">304.1</td>
+<td class="r data">302.6</td>
+<td class="r data">302.3</td>
+<td class="r data">279.7</td>
+<td class="r data">265.7</td>
+<td class="r data">265.2</td>
+<td class="r data">293.7</td>
+<td class="r data">266.4</td>
+<td class="r data">298.2</td>
+<td class="r data">298.3</td>
+<td class="r data">353.3</td>
+<td class="r data">288.5</td>
+<td class="r data">278.4</td>
+<td class="r data">288.5</td>
+<td class="r data">272.2</td>
+<td class="r data">272.5</td>
+<td class="r data">249.8</td>
+<td class="r data">293.5</td>
+<td class="r data">312.0</td>
+<td class="r data">298.6</td>
+<td class="r data">327.5</td>
+<td class="r data">330.2</td>
+<td class="r data">411.7</td>
+<td class="r data">289.1</td>
+<td class="r data">307.9</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">C64201_CON</td>
+<td class="l data">Other income : Restaurants and coffee shops</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">23.3</td>
+<td class="r data">14.4</td>
+<td class="r data">23.0</td>
+<td class="r data">22.7</td>
+<td class="r data">37.3</td>
+<td class="r data">35.1</td>
+<td class="r data">43.1</td>
+<td class="r data">38.9</td>
+<td class="r data">46.7</td>
+<td class="r data">47.8</td>
+<td class="r data">45.2</td>
+<td class="r data">52.3</td>
+<td class="r data">39.4</td>
+<td class="r data">47.2</td>
+<td class="r data">51.8</td>
+<td class="r data">41.9</td>
+<td class="r data">40.7</td>
+<td class="r data">41.0</td>
+<td class="r data">39.8</td>
+<td class="r data">42.7</td>
+<td class="r data">46.6</td>
+<td class="r data">46.3</td>
+<td class="r data">77.1</td>
+<td class="r data">59.3</td>
+<td class="r data">54.0</td>
+<td class="r data">65.9</td>
+<td class="r data">93.2</td>
+<td class="r data">78.5</td>
+<td class="r data">75.0</td>
+<td class="r data">73.4</td>
+<td class="r data">81.5</td>
+<td class="r data">58.5</td>
+<td class="r data">84.2</td>
+<td class="r data">102.5</td>
+<td class="r data">109.7</td>
+<td class="r data">74.8</td>
+<td class="r data">83.2</td>
+<td class="r data">45.9</td>
+<td class="r data">96.4</td>
+<td class="r data">45.3</td>
+<td class="r data">43.6</td>
+<td class="r data">36.4</td>
+<td class="r data">44.6</td>
+<td class="r data">37.4</td>
+<td class="r data">22.9</td>
+<td class="r data">31.1</td>
+<td class="r data">34.8</td>
+<td class="r data">37.4</td>
+<td class="r data">28.8</td>
+<td class="r data">33.3</td>
+<td class="r data">29.2</td>
+<td class="r data">32.4</td>
+<td class="r data">31.3</td>
+<td class="r data">25.9</td>
+<td class="r data">33.0</td>
+<td class="r data">30.5</td>
+<td class="r data">37.0</td>
+<td class="r data">32.6</td>
+<td class="r data">37.3</td>
+<td class="r data">48.3</td>
+<td class="r data">34.4</td>
+<td class="r data">50.2</td>
+<td class="r data">39.3</td>
+<td class="r data">32.8</td>
+<td class="r data">31.3</td>
+<td class="r data">24.6</td>
+<td class="r data">28.6</td>
+<td class="r data">28.1</td>
+<td class="r data">31.5</td>
+<td class="r data">37.2</td>
+<td class="r data">37.9</td>
+<td class="r data">38.2</td>
+<td class="r data">27.5</td>
+<td class="r data">38.8</td>
+<td class="r data">39.6</td>
+<td class="r data">33.3</td>
+<td class="r data">32.0</td>
+<td class="r data">26.7</td>
+<td class="r data">25.0</td>
+<td class="r data">28.1</td>
+<td class="r data">28.3</td>
+<td class="r data">35.7</td>
+<td class="r data">34.2</td>
+<td class="r data">39.3</td>
+<td class="r data">34.1</td>
+<td class="r data">33.8</td>
+<td class="r data">36.6</td>
+<td class="r data">28.6</td>
+<td class="r data">30.3</td>
+<td class="r data">27.3</td>
+<td class="r data">23.4</td>
+<td class="r data">32.2</td>
+<td class="r data">32.0</td>
+<td class="r data">32.2</td>
+<td class="r data">40.1</td>
+<td class="r data">37.6</td>
+<td class="r data">22.0</td>
+<td class="r data">29.5</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">D64201_CON</td>
+<td class="l data">Total income : Restaurants and coffee shops</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">1722.9</td>
+<td class="r data">1705.1</td>
+<td class="r data">1848.7</td>
+<td class="r data">1733.1</td>
+<td class="r data">1656.1</td>
+<td class="r data">1628.3</td>
+<td class="r data">1638.7</td>
+<td class="r data">1667.5</td>
+<td class="r data">1750.4</td>
+<td class="r data">1708.2</td>
+<td class="r data">1970.7</td>
+<td class="r data">2095.8</td>
+<td class="r data">1596.3</td>
+<td class="r data">1488.9</td>
+<td class="r data">1717.9</td>
+<td class="r data">1505.8</td>
+<td class="r data">1485.2</td>
+<td class="r data">1446.3</td>
+<td class="r data">1526.2</td>
+<td class="r data">1519.3</td>
+<td class="r data">1508.0</td>
+<td class="r data">1554.6</td>
+<td class="r data">1646.3</td>
+<td class="r data">1758.4</td>
+<td class="r data">1542.7</td>
+<td class="r data">1430.0</td>
+<td class="r data">1623.6</td>
+<td class="r data">1519.5</td>
+<td class="r data">1501.5</td>
+<td class="r data">1638.8</td>
+<td class="r data">1595.3</td>
+<td class="r data">1483.5</td>
+<td class="r data">1515.8</td>
+<td class="r data">1585.6</td>
+<td class="r data">1621.7</td>
+<td class="r data">2006.2</td>
+<td class="r data">1558.2</td>
+<td class="r data">1428.1</td>
+<td class="r data">1594.3</td>
+<td class="r data">1537.1</td>
+<td class="r data">1412.4</td>
+<td class="r data">1398.8</td>
+<td class="r data">1496.2</td>
+<td class="r data">1445.8</td>
+<td class="r data">1428.1</td>
+<td class="r data">1495.3</td>
+<td class="r data">1553.1</td>
+<td class="r data">1984.7</td>
+<td class="r data">1495.6</td>
+<td class="r data">1419.9</td>
+<td class="r data">1540.5</td>
+<td class="r data">1472.2</td>
+<td class="r data">1390.8</td>
+<td class="r data">1413.2</td>
+<td class="r data">1451.6</td>
+<td class="r data">1471.5</td>
+<td class="r data">1488.7</td>
+<td class="r data">1453.7</td>
+<td class="r data">1549.0</td>
+<td class="r data">2050.6</td>
+<td class="r data">1480.7</td>
+<td class="r data">1404.6</td>
+<td class="r data">1571.7</td>
+<td class="r data">1445.3</td>
+<td class="r data">1446.2</td>
+<td class="r data">1422.7</td>
+<td class="r data">1445.3</td>
+<td class="r data">1517.6</td>
+<td class="r data">1455.0</td>
+<td class="r data">1461.7</td>
+<td class="r data">1600.4</td>
+<td class="r data">1942.0</td>
+<td class="r data">1482.5</td>
+<td class="r data">1404.5</td>
+<td class="r data">1493.9</td>
+<td class="r data">1479.3</td>
+<td class="r data">1443.8</td>
+<td class="r data">1339.3</td>
+<td class="r data">1385.9</td>
+<td class="r data">1443.7</td>
+<td class="r data">1367.0</td>
+<td class="r data">1500.7</td>
+<td class="r data">1540.8</td>
+<td class="r data">1820.6</td>
+<td class="r data">1480.0</td>
+<td class="r data">1377.1</td>
+<td class="r data">1486.0</td>
+<td class="r data">1426.9</td>
+<td class="r data">1412.8</td>
+<td class="r data">1322.3</td>
+<td class="r data">1494.6</td>
+<td class="r data">1520.0</td>
+<td class="r data">1442.9</td>
+<td class="r data">1526.0</td>
+<td class="r data">1592.8</td>
+<td class="r data">1916.8</td>
+<td class="r data">1527.1</td>
+<td class="r data">1450.1</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">A64203_CON</td>
+<td class="l data">Income from food sales : Take-away and fast food outlets</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">926.0</td>
+<td class="r data">944.8</td>
+<td class="r data">1252.7</td>
+<td class="r data">980.6</td>
+<td class="r data">1055.6</td>
+<td class="r data">993.2</td>
+<td class="r data">979.3</td>
+<td class="r data">1068.4</td>
+<td class="r data">1030.3</td>
+<td class="r data">1002.2</td>
+<td class="r data">1052.4</td>
+<td class="r data">1392.6</td>
+<td class="r data">1063.2</td>
+<td class="r data">970.7</td>
+<td class="r data">1015.1</td>
+<td class="r data">1041.7</td>
+<td class="r data">1071.5</td>
+<td class="r data">985.9</td>
+<td class="r data">1069.2</td>
+<td class="r data">1048.2</td>
+<td class="r data">1017.4</td>
+<td class="r data">1040.9</td>
+<td class="r data">1080.1</td>
+<td class="r data">1283.3</td>
+<td class="r data">994.7</td>
+<td class="r data">903.5</td>
+<td class="r data">980.9</td>
+<td class="r data">981.1</td>
+<td class="r data">1032.3</td>
+<td class="r data">1014.4</td>
+<td class="r data">1037.1</td>
+<td class="r data">995.9</td>
+<td class="r data">990.2</td>
+<td class="r data">1070.3</td>
+<td class="r data">1079.0</td>
+<td class="r data">1321.4</td>
+<td class="r data">1054.5</td>
+<td class="r data">980.2</td>
+<td class="r data">1051.4</td>
+<td class="r data">1084.5</td>
+<td class="r data">1056.0</td>
+<td class="r data">1019.6</td>
+<td class="r data">1129.1</td>
+<td class="r data">1032.6</td>
+<td class="r data">1091.6</td>
+<td class="r data">1145.2</td>
+<td class="r data">1129.6</td>
+<td class="r data">1438.3</td>
+<td class="r data">1054.1</td>
+<td class="r data">1033.5</td>
+<td class="r data">1126.0</td>
+<td class="r data">1100.5</td>
+<td class="r data">1083.1</td>
+<td class="r data">1133.9</td>
+<td class="r data">1158.1</td>
+<td class="r data">1163.9</td>
+<td class="r data">1163.0</td>
+<td class="r data">1191.3</td>
+<td class="r data">1216.2</td>
+<td class="r data">1516.2</td>
+<td class="r data">1089.6</td>
+<td class="r data">1057.5</td>
+<td class="r data">1224.8</td>
+<td class="r data">1122.9</td>
+<td class="r data">1190.1</td>
+<td class="r data">1173.5</td>
+<td class="r data">1172.8</td>
+<td class="r data">1211.4</td>
+<td class="r data">1153.5</td>
+<td class="r data">1160.7</td>
+<td class="r data">1262.8</td>
+<td class="r data">1473.3</td>
+<td class="r data">1127.6</td>
+<td class="r data">1101.7</td>
+<td class="r data">1188.7</td>
+<td class="r data">1152.3</td>
+<td class="r data">1226.6</td>
+<td class="r data">1163.0</td>
+<td class="r data">1190.7</td>
+<td class="r data">1237.1</td>
+<td class="r data">1129.0</td>
+<td class="r data">1242.8</td>
+<td class="r data">1274.0</td>
+<td class="r data">1547.4</td>
+<td class="r data">1248.2</td>
+<td class="r data">1109.8</td>
+<td class="r data">1226.5</td>
+<td class="r data">1229.4</td>
+<td class="r data">1224.1</td>
+<td class="r data">1134.0</td>
+<td class="r data">1242.0</td>
+<td class="r data">1265.3</td>
+<td class="r data">1177.9</td>
+<td class="r data">1285.0</td>
+<td class="r data">1294.2</td>
+<td class="r data">1607.6</td>
+<td class="r data">1226.4</td>
+<td class="r data">1158.4</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">B64203_CON</td>
+<td class="l data">Income from bar sales : Take-away and fast food outlets</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">8.8</td>
+<td class="r data">10.1</td>
+<td class="r data">10.2</td>
+<td class="r data">9.7</td>
+<td class="r data">9.4</td>
+<td class="r data">8.8</td>
+<td class="r data">8.7</td>
+<td class="r data">8.8</td>
+<td class="r data">9.2</td>
+<td class="r data">9.7</td>
+<td class="r data">9.6</td>
+<td class="r data">11.7</td>
+<td class="r data">7.8</td>
+<td class="r data">9.3</td>
+<td class="r data">8.1</td>
+<td class="r data">5.4</td>
+<td class="r data">6.9</td>
+<td class="r data">5.5</td>
+<td class="r data">6.3</td>
+<td class="r data">7.7</td>
+<td class="r data">12.5</td>
+<td class="r data">13.1</td>
+<td class="r data">13.3</td>
+<td class="r data">13.2</td>
+<td class="r data">15.2</td>
+<td class="r data">14.5</td>
+<td class="r data">16.3</td>
+<td class="r data">14.0</td>
+<td class="r data">15.7</td>
+<td class="r data">13.9</td>
+<td class="r data">15.7</td>
+<td class="r data">15.6</td>
+<td class="r data">15.2</td>
+<td class="r data">17.0</td>
+<td class="r data">17.1</td>
+<td class="r data">21.3</td>
+<td class="r data">15.0</td>
+<td class="r data">15.5</td>
+<td class="r data">17.0</td>
+<td class="r data">15.3</td>
+<td class="r data">14.8</td>
+<td class="r data">14.3</td>
+<td class="r data">14.7</td>
+<td class="r data">15.1</td>
+<td class="r data">15.8</td>
+<td class="r data">16.7</td>
+<td class="r data">16.4</td>
+<td class="r data">23.3</td>
+<td class="r data">15.8</td>
+<td class="r data">15.1</td>
+<td class="r data">18.8</td>
+<td class="r data">15.2</td>
+<td class="r data">19.1</td>
+<td class="r data">13.0</td>
+<td class="r data">15.3</td>
+<td class="r data">15.7</td>
+<td class="r data">14.4</td>
+<td class="r data">17.5</td>
+<td class="r data">19.1</td>
+<td class="r data">21.7</td>
+<td class="r data">20.9</td>
+<td class="r data">17.0</td>
+<td class="r data">18.4</td>
+<td class="r data">17.2</td>
+<td class="r data">18.5</td>
+<td class="r data">18.0</td>
+<td class="r data">17.5</td>
+<td class="r data">26.1</td>
+<td class="r data">25.5</td>
+<td class="r data">24.9</td>
+<td class="r data">24.8</td>
+<td class="r data">28.0</td>
+<td class="r data">23.3</td>
+<td class="r data">21.2</td>
+<td class="r data">20.2</td>
+<td class="r data">18.9</td>
+<td class="r data">21.1</td>
+<td class="r data">20.7</td>
+<td class="r data">22.2</td>
+<td class="r data">22.1</td>
+<td class="r data">19.6</td>
+<td class="r data">19.7</td>
+<td class="r data">22.4</td>
+<td class="r data">25.9</td>
+<td class="r data">21.5</td>
+<td class="r data">20.7</td>
+<td class="r data">24.5</td>
+<td class="r data">22.3</td>
+<td class="r data">22.7</td>
+<td class="r data">22.2</td>
+<td class="r data">25.1</td>
+<td class="r data">25.7</td>
+<td class="r data">20.5</td>
+<td class="r data">23.9</td>
+<td class="r data">24.7</td>
+<td class="r data">29.0</td>
+<td class="r data">25.1</td>
+<td class="r data">22.2</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">C64203_CON</td>
+<td class="l data">Other income : Take-away and fast food outlets</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">3.0</td>
+<td class="r data">3.4</td>
+<td class="r data">3.5</td>
+<td class="r data">3.9</td>
+<td class="r data">2.0</td>
+<td class="r data">2.4</td>
+<td class="r data">2.4</td>
+<td class="r data">2.9</td>
+<td class="r data">1.3</td>
+<td class="r data">2.3</td>
+<td class="r data">4.2</td>
+<td class="r data">1.8</td>
+<td class="r data">2.3</td>
+<td class="r data">2.0</td>
+<td class="r data">2.8</td>
+<td class="r data">2.3</td>
+<td class="r data">2.8</td>
+<td class="r data">2.3</td>
+<td class="r data">2.6</td>
+<td class="r data">2.3</td>
+<td class="r data">2.1</td>
+<td class="r data">2.4</td>
+<td class="r data">2.2</td>
+<td class="r data">2.0</td>
+<td class="r data">1.9</td>
+<td class="r data">2.2</td>
+<td class="r data">2.1</td>
+<td class="r data">2.1</td>
+<td class="r data">2.5</td>
+<td class="r data">2.2</td>
+<td class="r data">2.0</td>
+<td class="r data">2.0</td>
+<td class="r data">1.8</td>
+<td class="r data">1.9</td>
+<td class="r data">2.4</td>
+<td class="r data">2.8</td>
+<td class="r data">2.5</td>
+<td class="r data">2.6</td>
+<td class="r data">2.9</td>
+<td class="r data">2.6</td>
+<td class="r data">2.4</td>
+<td class="r data">2.3</td>
+<td class="r data">2.6</td>
+<td class="r data">2.1</td>
+<td class="r data">2.3</td>
+<td class="r data">2.5</td>
+<td class="r data">2.7</td>
+<td class="r data">2.5</td>
+<td class="r data">2.5</td>
+<td class="r data">2.5</td>
+<td class="r data">4.3</td>
+<td class="r data">2.5</td>
+<td class="r data">2.9</td>
+<td class="r data">2.8</td>
+<td class="r data">2.6</td>
+<td class="r data">2.9</td>
+<td class="r data">2.8</td>
+<td class="r data">2.8</td>
+<td class="r data">2.8</td>
+<td class="r data">3.5</td>
+<td class="r data">2.8</td>
+<td class="r data">3.2</td>
+<td class="r data">4.2</td>
+<td class="r data">1.3</td>
+<td class="r data">3.9</td>
+<td class="r data">3.8</td>
+<td class="r data">3.8</td>
+<td class="r data">4.0</td>
+<td class="r data">3.9</td>
+<td class="r data">3.9</td>
+<td class="r data">3.9</td>
+<td class="r data">3.8</td>
+<td class="r data">3.3</td>
+<td class="r data">3.7</td>
+<td class="r data">4.4</td>
+<td class="r data">4.9</td>
+<td class="r data">4.8</td>
+<td class="r data">4.9</td>
+<td class="r data">5.5</td>
+<td class="r data">4.9</td>
+<td class="r data">5.1</td>
+<td class="r data">5.2</td>
+<td class="r data">5.1</td>
+<td class="r data">2.9</td>
+<td class="r data">2.6</td>
+<td class="r data">2.6</td>
+<td class="r data">5.1</td>
+<td class="r data">4.3</td>
+<td class="r data">3.2</td>
+<td class="r data">3.3</td>
+<td class="r data">2.0</td>
+<td class="r data">2.0</td>
+<td class="r data">1.7</td>
+<td class="r data">2.2</td>
+<td class="r data">1.8</td>
+<td class="r data">2.2</td>
+<td class="r data">1.5</td>
+<td class="r data">1.3</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">D64203_CON</td>
+<td class="l data">Total income : Take-away and fast food outlets</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">937.8</td>
+<td class="r data">958.3</td>
+<td class="r data">1266.4</td>
+<td class="r data">994.2</td>
+<td class="r data">1067.0</td>
+<td class="r data">1004.4</td>
+<td class="r data">990.4</td>
+<td class="r data">1080.1</td>
+<td class="r data">1040.8</td>
+<td class="r data">1014.2</td>
+<td class="r data">1066.2</td>
+<td class="r data">1406.1</td>
+<td class="r data">1073.3</td>
+<td class="r data">982.0</td>
+<td class="r data">1026.0</td>
+<td class="r data">1049.4</td>
+<td class="r data">1081.2</td>
+<td class="r data">993.7</td>
+<td class="r data">1078.1</td>
+<td class="r data">1058.2</td>
+<td class="r data">1032.0</td>
+<td class="r data">1056.4</td>
+<td class="r data">1095.6</td>
+<td class="r data">1298.5</td>
+<td class="r data">1011.8</td>
+<td class="r data">920.2</td>
+<td class="r data">999.3</td>
+<td class="r data">997.2</td>
+<td class="r data">1050.5</td>
+<td class="r data">1030.5</td>
+<td class="r data">1054.8</td>
+<td class="r data">1013.5</td>
+<td class="r data">1007.2</td>
+<td class="r data">1089.2</td>
+<td class="r data">1098.5</td>
+<td class="r data">1345.5</td>
+<td class="r data">1072.0</td>
+<td class="r data">998.3</td>
+<td class="r data">1071.3</td>
+<td class="r data">1102.4</td>
+<td class="r data">1073.2</td>
+<td class="r data">1036.2</td>
+<td class="r data">1146.4</td>
+<td class="r data">1049.8</td>
+<td class="r data">1109.7</td>
+<td class="r data">1164.4</td>
+<td class="r data">1148.7</td>
+<td class="r data">1464.1</td>
+<td class="r data">1072.4</td>
+<td class="r data">1051.1</td>
+<td class="r data">1149.1</td>
+<td class="r data">1118.2</td>
+<td class="r data">1105.1</td>
+<td class="r data">1149.7</td>
+<td class="r data">1176.0</td>
+<td class="r data">1182.5</td>
+<td class="r data">1180.2</td>
+<td class="r data">1211.6</td>
+<td class="r data">1238.1</td>
+<td class="r data">1541.4</td>
+<td class="r data">1113.3</td>
+<td class="r data">1077.7</td>
+<td class="r data">1247.4</td>
+<td class="r data">1141.4</td>
+<td class="r data">1212.5</td>
+<td class="r data">1195.3</td>
+<td class="r data">1194.1</td>
+<td class="r data">1241.5</td>
+<td class="r data">1182.9</td>
+<td class="r data">1189.5</td>
+<td class="r data">1291.5</td>
+<td class="r data">1505.1</td>
+<td class="r data">1154.2</td>
+<td class="r data">1126.6</td>
+<td class="r data">1213.3</td>
+<td class="r data">1176.1</td>
+<td class="r data">1252.5</td>
+<td class="r data">1188.6</td>
+<td class="r data">1218.4</td>
+<td class="r data">1264.1</td>
+<td class="r data">1153.7</td>
+<td class="r data">1267.7</td>
+<td class="r data">1301.5</td>
+<td class="r data">1576.2</td>
+<td class="r data">1272.3</td>
+<td class="r data">1133.1</td>
+<td class="r data">1256.1</td>
+<td class="r data">1256.0</td>
+<td class="r data">1250.0</td>
+<td class="r data">1159.5</td>
+<td class="r data">1269.1</td>
+<td class="r data">1293.0</td>
+<td class="r data">1200.1</td>
+<td class="r data">1311.1</td>
+<td class="r data">1320.7</td>
+<td class="r data">1638.8</td>
+<td class="r data">1253.0</td>
+<td class="r data">1181.9</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">A64209_CON</td>
+<td class="l data">Income from food sales : Catering services</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">442.3</td>
+<td class="r data">496.8</td>
+<td class="r data">496.0</td>
+<td class="r data">521.0</td>
+<td class="r data">524.8</td>
+<td class="r data">546.5</td>
+<td class="r data">562.9</td>
+<td class="r data">587.4</td>
+<td class="r data">572.1</td>
+<td class="r data">583.3</td>
+<td class="r data">583.1</td>
+<td class="r data">490.1</td>
+<td class="r data">379.8</td>
+<td class="r data">467.3</td>
+<td class="r data">412.4</td>
+<td class="r data">481.9</td>
+<td class="r data">540.1</td>
+<td class="r data">542.7</td>
+<td class="r data">472.1</td>
+<td class="r data">504.1</td>
+<td class="r data">483.9</td>
+<td class="r data">532.2</td>
+<td class="r data">534.9</td>
+<td class="r data">481.3</td>
+<td class="r data">423.5</td>
+<td class="r data">484.0</td>
+<td class="r data">522.1</td>
+<td class="r data">509.0</td>
+<td class="r data">536.5</td>
+<td class="r data">530.1</td>
+<td class="r data">512.4</td>
+<td class="r data">556.6</td>
+<td class="r data">558.5</td>
+<td class="r data">545.3</td>
+<td class="r data">572.4</td>
+<td class="r data">532.5</td>
+<td class="r data">442.3</td>
+<td class="r data">502.7</td>
+<td class="r data">528.9</td>
+<td class="r data">466.2</td>
+<td class="r data">484.5</td>
+<td class="r data">478.6</td>
+<td class="r data">464.9</td>
+<td class="r data">501.4</td>
+<td class="r data">537.9</td>
+<td class="r data">497.3</td>
+<td class="r data">534.8</td>
+<td class="r data">489.6</td>
+<td class="r data">457.1</td>
+<td class="r data">482.7</td>
+<td class="r data">498.0</td>
+<td class="r data">432.5</td>
+<td class="r data">484.4</td>
+<td class="r data">474.7</td>
+<td class="r data">465.9</td>
+<td class="r data">462.7</td>
+<td class="r data">486.1</td>
+<td class="r data">472.9</td>
+<td class="r data">485.8</td>
+<td class="r data">462.0</td>
+<td class="r data">407.6</td>
+<td class="r data">463.0</td>
+<td class="r data">465.2</td>
+<td class="r data">450.4</td>
+<td class="r data">463.2</td>
+<td class="r data">430.7</td>
+<td class="r data">439.4</td>
+<td class="r data">450.8</td>
+<td class="r data">464.8</td>
+<td class="r data">462.0</td>
+<td class="r data">439.8</td>
+<td class="r data">397.5</td>
+<td class="r data">370.5</td>
+<td class="r data">452.0</td>
+<td class="r data">427.8</td>
+<td class="r data">395.6</td>
+<td class="r data">426.0</td>
+<td class="r data">418.1</td>
+<td class="r data">417.1</td>
+<td class="r data">437.4</td>
+<td class="r data">437.5</td>
+<td class="r data">464.5</td>
+<td class="r data">472.2</td>
+<td class="r data">413.4</td>
+<td class="r data">375.4</td>
+<td class="r data">440.4</td>
+<td class="r data">474.2</td>
+<td class="r data">411.3</td>
+<td class="r data">409.8</td>
+<td class="r data">405.3</td>
+<td class="r data">409.4</td>
+<td class="r data">412.8</td>
+<td class="r data">424.9</td>
+<td class="r data">409.1</td>
+<td class="r data">448.5</td>
+<td class="r data">419.4</td>
+<td class="r data">369.2</td>
+<td class="r data">415.0</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">B64209_CON</td>
+<td class="l data">Income from bar sales : Catering services</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">119.0</td>
+<td class="r data">123.8</td>
+<td class="r data">131.1</td>
+<td class="r data">106.1</td>
+<td class="r data">112.8</td>
+<td class="r data">117.2</td>
+<td class="r data">110.5</td>
+<td class="r data">107.2</td>
+<td class="r data">103.6</td>
+<td class="r data">99.4</td>
+<td class="r data">99.2</td>
+<td class="r data">113.6</td>
+<td class="r data">86.3</td>
+<td class="r data">84.9</td>
+<td class="r data">86.7</td>
+<td class="r data">92.3</td>
+<td class="r data">98.1</td>
+<td class="r data">87.2</td>
+<td class="r data">92.4</td>
+<td class="r data">91.3</td>
+<td class="r data">88.1</td>
+<td class="r data">97.8</td>
+<td class="r data">104.6</td>
+<td class="r data">140.7</td>
+<td class="r data">114.9</td>
+<td class="r data">95.1</td>
+<td class="r data">109.8</td>
+<td class="r data">100.4</td>
+<td class="r data">96.1</td>
+<td class="r data">92.4</td>
+<td class="r data">94.0</td>
+<td class="r data">94.9</td>
+<td class="r data">100.0</td>
+<td class="r data">112.9</td>
+<td class="r data">119.0</td>
+<td class="r data">134.8</td>
+<td class="r data">86.4</td>
+<td class="r data">80.1</td>
+<td class="r data">97.4</td>
+<td class="r data">99.7</td>
+<td class="r data">100.8</td>
+<td class="r data">108.3</td>
+<td class="r data">104.8</td>
+<td class="r data">98.9</td>
+<td class="r data">103.2</td>
+<td class="r data">115.1</td>
+<td class="r data">117.3</td>
+<td class="r data">128.3</td>
+<td class="r data">110.0</td>
+<td class="r data">104.3</td>
+<td class="r data">112.8</td>
+<td class="r data">109.2</td>
+<td class="r data">98.8</td>
+<td class="r data">101.0</td>
+<td class="r data">100.7</td>
+<td class="r data">133.4</td>
+<td class="r data">159.5</td>
+<td class="r data">158.5</td>
+<td class="r data">161.6</td>
+<td class="r data">216.1</td>
+<td class="r data">139.3</td>
+<td class="r data">147.3</td>
+<td class="r data">155.3</td>
+<td class="r data">145.2</td>
+<td class="r data">139.9</td>
+<td class="r data">145.2</td>
+<td class="r data">145.3</td>
+<td class="r data">122.6</td>
+<td class="r data">133.3</td>
+<td class="r data">143.5</td>
+<td class="r data">154.5</td>
+<td class="r data">171.8</td>
+<td class="r data">129.7</td>
+<td class="r data">140.3</td>
+<td class="r data">126.8</td>
+<td class="r data">126.9</td>
+<td class="r data">122.4</td>
+<td class="r data">100.6</td>
+<td class="r data">103.2</td>
+<td class="r data">119.7</td>
+<td class="r data">111.8</td>
+<td class="r data">102.1</td>
+<td class="r data">115.5</td>
+<td class="r data">132.9</td>
+<td class="r data">93.9</td>
+<td class="r data">98.0</td>
+<td class="r data">116.6</td>
+<td class="r data">100.2</td>
+<td class="r data">98.0</td>
+<td class="r data">87.8</td>
+<td class="r data">99.1</td>
+<td class="r data">105.1</td>
+<td class="r data">101.4</td>
+<td class="r data">110.5</td>
+<td class="r data">109.9</td>
+<td class="r data">129.3</td>
+<td class="r data">89.8</td>
+<td class="r data">104.3</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">C64209_CON</td>
+<td class="l data">Other income : Catering services</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">75.9</td>
+<td class="r data">64.6</td>
+<td class="r data">84.1</td>
+<td class="r data">78.7</td>
+<td class="r data">136.4</td>
+<td class="r data">84.4</td>
+<td class="r data">55.9</td>
+<td class="r data">56.4</td>
+<td class="r data">85.5</td>
+<td class="r data">79.2</td>
+<td class="r data">97.4</td>
+<td class="r data">88.6</td>
+<td class="r data">49.0</td>
+<td class="r data">53.0</td>
+<td class="r data">59.4</td>
+<td class="r data">53.6</td>
+<td class="r data">43.7</td>
+<td class="r data">53.4</td>
+<td class="r data">36.5</td>
+<td class="r data">39.1</td>
+<td class="r data">69.1</td>
+<td class="r data">60.5</td>
+<td class="r data">54.9</td>
+<td class="r data">65.5</td>
+<td class="r data">58.3</td>
+<td class="r data">50.6</td>
+<td class="r data">69.0</td>
+<td class="r data">61.8</td>
+<td class="r data">62.2</td>
+<td class="r data">62.4</td>
+<td class="r data">51.3</td>
+<td class="r data">55.9</td>
+<td class="r data">58.3</td>
+<td class="r data">50.2</td>
+<td class="r data">50.7</td>
+<td class="r data">49.4</td>
+<td class="r data">47.8</td>
+<td class="r data">46.7</td>
+<td class="r data">56.4</td>
+<td class="r data">51.6</td>
+<td class="r data">52.0</td>
+<td class="r data">57.4</td>
+<td class="r data">57.0</td>
+<td class="r data">48.5</td>
+<td class="r data">51.9</td>
+<td class="r data">50.8</td>
+<td class="r data">55.9</td>
+<td class="r data">57.4</td>
+<td class="r data">45.5</td>
+<td class="r data">49.5</td>
+<td class="r data">54.6</td>
+<td class="r data">53.2</td>
+<td class="r data">48.9</td>
+<td class="r data">52.7</td>
+<td class="r data">49.3</td>
+<td class="r data">51.2</td>
+<td class="r data">54.4</td>
+<td class="r data">46.4</td>
+<td class="r data">59.5</td>
+<td class="r data">52.2</td>
+<td class="r data">44.8</td>
+<td class="r data">52.1</td>
+<td class="r data">53.7</td>
+<td class="r data">51.2</td>
+<td class="r data">51.0</td>
+<td class="r data">58.4</td>
+<td class="r data">57.6</td>
+<td class="r data">57.1</td>
+<td class="r data">55.7</td>
+<td class="r data">55.0</td>
+<td class="r data">53.8</td>
+<td class="r data">48.6</td>
+<td class="r data">47.8</td>
+<td class="r data">50.6</td>
+<td class="r data">55.2</td>
+<td class="r data">49.1</td>
+<td class="r data">52.9</td>
+<td class="r data">48.7</td>
+<td class="r data">48.9</td>
+<td class="r data">48.5</td>
+<td class="r data">49.3</td>
+<td class="r data">51.6</td>
+<td class="r data">51.7</td>
+<td class="r data">50.3</td>
+<td class="r data">43.0</td>
+<td class="r data">45.6</td>
+<td class="r data">51.0</td>
+<td class="r data">45.3</td>
+<td class="r data">44.0</td>
+<td class="r data">45.7</td>
+<td class="r data">48.4</td>
+<td class="r data">46.1</td>
+<td class="r data">43.3</td>
+<td class="r data">45.8</td>
+<td class="r data">57.3</td>
+<td class="r data">48.7</td>
+<td class="r data">45.0</td>
+<td class="r data">49.0</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">D64209_CON</td>
+<td class="l data">Total income : Catering services</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">637.2</td>
+<td class="r data">685.2</td>
+<td class="r data">711.2</td>
+<td class="r data">705.8</td>
+<td class="r data">774.0</td>
+<td class="r data">748.1</td>
+<td class="r data">729.3</td>
+<td class="r data">751.0</td>
+<td class="r data">761.2</td>
+<td class="r data">761.9</td>
+<td class="r data">779.7</td>
+<td class="r data">692.3</td>
+<td class="r data">515.1</td>
+<td class="r data">605.2</td>
+<td class="r data">558.5</td>
+<td class="r data">627.8</td>
+<td class="r data">681.9</td>
+<td class="r data">683.3</td>
+<td class="r data">601.0</td>
+<td class="r data">634.5</td>
+<td class="r data">641.1</td>
+<td class="r data">690.5</td>
+<td class="r data">694.4</td>
+<td class="r data">687.5</td>
+<td class="r data">596.7</td>
+<td class="r data">629.7</td>
+<td class="r data">700.9</td>
+<td class="r data">671.2</td>
+<td class="r data">694.8</td>
+<td class="r data">684.9</td>
+<td class="r data">657.7</td>
+<td class="r data">707.4</td>
+<td class="r data">716.8</td>
+<td class="r data">708.4</td>
+<td class="r data">742.1</td>
+<td class="r data">716.7</td>
+<td class="r data">576.5</td>
+<td class="r data">629.5</td>
+<td class="r data">682.7</td>
+<td class="r data">617.5</td>
+<td class="r data">637.3</td>
+<td class="r data">644.3</td>
+<td class="r data">626.7</td>
+<td class="r data">648.8</td>
+<td class="r data">693.0</td>
+<td class="r data">663.2</td>
+<td class="r data">708.0</td>
+<td class="r data">675.3</td>
+<td class="r data">612.6</td>
+<td class="r data">636.5</td>
+<td class="r data">665.4</td>
+<td class="r data">594.9</td>
+<td class="r data">632.1</td>
+<td class="r data">628.4</td>
+<td class="r data">615.9</td>
+<td class="r data">647.3</td>
+<td class="r data">700.0</td>
+<td class="r data">677.8</td>
+<td class="r data">706.9</td>
+<td class="r data">730.3</td>
+<td class="r data">591.7</td>
+<td class="r data">662.4</td>
+<td class="r data">674.2</td>
+<td class="r data">646.8</td>
+<td class="r data">654.1</td>
+<td class="r data">634.3</td>
+<td class="r data">642.3</td>
+<td class="r data">630.5</td>
+<td class="r data">653.8</td>
+<td class="r data">660.5</td>
+<td class="r data">648.1</td>
+<td class="r data">617.9</td>
+<td class="r data">548.0</td>
+<td class="r data">642.9</td>
+<td class="r data">609.8</td>
+<td class="r data">571.6</td>
+<td class="r data">601.3</td>
+<td class="r data">567.4</td>
+<td class="r data">569.2</td>
+<td class="r data">605.6</td>
+<td class="r data">598.6</td>
+<td class="r data">618.2</td>
+<td class="r data">639.4</td>
+<td class="r data">596.6</td>
+<td class="r data">512.3</td>
+<td class="r data">584.0</td>
+<td class="r data">641.8</td>
+<td class="r data">556.8</td>
+<td class="r data">551.8</td>
+<td class="r data">538.8</td>
+<td class="r data">556.9</td>
+<td class="r data">564.0</td>
+<td class="r data">569.6</td>
+<td class="r data">565.4</td>
+<td class="r data">615.7</td>
+<td class="r data">597.4</td>
+<td class="r data">504.0</td>
+<td class="r data">568.3</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">A64200_CON</td>
+<td class="l data">Income from food sales : Total industry</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">2671.6</td>
+<td class="r data">2721.5</td>
+<td class="r data">3157.8</td>
+<td class="r data">2829.9</td>
+<td class="r data">2841.5</td>
+<td class="r data">2801.5</td>
+<td class="r data">2791.1</td>
+<td class="r data">2943.3</td>
+<td class="r data">2993.1</td>
+<td class="r data">2901.1</td>
+<td class="r data">3088.2</td>
+<td class="r data">3497.1</td>
+<td class="r data">2673.3</td>
+<td class="r data">2572.9</td>
+<td class="r data">2766.9</td>
+<td class="r data">2658.8</td>
+<td class="r data">2743.6</td>
+<td class="r data">2635.2</td>
+<td class="r data">2705.1</td>
+<td class="r data">2721.5</td>
+<td class="r data">2650.8</td>
+<td class="r data">2742.1</td>
+<td class="r data">2837.2</td>
+<td class="r data">3091.0</td>
+<td class="r data">2544.3</td>
+<td class="r data">2441.1</td>
+<td class="r data">2690.6</td>
+<td class="r data">2607.1</td>
+<td class="r data">2680.9</td>
+<td class="r data">2739.5</td>
+<td class="r data">2708.4</td>
+<td class="r data">2665.0</td>
+<td class="r data">2666.8</td>
+<td class="r data">2752.9</td>
+<td class="r data">2803.6</td>
+<td class="r data">3309.6</td>
+<td class="r data">2626.9</td>
+<td class="r data">2536.6</td>
+<td class="r data">2743.2</td>
+<td class="r data">2710.0</td>
+<td class="r data">2608.3</td>
+<td class="r data">2564.9</td>
+<td class="r data">2722.4</td>
+<td class="r data">2627.0</td>
+<td class="r data">2727.8</td>
+<td class="r data">2778.9</td>
+<td class="r data">2834.0</td>
+<td class="r data">3416.4</td>
+<td class="r data">2629.2</td>
+<td class="r data">2575.0</td>
+<td class="r data">2781.5</td>
+<td class="r data">2640.0</td>
+<td class="r data">2616.8</td>
+<td class="r data">2681.9</td>
+<td class="r data">2743.8</td>
+<td class="r data">2759.5</td>
+<td class="r data">2795.2</td>
+<td class="r data">2780.7</td>
+<td class="r data">2875.0</td>
+<td class="r data">3467.5</td>
+<td class="r data">2599.3</td>
+<td class="r data">2558.1</td>
+<td class="r data">2873.8</td>
+<td class="r data">2685.7</td>
+<td class="r data">2767.3</td>
+<td class="r data">2708.7</td>
+<td class="r data">2725.1</td>
+<td class="r data">2830.7</td>
+<td class="r data">2736.1</td>
+<td class="r data">2740.9</td>
+<td class="r data">2924.7</td>
+<td class="r data">3299.8</td>
+<td class="r data">2633.2</td>
+<td class="r data">2615.3</td>
+<td class="r data">2768.2</td>
+<td class="r data">2691.6</td>
+<td class="r data">2784.7</td>
+<td class="r data">2628.0</td>
+<td class="r data">2703.5</td>
+<td class="r data">2796.4</td>
+<td class="r data">2638.8</td>
+<td class="r data">2874.1</td>
+<td class="r data">2954.5</td>
+<td class="r data">3388.8</td>
+<td class="r data">2781.0</td>
+<td class="r data">2615.1</td>
+<td class="r data">2861.6</td>
+<td class="r data">2766.8</td>
+<td class="r data">2743.9</td>
+<td class="r data">2584.5</td>
+<td class="r data">2829.1</td>
+<td class="r data">2853.9</td>
+<td class="r data">2715.1</td>
+<td class="r data">2860.4</td>
+<td class="r data">2965.2</td>
+<td class="r data">3494.5</td>
+<td class="r data">2811.6</td>
+<td class="r data">2686.1</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">B64200_CON</td>
+<td class="l data">Income from bar sales : Total industry</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">524.1</td>
+<td class="r data">544.7</td>
+<td class="r data">557.9</td>
+<td class="r data">497.9</td>
+<td class="r data">479.9</td>
+<td class="r data">457.4</td>
+<td class="r data">465.9</td>
+<td class="r data">457.1</td>
+<td class="r data">425.8</td>
+<td class="r data">453.9</td>
+<td class="r data">581.6</td>
+<td class="r data">554.4</td>
+<td class="r data">420.7</td>
+<td class="r data">401.0</td>
+<td class="r data">421.5</td>
+<td class="r data">426.4</td>
+<td class="r data">417.5</td>
+<td class="r data">391.4</td>
+<td class="r data">421.3</td>
+<td class="r data">406.4</td>
+<td class="r data">412.5</td>
+<td class="r data">450.2</td>
+<td class="r data">464.9</td>
+<td class="r data">526.6</td>
+<td class="r data">492.7</td>
+<td class="r data">420.1</td>
+<td class="r data">468.9</td>
+<td class="r data">438.4</td>
+<td class="r data">426.2</td>
+<td class="r data">476.7</td>
+<td class="r data">464.6</td>
+<td class="r data">423.0</td>
+<td class="r data">428.7</td>
+<td class="r data">475.7</td>
+<td class="r data">495.9</td>
+<td class="r data">631.8</td>
+<td class="r data">446.3</td>
+<td class="r data">424.1</td>
+<td class="r data">449.4</td>
+<td class="r data">447.5</td>
+<td class="r data">416.6</td>
+<td class="r data">418.3</td>
+<td class="r data">442.7</td>
+<td class="r data">429.4</td>
+<td class="r data">425.9</td>
+<td class="r data">459.6</td>
+<td class="r data">482.4</td>
+<td class="r data">610.4</td>
+<td class="r data">474.6</td>
+<td class="r data">447.2</td>
+<td class="r data">485.4</td>
+<td class="r data">457.2</td>
+<td class="r data">428.1</td>
+<td class="r data">428.0</td>
+<td class="r data">414.8</td>
+<td class="r data">457.2</td>
+<td class="r data">479.5</td>
+<td class="r data">480.6</td>
+<td class="r data">519.4</td>
+<td class="r data">750.8</td>
+<td class="r data">504.4</td>
+<td class="r data">481.1</td>
+<td class="r data">522.3</td>
+<td class="r data">462.5</td>
+<td class="r data">459.3</td>
+<td class="r data">456.8</td>
+<td class="r data">466.6</td>
+<td class="r data">469.7</td>
+<td class="r data">464.5</td>
+<td class="r data">474.7</td>
+<td class="r data">519.7</td>
+<td class="r data">674.6</td>
+<td class="r data">472.9</td>
+<td class="r data">465.6</td>
+<td class="r data">449.6</td>
+<td class="r data">448.1</td>
+<td class="r data">423.2</td>
+<td class="r data">387.0</td>
+<td class="r data">390.6</td>
+<td class="r data">435.5</td>
+<td class="r data">397.8</td>
+<td class="r data">420.0</td>
+<td class="r data">436.2</td>
+<td class="r data">512.1</td>
+<td class="r data">403.9</td>
+<td class="r data">397.1</td>
+<td class="r data">429.6</td>
+<td class="r data">394.7</td>
+<td class="r data">393.2</td>
+<td class="r data">359.8</td>
+<td class="r data">417.7</td>
+<td class="r data">442.8</td>
+<td class="r data">420.5</td>
+<td class="r data">461.9</td>
+<td class="r data">464.8</td>
+<td class="r data">570.0</td>
+<td class="r data">404.0</td>
+<td class="r data">434.4</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">C64200_CON</td>
+<td class="l data">Other income : Total industry</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">102.2</td>
+<td class="r data">82.4</td>
+<td class="r data">110.6</td>
+<td class="r data">105.3</td>
+<td class="r data">175.7</td>
+<td class="r data">121.9</td>
+<td class="r data">101.4</td>
+<td class="r data">98.2</td>
+<td class="r data">133.5</td>
+<td class="r data">129.3</td>
+<td class="r data">146.8</td>
+<td class="r data">142.7</td>
+<td class="r data">90.7</td>
+<td class="r data">102.2</td>
+<td class="r data">114.0</td>
+<td class="r data">97.8</td>
+<td class="r data">87.2</td>
+<td class="r data">96.7</td>
+<td class="r data">78.9</td>
+<td class="r data">84.1</td>
+<td class="r data">117.8</td>
+<td class="r data">109.2</td>
+<td class="r data">134.2</td>
+<td class="r data">126.8</td>
+<td class="r data">114.2</td>
+<td class="r data">118.7</td>
+<td class="r data">164.3</td>
+<td class="r data">142.4</td>
+<td class="r data">139.7</td>
+<td class="r data">138.0</td>
+<td class="r data">134.8</td>
+<td class="r data">116.4</td>
+<td class="r data">144.3</td>
+<td class="r data">154.6</td>
+<td class="r data">162.8</td>
+<td class="r data">127.0</td>
+<td class="r data">133.5</td>
+<td class="r data">95.2</td>
+<td class="r data">155.7</td>
+<td class="r data">99.5</td>
+<td class="r data">98.0</td>
+<td class="r data">96.1</td>
+<td class="r data">104.2</td>
+<td class="r data">88.0</td>
+<td class="r data">77.1</td>
+<td class="r data">84.4</td>
+<td class="r data">93.4</td>
+<td class="r data">97.3</td>
+<td class="r data">76.8</td>
+<td class="r data">85.3</td>
+<td class="r data">88.1</td>
+<td class="r data">88.1</td>
+<td class="r data">83.1</td>
+<td class="r data">81.4</td>
+<td class="r data">84.9</td>
+<td class="r data">84.6</td>
+<td class="r data">94.2</td>
+<td class="r data">81.8</td>
+<td class="r data">99.6</td>
+<td class="r data">104.0</td>
+<td class="r data">82.0</td>
+<td class="r data">105.5</td>
+<td class="r data">97.2</td>
+<td class="r data">85.3</td>
+<td class="r data">86.2</td>
+<td class="r data">86.8</td>
+<td class="r data">90.0</td>
+<td class="r data">89.2</td>
+<td class="r data">91.1</td>
+<td class="r data">96.1</td>
+<td class="r data">95.6</td>
+<td class="r data">90.6</td>
+<td class="r data">78.6</td>
+<td class="r data">93.1</td>
+<td class="r data">99.2</td>
+<td class="r data">87.3</td>
+<td class="r data">89.7</td>
+<td class="r data">80.3</td>
+<td class="r data">79.4</td>
+<td class="r data">81.5</td>
+<td class="r data">82.7</td>
+<td class="r data">92.5</td>
+<td class="r data">91.0</td>
+<td class="r data">92.5</td>
+<td class="r data">79.7</td>
+<td class="r data">82.0</td>
+<td class="r data">92.7</td>
+<td class="r data">78.2</td>
+<td class="r data">77.5</td>
+<td class="r data">76.3</td>
+<td class="r data">73.8</td>
+<td class="r data">80.3</td>
+<td class="r data">77.0</td>
+<td class="r data">80.2</td>
+<td class="r data">99.2</td>
+<td class="r data">88.5</td>
+<td class="r data">68.5</td>
+<td class="r data">79.8</td>
+</tr>
+<tr>
+<td class="l data">P6420</td>
+<td class="l data">Food and beverages</td>
+<td class="l data">D64200_CON</td>
+<td class="l data">Total income : Total industry</td>
+<td class="l data">MONTHLY</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">.</td>
+<td class="r data">3297.9</td>
+<td class="r data">3348.6</td>
+<td class="r data">3826.3</td>
+<td class="r data">3433.1</td>
+<td class="r data">3497.1</td>
+<td class="r data">3380.8</td>
+<td class="r data">3358.4</td>
+<td class="r data">3498.6</td>
+<td class="r data">3552.4</td>
+<td class="r data">3484.3</td>
+<td class="r data">3816.6</td>
+<td class="r data">4194.2</td>
+<td class="r data">3184.7</td>
+<td class="r data">3076.1</td>
+<td class="r data">3302.4</td>
+<td class="r data">3183.0</td>
+<td class="r data">3248.3</td>
+<td class="r data">3123.3</td>
+<td class="r data">3205.3</td>
+<td class="r data">3212.0</td>
+<td class="r data">3181.1</td>
+<td class="r data">3301.5</td>
+<td class="r data">3436.3</td>
+<td class="r data">3744.4</td>
+<td class="r data">3151.2</td>
+<td class="r data">2979.9</td>
+<td class="r data">3323.8</td>
+<td class="r data">3187.9</td>
+<td class="r data">3246.8</td>
+<td class="r data">3354.2</td>
+<td class="r data">3307.8</td>
+<td class="r data">3204.4</td>
+<td class="r data">3239.8</td>
+<td class="r data">3383.2</td>
+<td class="r data">3462.3</td>
+<td class="r data">4068.4</td>
+<td class="r data">3206.7</td>
+<td class="r data">3055.9</td>
+<td class="r data">3348.3</td>
+<td class="r data">3257.0</td>
+<td class="r data">3122.9</td>
+<td class="r data">3079.3</td>
+<td class="r data">3269.3</td>
+<td class="r data">3144.4</td>
+<td class="r data">3230.8</td>
+<td class="r data">3322.9</td>
+<td class="r data">3409.8</td>
+<td class="r data">4124.1</td>
+<td class="r data">3180.6</td>
+<td class="r data">3107.5</td>
+<td class="r data">3355.0</td>
+<td class="r data">3185.3</td>
+<td class="r data">3128.0</td>
+<td class="r data">3191.3</td>
+<td class="r data">3243.5</td>
+<td class="r data">3301.3</td>
+<td class="r data">3368.9</td>
+<td class="r data">3343.1</td>
+<td class="r data">3494.0</td>
+<td class="r data">4322.3</td>
+<td class="r data">3185.7</td>
+<td class="r data">3144.7</td>
+<td class="r data">3493.3</td>
+<td class="r data">3233.5</td>
+<td class="r data">3312.8</td>
+<td class="r data">3252.3</td>
+<td class="r data">3281.7</td>
+<td class="r data">3389.6</td>
+<td class="r data">3291.7</td>
+<td class="r data">3311.7</td>
+<td class="r data">3540.0</td>
+<td class="r data">4065.0</td>
+<td class="r data">3184.7</td>
+<td class="r data">3174.0</td>
+<td class="r data">3317.0</td>
+<td class="r data">3227.0</td>
+<td class="r data">3297.6</td>
+<td class="r data">3095.3</td>
+<td class="r data">3173.5</td>
+<td class="r data">3313.4</td>
+<td class="r data">3119.3</td>
+<td class="r data">3386.6</td>
+<td class="r data">3481.7</td>
+<td class="r data">3993.4</td>
+<td class="r data">3264.6</td>
+<td class="r data">3094.2</td>
+<td class="r data">3383.9</td>
+<td class="r data">3239.7</td>
+<td class="r data">3214.6</td>
+<td class="r data">3020.6</td>
+<td class="r data">3320.6</td>
+<td class="r data">3377.0</td>
+<td class="r data">3212.6</td>
+<td class="r data">3402.5</td>
+<td class="r data">3529.2</td>
+<td class="r data">4153.0</td>
+<td class="r data">3284.1</td>
+<td class="r data">3200.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<br>
+</div>
+</body>
+</html>
