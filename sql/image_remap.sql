@@ -6,11 +6,11 @@ ALTER TABLE zaf.ag_stress_idx_16013 DROP COLUMN IF EXISTS asi_map;
 
 ALTER TABLE zaf.ag_stress_idx_16013 DROP COLUMN IF EXISTS asi_desc;
 
-ALTER TABLE zaf.veg_cond_idx_1512 ADD COLUMN vci_map INTEGER;
+ALTER TABLE zaf.veg_cond_idx_1512 ADD COLUMN vci_map NUMERIC;
 
 ALTER TABLE zaf.veg_cond_idx_1512 ADD COLUMN vci_desc VARCHAR(15);
 
-ALTER TABLE zaf.ag_stress_idx_16013 ADD COLUMN asi_map NUMERIC;
+ALTER TABLE zaf.ag_stress_idx_16013 ADD COLUMN asi_map INTEGER;
 
 ALTER TABLE zaf.ag_stress_idx_16013 ADD COLUMN asi_desc VARCHAR(15);
 
@@ -22,8 +22,9 @@ UPDATE zaf.ag_stress_idx_16013 SET asi_map = 25, asi_desc = '25 - 40' WHERE asi 
 UPDATE zaf.ag_stress_idx_16013 SET asi_map = 10, asi_desc = '10 - 25' WHERE asi > 195 AND asi < 202;
 UPDATE zaf.ag_stress_idx_16013 SET asi_map = 1, asi_desc = '< 10' WHERE asi > 150 AND asi < 180;
 UPDATE zaf.ag_stress_idx_16013 SET asi_map = 0 WHERE asi > 100 AND asi < 130;
-UPDATE zaf.ag_stress_idx_16013 SET asi_map = 0 WHERE asi > 200 AND asi < 230;
+UPDATE zaf.ag_stress_idx_16013 SET asi_map = 0 WHERE asi > 202 AND asi < 230;
 UPDATE zaf.ag_stress_idx_16013 SET asi_map = 0 WHERE asi < 39;
+UPDATE zaf.ag_stress_idx_16013 SET asi_map = 0 WHERE asi > 250;
 
 UPDATE zaf.veg_cond_idx_1512 SET vci_map = 0.05, vci_desc = '< 0.15' WHERE vci > 30 AND vci < 50;
 UPDATE zaf.veg_cond_idx_1512 SET vci_map = 0.15, vci_desc = '0.15 - 0.25' WHERE vci > 50 AND vci < 85;
@@ -37,6 +38,24 @@ UPDATE zaf.veg_cond_idx_1512 SET vci_map = 0.85, vci_desc = '>= 0.85' WHERE vci 
 UPDATE zaf.veg_cond_idx_1512 SET vci_map = 10 WHERE vci < 30;
 UPDATE zaf.veg_cond_idx_1512 SET vci_map = 10 WHERE vci > 250;
 
-SELECT 'Number of values for asi_desc: ' || asi_desc || ' are ' || COUNT(gid) AS "Count of asi" FROM zaf.ag_stress_idx_16013 GROUP BY asi_map;
+SELECT
+    'Number of features for ASI ' || asi_desc || ' are ' || COUNT(gid) AS "Count of asi"
+  FROM
+    zaf.ag_stress_idx_16013
+  GROUP BY
+    asi_desc,
+    asi_map
+  ORDER BY
+    asi_map DESC
+  ;
 
-SELECT 'Number of values for vci_map: ' || vci_map || ' are ' || COUNT(gid) AS "Count of vci" FROM zaf.veg_cond_idx_1512 GROUP BY vci_map;
+SELECT
+    'Number of features for VCI ' || vci_desc || ' are ' || COUNT(gid) AS "Count of vci"
+  FROM
+    zaf.veg_cond_idx_1512
+  GROUP BY
+    vci_desc,
+    vci_map
+  ORDER BY
+    vci_map ASC
+  ;
