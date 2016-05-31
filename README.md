@@ -2,7 +2,7 @@
 
 This is the repo: HEA-Analysis-ZA-2016, and the folder with the repo is `~/Documents/hea_analysis/south_africa/2016.04` on my disk.
 
-Collection of folders:
+Collection of directories:
 * [./economy](https://github.com/CharlesRethman/HEA-Analysis-ZA-2016/tree/master/economy): Data and analysis on general economic issues, such as GDP, labour, etc. Prices and crop production have their own directories (see below).
 * [./extra_baselines](https://github.com/CharlesRethman/HEA-Analysis-ZA-2016/tree/master/extra_baselines): Extra baselines information:
   * Rural farmworkers.
