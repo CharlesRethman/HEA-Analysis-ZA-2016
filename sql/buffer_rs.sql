@@ -45,7 +45,7 @@ INSERT INTO zaf.vci_1601_buffer (
                 vci
             ) AS f
           WHERE
-            ST_Area(f.the_geom) > 11335000
+            ST_Area(f.the_geom) > 50000000
         ) AS g
       WHERE
         ST_Within(
