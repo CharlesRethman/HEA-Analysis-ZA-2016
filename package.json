@@ -1,0 +1,15 @@
+{
+  "name" : "collect-outcomes",
+  "description" : "A small package to read data from Single Zone Spreadsheets and load it into Postgres.",
+  "author" : "Charles Rethman <rethman@me.com>",
+  "readme" : "README.md",
+  "license" : "GPL-3.0",
+  "repository" : "https://github.com/CharlesRethman/HEA-Analysis-ZA-2016/tree/master/pop",
+  "dependencies" : {
+    "xlsx" : "0.8.x",
+      "pg" : "4.5.x"
+  },
+  "engine" : "node 4.2.3",
+  "main" : "collect_outcomes.js",
+  "version" : "0.0.0"
+}
