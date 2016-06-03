@@ -32,7 +32,6 @@ function getPassword(prompt, callback) {
     var password = '';
     stdin.on('data', function (ch) {
         ch = ch + "";
-
         switch (ch) {
         case "\n":
         case "\r":
@@ -43,13 +42,19 @@ function getPassword(prompt, callback) {
             stdin.pause();
             callback(false, password);
             break;
-        case "\u0003":
+        case '\u0003':
             // Ctrl-C
             callback(true);
             break;
+        case '\u007F':
+            // backspace
+            process.stdout.write('\u0008');
+//            process.stdout.write('\u007F');
+            password = password.substring(0, password.length - 1);
+            break;
         default:
-            // More passsword characters
-            process.stdout.write(\u0225);
+            // More password characters
+            process.stdout.write('\u2022');
             password += ch;
             break;
         }
@@ -77,6 +82,19 @@ function ask(question, format, callback) {
  });
 }
 
+function toUnicode(theString) {
+  var unicodeString = '';
+  for (var i=0; i < theString.length; i++) {
+    var theUnicode = theString.charCodeAt(i).toString(16).toUpperCase();
+    while (theUnicode.length < 4) {
+      theUnicode = '0' + theUnicode;
+    }
+    theUnicode = '\\u' + theUnicode;
+    unicodeString += theUnicode;
+  }
+  return unicodeString;
+}
+
 /* caller for getting any parameters */
 //ask("Password", /.+/, function(your_input) {
 /*  ....do stuff here ...  */
@@ -87,6 +105,8 @@ function ask(question, format, callback) {
 // Main callback function to connect to the DB, read spreadsheets and upload the results.
 // Get the DB password
 getPassword('Enter Postgres password: ', function(err, pword) {
+
+    console.log('Your password is: ' + toUnicode(pword));
     var conString = 'postgres://Charles:' + pword + '@localhost:5432/albers_ea';
     var client = new pg.Client(conString);
     client.connect(function(err) {
@@ -131,7 +151,7 @@ getPassword('Enter Postgres password: ', function(err, pword) {
             ext : "_1"
           }
       };
-      // Object with the wealth group affectedness groupins.
+      // Object with the wealth group affectedness groupings.
       var wgAffected = {
         grants : "",
         noGrants : "_nogrants"
@@ -173,7 +193,6 @@ getPassword('Enter Postgres password: ', function(err, pword) {
       for (var i = 0; i < lzAbbrevs.length; i++) {
         for (var subLz in lzAffected) {
           for (var subWG in wgAffected) {
-//            console.log(lzAbbrevs[i].name + lzAffected[subLz].ext + wgAffected[subWG])
             /* Get the workbook */
             var workbook = XLSX.readFile('./spreadsheets/' + lzAbbrevs[i].name +
                 lzAffected[subLz].ext + wgAffected[subWG] + '.xlsx');
@@ -200,17 +219,24 @@ getPassword('Enter Postgres password: ', function(err, pword) {
 //                  console.log(
 //                      thres + ' deficit of ' + lzAbbrevs[i].name + lzAffected[subLz].ext +
 //                      wgAffected[subWG] + ', ' + sheet_name + ' wg, is ' + outcome[thres]);
-                  sqlString += lzAbbrevs[i].name +  '/' + sheet_name + ': (' + d.getFullYear() + ', ' + (d.getMonth() + 1) + ', ' +
-                      lzAbbrevs[i].code + ', ' + (lzAbbrevs[i].sheets[j] + 1) + ', ' + subLz +
-                      ', ' + subWG + ', ' + deficit[thres].descr + ', ' + outcome[thres] + '),\n';
+                  sqlString += '(' + d.getFullYear() + ', ' + (d.getMonth() + 1) + ', ' +
+                      lzAbbrevs[i].code + ', ' + (lzAbbrevs[i].sheets[j] + 1) + ', \u0027' + subLz +
+                      '\u0027, \u0027' + subWG + '\u0027, \u0027' + deficit[thres].descr +
+                      '\u0027, ' + desired_value + '),\n';
               }
             }
           }
         }
       }
       //Connection string to Postgres
-      sqlString = sqlString.substring(0, sqlString.length - 2) + ';';
+      sqlString = sqlString.substring(0, sqlString.length - 2) + '\n;';
       console.log(sqlString);
+      client.query(sqlString, function(err, result) {
+        if(err) {
+          return console.error('error running query', err);
+        }
+        console.log(result.command + ': ' + result.rowCount + ' rows affected');
+      });
       client.query('SELECT NOW() AS "theTime"', function(err, result) {
         if(err) {
           return console.error('error running query', err);
