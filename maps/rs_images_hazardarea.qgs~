@@ -12,7 +12,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="landuse_agricregions20160601173909863" name="Landuse_agricregions">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="prob_hazard20160601201333451" name="Prob_hazard">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="prob_hazard20160601201333451" name="Intensive drought area">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="buffer_asi20160530013115599" name="Agric Stress Index, dekad 3, January 2016, buffered 1.5 km">
@@ -238,7 +238,7 @@
         <legendlayerfile isInOverview="0" layerid="landuse_agricregions20160601173909863" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Prob_hazard" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Intensive drought area" showFeatureCount="0">
       <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="prob_hazard20160601201333451" visible="1"/>
       </filegroup>
@@ -868,7 +868,7 @@
           <customproperties/>
         </ComposerItem>
       </ComposerPicture>
-      <ComposerLegend symbolWidth="5" title="Legend" boxSpace="1" rasterBorderWidth="0" splitLayer="0" equalColumnWidth="0" map="0" titleAlignment="1" rasterBorder="1" symbolHeight="4" wmsLegendHeight="25" wrapChar="\n" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1" rasterBorderColor="0,0,0,255">
+      <ComposerLegend symbolWidth="5" title="Legend" boxSpace="1" rasterBorderWidth="0" splitLayer="0" equalColumnWidth="0" map="0" titleAlignment="1" rasterBorder="0" symbolHeight="4" wmsLegendHeight="25" wrapChar="\n" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1" rasterBorderColor="0,0,0,255">
         <styles>
           <style marginBottom="1" name="title">
             <styleFont description="Helvetica Neue,8,-1,5,50,0,0,0,0,0" style="Light"/>
@@ -891,11 +891,14 @@
           <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin2_provs20160529150446467" name="Provincial boundaries">
             <customproperties/>
           </layer-tree-layer>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="prob_hazard20160601201333451" name="Intensive drought area">
+            <customproperties/>
+          </layer-tree-layer>
           <layer-tree-layer expanded="1" checked="Qt::Checked" id="Veg_cond_idx_1601_copy20160602111832908" name="Vegetation Condition Index \n for January 2016">
             <customproperties/>
           </layer-tree-layer>
         </layer-tree-group>
-        <ComposerItem pagey="133.908" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="23.6743" y="133.908" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="27.2" outlineWidth="0.3" excludeFromExports="0" uuid="{83d03e81-83d6-41b4-a8df-918e1e3f0596}" height="55.7609" itemRotation="0" frame="false" pagex="23.6743">
+        <ComposerItem pagey="133.908" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="23.6743" y="133.908" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="27.9781" outlineWidth="0.3" excludeFromExports="0" uuid="{83d03e81-83d6-41b4-a8df-918e1e3f0596}" height="59.7609" itemRotation="0" frame="false" pagex="23.6743">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -4819,13 +4822,13 @@ def my_form_open(dialog, layer, feature):
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>prob_hazard20160601201333451</id>
       <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='id' srid=201100 type=MultiPolygon table="zaf"."prob_hazard" (the_geom) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>Prob_hazard</layername>
+      <layername>Intensive drought area</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=aea +lat_1=-24.2 +lat_2=-32.8 +lat_0=-28.5 +lon_0=25.1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
@@ -5050,6 +5053,8 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/xOffset" value="0"/>
         <property key="labeling/yOffset" value="0"/>
         <property key="labeling/zIndex" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
@@ -5077,7 +5082,7 @@ def my_form_open(dialog, layer, feature):
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
           <fontProperties description=".SF NS Text,13,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
