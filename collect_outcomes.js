@@ -82,19 +82,6 @@ function ask(question, format, callback) {
  });
 }
 
-function toUnicode(theString) {
-  var unicodeString = '';
-  for (var i=0; i < theString.length; i++) {
-    var theUnicode = theString.charCodeAt(i).toString(16).toUpperCase();
-    while (theUnicode.length < 4) {
-      theUnicode = '0' + theUnicode;
-    }
-    theUnicode = '\\u' + theUnicode;
-    unicodeString += theUnicode;
-  }
-  return unicodeString;
-}
-
 /* caller for getting any parameters */
 //ask("Password", /.+/, function(your_input) {
 /*  ....do stuff here ...  */
@@ -105,8 +92,6 @@ function toUnicode(theString) {
 // Main callback function to connect to the DB, read spreadsheets and upload the results.
 // Get the DB password
 getPassword('Enter Postgres password: ', function(err, pword) {
-
-    console.log('Your password is: ' + toUnicode(pword));
     var conString = 'postgres://Charles:' + pword + '@localhost:5432/albers_ea';
     var client = new pg.Client(conString);
     client.connect(function(err) {
