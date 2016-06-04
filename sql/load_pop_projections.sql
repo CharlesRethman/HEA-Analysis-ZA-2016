@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS zaf.tbl_pop_proj;
 DROP TABLE IF EXISTS zaf.tmp_pop_proj;
 
 
+BEGIN;
 CREATE TABLE zaf.tbl_pop_proj (
   "tid" serial primary key,
   district varchar(6),
@@ -65,13 +66,27 @@ COPY zaf.tmp_pop_proj (
   )
 ;
 
-UPDATE zaf.tmp_pop_proj SET "name" = "name" || ' (CPT)' WHERE "name" = 'WC - City of Cape Town Metropolitan Municipality';
-UPDATE zaf.tmp_pop_proj SET "name" = "name" || ' (BUF)' WHERE "name" = 'EC - Buffalo City Metropolitan Municipality';
-UPDATE zaf.tmp_pop_proj SET "name" = "name" || ' (NMA)' WHERE "name" = 'EC - Nelson Mandela Bay Metropolitan Municipality';
-UPDATE zaf.tmp_pop_proj SET "name" = "name" || ' (ETH)' WHERE "name" = 'KZN - eThekwini Metropolitan Municipality';
-UPDATE zaf.tmp_pop_proj SET "name" = "name" || ' (JHB)' WHERE "name" = 'GT - City of Johannesburg Metropolitan Municipality';
-UPDATE zaf.tmp_pop_proj SET "name" = "name" || ' (EKU)' WHERE "name" = 'GT - Ekurhuleni Metropolitan Municipality';
-UPDATE zaf.tmp_pop_proj SET "name" = "name" || ' (TSH)' WHERE "name" = 'GT - City of Tshwane Metropolitan Municipality';
+UPDATE zaf.tmp_pop_proj
+  SET "name" = "name" || ' (CPT)'
+  WHERE "name" = 'WC - City of Cape Town Metropolitan Municipality';
+UPDATE zaf.tmp_pop_proj
+  SET "name" = "name" || ' (BUF)'
+  WHERE "name" = 'EC - Buffalo City Metropolitan Municipality';
+UPDATE zaf.tmp_pop_proj
+  SET "name" = "name" || ' (NMA)'
+  WHERE "name" = 'EC - Nelson Mandela Bay Metropolitan Municipality';
+UPDATE zaf.tmp_pop_proj
+  SET "name" = "name" || ' (ETH)'
+  WHERE "name" = 'KZN - eThekwini Metropolitan Municipality';
+UPDATE zaf.tmp_pop_proj
+  SET "name" = "name" || ' (JHB)'
+  WHERE "name" = 'GT - City of Johannesburg Metropolitan Municipality';
+UPDATE zaf.tmp_pop_proj
+  SET "name" = "name" || ' (EKU)'
+  WHERE "name" = 'GT - Ekurhuleni Metropolitan Municipality';
+UPDATE zaf.tmp_pop_proj
+  SET "name" = "name" || ' (TSH)'
+  WHERE "name" = 'GT - City of Tshwane Metropolitan Municipality';
 
 --create or replace the function that loops to create line dashes that run
 CREATE OR REPLACE FUNCTION zaf.load_pop_projs(
@@ -94,18 +109,17 @@ BEGIN
     ELSE
       qry_string :=
           'INSERT INTO zaf.tbl_pop_proj (district, dc_name, sex, age, '
-          || 'year_mid, pop) SELECT '
-          || 'substr("name", strpos("name", ' || quote_literal('(')
-          || ') + 1, abs(strpos("name", ' || quote_literal(')')
-          || ') - strpos("name", ' || quote_literal('(') || ' ) - 1)) AS '
-          || 'district, "name", sex, age, ' || i || ' AS year_mid, "'
-          || i || '" FROM zaf.tmp_pop_proj ORDER BY district, sex DESC, '
-          || 'to_number(age, ' || quote_literal('99') || ')::integer;';
+              || 'year_mid, pop) SELECT '
+              || 'substr("name", strpos("name", ' || quote_literal('(')
+              || ') + 1, abs(strpos("name", ' || quote_literal(')')
+              || ') - strpos("name", ' || quote_literal('(') || ' ) - 1)) AS '
+              || 'district, "name", sex, age, ' || i || ' AS year_mid, "'
+              || i || '" FROM zaf.tmp_pop_proj ORDER BY district, sex DESC, '
+              || 'to_number(age, ' || quote_literal('99') || ')::integer;';
       queries := queries || E'\n' || qry_string;
       RAISE NOTICE 'qry_string = %', qry_string;
       i := i + 1;
---      SELECT qry_string::text;
---      EXECUTE qry_string;
+      EXECUTE qry_string;
     END IF;
   END LOOP do_insert;
   RETURN queries;
@@ -115,10 +129,10 @@ $BODY$
 
 SELECT zaf.load_pop_projs(
     2002,
---    2003
     CAST(EXTRACT(YEAR FROM current_date) AS integer)
   )::text
 ;
 
 
 DROP TABLE IF EXISTS zaf.tmp_pop_proj;
+COMMIT;
