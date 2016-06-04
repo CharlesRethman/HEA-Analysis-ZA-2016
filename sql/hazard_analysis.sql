@@ -100,13 +100,23 @@ INSERT INTO zaf.tbl_ofa_sas (
 			threshold,
 			deficit
 		FROM
-			zaf.tbl_ofa_outcomes,
+			(
+				SELECT
+						lz_code,
+					FROM
+						zaf.tbl_ofa_outcomes,
+						zaf.tbl_wgs
+					WHERE
+							lz_affected = 'drought'
+						AND
+							zaf.tbl_ofa_outcomes.wg = zaf.tbl_wgs.
+				) AS f,
 			(
 				SELECT
 						the_geom
 					FROM
 						zaf.vci_1601_buffer
-				) AS f,
+				) AS g,
 			(
 				SELECT
 						the_geom,
@@ -140,32 +150,31 @@ INSERT INTO zaf.tbl_ofa_sas (
 												year_mid = EXTRACT(year FROM current_date)
 											GROUP BY
 												dc_name
-										) AS g,
-										(
-											SELECT
-													dc_name
-													total
-												FROM
-													zaf.tbl_pop_agegender_12y,
-													zaf.demog_sas
-												WHERE
-													zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
-												GROUP BY
-													dc_name
-											) AS h
+										) AS h,
+									(
+										SELECT
+												dc_name
+												total
+											FROM
+												zaf.tbl_pop_agegender_12y,
+												zaf.demog_sas
+											WHERE
+												zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+											GROUP BY
+												dc_name
+										) AS i
 								WHERE
-									g.dc_code = h.dc_code
-							) AS i
+									h.dc_code = i.dc_code
+							) AS j
 					WHERE
-							zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+							j.sa_code = zaf.tbl_pop_agegender_12y.sa_code
 						AND
 							zaf.demog_sas.dc_code = i.dc_code
-				) AS j
+				) AS k
 		WHERE
-				j.lz_code = zaf.tbl_ofa_outcomes.lz_code
+				k.lz_code = f.lz_code
 			AND
-				ST_Within(j.the_geom, f.the_geom)
-				hazard = 'Affected'
+				ST_Within(k.the_geom, g.the_geom)
 ;
 
 -- insert the data where the hazard is lighter
