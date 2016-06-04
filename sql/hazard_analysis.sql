@@ -34,114 +34,137 @@ CREATE TABLE zaf.tbl_ofa_sas (
 	ofa_year integer,
 	ofa_month integer,
 --	the_geom GEOMETRY(MULTIPOLYGON, 300000),
-	ea_code integer,
-	prov_code integer,
-	dist_code VARCHAR(6),
-	munic_code VARCHAR(6),
+	sa_code integer,
+	mn_code varchar(6),
+	dc_code varchar(6),
+	pr_code integer,
 	-- population
-	pop_size INTEGER,
-	pop_curr NUMERIC,
-	hh_curr NUMERIC,
+	pop_size integer,
+	pop_curr numeric,
+--	hh_curr numeric,
 	-- livelihood zones: code, abbrev, name and wealth group
---	lz_code INTEGER,
+	lz_code integer,
 --	lz_abbrev VARCHAR(5),
 --	lz_name VARCHAR(254),
---	wg VARCHAR(10),
+	wg integer,
 	-- Whether they have social security (soc_sec) and the hazards they're
 	-- affected by
-	soc_sec INTEGER,
-	hazard VARCHAR(20),
+	wg_affected varchar(30),
+	lz_affected varchar(30),
 	-- outcomes, percent population affected (pc_pop), livelihood deficit
 	-- (lhood_def) and survival deficit (surv_def)
---	pc_pop NUMERIC,
---	lhood_def NUMERIC,
+	pc_pop numeric,
+	threshold varchar(30),
+	deficit numeric,
 --	surv_def NUMERIC
 	)
 ;
 
 -- insert the data where the hazard has been worst
-SELECT 'Add in all the hazard data in the worst-case affected area'::text;
+SELECT 'Add in the EAS that are completely contained within the hazard area'::text;
 
 INSERT INTO zaf.tbl_ofa_sas (
-	the_geom,
-	ea_code,
-	region_cod,
-	region_nam,
-	constituen,
-	constitue1,
+	EXTRACT (year FROM current_date),
+	EXTRACT (month FROM current_date),
+	sa_code,
+	mn_code,
+	dc_code,
+	pr_code,
 	pop_size,
 	pop_curr,
-	hh_curr,
+--	hh_curr,
 	lz_code,
-	lz_abbrev,
-	lz_name,
+--	lz_abbrev,
+--	lz_name,
 	wg,
-	soc_sec,
-	hazard,
+	wg_affected,
+	lz_affected,
 	pc_pop,
-	lhood_def,
-	surv_def
+	threshold,
+	deficit
 	)
 	-- data comes from nested query combining SAs, SPI data, rural and urban livelihoods tables
 	SELECT
-			g.the_geom,
-			g.ea_code,
-			g.region_cod,
-			region_nam,
-			constituen,
-			constitue1,
-			g.pop_size,
-			g.pop_curr,
-			g.hh_curr,
-			g.lz_code,
-			lz_abbrev,
-			g.lz_name,
+			h.sa_code,
+			h.mn_code,
+			h.dc_code,
+			h.pr_code,
+			h.pop_size,
+			h.pop_curr,
+--			g.hh_curr,
+			lz_code,
 			wg,
-			soc_sec,
-			hazard,
+			wg_affected,
+			lz_affected,
 			pc_pop,
-			lhood_def,
-			surv_def
+			threshold,
+			deficit
 		FROM
-			zaf.tbl_outcomes,
+			zaf.tbl_ofa_outcomes,
 			(
 				SELECT
 						the_geom
 					FROM
-						zaf.buffer_20160515
+						zaf.vci_1601_buffer
 				) AS f,
 			(
 				SELECT
 						the_geom,
-						ea_code,
-						zaf.demog_sas.region_cod,
-						constituen,
-						constitue1,
-						region_nam,
+						sa_code,
+						mn_code,
+						dc_code,
+						pr_code,
 						zaf.demog_sas.pop_size,
-						zaf.demog_sas.pop_size * pop_2016 / zaf.tbl_pop_proj.pop_size AS pop_curr,
-						zaf.demog_sas.hh_size * pop_2016 / zaf.tbl_pop_proj.pop_size  AS hh_curr,
+						zaf.demog_sas.pop_size * pop_rate AS pop_curr,
+--						zaf.demog_sas.hh_size * pop_2016 / zaf.tbl_pop_proj.pop_size  AS hh_curr,
 						zaf.demog_sas.lz_code AS lz_code,
 						h.lz_name,
 						h.lz_abbrev
 					FROM
-						zaf.tbl_pop_proj,
 						zaf.demog_sas,
+						zaf.tbl_pop_agegender_12y,
 						(
-							SELECT lz_code, lz_name, lz_abbrev FROM zaf.livezones
-							) AS h
+							SELECT
+									dc_code,
+									pop / total AS pop_rate,
+								FROM
+									(
+										SELECT
+												dc_name,
+												sum(pop)
+											AS
+												pop
+											FROM
+												zaf.tbl_pop_proj
+											WHERE
+												year_mid = EXTRACT(year FROM current_date)
+											GROUP BY
+												dc_name
+										) AS g,
+										(
+											SELECT
+													dc_name
+													total
+												FROM
+													zaf.tbl_pop_agegender_12y,
+													zaf.demog_sas
+												WHERE
+													zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+												GROUP BY
+													dc_name
+											) AS h
+								WHERE
+									g.dc_code = h.dc_code
+							) AS i
 					WHERE
-							zaf.demog_sas.lz_code = h.lz_code
+							zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
 						AND
-							zaf.demog_sas.lz_code < 56800
-						AND
-							zaf.demog_sas.region_cod = zaf.tbl_pop_proj.region_cod
-				) AS g
+							zaf.demog_sas.dc_code = i.dc_code
+				) AS j
 		WHERE
-				ST_Intersects (g.the_geom, f.the_geom)
+				j.lz_code = zaf.tbl_ofa_outcomes.lz_code
 			AND
-				g.lz_code = zaf.tbl_outcomes.lz_code
-			AND
+				ST_Within(j.the_geom, f.the_geom)
 				hazard = 'Affected'
 ;
 
@@ -150,7 +173,7 @@ SELECT 'Add in all the hazard data in the less-affected area'::text;
 
 INSERT INTO zaf.tbl_ofa_sas (
 	the_geom,
-	ea_code,
+	sa_code,
 	region_cod,
 	constituen,
 	constitue1,
@@ -172,7 +195,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 	-- analysis tables
 	SELECT
 			g.the_geom,
-			g.ea_code,
+			g.sa_code,
 			g.region_cod,
 			constituen,
 			constitue1,
@@ -194,7 +217,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 			(
 				SELECT
 						the_geom,
-						ea_code,
+						sa_code,
 						zaf.demog_sas.region_cod,
 						constituen,
 						constitue1,
@@ -219,9 +242,9 @@ INSERT INTO zaf.tbl_ofa_sas (
 							zaf.demog_sas.region_cod = zaf.tbl_pop_proj.region_cod
 				) AS g
 		WHERE
-				ea_code NOT IN (
+				sa_code NOT IN (
 					SELECT
-							ea_code
+							sa_code
 						FROM
 							zaf.demog_sas,
 							zaf.buffer_20160515
@@ -244,7 +267,7 @@ BEGIN;
 -- Output the table to a CSV file for spreadsheet input
 COPY (
 	SELECT
-			ea_code,
+			sa_code,
 			region_cod AS region_code,
 			region_nam AS region,
 			constituen AS const_code,
@@ -265,7 +288,7 @@ COPY (
 		WHERE
 			lower(zaf.tbl_ofa_sas.wg) = f.wg
 	ORDER BY
-		ea_code,
+		sa_code,
 		hazard,
 		soc_sec,
 		f.ordnum
@@ -326,7 +349,7 @@ WITH (
 ;
 /*
 SELECT
-		ea_code,
+		sa_code,
 		region_nam AS region,
 		constitue1 AS constituency,
 		lz_code || ': '  || lz_name || ' (' || lz_abbrev || ')' AS lz,
@@ -345,7 +368,7 @@ SELECT
 	WHERE
 		lower(zaf.tbl_ofa_sas.wg) = f.wg
 	ORDER BY
-		ea_code,
+		sa_code,
 		hazard,
 		s,
 		f.ordnum
