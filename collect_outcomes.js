@@ -172,7 +172,7 @@ getPassword('Enter Postgres password: ', function(err, pword) {
 
       var outcome = {};
       var d = new Date();
-      var sqlString = 'INSERT INTO zaf.tbl_ofa_results (ofa_year, ofa_month, lz_code, wg_code, ' +
+      var sqlString = 'INSERT INTO zaf.tbl_ofa_outcomes (ofa_year, ofa_month, lz_code, wg_code, ' +
           'lz_affected, wg_affected, threshold, deficit) VALUES \n'
 
       for (var i = 0; i < lzAbbrevs.length; i++) {
