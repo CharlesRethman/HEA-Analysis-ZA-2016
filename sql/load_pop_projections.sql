@@ -96,9 +96,11 @@ BEGIN
           'INSERT INTO zaf.tbl_pop_proj (district, dc_name, sex, age, '
           || 'year_mid, pop) SELECT '
           || 'substr("name", strpos("name", ' || quote_literal('(')
-          || ') + 1, abs(strpos("name", ' || quote_literal(')') || ') - strpos("name", '
-          || quote_literal('(') || ' ) - 1)) AS district, "name", sex, age, ' || i || ' AS year_mid, "'
-          || i || '" FROM zaf.tmp_pop_proj ORDER BY district, sex DESC, age;';
+          || ') + 1, abs(strpos("name", ' || quote_literal(')')
+          || ') - strpos("name", ' || quote_literal('(') || ' ) - 1)) AS '
+          || 'district, "name", sex, age, ' || i || ' AS year_mid, "'
+          || i || '" FROM zaf.tmp_pop_proj ORDER BY district, sex DESC, '
+          || 'to_number(age, ' || quote_literal('99') || ')::integer;';
       queries := queries || E'\n' || qry_string;
       RAISE NOTICE 'qry_string = %', qry_string;
       i := i + 1;
