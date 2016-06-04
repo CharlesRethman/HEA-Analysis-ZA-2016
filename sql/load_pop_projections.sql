@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS zaf.tbl_pop_proj;
 DROP TABLE IF EXISTS zaf.tmp_pop_proj;
 
-/*
+
 CREATE TABLE zaf.tbl_pop_proj (
   "tid" serial primary key,
   district varchar(6),
@@ -12,7 +12,7 @@ CREATE TABLE zaf.tbl_pop_proj (
   pop integer
   )
 ;
-*/
+
 CREATE TABLE zaf.tmp_pop_proj (
   "tid" serial primary key,
   "name" varchar(100),
@@ -121,4 +121,4 @@ SELECT zaf.load_pop_projs(
 ;
 
 
---DROP TABLE IF EXISTS zaf.tmp_pop_proj;
+DROP TABLE IF EXISTS zaf.tmp_pop_proj;
