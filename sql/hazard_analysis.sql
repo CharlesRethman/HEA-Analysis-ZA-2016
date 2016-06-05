@@ -69,7 +69,7 @@ BEGIN;
 SELECT 'Add in the EAS that are completely contained within the hazard area'::text;
 
 INSERT INTO zaf.tbl_ofa_sas (
-	the_geom
+	the_geom,
 	ofa_year,
 	ofa_month,
 	sa_code,
@@ -91,8 +91,8 @@ INSERT INTO zaf.tbl_ofa_sas (
 	)
 	-- data comes from nested query combining SAs, SPI data, rural and urban
 	-- livelihoods tables
-	SELECT
-		the_geom
+/*	SELECT
+		the_geom,
 		EXTRACT(year FROM current_date) AS ofa_year,
 		EXTRACT(month FROM current_date) AS ofa_month,
 		sa_code,
@@ -111,9 +111,12 @@ INSERT INTO zaf.tbl_ofa_sas (
 --		deficit
 	FROM
 		-- subquery to divede up affected and unaffected SAs
-		(
+		(*/
 			-- The SAs entirely within the affected area
 			SELECT
+				g.the_geom AS the_geom,
+				EXTRACT(year FROM current_date) AS ofa_year,
+				EXTRACT(month FROM current_date) AS ofa_month,
 				sa_code,
 				mn_code,
 				dc_code,
@@ -121,36 +124,202 @@ INSERT INTO zaf.tbl_ofa_sas (
 				lz_code,
 				'drought' AS lz_affected
 			FROM
-				zaf.demog_sas,
-				zaf.vci_1601_buffer
+				zaf.demog_sas AS g,
+				zaf.vci_1601_buffer AS h
 			WHERE
-					ST_Intersects(zaf.demog_sas.the_geom, zaf.vci_1601_buffer.the_geom)
+					ST_Intersects(g.the_geom, h.the_geom)
 				AND
-					ST_Within(zaf.demog_sas.the_geom, zaf.vci_1601_buffer.the_geom)
-		UNION
-			-- The areas not entirely within the affected arae
-			SELECT
-				sa_code,
-				mn_code,
-				dc_code,
-				pr_code,
-				lz_code,
-				'normal' AS lz_affected
-			FROM
-				zaf.demog_sas
-			WHERE
-				gid NOT IN (
-					SELECT
-						zaf.demog_sas.gid
-					FROM
-						zaf.demog_sas,
-						zaf.vci_1601_buffer
-					WHERE
-							ST_Within(zaf.demog_sas.the_geom, zaf.vci_1601_buffer.the_geom)
-						AND
-							ST_Within(zaf.demog_sas.the_geom, zaf.vci_1601_buffer.the_geom)
-				)
-		) AS f
+					ST_Within(g.the_geom, h.the_geom)
+/*				AND
+					NOT ST_IsEmpty(
+						ST_Buffer(
+							ST_Intersection(g.the_geom, h.the_geom),
+							0.0
+						)
+					)*/
+;
+
+--		UNION
+SELECT 'Add in the EAS that have more than one-third of their area intersecting with the hazard area'::text;
+
+INSERT INTO zaf.tbl_ofa_sas (
+	the_geom,
+	ofa_year,
+	ofa_month,
+	sa_code,
+	mn_code,
+	dc_code,
+	pr_code,
+		--	pop_size,
+		--	pop_curr,
+		--	hh_curr,
+	lz_code,
+		--	lz_abbrev,
+		--	lz_name,
+		--	wg_code,
+		--	wg_affected,
+	lz_affected
+		--	pc_pop,
+		--	threshold,
+		--	deficit
+	)
+		-- The areas crossing, with more than one-third of the intesecting area
+		-- WITHIN
+		SELECT
+			l.the_geom AS the_geom,
+			EXTRACT(year FROM current_date) AS ofa_year,
+			EXTRACT(month FROM current_date) AS ofa_month,
+			l.sa_code,
+			mn_code,
+			dc_code,
+			pr_code,
+			lz_code,
+			'border drought' AS lz_affected
+		FROM
+			(
+				SELECT
+					ST_Multi(ST_Buffer(ST_Intersection(j.the_geom, i.the_geom),0.0)) AS the_geom,
+					sa_code
+				FROM
+					zaf.demog_sas AS i,
+					zaf.veg_cond_idx_1601 AS j
+				WHERE
+						ST_Intersects(i.the_geom, j.the_geom)
+					AND
+						NOT ST_Within(i.the_geom, j.the_geom)
+/*					AND
+						NOT ST_IsEmpty(
+							ST_Buffer(
+								ST_Intersection(i.the_geom, j.the_geom),
+								0.0
+							)
+						)*/
+			) AS k,
+			zaf.demog_sas AS l
+		WHERE
+				l.sa_code = k.sa_code
+			AND
+				3 * ST_Area(k.the_geom) > ST_Area(l.the_geom)
+;
+
+--		UNION
+SELECT 'Add in the EAS that less than one-third of their area intersecting with the hazard area'::text;
+
+INSERT INTO zaf.tbl_ofa_sas (
+	the_geom,
+	ofa_year,
+	ofa_month,
+	sa_code,
+	mn_code,
+	dc_code,
+	pr_code,
+		--	pop_size,
+		--	pop_curr,
+		--	hh_curr,
+	lz_code,
+		--	lz_abbrev,
+		--	lz_name,
+		--	wg_code,
+		--	wg_affected,
+	lz_affected
+		--	pc_pop,
+		--	threshold,
+		--	deficit
+	)
+			-- The areas crossing, with less than two-thirds of the intesecting area
+			-- WITHIN
+		SELECT
+			q.the_geom AS the_geom,
+			EXTRACT(year FROM current_date) AS ofa_year,
+			EXTRACT(month FROM current_date) AS ofa_month,
+			q.sa_code,
+			mn_code,
+			dc_code,
+			pr_code,
+			lz_code,
+			'border normal' AS lz_affected
+		FROM
+			(
+				SELECT
+					ST_Multi(ST_Buffer(ST_Intersection(n.the_geom, m.the_geom),0.0)) AS the_geom,
+					sa_code
+				FROM
+					zaf.demog_sas AS m,
+					zaf.veg_cond_idx_1601 AS n
+				WHERE
+						ST_Intersects(m.the_geom, n.the_geom)
+					AND
+						NOT ST_Within(m.the_geom, n.the_geom)
+/*					AND
+						NOT ST_IsEmpty(
+							ST_Buffer(
+								ST_Intersection(m.the_geom, n.the_geom),
+								0.0
+							)
+						)*/
+			) AS p,
+			zaf.demog_sas AS q
+		WHERE
+				q.sa_code = p.sa_code
+			AND
+				ST_Area(q.the_geom) >= 3 * ST_Area(p.the_geom)
+;
+
+--		UNION
+SELECT 'Add in the EAS that do NOT intersect at all with the hazard area'::text;
+
+INSERT INTO zaf.tbl_ofa_sas (
+	the_geom,
+	ofa_year,
+	ofa_month,
+	sa_code,
+	mn_code,
+	dc_code,
+	pr_code,
+				--	pop_size,
+				--	pop_curr,
+				--	hh_curr,
+	lz_code,
+				--	lz_abbrev,
+				--	lz_name,
+				--	wg_code,
+				--	wg_affected,
+	lz_affected
+				--	pc_pop,
+				--	threshold,
+				--	deficit
+	)
+				-- The areas that do not intersect
+		SELECT
+			the_geom,
+			EXTRACT(year FROM current_date) AS ofa_year,
+			EXTRACT(month FROM current_date) AS ofa_month,
+			sa_code,
+			mn_code,
+			dc_code,
+			pr_code,
+			lz_code,
+			'normal' AS lz_affected
+		FROM
+			zaf.demog_sas
+		WHERE
+			gid NOT IN (
+				SELECT
+					r.gid
+				FROM
+					zaf.demog_sas AS r,
+					zaf.veg_cond_idx_1601 AS s
+				WHERE
+						ST_Intersects(r.the_geom, s.the_geom)
+/*					AND
+						NOT ST_IsEmpty(
+							ST_Buffer(
+								ST_Intersection(r.the_geom, s.the_geom),
+								0.0
+							)
+						)*/
+			)
+
 /*				-- table of SA pop data
 				zaf.tbl_pop_agegender_12y,
 				-- subquery to get district population growth rate
