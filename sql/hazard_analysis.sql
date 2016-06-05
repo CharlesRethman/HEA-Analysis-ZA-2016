@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS zaf.tbl_ofa_sas;
 -- create a new table with the key outcome information for all affected
 -- enumeration areas, with admin, livelihood zone, wealth group definition
 -- social security, hazard and outcome information
-CREATE TABLE zaf.tbl_ofa_sas (
-	tid serial primary key,
+CREATE TABLE zaf.demog_sas_ofa (
+	gid serial primary key,
 	the_geom geometry(multipolygon, 201100),
 -- year and month of analysis (unique to each analysis event)
 	ofa_year integer,
@@ -37,7 +37,7 @@ CREATE TABLE zaf.tbl_ofa_sas (
 	pr_code integer,
 	-- population
 	pop_size integer,
-	pop_curr numeric,
+--	pop_curr numeric,
 --	hh_curr numeric,
 	-- livelihood zones: code, abbrev, name and wealth group
 	lz_code integer,
@@ -65,10 +65,11 @@ COMMIT;
 -- Main transaction. Create an output table and populate it with the analysis.
 BEGIN;
 
+
 -- insert the data where the hazard has been worst
 SELECT 'Add in the EAS that are completely contained within the hazard area'::text;
 
-INSERT INTO zaf.tbl_ofa_sas (
+INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -76,7 +77,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 	mn_code,
 	dc_code,
 	pr_code,
---	pop_size,
+	pop_size,
 --	pop_curr,
 --	hh_curr,
 	lz_code,
@@ -121,10 +122,25 @@ INSERT INTO zaf.tbl_ofa_sas (
 				mn_code,
 				dc_code,
 				pr_code,
+				total AS pop_size,
 				lz_code,
 				'drought' AS lz_affected
 			FROM
-				zaf.demog_sas AS g,
+				(
+					SELECT
+						the_geom,
+						zaf.demog_sas.sa_code,
+						mn_code,
+						dc_code,
+						pr_code,
+						total,
+						lz_code
+					FROM
+						zaf.demog_sas,
+						zaf.tbl_pop_agegender_12y
+					WHERE
+						zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+				) AS g,
 				zaf.vci_1601_buffer AS h
 			WHERE
 					ST_Intersects(g.the_geom, h.the_geom)
@@ -142,7 +158,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 --		UNION
 SELECT 'Add in the EAS that have more than one-third of their area intersecting with the hazard area'::text;
 
-INSERT INTO zaf.tbl_ofa_sas (
+INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -150,7 +166,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 	mn_code,
 	dc_code,
 	pr_code,
-		--	pop_size,
+	pop_size,
 		--	pop_curr,
 		--	hh_curr,
 	lz_code,
@@ -173,6 +189,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 			mn_code,
 			dc_code,
 			pr_code,
+			total AS pop_size,
 			lz_code,
 			'border drought' AS lz_affected
 		FROM
@@ -195,7 +212,21 @@ INSERT INTO zaf.tbl_ofa_sas (
 							)
 						)*/
 			) AS k,
-			zaf.demog_sas AS l
+			(
+				SELECT
+					the_geom,
+					zaf.demog_sas.sa_code,
+					mn_code,
+					dc_code,
+					pr_code,
+					total,
+					lz_code
+				FROM
+					zaf.demog_sas,
+					zaf.tbl_pop_agegender_12y
+				WHERE
+					zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+					) AS l
 		WHERE
 				l.sa_code = k.sa_code
 			AND
@@ -205,7 +236,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 --		UNION
 SELECT 'Add in the EAS that less than one-third of their area intersecting with the hazard area'::text;
 
-INSERT INTO zaf.tbl_ofa_sas (
+INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -213,7 +244,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 	mn_code,
 	dc_code,
 	pr_code,
-		--	pop_size,
+	pop_size,
 		--	pop_curr,
 		--	hh_curr,
 	lz_code,
@@ -236,6 +267,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 			mn_code,
 			dc_code,
 			pr_code,
+			total AS pop_size,
 			lz_code,
 			'border normal' AS lz_affected
 		FROM
@@ -244,7 +276,21 @@ INSERT INTO zaf.tbl_ofa_sas (
 					ST_Multi(ST_Buffer(ST_Intersection(n.the_geom, m.the_geom),0.0)) AS the_geom,
 					sa_code
 				FROM
-					zaf.demog_sas AS m,
+					(
+						SELECT
+							the_geom,
+							zaf.demog_sas.sa_code,
+							mn_code,
+							dc_code,
+							pr_code,
+							total,
+							lz_code
+						FROM
+							zaf.demog_sas,
+							zaf.tbl_pop_agegender_12y
+						WHERE
+							zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+					) AS m,
 					zaf.veg_cond_idx_1601 AS n
 				WHERE
 						ST_Intersects(m.the_geom, n.the_geom)
@@ -268,7 +314,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 --		UNION
 SELECT 'Add in the EAS that do NOT intersect at all with the hazard area'::text;
 
-INSERT INTO zaf.tbl_ofa_sas (
+INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -276,7 +322,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 	mn_code,
 	dc_code,
 	pr_code,
-				--	pop_size,
+	pop_size,
 				--	pop_curr,
 				--	hh_curr,
 	lz_code,
@@ -298,10 +344,25 @@ INSERT INTO zaf.tbl_ofa_sas (
 			mn_code,
 			dc_code,
 			pr_code,
+			total AS pop_size,
 			lz_code,
 			'normal' AS lz_affected
 		FROM
-			zaf.demog_sas
+			(
+				SELECT
+					the_geom,
+					zaf.demog_sas.sa_code,
+					mn_code,
+					dc_code,
+					pr_code,
+					total,
+					lz_code
+				FROM
+					zaf.demog_sas,
+					zaf.tbl_pop_agegender_12y
+				WHERE
+					zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+			)
 		WHERE
 			gid NOT IN (
 				SELECT
@@ -391,7 +452,7 @@ INSERT INTO zaf.tbl_ofa_sas (
 -- insert the data where the hazard is lighter
 SELECT 'Add in all the hazard data in the less-affected area'::text;
 
-INSERT INTO zaf.tbl_ofa_sas (
+INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	sa_code,
 	region_cod,
@@ -494,7 +555,7 @@ COPY (
 			constitue1 AS constituency,
 			lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
 			hazard,
-			f.ordnum || ' '|| zaf.tbl_ofa_sas.wg AS wg,
+			f.ordnum || ' '|| zaf.demog_sas_ofa.wg AS wg,
 			soc_sec,
 			pop_size,
 			pop_curr,
@@ -503,10 +564,10 @@ COPY (
 			round(pop_curr * pc_pop * surv_def * 2100 / 3360.0 / 1000, 4) AS maize_eq,
 			round(hh_curr * pc_pop * lhood_def, 0) AS lhood_nad
 		FROM
-			zaf.tbl_ofa_sas,
+			zaf.demog_sas_ofa,
 			(VALUES (1, 'very poor'), (2, 'poor'), (3, 'middle'), (4, 'rich'), (4, 'better off'), (4, 'better-off')) AS f (ordnum,wg)
 		WHERE
-			lower(zaf.tbl_ofa_sas.wg) = f.wg
+			lower(zaf.demog_sas_ofa.wg) = f.wg
 	ORDER BY
 		sa_code,
 		hazard,
@@ -540,7 +601,7 @@ COPY (
 						lz_code || '': '' || lz_name || '' ('' || lz_abbrev || '')'' AS lz,
 						ROUND(SUM(pop_curr * pc_pop * CAST( surv_def > 0.005 AS INTEGER)), 0) AS pop_surv
 					FROM
-						zaf.tbl_ofa_sas
+						zaf.demog_sas_ofa
 					GROUP BY
 						region_nam,
 						constitue1,
@@ -576,7 +637,7 @@ SELECT
 --		pr_code,
 --		lz_code, -- || ': '  || lz_name || ' (' || lz_abbrev || ')' AS lz,
 		lz_affected
---		zaf.tbl_ofa_sas.wg,
+--		zaf.demog_sas_ofa.wg,
 --		soc_sec AS s,
 --		pop_size,
 --		pop_curr,
@@ -585,11 +646,11 @@ SELECT
 --		round(pop_curr * pc_pop * surv_def * 2100 / 3360.0 / 1000, 4) AS maize_eq,
 --		round(hh_curr * pc_pop * lhood_def, 0) AS lhood_nad
 	FROM
-		zaf.tbl_ofa_sas
+		zaf.demog_sas_ofa
 --		(VALUES (1, 'very poor'), (2, 'poor'), (3, 'middle'), (4, 'rich'), (4, 'better off'), (4, 'better-off')) AS f (ordnum,wg)
 	GROUP BY
 		lz_affected
---		lower(zaf.tbl_ofa_sas.wg) = f.wg
+--		lower(zaf.demog_sas_ofa.wg) = f.wg
 --	ORDER BY
 --		sa_code,
 --		hazard,
@@ -620,7 +681,7 @@ SELECT
 						lz_code,
 						ROUND(SUM(pop_curr * pc_pop * CAST( surv_def > 0.005 AS INTEGER)), 0) AS pop_surv
 					FROM
-						zaf.tbl_ofa_sas
+						zaf.demog_sas_ofa
 					GROUP BY
 						region_nam,
 						constitue1,
