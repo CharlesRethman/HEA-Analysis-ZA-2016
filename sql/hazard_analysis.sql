@@ -203,7 +203,15 @@ INSERT INTO zaf.demog_sas_ofa (
 				WHERE
 						ST_Intersects(i.the_geom, j.the_geom)
 					AND
-						NOT ST_Within(i.the_geom, j.the_geom)
+					m.gid NOT IN (
+						SELECT
+							gid
+						FROM
+							zaf.demog_sas,
+							zad.vci_1601_buffer
+						WHERE
+							ST_Within(i.the_geom, j.the_geom)
+					)
 /*					AND
 						NOT ST_IsEmpty(
 							ST_Buffer(
@@ -276,26 +284,20 @@ INSERT INTO zaf.demog_sas_ofa (
 					ST_Multi(ST_Buffer(ST_Intersection(n.the_geom, m.the_geom),0.0)) AS the_geom,
 					sa_code
 				FROM
-					(
-						SELECT
-							the_geom,
-							zaf.demog_sas.sa_code,
-							mn_code,
-							dc_code,
-							pr_code,
-							total,
-							lz_code
-						FROM
-							zaf.demog_sas,
-							zaf.tbl_pop_agegender_12y
-						WHERE
-							zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
-					) AS m,
+					zaf.demog_sas AS m,
 					zaf.veg_cond_idx_1601 AS n
 				WHERE
 						ST_Intersects(m.the_geom, n.the_geom)
 					AND
-						NOT ST_Within(m.the_geom, n.the_geom)
+						m.gid NOT IN (
+							SELECT
+								gid
+							FROM
+								zaf.demog_sas,
+								zad.vci_1601_buffer
+							WHERE
+								ST_Within(m.the_geom, n.the_geom)
+						)
 /*					AND
 						NOT ST_IsEmpty(
 							ST_Buffer(
@@ -304,7 +306,22 @@ INSERT INTO zaf.demog_sas_ofa (
 							)
 						)*/
 			) AS p,
-			zaf.demog_sas AS q
+			(
+				SELECT
+					gid,
+					the_geom,
+					zaf.demog_sas.sa_code,
+					mn_code,
+					dc_code,
+					pr_code,
+					total,
+					lz_code
+				FROM
+					zaf.demog_sas,
+					zaf.tbl_pop_agegender_12y
+				WHERE
+					zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+			) AS q
 		WHERE
 				q.sa_code = p.sa_code
 			AND
