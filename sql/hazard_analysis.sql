@@ -80,7 +80,7 @@ COMMIT;
 -- insert the data where the hazard has been worst
 SELECT 'Add in the SAs that are completely contained within the hazard area'::text;
 
-EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
+EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -226,7 +226,7 @@ EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
 
 SELECT 'Add in the SAs that have more than one-third of their area intersecting with the hazard area'::text;
 
-EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
+EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -299,9 +299,9 @@ EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
 						WHERE zaf.tbl_wgs.wg_code = zaf.tbl_wg_names.tid
 						) AS t
 				WHERE
-						q.lz_code = w.lz_code
+						s.lz_code = w.lz_code
 					AND
-						w.lz_analysis_code = p.lz_code
+						w.lz_analysis_code = r.lz_code
 					AND
 						r.wg_code = t.wg_code
 					AND
@@ -385,7 +385,7 @@ EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
 --		UNION
 SELECT 'Add in the SAs that have less than one-third of their area intersecting with the hazard area'::text;
 -- The areas crossing, with less than two-thirds of the intesecting area WITHIN
-EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
+EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -456,9 +456,9 @@ EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
 						WHERE zaf.tbl_wgs.wg_code = zaf.tbl_wg_names.tid
 						) AS t
 				WHERE
-						q.lz_code = w.lz_code
+						s.lz_code = w.lz_code
 					AND
-						w.lz_analysis_code = p.lz_code
+						w.lz_analysis_code = r.lz_code
 					AND
 						r.wg_code = t.wg_code
 					AND
@@ -542,7 +542,7 @@ EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
 --		UNION
 SELECT 'Add in the SAs that do NOT intersect at all with the hazard area'::text;
 
-EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
+EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
