@@ -80,7 +80,7 @@ COMMIT;
 -- insert the data where the hazard has been worst
 SELECT 'Add in the SAs that are completely contained within the hazard area'::text;
 
-EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
+INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -226,7 +226,7 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
 
 SELECT 'Add in the SAs that have more than one-third of their area intersecting with the hazard area'::text;
 
-EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
+INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -385,7 +385,7 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
 --		UNION
 SELECT 'Add in the SAs that have less than one-third of their area intersecting with the hazard area'::text;
 -- The areas crossing, with less than two-thirds of the intesecting area WITHIN
-EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
+INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -542,7 +542,7 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
 --		UNION
 SELECT 'Add in the SAs that do NOT intersect at all with the hazard area'::text;
 
-EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
+INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -681,139 +681,208 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa_1 (
 --COMMIT;
 
 
-/*
-
--- insert the data where the hazard is lighter
-SELECT 'Add in all the hazard data in the less-affected area'::text;
-
-INSERT INTO zaf.demog_sas_ofa_1 (
-	the_geom,
-	sa_code,
-	region_cod,
-	constituen,
-	constitue1,
-	region_nam,
-	pop_size,
-	pop_curr,
-	hh_curr,
-	lz_code,
-	lz_name,
-	lz_abbrev,
-	hazard,
-	wg,
-	soc_sec,
-	pc_pop,
-	lhood_def,
-	surv_def
-	)
-	-- data comes from nested query combining EAs, hazard area, livelihoods and
-	-- analysis tables
-	SELECT
-			g.the_geom,
-			g.sa_code,
-			g.region_cod,
-			constituen,
-			constitue1,
-			region_nam,
-			g.pop_size,
-			g.pop_curr,
-			g.hh_curr,
-			g.lz_code,
-			g.lz_name,
-			lz_abbrev,
-			hazard,
-			wg,
-			soc_sec,
-			pc_pop,
-			lhood_def,
-			surv_def
-		FROM
-			zaf.tbl_outcomes,
-			(
-				SELECT
-						the_geom,
-						sa_code,
-						zaf.demog_sas.region_cod,
-						constituen,
-						constitue1,
-						region_nam,
-						zaf.demog_sas.pop_size,
-						zaf.demog_sas.pop_size * pop_2016 / zaf.tbl_pop_proj.pop_size AS pop_curr,
-						zaf.demog_sas.hh_size * pop_2016 / zaf.tbl_pop_proj.pop_size  AS hh_curr,
-						zaf.demog_sas.lz_code AS lz_code,
-						h.lz_name,
-						h.lz_abbrev
-					FROM
-						zaf.tbl_pop_proj,
-						zaf.demog_sas,
-						(
-							SELECT lz_code, lz_name, lz_abbrev FROM zaf.livezones
-							) AS h
-					WHERE
-							zaf.demog_sas.lz_code = h.lz_code
-						AND
-							zaf.demog_sas.lz_code < 56800
-						AND
-							zaf.demog_sas.region_cod = zaf.tbl_pop_proj.region_cod
-				) AS g
-		WHERE
-				sa_code NOT IN (
-					SELECT
-							sa_code
-						FROM
-							zaf.demog_sas,
-							zaf.buffer_20160515
-						WHERE
-							ST_Intersects(zaf.demog_sas.the_geom, zaf.buffer_20160515.the_geom)
-					)
-			AND
-				g.lz_code = zaf.tbl_outcomes.lz_code
-			AND
-				hazard = 'Not affected'
-;
-*/
 
 
-/*
 --Transaction to present the data in a file and on StdOut
 BEGIN;
 
--- Output the table to a CSV file for spreadsheet input
+-- Output the table of food deficits to a CSV file for spreadsheet input
 COPY (
 	SELECT
-			sa_code,
-			region_cod AS region_code,
-			region_nam AS region,
-			constituen AS const_code,
-			constitue1 AS constituency,
-			lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
-			hazard,
-			f.ordnum || ' '|| zaf.demog_sas_ofa_1.wg AS wg,
-			soc_sec,
-			pop_size,
-			pop_curr,
-			round(pop_curr * pc_pop * CAST( surv_def > 0.005 AS INTEGER), 0) AS pop_surv,
-			round(pop_curr * pc_pop * CAST( lhood_def > 0.005 AS INTEGER), 0) AS pop_lhood,
-			round(pop_curr * pc_pop * surv_def * 2100 / 3360.0 / 1000, 4) AS maize_eq,
-			round(hh_curr * pc_pop * lhood_def, 0) AS lhood_nad
-		FROM
-			zaf.demog_sas_ofa_1,
-			(VALUES (1, 'very poor'), (2, 'poor'), (3, 'middle'), (4, 'rich'), (4, 'better off'), (4, 'better-off')) AS f (ordnum,wg)
-		WHERE
-			lower(zaf.demog_sas_ofa_1.wg) = f.wg
+		sa_code,
+		mn_name AS municipality,
+		dc_name AS district,
+		pr_name AS province,
+		lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
+		lz_affected as hazard,
+		f.ordnum ||'-' || wg_name AS wg,
+		wg_affected as "grant",
+		pop_size,
+		pop_curr,
+		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_surv,
+		round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4) AS maize_eq
+	FROM
+		zaf.demog_sas_ofa_1,
+		(VALUES
+				(1, 'very poor'),
+				(1, 'casuals'),
+				(1, 'quintile1'),
+				(2, 'poor'),
+				(2, 'temporary'),
+				(2, 'quintile2'),
+				(3, 'middle'),
+				(3, 'full-time'),
+				(3, 'quintile3'),
+				(4, 'rich'),
+				(4, 'better off'),
+				(4, 'better-off'),
+				(4, 'quintile4'),
+				(5, 'quintile5')
+				) AS f (ordnum,wg)
+	WHERE
+			threshold = 'Food energy deficit'
+		AND
+			lower(zaf.demog_sas_ofa_1.wg_name) = f.wg
 	ORDER BY
 		sa_code,
-		hazard,
-		soc_sec,
-		f.ordnum
+		wg,
+		"grant"
 	)
 TO
-	'/Users/Charles/Documents/hea_analysis/namibia/2016.05/pop/outcome.csv'
+	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_foodenergy_defs.csv'
 WITH (
 	FORMAT CSV, DELIMITER ',', HEADER TRUE
 	)
 ;
 
+-- Output the table of food poverty line deficits to a CSV file for spreadsheet input
+COPY (
+	SELECT
+		sa_code,
+		mn_name AS municipality,
+		dc_name AS district,
+		pr_name AS province,
+		lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
+		lz_affected as hazard,
+		f.ordnum ||'-' || wg_name AS wg,
+		wg_affected as "grant",
+		pop_size,
+		pop_curr,
+		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_fpl_def,
+		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS fpl_deficit
+	FROM
+		zaf.demog_sas_ofa_1,
+		(VALUES
+				(1, 'very poor'),
+				(1, 'casuals'),
+				(1, 'quintile1'),
+				(2, 'poor'),
+				(2, 'temporary'),
+				(2, 'quintile2'),
+				(3, 'middle'),
+				(3, 'full-time'),
+				(3, 'quintile3'),
+				(4, 'rich'),
+				(4, 'better off'),
+				(4, 'better-off'),
+				(4, 'quintile4'),
+				(5, 'quintile5')
+				) AS f (ordnum,wg)
+	WHERE
+			threshold = 'FPL deficit'
+		AND
+			lower(zaf.demog_sas_ofa_1.wg_name) = f.wg
+	ORDER BY
+		sa_code,
+		wg,
+		"grant"
+	)
+TO
+	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_fpl_defs.csv'
+WITH (
+	FORMAT CSV, DELIMITER ',', HEADER TRUE
+	)
+;
+
+-- Output the table of lower bound poverty line deficits to a CSV file for spreadsheet input
+COPY (
+	SELECT
+		sa_code,
+		mn_name AS municipality,
+		dc_name AS district,
+		pr_name AS province,
+		lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
+		lz_affected as hazard,
+		f.ordnum ||'-' || wg_name AS wg,
+		wg_affected as "grant",
+		pop_size,
+		pop_curr,
+		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_fpl_def,
+		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS lbpl_deficit
+	FROM
+		zaf.demog_sas_ofa_1,
+		(VALUES
+				(1, 'very poor'),
+				(1, 'casuals'),
+				(1, 'quintile1'),
+				(2, 'poor'),
+				(2, 'temporary'),
+				(2, 'quintile2'),
+				(3, 'middle'),
+				(3, 'full-time'),
+				(3, 'quintile3'),
+				(4, 'rich'),
+				(4, 'better off'),
+				(4, 'better-off'),
+				(4, 'quintile4'),
+				(5, 'quintile5')
+				) AS f (ordnum,wg)
+	WHERE
+			threshold = 'LBPL deficit'
+		AND
+			lower(zaf.demog_sas_ofa_1.wg_name) = f.wg
+	ORDER BY
+		sa_code,
+		wg,
+		"grant"
+	)
+TO
+	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_lbpl_defs.csv'
+WITH (
+	FORMAT CSV, DELIMITER ',', HEADER TRUE
+	)
+;
+
+-- Output the table of upper bound poverty line deficits to a CSV file for spreadsheet input
+COPY (
+	SELECT
+		sa_code,
+		mn_name AS municipality,
+		dc_name AS district,
+		pr_name AS province,
+		lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
+		lz_affected as hazard,
+		f.ordnum ||'-' || wg_name AS wg_name,
+		wg_affected as "grant",
+		pop_size,
+		pop_curr,
+		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_fpl_def,
+		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS ubpl_deficit
+	FROM
+		zaf.demog_sas_ofa_1,
+		(VALUES
+				(1, 'very poor'),
+				(1, 'casuals'),
+				(1, 'quintile1'),
+				(2, 'poor'),
+				(2, 'temporary'),
+				(2, 'quintile2'),
+				(3, 'middle'),
+				(3, 'full-time'),
+				(3, 'quintile3'),
+				(4, 'rich'),
+				(4, 'better off'),
+				(4, 'better-off'),
+				(4, 'quintile4'),
+				(5, 'quintile5')
+				) AS f (ordnum,wg)
+	WHERE
+			threshold = 'UBPL deficit'
+		AND
+			lower(zaf.demog_sas_ofa_1.wg_name) = f.wg
+	ORDER BY
+		sa_code,
+		wg,
+		"grant"
+	)
+TO
+	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_ubpl_defs.csv'
+WITH (
+	FORMAT CSV, DELIMITER ',', HEADER TRUE
+	)
+;
+
+/*
 COPY (
 	SELECT
 			row_name[1] AS region,
