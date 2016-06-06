@@ -25,48 +25,48 @@ CREATE INDEX prob_hazard_month_idx ON zaf.prob_hazard(month);
 CREATE INDEX tbl_pop_agegender_12y_sa_code_idx ON zaf.tbl_pop_agegender_12y(sa_code);
 CREATE INDEX demog_sas_sa_code_idx ON zaf.demog_sas(sa_code);
 
-ALTER TABLE zaf.demog_sas_ofa ADD COLUMN pop_curr numeric;
+--ALTER TABLE zaf.demog_sas_ofa_1 ADD COLUMN pop_curr numeric;
 
-/*
+
 -- Remove any old table of affected small areas
-DROP TABLE IF EXISTS zaf.demog_sas_ofa;
+DROP TABLE IF EXISTS zaf.demog_sas_ofa_1;
 
 -- create a new table with the key outcome information for all affected
 -- enumeration areas, with admin, livelihood zone, wealth group definition
 -- social security, hazard and outcome information
-CREATE TABLE zaf.demog_sas_ofa (
+CREATE TABLE zaf.demog_sas_ofa_1 (
 	gid serial primary key,
 	the_geom geometry(multipolygon, 201100),
--- year and month of analysis (unique to each analysis event)
+	-- year and month of analysis (unique to each analysis event)
 	ofa_year integer,
 	ofa_month integer,
---	the_geom GEOMETRY(MULTIPOLYGON, 300000),
 	sa_code integer,
-	mn_code varchar(6),
+	mn_name varchar(100),
 	dc_code varchar(6),
-	pr_code integer,
+	dc_name varchar(100),
+	pr_name varchar(64),
 	-- population
 	pop_size integer,
 	pop_curr numeric,
---	hh_curr numeric,
 	-- livelihood zones: code, abbrev, name and wealth group
 	lz_code integer,
---	lz_abbrev VARCHAR(5),
---	lz_name VARCHAR(254),
---	wg_code integer,
-	-- Whether they have social security (soc_sec) and the hazards they're
-	-- affected by
---	wg_affected varchar(30),
+	lz_abbrev VARCHAR(5),
+	lz_name VARCHAR(254),
+	wg_name varchar(64),
+	pc_wg numeric,
+	hh_size integer,
+	--hazard area
 	lz_affected varchar(30)
+	-- Have social security?
+	wg_affected varchar(30),
+	pc_wg_affected numeric,
 	-- outcomes, percent population affected (pc_pop), livelihood deficit
 	-- (lhood_def) and survival deficit (surv_def)
---	pc_pop numeric,
---	threshold varchar(30),
---	deficit numeric,
---	surv_def NUMERIC
+	threshold varchar(30),
+	deficit numeric,
 	)
 ;
-*/
+
 -- Done.
 COMMIT;
 
@@ -79,281 +79,347 @@ BEGIN;
 -- insert the data where the hazard has been worst
 SELECT 'Add in the SAs that are completely contained within the hazard area'::text;
 
-EXPLAIN INSERT INTO zaf.demog_sas_ofa (
+EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
 	sa_code,
-	mn_code,
+	mn_name,
 	dc_code,
-	pr_code,
+	dc_name,
+	pr_name,
 	pop_size,
 	pop_curr,
---	hh_curr,
 	lz_code,
---	lz_abbrev,
---	lz_name,
---	wg_code,
---	wg_affected,
-	lz_affected
---	pc_pop,
---	threshold,
---	deficit
+	lz_abbrev,
+	lz_name,
+	wg_name,
+	pc_wg,
+	hh_size,
+	lz_affected,
+	wg_affected,
+	pc_wg_affected,
+	threshold,
+	deficit
 	)
-	-- data comes from nested query combining SAs, SPI data, rural and urban
-	-- livelihoods tables
-/*	SELECT
-		the_geom,
-		EXTRACT(year FROM current_date) AS ofa_year,
-		EXTRACT(month FROM current_date) AS ofa_month,
-		sa_code,
-		mn_code,
-		dc_code,
-		pr_code,
---		h.pop_size,
---		h.pop_curr,
---		g.hh_curr,
-		lz_code,
---		wg_code,
---		wg_affected,
-		lz_affected
---		pc_pop,
---		threshold,
---		deficit
-	FROM
-		-- subquery to divede up affected and unaffected SAs
-		(*/
-			-- The SAs entirely within the affected area
-			SELECT
-				j.the_geom AS the_geom,
-				EXTRACT(year FROM current_date) AS ofa_year,
-				EXTRACT(month FROM current_date) AS ofa_month,
-				j.sa_code,
-				mn_code,
-				dc_code,
-				pr_code,
-				pop_size,
-				pop_curr,
-				lz_code,
-				'drought' AS lz_affected
-			FROM
+		SELECT
+			j.the_geom AS the_geom,
+			ofa_year,
+			ofa_month,
+			j.sa_code,
+			mn_name,
+			dc_code,
+			dc_name,
+			pr_name,
+			pop_size,
+			pop_curr,
+			n.lz_code,
+			lz_abbrev,
+			lz_name,
+			wg_name,
+			pc_wg,
+			hh_size,
+			m.lz_affected,
+			wg_affected,
+			pc_wg_affected,
+			threshold,
+			deficit
+		FROM
 			(
 				SELECT
-					the_geom,
-					g.sa_code,
-					g.mn_code,
-					g.dc_code,
-					g.pr_code,
+					ofa_year,
+					ofa_month,
+					q.lz_code,
+					lz_abbrev,
+					lz_name,
+					wg_name,
+					pc_wg,
+					hh_size,
+					lz_affected,
+					wg_affected,
+					CASE wg_affected WHEN 'grants' THEN 0.8 ELSE 0.2 AS pc_wg_affected,
+					threshold,
+					deficit
+				FROM
+					zaf.tbl_ofa_outcomes AS p,
+					zaf.tbl_livezones_list AS q,
+					(
+						SELECT wg_name
+						FROM zaf.tbl_wgs, zaf.tbl_wg_names
+						WHERE zaf.tbl_wgs.wg_code = zaf.tbl_wg_names.tid
+						) AS r
+				WHERE
+						p.lz_code = q.lz_code
+					AND
+						p.wg_code = r.wg_code
+					AND
+						p.lz_code = r.lz_code
+					AND
+						ofa_year = EXTRACT(year FROM current_date)
+					AND
+						ofa_month = EXTRACT(month FROM current_date)
+				) AS n
+		INNER JOIN
+			(
+				SELECT
+					j.the_geom,
+					sa_code,
+					mn_name,
+					dc_code,
+					dc_name,
+					pr_name,
 					total AS pop_size,
 					total * pop_c / pop_y AS pop_curr,
-					lz_code
+					lz_code,
+					'drought' AS lz_affected
 				FROM
+					zaf.prob_hazard AS k,
 					(
-						SELECT CAST(dc_mdb_code AS varchar(6)) AS dc_mdb_code, sum(pop) AS pop_c
-						FROM zaf.tbl_pop_proj
-						WHERE year_mid = EXTRACT(year FROM current_date)
-						GROUP BY dc_mdb_code
-						) AS f,
-					zaf.demog_sas AS g,
-					zaf.tbl_pop_agegender_12y AS h,
-					(
-						SELECT dc_code, sum(total) AS pop_y
-						FROM zaf.tbl_pop_agegender_12y, zaf.demog_sas
-						WHERE zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
-						GROUP BY dc_code
-						) AS i
+						SELECT
+							the_geom,
+							g.sa_code,
+							g.mn_name,
+							g.dc_code,
+							g.dc_name,
+							g.pr_name,
+							total AS pop_size,
+							total * pop_c / pop_y AS pop_curr,
+							lz_code,
+							'drought' AS lz_affected
+						FROM
+							zaf.demog_sas AS g,
+							zaf.tbl_pop_agegender_12y AS h,
+							(
+								SELECT CAST(dc_mdb_code AS varchar(6)) AS dc_mdb_code, sum(pop) AS pop_c
+								FROM zaf.tbl_pop_proj
+								WHERE year_mid = EXTRACT(year FROM current_date)
+								GROUP BY dc_mdb_code
+								) AS f,
+							(
+								SELECT dc_code, sum(total) AS pop_y
+								FROM zaf.tbl_pop_agegender_12y, zaf.demog_sas
+								WHERE zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+								GROUP BY dc_code
+								) AS i
+						WHERE
+								g.sa_code = h.sa_code
+							AND
+								f.dc_mdb_code = g.dc_mdb_code
+							AND
+								g.dc_code = i.dc_code
+						) AS j
 				WHERE
-						g.sa_code = h.sa_code
+						ST_Intersects(j.the_geom, k.the_geom)
 					AND
-						f.dc_mdb_code = g.dc_mdb_code
-					AND
-						g.dc_code = i.dc_code
-				) AS j,
-/*				(
-					SELECT
-						the_geom,
-						f.sa_code,
-						mn_code,
-						dc_code,
-						pr_code,
-						total AS pop_size,
-						lz_code
-					FROM
-						zaf.demog_sas AS f,
-						zaf.tbl_pop_agegender_12y AS g
-					WHERE
-						f.sa_code = g.sa_code
-				) AS h, */
-				zaf.prob_hazard AS i
-			WHERE
-					ST_Intersects(j.the_geom, i.the_geom)
-				AND
-					ST_Within(j.the_geom, i.the_geom)
-/*				AND
-					NOT ST_IsEmpty(
-						ST_Buffer(
-							ST_Intersection(g.the_geom, h.the_geom),
-							0.0
-						)
-					)*/
+						ST_Within(j.the_geom, k.the_geom)
+				) AS m
+		ON
+				n.lz_code = m.lz_code
+			AND
+				n.lz_affected = m.lz_affected
 ;
 
 --		UNION
 SELECT 'Add in the SAs that have more than one-third of their area intersecting with the hazard area'::text;
 
-EXPLAIN INSERT INTO zaf.demog_sas_ofa (
+EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
 	sa_code,
-	mn_code,
+	mn_name,
 	dc_code,
-	pr_code,
+	dc_name,
+	pr_name,
 	pop_size,
 	pop_curr,
-		--	hh_curr,
 	lz_code,
-		--	lz_abbrev,
-		--	lz_name,
-		--	wg_code,
-		--	wg_affected,
-	lz_affected
-		--	pc_pop,
-		--	threshold,
-		--	deficit
+	lz_abbrev,
+	lz_name,
+	wg_name,
+	pc_wg,
+	hh_size,
+	lz_affected,
+	wg_affected,
+	pc_wg_affected,
+	threshold,
+	deficit
 	)
 		-- The areas crossing, with more than one-third of the intesecting area
 		-- WITHIN
 		SELECT
 			q.the_geom AS the_geom,
-			EXTRACT(year FROM current_date) AS ofa_year,
-			EXTRACT(month FROM current_date) AS ofa_month,
+			ofa_year,
+			ofa_month,
 			q.sa_code,
-			mn_code,
+			mn_name,
 			dc_code,
-			pr_code,
+			dc_name,
+			pr_name,
 			pop_size,
-			pop_curr
+			pop_curr,
 			lz_code,
-			'drought' AS lz_affected
+			lz_abbrev,
+			lz_name,
+			wg_name,
+			pc_wg,
+			hh_size,
+			s.lz_affected,
+			wg_affected,
+			pc_wg_affected,
+			threshold,
+			deficit
 		FROM
 			(
 				SELECT
-					ST_Multi(ST_Buffer(ST_Intersection(f.the_geom, g.the_geom),0.0)) AS the_geom,
-					sa_code
+					ofa_year,
+					ofa_month,
+					q.lz_code,
+					lz_abbrev,
+					lz_name,
+					wg_name,
+					pc_wg,
+					hh_size,
+					lz_affected,
+					wg_affected,
+					CASE wg_affected WHEN 'grants' THEN 0.8 ELSE 0.2 AS pc_wg_affected,
+					threshold,
+					deficit
 				FROM
-					zaf.demog_sas AS f,
-					zaf.prob_hazard AS g
+					zaf.tbl_ofa_outcomes AS r,
+					zaf.tbl_livezones_list AS s,
+					(
+						SELECT wg_name
+						FROM zaf.tbl_wgs, zaf.tbl_wg_names
+						WHERE zaf.tbl_wgs.wg_code = zaf.tbl_wg_names.tid
+						) AS t
 				WHERE
-						ST_Intersects(f.the_geom, g.the_geom)
+						r.lz_code = s.lz_code
 					AND
-						NOT ST_Within(f.the_geom, g.the_geom)
---					f.gid NOT IN (
---						SELECT
---							h.gid
---						FROM
---							zaf.demog_sas AS h,
---							zaf.prob_hazard AS i
---						WHERE
---							ST_Within(h.the_geom, i.the_geom)
---					)
-/*					AND
-						NOT ST_IsEmpty(
-							ST_Buffer(
-								ST_Intersection(i.the_geom, j.the_geom),
-								0.0
-							)
-						)*/
-			) AS j,
+						r.wg_code = t.wg_code
+					AND
+						r.lz_code = t.lz_code
+					AND
+						ofa_year = EXTRACT(year FROM current_date)
+					AND
+						ofa_month = EXTRACT(month FROM current_date)
+				) AS u
+		INNER JOIN
 			(
 				SELECT
-					the_geom,
-					m.sa_code,
-					m.mn_code,
-					m.dc_code,
-					m.pr_code,
+					j.the_geom,
+					sa_code,
+					mn_name,
+					dc_code,
+					dc_name,
+					pr_name,
 					total AS pop_size,
 					total * pop_c / pop_y AS pop_curr,
-					lz_code
+					lz_code,
+					'drought' AS lz_affected
 				FROM
 					(
-						SELECT CAST(dc_mdb_code AS varchar(6)) AS dc_mdb_code, sum(pop) AS pop_c
-						FROM zaf.tbl_pop_proj
-						WHERE year_mid = EXTRACT(year FROM current_date)
-						GROUP BY dc_mdb_code
-						) AS k,
-					zaf.demog_sas AS m,
-					zaf.tbl_pop_agegender_12y AS n,
+						SELECT
+							ST_Multi(ST_Buffer(ST_Intersection(f.the_geom, g.the_geom),0.0)) AS the_geom,
+							sa_code
+						FROM
+							zaf.demog_sas AS f,
+							zaf.prob_hazard AS g
+						WHERE
+								ST_Intersects(f.the_geom, g.the_geom)
+							AND
+								NOT ST_Within(f.the_geom, g.the_geom)
+						) AS j,
 					(
-						SELECT dc_code, sum(total) AS pop_y
-						FROM zaf.tbl_pop_agegender_12y, zaf.demog_sas
-						WHERE zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
-						GROUP BY dc_code
-						) AS p
+						SELECT
+							the_geom,
+							m.sa_code,
+							m.mn_name,
+							m.dc_code,
+							m.dc_name,
+							m.pr_name,
+							total AS pop_size,
+							total * pop_c / pop_y AS pop_curr,
+							lz_code,
+							'drought' AS lz_affected
+						FROM
+							zaf.demog_sas AS m,
+							zaf.tbl_pop_agegender_12y AS n,
+							(
+								SELECT CAST(dc_mdb_code AS varchar(6)) AS dc_mdb_code, sum(pop) AS pop_c
+								FROM zaf.tbl_pop_proj
+								WHERE year_mid = EXTRACT(year FROM current_date)
+								GROUP BY dc_mdb_code
+								) AS k,
+							(
+								SELECT dc_code, sum(total) AS pop_y
+								FROM zaf.tbl_pop_agegender_12y, zaf.demog_sas
+								WHERE zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
+								GROUP BY dc_code
+								) AS p
+						WHERE
+								m.sa_code = n.sa_code
+							AND
+								k.dc_mdb_code = m.dc_mdb_code
+							AND
+								m.dc_code = p.dc_code
+						) AS q
 				WHERE
-						m.sa_code = n.sa_code
+						q.sa_code = j.sa_code
 					AND
-						k.dc_mdb_code = m.dc_mdb_code
-					AND
-						m.dc_code = p.dc_code
-				) AS q
-/*			(
-				SELECT
-					the_geom,
-					k.sa_code,
-					mn_code,
-					dc_code,
-					pr_code,
-					total AS pop_size,
-					lz_code
-				FROM
-					zaf.demog_sas AS k,
-					zaf.tbl_pop_agegender_12y AS l
-				WHERE
-					k.sa_code = l.sa_code
-			) AS m */
-		WHERE
-				q.sa_code = j.sa_code
-			AND
-				3 * ST_Area(j.the_geom) > ST_Area(q.the_geom)
+						3 * ST_Area(j.the_geom) > ST_Area(q.the_geom)
+				) AS v
+				
 ;
 
 --		UNION
 SELECT 'Add in the SAs that have less than one-third of their area intersecting with the hazard area'::text;
 -- The areas crossing, with less than two-thirds of the intesecting area WITHIN
-EXPLAIN INSERT INTO zaf.demog_sas_ofa (
+EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
 	sa_code,
-	mn_code,
+	mn_name,
 	dc_code,
-	pr_code,
+	dc_name,
+	pr_name,
 	pop_size,
 	pop_curr,
-		--	hh_curr,
 	lz_code,
-		--	lz_abbrev,
-		--	lz_name,
-		--	wg_code,
-		--	wg_affected,
-	lz_affected
-		--	pc_pop,
-		--	threshold,
-		--	deficit
+	lz_abbrev,
+	lz_name,
+	wg_name,
+	pc_wg,
+	hh_size,
+	lz_affected,
+	wg_affected,
+	pc_wg_affected,
+	threshold,
+	deficit
 	)
 		SELECT
 			q.the_geom AS the_geom,
-			EXTRACT(year FROM current_date) AS ofa_year,
-			EXTRACT(month FROM current_date) AS ofa_month,
+			ofa_year,
+			ofa_month,
 			q.sa_code,
-			mn_code,
+			mn_name,
 			dc_code,
-			pr_code,
+			dc_name,
+			pr_name,
 			pop_size,
 			pop_curr,
 			lz_code,
-			'normal' AS lz_affected
+			lz_abbrev,
+			lz_name,
+			wg_name,
+			pc_wg,
+			hh_size,
+			s.lz_affected,
+			wg_affected,
+			pc_wg_affected,
+			threshold,
+			deficit
 		FROM
 			(
 				SELECT
@@ -366,33 +432,19 @@ EXPLAIN INSERT INTO zaf.demog_sas_ofa (
 						ST_Intersects(f.the_geom, g.the_geom)
 					AND
 						NOT ST_Within(f.the_geom, g.the_geom)
---						f.gid NOT IN (
---							SELECT
---								h.gid
---							FROM
---								zaf.demog_sas AS h,
---								zaf.prob_hazard AS i
---							WHERE
---								ST_Within(h.the_geom, i.the_geom)
---						)
-/*					AND
-						NOT ST_IsEmpty(
-							ST_Buffer(
-								ST_Intersection(m.the_geom, n.the_geom),
-								0.0
-							)
-						)*/
 			) AS j,
 			(
 				SELECT
 					the_geom,
 					m.sa_code,
-					m.mn_code,
+					m.mn_name,
 					m.dc_code,
-					m.pr_code,
+					m.dc_name,
+					m.pr_name,
 					total AS pop_size,
 					total * pop_c / pop_y AS pop_curr,
-					lz_code
+					lz_code,
+					'normal' AS lz_affected
 				FROM
 					(
 						SELECT CAST(dc_mdb_code AS varchar(6)) AS dc_mdb_code, sum(pop) AS pop_c
@@ -440,51 +492,102 @@ EXPLAIN INSERT INTO zaf.demog_sas_ofa (
 --		UNION
 SELECT 'Add in the SAs that do NOT intersect at all with the hazard area'::text;
 
-EXPLAIN INSERT INTO zaf.demog_sas_ofa (
+EXPLAIN INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	ofa_year,
 	ofa_month,
 	sa_code,
-	mn_code,
+	mn_name,
 	dc_code,
-	pr_code,
+	dc_name,
+	pr_name,
 	pop_size,
 	pop_curr,
-				--	hh_curr,
 	lz_code,
-				--	lz_abbrev,
-				--	lz_name,
-				--	wg_code,
-				--	wg_affected,
-	lz_affected
-				--	pc_pop,
-				--	threshold,
-				--	deficit
+	lz_abbrev,
+	lz_name,
+	wg_name,
+	pc_wg,
+	hh_size,
+	lz_affected,
+	wg_affected,
+	pc_wg_affected,
+	threshold,
+	deficit
 	)
 				-- The areas that do not intersect
 		SELECT
 			the_geom,
-			EXTRACT(year FROM current_date) AS ofa_year,
-			EXTRACT(month FROM current_date) AS ofa_month,
+			ofa_year,
+			ofa_month,
 			sa_code,
-			mn_code,
+			mn_name,
 			dc_code,
-			pr_code,
+			dc_name,
+			pr_name,
 			pop_size,
 			pop_curr,
 			lz_code,
-			'normal' AS lz_affected
+			lz_abbrev,
+			lz_name,
+			wg_name,
+			pc_wg,
+			hh_size,
+			s.lz_affected,
+			wg_affected,
+			pc_wg_affected,
+			threshold,
+			deficit
 		FROM
+		(
+			SELECT
+				ofa_year,
+				ofa_month,
+				q.lz_code,
+				lz_abbrev,
+				lz_name,
+				wg_name,
+				pc_wg,
+				hh_size,
+				lz_affected,
+				wg_affected,
+				CASE wg_affected WHEN 'grants' THEN 0.8 ELSE 0.2 AS pc_wg_affected,
+				threshold,
+				deficit
+			FROM
+				zaf.tbl_ofa_outcomes AS p,
+				zaf.tbl_livezones_list AS q,
+				(
+					SELECT wg_name
+					FROM zaf.tbl_wgs, zaf.tbl_wg_names
+					WHERE zaf.tbl_wgs.wg_code = zaf.tbl_wg_names.tid
+					) AS r
+			WHERE
+					p.lz_code = q.lz_code
+				AND
+					p.wg_code = r.wg_code
+				AND
+					p.lz_code = r.lz_code
+				AND
+					ofa_year = EXTRACT(year FROM current_date)
+				AND
+					ofa_month = EXTRACT(month FROM current_date)
+			) AS n
+	INNER JOIN
+		(
 			(
 				SELECT
+					gid,
 					the_geom,
 					g.sa_code,
-					g.mn_code,
+					g.mn_name,
 					g.dc_code,
-					g.pr_code,
+					g.dc_name,
+					g.pr_name,
 					total AS pop_size,
 					total * pop_c / pop_y AS pop_curr,
-					lz_code
+					lz_code,
+					'normal' AS lz_affected
 				FROM
 					(
 						SELECT CAST(dc_mdb_code AS varchar(6)) AS dc_mdb_code, sum(pop) AS pop_c
@@ -507,22 +610,6 @@ EXPLAIN INSERT INTO zaf.demog_sas_ofa (
 					AND
 						g.dc_code = i.dc_code
 				) AS j
-/*			(
-				SELECT
-					gid,
-					the_geom,
-					f.sa_code,
-					mn_code,
-					dc_code,
-					pr_code,
-					total AS pop_size,
-					lz_code
-				FROM
-					zaf.demog_sas AS f,
-					zaf.tbl_pop_agegender_12y AS g
-				WHERE
-					f.sa_code = g.sa_code
-			) AS h */
 		WHERE
 			j.gid NOT IN (
 				SELECT
@@ -532,76 +619,16 @@ EXPLAIN INSERT INTO zaf.demog_sas_ofa (
 					zaf.prob_hazard AS m
 				WHERE
 						ST_Intersects(k.the_geom, m.the_geom)
-)
+				)
+		) AS s
+		ON
+				n.lz_code = s.lz_code
+			AND
+				n.lz_affected = s.lz_affected
+
 ;
 
 COMMIT;
-
-
-/*				-- table of SA pop data
-				zaf.tbl_pop_agegender_12y,
-				-- subquery to get district population growth rate
-				(
-					SELECT
-						dc_code,
-						pop / total AS pop_rate,
-					FROM
-						(
-							SELECT dc_name, sum(pop) AS pop
-							FROM zaf.tbl_pop_proj
-							WHERE year_mid = EXTRACT(year FROM current_date)
-							GROUP BY dc_name
-						) AS h,
-						(
-							SELECT dc_name, sum(total)
-							FROM zaf.tbl_pop_agegender_12y, zaf.demog_sas
-							WHERE zaf.demog_sas.sa_code = zaf.tbl_pop_agegender_12y.sa_code
-							GROUP BY dc_name
-						) AS i
-					WHERE
-						h.dc_code = i.dc_code
-				) AS j
-			WHERE
-					j.sa_code = zaf.tbl_pop_agegender_12y.sa_code
-				AND
-					zaf.demog_sas.dc_code = j.dc_code
-		) AS k
-			k.lz_code = f.lz_code */
-			/*		-- subquery to get wealth groups and affected population data
-					(
-						SELECT
-							zaf.tbl_ofa_outcomes.lz_code,
-							zaf.tbl_ofa_outcomes.wg_code,
-							lz_affected,
-							wg_affected,
-							threshold,
-							deficit
-						FROM
-							zaf.tbl_ofa_outcomes,
-							zaf.tbl_wgs
-						WHERE
-								lz_affected = 'drought'
-							AND
-								zaf.tbl_ofa_outcomes.wg_code = zaf.tbl_wgs.wg_code
-							AND
-								zaf.tbl_ofa_outcomes.lz_code = zaf.tbl_wgs.lz_code
-					) AS f,*/
-					/*		-- subquery to get selected SAs and populations
-							(
-								SELECT
-									the_geom,
-									sa_code,
-									mn_code,
-									dc_code,
-									pr_code,
-									zaf.demog_sas.pop_size,
-									zaf.demog_sas.pop_size * pop_rate AS pop_curr,
-					--					zaf.demog_sas.hh_size * pop_2016 / zaf.tbl_pop_proj.pop_size  AS hh_curr,
-									zaf.demog_sas.lz_code AS lz_code,
-									h.lz_name,
-									h.lz_abbrev
-								FROM */
-
 
 
 /*
@@ -609,7 +636,7 @@ COMMIT;
 -- insert the data where the hazard is lighter
 SELECT 'Add in all the hazard data in the less-affected area'::text;
 
-INSERT INTO zaf.demog_sas_ofa (
+INSERT INTO zaf.demog_sas_ofa_1 (
 	the_geom,
 	sa_code,
 	region_cod,
@@ -711,7 +738,7 @@ COPY (
 			constitue1 AS constituency,
 			lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
 			hazard,
-			f.ordnum || ' '|| zaf.demog_sas_ofa.wg AS wg,
+			f.ordnum || ' '|| zaf.demog_sas_ofa_1.wg AS wg,
 			soc_sec,
 			pop_size,
 			pop_curr,
@@ -720,10 +747,10 @@ COPY (
 			round(pop_curr * pc_pop * surv_def * 2100 / 3360.0 / 1000, 4) AS maize_eq,
 			round(hh_curr * pc_pop * lhood_def, 0) AS lhood_nad
 		FROM
-			zaf.demog_sas_ofa,
+			zaf.demog_sas_ofa_1,
 			(VALUES (1, 'very poor'), (2, 'poor'), (3, 'middle'), (4, 'rich'), (4, 'better off'), (4, 'better-off')) AS f (ordnum,wg)
 		WHERE
-			lower(zaf.demog_sas_ofa.wg) = f.wg
+			lower(zaf.demog_sas_ofa_1.wg) = f.wg
 	ORDER BY
 		sa_code,
 		hazard,
@@ -757,7 +784,7 @@ COPY (
 						lz_code || '': '' || lz_name || '' ('' || lz_abbrev || '')'' AS lz,
 						ROUND(SUM(pop_curr * pc_pop * CAST( surv_def > 0.005 AS INTEGER)), 0) AS pop_surv
 					FROM
-						zaf.demog_sas_ofa
+						zaf.demog_sas_ofa_1
 					GROUP BY
 						region_nam,
 						constitue1,
@@ -793,7 +820,7 @@ SELECT
 --		dc_code,
 --		pr_code,
 --		lz_code, -- || ': '  || lz_name || ' (' || lz_abbrev || ')' AS lz,
---		zaf.demog_sas_ofa.wg,
+--		zaf.demog_sas_ofa_1.wg,
 --		soc_sec AS s,
 --		pop_size,
 --		pop_curr,
@@ -802,11 +829,11 @@ SELECT
 --		round(pop_curr * pc_pop * surv_def * 2100 / 3360.0 / 1000, 4) AS maize_eq,
 --		round(hh_curr * pc_pop * lhood_def, 0) AS lhood_nad
 	FROM
-		zaf.demog_sas_ofa
+		zaf.demog_sas_ofa_1
 --		(VALUES (1, 'very poor'), (2, 'poor'), (3, 'middle'), (4, 'rich'), (4, 'better off'), (4, 'better-off')) AS f (ordnum,wg)
 	GROUP BY
 		lz_affected
---		lower(zaf.demog_sas_ofa.wg) = f.wg
+--		lower(zaf.demog_sas_ofa_1.wg) = f.wg
 --	ORDER BY
 --		sa_code,
 --		hazard,
@@ -817,14 +844,17 @@ SELECT
 	'TOTAL' AS lz_affected,
 	count(sa_code)
 FROM
-	zaf.demog_sas_ofa
+	zaf.demog_sas_ofa_1
 
 UNION
 SELECT
 	'Untouched TOTAL number of SAs' AS lz_affected,
 	count(sa_code)
 FROM
-	zaf.demog_sas
+	zaf.demog_sas,
+	zaf.tbl_wgs
+WHERE
+	zaf.demog_sas.lz_code = zaf.tbl_wgs.lz_code
 
 ORDER BY lz_affected
 ;
@@ -852,7 +882,7 @@ SELECT
 						lz_code,
 						ROUND(SUM(pop_curr * pc_pop * CAST( surv_def > 0.005 AS INTEGER)), 0) AS pop_surv
 					FROM
-						zaf.demog_sas_ofa
+						zaf.demog_sas_ofa_1
 					GROUP BY
 						region_nam,
 						constitue1,
