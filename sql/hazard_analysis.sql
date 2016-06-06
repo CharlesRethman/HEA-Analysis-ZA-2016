@@ -67,7 +67,7 @@ BEGIN;
 
 
 -- insert the data where the hazard has been worst
-SELECT 'Add in the SAS that are completely contained within the hazard area'::text;
+SELECT 'Add in the SAs that are completely contained within the hazard area'::text;
 
 INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
@@ -156,7 +156,7 @@ INSERT INTO zaf.demog_sas_ofa (
 ;
 
 --		UNION
-SELECT 'Add in the EAS that have more than one-third of their area intersecting with the hazard area'::text;
+SELECT 'Add in the SAs that have more than one-third of their area intersecting with the hazard area'::text;
 
 INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
@@ -203,15 +203,16 @@ INSERT INTO zaf.demog_sas_ofa (
 				WHERE
 						ST_Intersects(f.the_geom, g.the_geom)
 					AND
-					f.gid NOT IN (
-						SELECT
-							h.gid
-						FROM
-							zaf.demog_sas AS h,
-							zaf.prob_hazard AS i
-						WHERE
-							ST_Within(h.the_geom, i.the_geom)
-					)
+						NOT ST_Within(f.the_geom, g.the_geom)
+--					f.gid NOT IN (
+--						SELECT
+--							h.gid
+--						FROM
+--							zaf.demog_sas AS h,
+--							zaf.prob_hazard AS i
+--						WHERE
+--							ST_Within(h.the_geom, i.the_geom)
+--					)
 /*					AND
 						NOT ST_IsEmpty(
 							ST_Buffer(
@@ -242,7 +243,7 @@ INSERT INTO zaf.demog_sas_ofa (
 ;
 
 --		UNION
-SELECT 'Add in the EAS that less than one-third of their area intersecting with the hazard area'::text;
+SELECT 'Add in the SAs that have less than one-third of their area intersecting with the hazard area'::text;
 -- The areas crossing, with less than two-thirds of the intesecting area WITHIN
 INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
@@ -287,15 +288,16 @@ INSERT INTO zaf.demog_sas_ofa (
 				WHERE
 						ST_Intersects(f.the_geom, g.the_geom)
 					AND
-						f.gid NOT IN (
-							SELECT
-								h.gid
-							FROM
-								zaf.demog_sas AS h,
-								zaf.prob_hazard AS i
-							WHERE
-								ST_Within(h.the_geom, i.the_geom)
-						)
+						NOT ST_Within(f.the_geom, g.the_geom)
+--						f.gid NOT IN (
+--							SELECT
+--								h.gid
+--							FROM
+--								zaf.demog_sas AS h,
+--								zaf.prob_hazard AS i
+--							WHERE
+--								ST_Within(h.the_geom, i.the_geom)
+--						)
 /*					AND
 						NOT ST_IsEmpty(
 							ST_Buffer(
@@ -327,7 +329,7 @@ INSERT INTO zaf.demog_sas_ofa (
 ;
 
 --		UNION
-SELECT 'Add in the EAS that do NOT intersect at all with the hazard area'::text;
+SELECT 'Add in the SAs that do NOT intersect at all with the hazard area'::text;
 
 INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
