@@ -1,0 +1,348 @@
+DROP VIEW IF EXISTS zaf.vw_demog_sas_ofa;
+DROP SEQUENCE IF EXISTS zaf.demog_sas_ofa_seq;
+CROP SEQUENCE IF EXISTS zaf.demog_sas_ofa_fpl_seq;
+
+CREATE SEQUENCE zaf.demog_sas_ofa_seq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE zaf.demog_sas_ofa_fpl_seq INCREMENT BY 1 START WITH 1;
+
+CREATE VIEW zaf.vw_demog_sas_ofa AS
+SELECT
+  nextval('zaf.demog_sas_ofa_seq') AS gid,
+--  CAST(f.gid::text || lpad(h."tid"::text, 4, '0') AS integer) AS gid,
+  f.the_geom AS the_geom,
+  h.ofa_year,
+  h.ofa_month,
+  sa_code,
+  mn_name AS municipality,
+  district,
+  prov_name AS province,
+  g.lz_code,
+  lz_abbrev,
+  lz_name,
+  lz_analysis_code,
+  f.lz_affected,
+  pop_size,
+  pop_size * pop_c / pop_y AS pop_curr,
+  hh_size,
+  q.wg_code,
+  wg_name,
+  pc_wg,
+  CASE wg_affected WHEN 'grants' THEN 0.8 ELSE 0.2 END AS pc_wg_affected,
+  wg_affected,
+  threshold,
+  deficit
+FROM
+  zaf.demog_sas_ofa AS f,
+  zaf.tbl_lz_mapping AS g,
+  zaf.tbl_ofa_outcomes AS h,
+  (SELECT DISTINCT mn_code, mn_name FROM zaf.demog_sas) AS i,
+  zaf.admin3_dists AS j,
+  zaf.tbl_livezones_list AS k,
+  (
+    SELECT dist_code AS dc_code, sum(pop) AS pop_c
+    FROM zaf.tbl_pop_proj, zaf.admin3_dists
+    WHERE
+      year_mid = EXTRACT(year FROM current_date)
+      AND zaf.admin3_dists.dist_mdb_code = zaf.tbl_pop_proj.dc_mdb_code
+    GROUP BY dist_code
+    ) AS m,
+  (
+    SELECT dc_code, sum(pop_size) AS pop_y
+    FROM zaf.demog_sas_ofa
+    GROUP BY dc_code
+    ) AS p,
+  zaf.tbl_wgs AS q,
+  zaf.tbl_wg_names as r
+WHERE
+    f.lz_code = g.lz_code
+  AND
+    g.lz_analysis_code = h.lz_code
+  AND
+    f.lz_affected = h.lz_affected
+  AND
+    CAST(f.mn_code AS integer) = i.mn_code
+  AND
+    CAST(f.dc_code AS integer) = j.dist_code
+  AND
+    f.lz_code = k.lz_code
+  AND
+    h.ofa_year = EXTRACT(year FROM current_date)
+  AND
+    h.ofa_month = EXTRACT(month FROM current_date)
+  AND
+    m.dc_code = CAST(f.dc_code AS integer)
+  AND
+    p.dc_code = f.dc_code
+  AND
+    h.lz_code = q.lz_code
+  AND
+    h.wg_code = q.wg_code
+  AND
+    q.wg_code = r."tid"
+ORDER BY
+  sa_code,
+  wg_code,
+  wg_affected,
+  threshold
+;
+
+
+--Transaction to present the data in a file and on StdOut
+BEGIN;
+
+-- Output the table of food deficits to a CSV file for spreadsheet input
+COPY (
+	SELECT
+    gid,
+		sa_code,
+		municipality,
+		district,
+		province,
+    E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+		lz_affected as hazard,
+		f.ordnum ||'-' || wg_name AS wg,
+		wg_affected as "grant",
+		pop_size,
+		pop_curr,
+		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_surv,
+		round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4) AS maize_eq
+	FROM
+		zaf.vw_demog_sas_ofa,
+		(VALUES
+				(1, 'very poor'),
+				(1, 'casuals'),
+				(1, 'quintile1'),
+				(2, 'poor'),
+				(2, 'temporary'),
+				(2, 'quintile2'),
+				(3, 'middle'),
+				(3, 'full-time'),
+				(3, 'quintile3'),
+				(4, 'rich'),
+				(4, 'better off'),
+				(4, 'better-off'),
+				(4, 'quintile4'),
+				(5, 'quintile5')
+				) AS f (ordnum,wg)
+	WHERE
+			threshold = 'Food energy deficit'
+		AND
+			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
+	ORDER BY
+		sa_code,
+		wg,
+		"grant",
+    threshold
+	)
+TO
+	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_foodenergy_defs.csv'
+WITH (
+	FORMAT CSV, DELIMITER ',', HEADER TRUE
+	)
+;
+
+-- Output the table of food poverty line deficits to a CSV file for spreadsheet input
+COPY (
+	SELECT
+    gid,
+		sa_code,
+		municipality,
+		district AS district,
+		province,
+    E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+		lz_affected as hazard,
+		f.ordnum ||'-' || wg_name AS wg,
+		wg_affected as "grant",
+		pop_size,
+		pop_curr,
+		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_fpl_def,
+		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS fpl_deficit
+	FROM
+		zaf.vw_demog_sas_ofa,
+		(VALUES
+				(1, 'very poor'),
+				(1, 'casuals'),
+				(1, 'quintile1'),
+				(2, 'poor'),
+				(2, 'temporary'),
+				(2, 'quintile2'),
+				(3, 'middle'),
+				(3, 'full-time'),
+				(3, 'quintile3'),
+				(4, 'rich'),
+				(4, 'better off'),
+				(4, 'better-off'),
+				(4, 'quintile4'),
+				(5, 'quintile5')
+				) AS f (ordnum,wg)
+	WHERE
+			threshold = 'FPL deficit'
+		AND
+			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
+  ORDER BY
+    gid
+	)
+TO
+	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_fpl_defs.csv'
+WITH (
+	FORMAT CSV, DELIMITER ',', HEADER TRUE
+	)
+;
+
+-- Output the table of lower bound poverty line deficits to a CSV file for spreadsheet input
+COPY (
+	SELECT
+    gid,
+		sa_code,
+		municipality,
+		district,
+		province,
+		E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+		lz_affected as hazard,
+		f.ordnum ||'-' || wg_name AS wg,
+		wg_affected as "grant",
+		pop_size,
+		pop_curr,
+		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_lbpl_def,
+		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS lbpl_deficit
+	FROM
+		zaf.vw_demog_sas_ofa,
+		(VALUES
+				(1, 'very poor'),
+				(1, 'casuals'),
+				(1, 'quintile1'),
+				(2, 'poor'),
+				(2, 'temporary'),
+				(2, 'quintile2'),
+				(3, 'middle'),
+				(3, 'full-time'),
+				(3, 'quintile3'),
+				(4, 'rich'),
+				(4, 'better off'),
+				(4, 'better-off'),
+				(4, 'quintile4'),
+				(5, 'quintile5')
+				) AS f (ordnum,wg)
+	WHERE
+			threshold = 'LBPL deficit'
+		AND
+			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
+	ORDER BY
+		sa_code,
+		wg,
+		"grant"
+	)
+TO
+	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_lbpl_defs.csv'
+WITH (
+	FORMAT CSV, DELIMITER ',', HEADER TRUE
+	)
+;
+
+-- Output the table of upper bound poverty line deficits to a CSV file for spreadsheet input
+COPY (
+	SELECT
+    gid,
+		sa_code,
+		municipality,
+		district,
+		province,
+    E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+		lz_affected as hazard,
+		f.ordnum ||'-' || wg_name AS wg_name,
+		wg_affected as "grant",
+		pop_size,
+		pop_curr,
+		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_ubpl_def,
+		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS ubpl_deficit
+	FROM
+		zaf.vw_demog_sas_ofa,
+		(VALUES
+				(1, 'very poor'),
+				(1, 'casuals'),
+				(1, 'quintile1'),
+				(2, 'poor'),
+				(2, 'temporary'),
+				(2, 'quintile2'),
+				(3, 'middle'),
+				(3, 'full-time'),
+				(3, 'quintile3'),
+				(4, 'rich'),
+				(4, 'better off'),
+				(4, 'better-off'),
+				(4, 'quintile4'),
+				(5, 'quintile5')
+				) AS f (ordnum,wg)
+	WHERE
+			threshold = 'UBPL deficit'
+		AND
+			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
+/*	ORDER BY
+		sa_code,
+		wg,
+		"grant"*/
+	)
+TO
+	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_ubpl_defs.csv'
+WITH (
+	FORMAT CSV, DELIMITER ',', HEADER TRUE
+	)
+;
+
+
+COMMIT;
+
+CREATE VIEW vw_demog_sas_fpl AS
+  SELECT
+    nextval(demog_sas_ofa_fpl_seq) AS  gid,
+		sa_code,
+		municipality,
+		district,
+		province,
+    E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+		lz_affected as hazard,
+		min(pop_size) AS pop_size,
+		min(pop_curr) AS pop_curr,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0)) AS pop_ubpl_def,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS fpl_deficit
+	FROM
+		zaf.vw_demog_sas_ofa,
+	WHERE
+		threshold = 'FPL deficit'
+	ORDER BY
+    gid
+/*		sa_code,
+		wg,
+		"grant"*/
+;
+
+
+
+SELECT
+	lz_affected,
+	count(sa_code) AS num_records
+	FROM
+		zaf.vw_demog_sas_ofa
+	GROUP BY
+		lz_affected
+
+UNION
+SELECT
+	'TOTAL' AS lz_affected,
+	count(sa_code) AS num_records
+FROM
+	zaf.vw_demog_sas_ofa
+
+UNION
+SELECT
+	'Untouched TOTAL number of SAs & WGs' AS lz_affected,
+	count(sa_code) * 2 * 4 AS num_records
+FROM
+	zaf.demog_sas AS f,
+	zaf.tbl_wgs AS g,
+  zaf.tbl_lz_mapping AS h
+WHERE
+	f.lz_code = h.lz_code AND h.lz_analysis_code = g.lz_code
+
+ORDER BY lz_affected
+;
