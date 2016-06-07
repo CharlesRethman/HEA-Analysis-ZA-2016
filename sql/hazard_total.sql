@@ -1,15 +1,34 @@
-DROP VIEW IF EXISTS zaf.vw_demog_sas_ofa;
-DROP SEQUENCE IF EXISTS zaf.demog_sas_ofa_seq;
-CROP SEQUENCE IF EXISTS zaf.demog_sas_ofa_fpl_seq;
+DROP VIEW IF EXISTS zaf.vw_demog_sas_ofa CASCADE;
+/*DROP VIEW IF EXISTS zaf.vw_demog_sas_fooddef;
+DROP VIEW IF EXISTS zaf.vw_demog_sas_fpl;
+DROP VIEW IF EXISTS zaf.vw_demog_sas_lbpl;*/
 
-CREATE SEQUENCE zaf.demog_sas_ofa_seq INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE zaf.demog_sas_ofa_fpl_seq INCREMENT BY 1 START WITH 1;
+CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes_sas (
+  "tid" serial primary key,
+  ofa_year integer,
+  ofa_month integer,
+  sa_cod integer,
+  municipality varchar(100),
+  district varchar(100),
+  province varchar(100),
+  lz_code integer,
+  lz_abbrev varchar(5),
+  lz_name varchar(254),
+  lz_analysis_code integer,
+  lz_affected varchar(),
+  pop_size,
+  pop_size * pop_c / pop_y AS pop_curr,
+  hh_size,
+  q.wg_code,
+  wg_name,
+  pc_wg,
+  CASE wg_affected WHEN 'grants' THEN 0.8 ELSE 0.2 END AS pc_wg_affected,
+  wg_affected,
+  threshold,
+  deficit
 
-CREATE VIEW zaf.vw_demog_sas_ofa AS
+  )
 SELECT
-  nextval('zaf.demog_sas_ofa_seq') AS gid,
---  CAST(f.gid::text || lpad(h."tid"::text, 4, '0') AS integer) AS gid,
-  f.the_geom AS the_geom,
   h.ofa_year,
   h.ofa_month,
   sa_code,
@@ -93,7 +112,6 @@ BEGIN;
 -- Output the table of food deficits to a CSV file for spreadsheet input
 COPY (
 	SELECT
-    gid,
 		sa_code,
 		municipality,
 		district,
@@ -104,8 +122,8 @@ COPY (
 		wg_affected as "grant",
 		pop_size,
 		pop_curr,
-		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_surv,
-		round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4) AS maize_eq
+		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_food_def,
+		round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4) AS def_maize_eq
 	FROM
 		zaf.vw_demog_sas_ofa,
 		(VALUES
@@ -144,7 +162,6 @@ WITH (
 -- Output the table of food poverty line deficits to a CSV file for spreadsheet input
 COPY (
 	SELECT
-    gid,
 		sa_code,
 		municipality,
 		district AS district,
@@ -180,7 +197,10 @@ COPY (
 		AND
 			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
   ORDER BY
-    gid
+    sa_code,
+    wg,
+    "grant",
+    threshold
 	)
 TO
 	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_fpl_defs.csv'
@@ -192,7 +212,6 @@ WITH (
 -- Output the table of lower bound poverty line deficits to a CSV file for spreadsheet input
 COPY (
 	SELECT
-    gid,
 		sa_code,
 		municipality,
 		district,
@@ -230,7 +249,8 @@ COPY (
 	ORDER BY
 		sa_code,
 		wg,
-		"grant"
+		"grant",
+    threshold
 	)
 TO
 	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_lbpl_defs.csv'
@@ -242,7 +262,6 @@ WITH (
 -- Output the table of upper bound poverty line deficits to a CSV file for spreadsheet input
 COPY (
 	SELECT
-    gid,
 		sa_code,
 		municipality,
 		district,
@@ -277,10 +296,11 @@ COPY (
 			threshold = 'UBPL deficit'
 		AND
 			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
-/*	ORDER BY
+	ORDER BY
 		sa_code,
 		wg,
-		"grant"*/
+		"grant",
+    threshold
 	)
 TO
 	'/Users/Charles/Documents/hea_analysis/south_africa/2016.04/report/outcome_ubpl_defs.csv'
@@ -292,30 +312,151 @@ WITH (
 
 COMMIT;
 
-CREATE VIEW vw_demog_sas_fpl AS
+
+CREATE VIEW zaf.vw_demog_sas_fooddef AS
   SELECT
-    nextval(demog_sas_ofa_fpl_seq) AS  gid,
-		sa_code,
-		municipality,
-		district,
-		province,
-    E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+    gid,
+    the_geom,
+		f.sa_code,
+		mn_name AS municipality,
+		dc_name AS district,
+		pr_name AS province,
+    E'\'' || f.lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
 		lz_affected as hazard,
 		min(pop_size) AS pop_size,
 		min(pop_curr) AS pop_curr,
-		sum(round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0)) AS pop_ubpl_def,
-		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS fpl_deficit
+    sum(round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0)) AS pop_food_def,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4)) AS def_maize_eq
 	FROM
-		zaf.vw_demog_sas_ofa,
+    zaf.demog_sas AS f,
+		zaf.vw_demog_sas_ofa AS g
 	WHERE
-		threshold = 'FPL deficit'
-	ORDER BY
-    gid
-/*		sa_code,
+		  threshold = 'Food energy deficit'
+    AND
+      f.sa_code = g.sa_code
+  GROUP BY
+    gid,
+    the_geom,
+    f.sa_code,
+    municipality,
+    district,
+    province,
+    lz,
+    hazard
+/*	ORDER BY
+		sa_code,
 		wg,
 		"grant"*/
 ;
 
+
+CREATE VIEW zaf.vw_demog_sas_fpl AS
+  SELECT
+    gid,
+    the_geom,
+		f.sa_code,
+		mn_name AS municipality,
+		dc_name AS district,
+		pr_name AS province,
+    E'\'' || f.lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+		lz_affected as hazard,
+		min(pop_size) AS pop_size,
+		min(pop_curr) AS pop_curr,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0)) AS pop_fpl_def,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS fpl_deficit
+	FROM
+    zaf.demog_sas AS f,
+		zaf.vw_demog_sas_ofa AS g
+	WHERE
+		  threshold = 'FPL deficit'
+    AND
+      f.sa_code = g.sa_code
+  GROUP BY
+    gid,
+    the_geom,
+    f.sa_code,
+    municipality,
+    district,
+    province,
+    lz,
+    hazard
+/*	ORDER BY
+		sa_code,
+		wg,
+		"grant"*/
+;
+
+CREATE VIEW zaf.vw_demog_sas_lbpl AS
+  SELECT
+    gid,
+    the_geom,
+		f.sa_code,
+		mn_name AS municipality,
+		dc_name AS district,
+		pr_name AS province,
+    E'\'' || f.lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+		lz_affected as hazard,
+		min(pop_size) AS pop_size,
+		min(pop_curr) AS pop_curr,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0)) AS pop_lbpl_def,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS lbpl_deficit
+	FROM
+    zaf.demog_sas AS f,
+		zaf.vw_demog_sas_ofa AS g
+	WHERE
+		  threshold = 'LBPL deficit'
+    AND
+      f.sa_code = g.sa_code
+  GROUP BY
+    gid,
+    the_geom,
+    f.sa_code,
+    municipality,
+    district,
+    province,
+    lz,
+    hazard
+/*	ORDER BY
+		sa_code,
+		wg,
+		"grant"*/
+;
+
+CREATE VIEW zaf.vw_demog_sas_ubpl AS
+  SELECT
+    gid,
+    the_geom,
+		f.sa_code,
+		mn_name AS municipality,
+		dc_name AS district,
+		pr_name AS province,
+    E'\'' || f.lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+		lz_affected as hazard,
+		min(pop_size) AS pop_size,
+		min(pop_curr) AS pop_curr,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0)) AS pop_ubpl_def,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS ubpl_deficit
+	FROM
+    zaf.demog_sas AS f,
+		zaf.vw_demog_sas_ofa AS g
+	WHERE
+		  threshold = 'UBPL deficit'
+    AND
+      f.sa_code = g.sa_code
+  GROUP BY
+    gid,
+    the_geom,
+    f.sa_code,
+    municipality,
+    district,
+    province,
+    lz,
+    hazard
+/*	ORDER BY
+		sa_code,
+		wg,
+		"grant"*/
+;
 
 
 SELECT
@@ -345,4 +486,23 @@ WHERE
 	f.lz_code = h.lz_code AND h.lz_analysis_code = g.lz_code
 
 ORDER BY lz_affected
+;
+
+
+SELECT
+  gid,
+  sa_code,
+  municipality,
+  district,
+  province,
+  left(lz,40) AS lz,
+  hazard,
+  pop_size,
+  pop_curr,
+  pop_fpl_def,
+  fpl_deficit
+FROM
+  zaf.vw_demog_sas_fpl
+ORDER BY
+  sa_code
 ;
