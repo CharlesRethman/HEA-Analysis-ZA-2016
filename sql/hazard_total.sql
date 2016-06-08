@@ -1,8 +1,3 @@
-DROP VIEW IF EXISTS zaf.vw_demog_sas_ofa CASCADE;
-/*DROP VIEW IF EXISTS zaf.vw_demog_sas_fooddef;
-DROP VIEW IF EXISTS zaf.vw_demog_sas_fpl;
-DROP VIEW IF EXISTS zaf.vw_demog_sas_lbpl;*/
-
 CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes_sas (
   "tid" serial primary key,
   ofa_year integer,
@@ -23,7 +18,7 @@ CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes_sas (
   wg_name varchar(64),
   pc_wg numeric,
   pc_wg_affected numeric,
-  wg_affected varchar(6),
+  wg_affected varchar(30),
   threshold varchar(30),
   deficit numeric
   )
@@ -99,9 +94,10 @@ INSERT INTO zaf.tbl_ofa_outcomes_sas (
         SELECT dist_code AS dc_code, sum(pop) AS pop_c
         FROM zaf.tbl_pop_proj, zaf.admin3_dists
         WHERE
-          year_mid = EXTRACT(year FROM current_date)
-          AND zaf.admin3_dists.dist_mdb_code = zaf.tbl_pop_proj.dc_mdb_code
-          GROUP BY dist_code
+            year_mid = EXTRACT(year FROM current_date)
+          AND
+            zaf.admin3_dists.dist_mdb_code = zaf.tbl_pop_proj.dc_mdb_code
+        GROUP BY dist_code
         ) AS m,
       (
         SELECT dc_code, sum(pop_size) AS pop_y
@@ -238,10 +234,10 @@ COPY (
 			threshold = 'FPL deficit'
 		AND
 			lower(wg_name) = f.wg
-      AND
-        ofa_year = EXTRACT(year FROM current_date)
-      AND
-        ofa_month= EXTRACT(month FROM current_date)
+    AND
+      ofa_year = EXTRACT(year FROM current_date)
+    AND
+      ofa_month= EXTRACT(month FROM current_date)
   ORDER BY
     sa_code,
     wg,
@@ -369,7 +365,7 @@ COMMIT;
 
 CREATE VIEW zaf.vw_demog_sas_fooddef AS
   SELECT
-    "tid",
+    gid,
     the_geom,
 		f.sa_code,
 		mn_name AS municipality,
@@ -410,7 +406,7 @@ CREATE VIEW zaf.vw_demog_sas_fooddef AS
 
 CREATE VIEW zaf.vw_demog_sas_fpl AS
   SELECT
-    "tid",
+    gid,
     the_geom,
 		f.sa_code,
 		mn_name AS municipality,
@@ -450,7 +446,7 @@ CREATE VIEW zaf.vw_demog_sas_fpl AS
 
 CREATE VIEW zaf.vw_demog_sas_lbpl AS
   SELECT
-    "tid",
+    gid,
     the_geom,
 		f.sa_code,
 		mn_name AS municipality,
@@ -490,7 +486,7 @@ CREATE VIEW zaf.vw_demog_sas_lbpl AS
 
 CREATE VIEW zaf.vw_demog_sas_ubpl AS
   SELECT
-    "tid",
+    gid,
     the_geom,
 		f.sa_code,
 		mn_name AS municipality,
@@ -568,23 +564,23 @@ ORDER BY lz_affected
 
 
 SELECT
-  "tid",
+  gid,
   sa_code,
   municipality,
   district,
   province,
-  left(lz,40) AS lz,
+  left(lz,50) AS lz,
   hazard,
   pop_size,
   pop_curr,
   pop_fpl_def,
   fpl_deficit
 FROM
-  zaf.tbl_ofa_outcomes_sas
-WHERE
+  zaf.vw_demog_sas_fpl
+/*WHERE
     ofa_year = EXTRACT(year FROM current_date)
   AND
-    ofa_month= EXTRACT(month FROM current_date)
+    ofa_month= EXTRACT(month FROM current_date)*/
 ORDER BY
   sa_code
 ;
