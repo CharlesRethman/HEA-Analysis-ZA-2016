@@ -16,89 +16,124 @@ CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes_sas (
   lz_name varchar(254),
   lz_analysis_code integer,
   lz_affected varchar(),
-  pop_size,
-  pop_size * pop_c / pop_y AS pop_curr,
-  hh_size,
-  q.wg_code,
-  wg_name,
-  pc_wg,
-  CASE wg_affected WHEN 'grants' THEN 0.8 ELSE 0.2 END AS pc_wg_affected,
-  wg_affected,
-  threshold,
-  deficit
-
+  pop_size integer,
+  pop_curr numeric,
+  hh_size integer,
+  wg_code integer,
+  wg_name varchar(),
+  pc_wg numeric,
+  pc_wg_affected numeric,
+  wg_affected varchar(6),
+  threshold varchar(),
+  deficit numeric
   )
-SELECT
-  h.ofa_year,
-  h.ofa_month,
+
+DELETE FROM
+  zaf.tbl_ofa_outcomes_sas
+WHERE
+    ofa_year = EXTRACT(year FROM date_current)
+  AND
+    ofa_month = EXTRACT(month FROM date_current)
+;
+
+INSERT INTO zaf.tbl_ofa_outcomes_sas (
+  ofa_year,
+  ofa_month,
   sa_code,
-  mn_name AS municipality,
+  municipality,
   district,
-  prov_name AS province,
-  g.lz_code,
+  province,
+  lz_code,
   lz_abbrev,
   lz_name,
   lz_analysis_code,
-  f.lz_affected,
+  lz_affected,
   pop_size,
-  pop_size * pop_c / pop_y AS pop_curr,
+  pop_curr,
   hh_size,
-  q.wg_code,
+  wg_code,
   wg_name,
   pc_wg,
-  CASE wg_affected WHEN 'grants' THEN 0.8 ELSE 0.2 END AS pc_wg_affected,
+  pc_wg_affected,
   wg_affected,
   threshold,
   deficit
-FROM
-  zaf.demog_sas_ofa AS f,
-  zaf.tbl_lz_mapping AS g,
-  zaf.tbl_ofa_outcomes AS h,
-  (SELECT DISTINCT mn_code, mn_name FROM zaf.demog_sas) AS i,
-  zaf.admin3_dists AS j,
-  zaf.tbl_livezones_list AS k,
-  (
-    SELECT dist_code AS dc_code, sum(pop) AS pop_c
-    FROM zaf.tbl_pop_proj, zaf.admin3_dists
+  )
+    SELECT
+      h.ofa_year,
+      h.ofa_month,
+      sa_code,
+      mn_name AS municipality,
+      district,
+      prov_name AS province,
+      g.lz_code,
+      lz_abbrev,
+      lz_name,
+      lz_analysis_code,
+      f.lz_affected,
+      pop_size,
+      pop_size * pop_c / pop_y AS pop_curr,
+      hh_size,
+      q.wg_code,
+      wg_name,
+      pc_wg,
+      CASE wg_affected
+        WHEN 'grants'
+        THEN 0.8
+        ELSE 0.2
+      END AS pc_wg_affected,
+      wg_affected,
+      threshold,
+      deficit
+    FROM
+      zaf.demog_sas_ofa AS f,
+      zaf.tbl_lz_mapping AS g,
+      zaf.tbl_ofa_outcomes AS h,
+      (SELECT DISTINCT mn_code, mn_name FROM zaf.demog_sas) AS i,
+      zaf.admin3_dists AS j,
+      zaf.tbl_livezones_list AS k,
+      (
+        SELECT dist_code AS dc_code, sum(pop) AS pop_c
+        FROM zaf.tbl_pop_proj, zaf.admin3_dists
+        WHERE
+          year_mid = EXTRACT(year FROM current_date)
+          AND zaf.admin3_dists.dist_mdb_code = zaf.tbl_pop_proj.dc_mdb_code
+          GROUP BY dist_code
+        ) AS m,
+      (
+        SELECT dc_code, sum(pop_size) AS pop_y
+        FROM zaf.demog_sas_ofa
+        GROUP BY dc_code
+        ) AS p,
+      zaf.tbl_wgs AS q,
+      zaf.tbl_wg_names as r
     WHERE
-      year_mid = EXTRACT(year FROM current_date)
-      AND zaf.admin3_dists.dist_mdb_code = zaf.tbl_pop_proj.dc_mdb_code
-    GROUP BY dist_code
-    ) AS m,
-  (
-    SELECT dc_code, sum(pop_size) AS pop_y
-    FROM zaf.demog_sas_ofa
-    GROUP BY dc_code
-    ) AS p,
-  zaf.tbl_wgs AS q,
-  zaf.tbl_wg_names as r
-WHERE
-    f.lz_code = g.lz_code
-  AND
-    g.lz_analysis_code = h.lz_code
-  AND
-    f.lz_affected = h.lz_affected
-  AND
-    CAST(f.mn_code AS integer) = i.mn_code
-  AND
-    CAST(f.dc_code AS integer) = j.dist_code
-  AND
-    f.lz_code = k.lz_code
-  AND
-    h.ofa_year = EXTRACT(year FROM current_date)
-  AND
-    h.ofa_month = EXTRACT(month FROM current_date)
-  AND
-    m.dc_code = CAST(f.dc_code AS integer)
-  AND
-    p.dc_code = f.dc_code
-  AND
-    h.lz_code = q.lz_code
-  AND
-    h.wg_code = q.wg_code
-  AND
-    q.wg_code = r."tid"
-ORDER BY
+        f.lz_code = g.lz_code
+      AND
+        g.lz_analysis_code = h.lz_code
+      AND
+        f.lz_affected = h.lz_affected
+      AND
+        CAST(f.mn_code AS integer) = i.mn_code
+      AND
+        CAST(f.dc_code AS integer) = j.dist_code
+      AND
+        f.lz_code = k.lz_code
+      AND
+        h.ofa_year = EXTRACT(year FROM current_date)
+      AND
+        h.ofa_month = EXTRACT(month FROM current_date)
+      AND
+        m.dc_code = CAST(f.dc_code AS integer)
+      AND
+        p.dc_code = f.dc_code
+      AND
+        h.lz_code = q.lz_code
+      AND
+        h.wg_code = q.wg_code
+      AND
+        q.wg_code = r."tid"
+    ORDER BY
   sa_code,
   wg_code,
   wg_affected,
@@ -125,7 +160,7 @@ COPY (
 		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_food_def,
 		round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4) AS def_maize_eq
 	FROM
-		zaf.vw_demog_sas_ofa,
+		zaf.tbl_ofa_outcomes_sas,
 		(VALUES
 				(1, 'very poor'),
 				(1, 'casuals'),
@@ -145,7 +180,11 @@ COPY (
 	WHERE
 			threshold = 'Food energy deficit'
 		AND
-			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
+			lower(.wg_name) = f.wg
+    AND
+      ofa_year = EXTRACT(year FROM current_date)
+    AND
+      ofa_month= EXTRACT(month FROM current_date)
 	ORDER BY
 		sa_code,
 		wg,
@@ -175,7 +214,7 @@ COPY (
 		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_fpl_def,
 		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS fpl_deficit
 	FROM
-		zaf.vw_demog_sas_ofa,
+		zaf.tbl_ofa_outcomes_sas,
 		(VALUES
 				(1, 'very poor'),
 				(1, 'casuals'),
@@ -195,7 +234,11 @@ COPY (
 	WHERE
 			threshold = 'FPL deficit'
 		AND
-			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
+			lower(wg_name) = f.wg
+      AND
+        ofa_year = EXTRACT(year FROM current_date)
+      AND
+        ofa_month= EXTRACT(month FROM current_date)
   ORDER BY
     sa_code,
     wg,
@@ -225,7 +268,7 @@ COPY (
 		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_lbpl_def,
 		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS lbpl_deficit
 	FROM
-		zaf.vw_demog_sas_ofa,
+		zaf.tbl_ofa_outcomes_sas,
 		(VALUES
 				(1, 'very poor'),
 				(1, 'casuals'),
@@ -245,7 +288,11 @@ COPY (
 	WHERE
 			threshold = 'LBPL deficit'
 		AND
-			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
+			lower(wg_name) = f.wg
+    AND
+      ofa_year = EXTRACT(year FROM current_date)
+    AND
+      ofa_month= EXTRACT(month FROM current_date)
 	ORDER BY
 		sa_code,
 		wg,
@@ -275,7 +322,7 @@ COPY (
 		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_ubpl_def,
 		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS ubpl_deficit
 	FROM
-		zaf.vw_demog_sas_ofa,
+		zaf.tbl_ofa_outcomes_sas,
 		(VALUES
 				(1, 'very poor'),
 				(1, 'casuals'),
@@ -295,7 +342,11 @@ COPY (
 	WHERE
 			threshold = 'UBPL deficit'
 		AND
-			lower(zaf.vw_demog_sas_ofa.wg_name) = f.wg
+			lower(wg_name) = f.wg
+    AND
+      ofa_year = EXTRACT(year FROM current_date)
+    AND
+      ofa_month= EXTRACT(month FROM current_date)
 	ORDER BY
 		sa_code,
 		wg,
@@ -329,11 +380,15 @@ CREATE VIEW zaf.vw_demog_sas_fooddef AS
 		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4)) AS def_maize_eq
 	FROM
     zaf.demog_sas AS f,
-		zaf.vw_demog_sas_ofa AS g
+		zaf.tbl_ofa_outcomes_sas AS g
 	WHERE
 		  threshold = 'Food energy deficit'
     AND
       f.sa_code = g.sa_code
+    AND
+      ofa_year = EXTRACT(year FROM current_date)
+    AND
+      ofa_month= EXTRACT(month FROM current_date)
   GROUP BY
     gid,
     the_geom,
@@ -366,11 +421,15 @@ CREATE VIEW zaf.vw_demog_sas_fpl AS
 		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS fpl_deficit
 	FROM
     zaf.demog_sas AS f,
-		zaf.vw_demog_sas_ofa AS g
+		zaf.tbl_ofa_outcomes_sas AS g
 	WHERE
 		  threshold = 'FPL deficit'
     AND
       f.sa_code = g.sa_code
+    AND
+      ofa_year = EXTRACT(year FROM current_date)
+    AND
+      ofa_month= EXTRACT(month FROM current_date)
   GROUP BY
     gid,
     the_geom,
@@ -402,11 +461,15 @@ CREATE VIEW zaf.vw_demog_sas_lbpl AS
 		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS lbpl_deficit
 	FROM
     zaf.demog_sas AS f,
-		zaf.vw_demog_sas_ofa AS g
+		zaf.tbl_ofa_outcomes_sas AS g
 	WHERE
 		  threshold = 'LBPL deficit'
     AND
       f.sa_code = g.sa_code
+    AND
+      ofa_year = EXTRACT(year FROM current_date)
+    AND
+      ofa_month= EXTRACT(month FROM current_date)
   GROUP BY
     gid,
     the_geom,
@@ -438,11 +501,15 @@ CREATE VIEW zaf.vw_demog_sas_ubpl AS
 		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS ubpl_deficit
 	FROM
     zaf.demog_sas AS f,
-		zaf.vw_demog_sas_ofa AS g
+		zaf.tbl_ofa_outcomes_sas AS g
 	WHERE
 		  threshold = 'UBPL deficit'
     AND
       f.sa_code = g.sa_code
+    AND
+      ofa_year = EXTRACT(year FROM current_date)
+    AND
+      ofa_month= EXTRACT(month FROM current_date)
   GROUP BY
     gid,
     the_geom,
@@ -463,7 +530,11 @@ SELECT
 	lz_affected,
 	count(sa_code) AS num_records
 	FROM
-		zaf.vw_demog_sas_ofa
+		zaf.tbl_ofa_outcomes_sas
+  WHERE
+      ofa_year = EXTRACT(year FROM current_date)
+    AND
+      ofa_month= EXTRACT(month FROM current_date)
 	GROUP BY
 		lz_affected
 
@@ -472,7 +543,11 @@ SELECT
 	'TOTAL' AS lz_affected,
 	count(sa_code) AS num_records
 FROM
-	zaf.vw_demog_sas_ofa
+	zaf.tbl_ofa_outcomes_sas
+WHERE
+    ofa_year = EXTRACT(year FROM current_date)
+  AND
+    ofa_month= EXTRACT(month FROM current_date)
 
 UNION
 SELECT
@@ -502,7 +577,11 @@ SELECT
   pop_fpl_def,
   fpl_deficit
 FROM
-  zaf.vw_demog_sas_fpl
+  zaf.tbl_ofa_outcomes_sas
+WHERE
+    ofa_year = EXTRACT(year FROM current_date)
+  AND
+    ofa_month= EXTRACT(month FROM current_date)
 ORDER BY
   sa_code
 ;
