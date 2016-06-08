@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes_sas (
   "tid" serial primary key,
   ofa_year integer,
   ofa_month integer,
-  sa_cod integer,
+  sa_code integer,
   municipality varchar(100),
   district varchar(100),
   province varchar(100),
@@ -15,26 +15,29 @@ CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes_sas (
   lz_abbrev varchar(5),
   lz_name varchar(254),
   lz_analysis_code integer,
-  lz_affected varchar(),
+  lz_affected varchar(30),
   pop_size integer,
   pop_curr numeric,
   hh_size integer,
   wg_code integer,
-  wg_name varchar(),
+  wg_name varchar(64),
   pc_wg numeric,
   pc_wg_affected numeric,
   wg_affected varchar(6),
-  threshold varchar(),
+  threshold varchar(30),
   deficit numeric
   )
+;
+
 
 DELETE FROM
   zaf.tbl_ofa_outcomes_sas
 WHERE
-    ofa_year = EXTRACT(year FROM date_current)
+    ofa_year = EXTRACT(year FROM current_date)
   AND
-    ofa_month = EXTRACT(month FROM date_current)
+    ofa_month = EXTRACT(month FROM current_date)
 ;
+
 
 INSERT INTO zaf.tbl_ofa_outcomes_sas (
   ofa_year,
@@ -180,7 +183,7 @@ COPY (
 	WHERE
 			threshold = 'Food energy deficit'
 		AND
-			lower(.wg_name) = f.wg
+			lower(wg_name) = f.wg
     AND
       ofa_year = EXTRACT(year FROM current_date)
     AND
@@ -366,7 +369,7 @@ COMMIT;
 
 CREATE VIEW zaf.vw_demog_sas_fooddef AS
   SELECT
-    gid,
+    "tid",
     the_geom,
 		f.sa_code,
 		mn_name AS municipality,
@@ -407,7 +410,7 @@ CREATE VIEW zaf.vw_demog_sas_fooddef AS
 
 CREATE VIEW zaf.vw_demog_sas_fpl AS
   SELECT
-    gid,
+    "tid",
     the_geom,
 		f.sa_code,
 		mn_name AS municipality,
@@ -447,7 +450,7 @@ CREATE VIEW zaf.vw_demog_sas_fpl AS
 
 CREATE VIEW zaf.vw_demog_sas_lbpl AS
   SELECT
-    gid,
+    "tid",
     the_geom,
 		f.sa_code,
 		mn_name AS municipality,
@@ -487,7 +490,7 @@ CREATE VIEW zaf.vw_demog_sas_lbpl AS
 
 CREATE VIEW zaf.vw_demog_sas_ubpl AS
   SELECT
-    gid,
+    "tid",
     the_geom,
 		f.sa_code,
 		mn_name AS municipality,
@@ -565,7 +568,7 @@ ORDER BY lz_affected
 
 
 SELECT
-  gid,
+  "tid",
   sa_code,
   municipality,
   district,
