@@ -1,3 +1,18 @@
+CREATE INDEX IF NOT EXISTS demog_sas_ofa_lz_code_dc_mn_code_idx
+  ON zaf.demog_sas_ofa(dc_code, mn_code, lz_code, lz_affected);
+CREATE INDEX IF NOT EXISTS tbl_lz_mapping_lz_code_idx ON zaf.tbl_lz_mapping(lz_code, lz_analysis_code);
+CREATE INDEX IF NOT EXISTS tbl_demog_sas_ofa_dc_code_idx ON zaf.demog_sas_ofa(dc_code);
+CREATE INDEX IF NOT EXISTS tbl_ofa_outcomes_lz_wg_code_affected_ofa_year_month_idx
+  ON zaf.tbl_ofa_outcomes(lz_code, lz_affected, wg_code, ofa_year, ofa_month);
+CREATE INDEX IF NOT EXISTS demog_sas_mn_code_name_idx ON zaf.demog_sas(mn_code, mn_name);
+CREATE INDEX IF NOT EXISTS admin3_dists_dist_code_idx ON zaf.admin3_dists(distcode);
+CREATE INDEX IF NOT EXISTS tbl_livezones_list_lz_code_idx ON zaf.tbl_livezones_list(lz_code);
+CREATE INDEX IF NOT EXISTS tbl_pop_proj_dc_mdb_code_idx_year_mid_idx
+  ON zaf.tbl_pop_proj(dc_mdb_code, year_mid);
+CREATE INDEX IF NOT EXISTS admin3_dists_dist_mdb_code_idx
+  ON zaf.admin3_dists(dist_mdb_code);
+CREATE INDEX IF NOT EXISTS tbl_wgs_wg_code_idx ON zaf.tbl_wgs(wg_code);
+
 CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes_sas (
   "tid" serial primary key,
   ofa_year integer,
