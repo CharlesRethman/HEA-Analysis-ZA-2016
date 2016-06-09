@@ -24,10 +24,10 @@
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_demog_sas_fpl20160608145947410" name="Annual FPL deficit per person at risk (ZAR)">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_demog_sas_fpl20160608143037679" name="Annual FPL deficit per cap total (ZAR)">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_demog_sas_fpl20160608143037679" name="Annual FPL deficit per cap total (ZAR)">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_demog_sas_fpl20160608131948221" name="% population at risk FPL deficit">
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_demog_sas_fpl20160608131948221" name="% population at risk FPL deficit">
       <customproperties>
         <property key="showFeatureCount" value="0"/>
       </customproperties>
@@ -168,14 +168,14 @@
         <legendlayerfile isInOverview="0" layerid="vw_demog_sas_fpl20160608145947410" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Annual FPL deficit per cap total (ZAR)" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Annual FPL deficit per cap total (ZAR)" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="vw_demog_sas_fpl20160608143037679" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="vw_demog_sas_fpl20160608143037679" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="% population at risk FPL deficit" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="% population at risk FPL deficit" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="vw_demog_sas_fpl20160608131948221" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="vw_demog_sas_fpl20160608131948221" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Demog_sas_ofa" showFeatureCount="1">
@@ -512,7 +512,7 @@
           <prop k="style" v="solid"/>
         </layer>
       </symbol>
-      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="FOOD POVERTY LINE DEFICITS PER CAPITA (TOTAL POP) FOR ENUMERATION SMALL AREAS IN SOUTH AFRICA" htmlState="0" halign="4">
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ANNUAL FOOD POVERTY LINE DEFICITS PER CAPITA (TOTAL) FOR ENUMERATION SMALL AREAS IN SOUTH AFRICA" htmlState="0" halign="4">
         <LabelFont description="Helvetica Neue,10,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
         <ComposerItem pagey="21.0849" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="90.2582" y="21.0849" visibility="1" zValue="4" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="104.315" outlineWidth="0.1" excludeFromExports="0" uuid="{7b250765-ddff-4304-a84a-b162077abc92}" height="10.7274" itemRotation="0" frame="true" pagex="90.2582">
