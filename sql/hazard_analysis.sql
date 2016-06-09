@@ -9,9 +9,14 @@
 BEGIN;
 
 DROP INDEX IF EXISTS zaf.prob_hazard_gidx;
+
 DROP INDEX IF EXISTS zaf.demog_sas_gidx;
+
 DROP INDEX IF EXISTS zaf.demog_sas_sa_code_idx;
+
 DROP INDEX IF EXISTS zaf.tbl_pop_agegender_12y_sa_code_idx;
+
+
 
 -- Create indices if they do not exist
 CREATE INDEX prob_hazard_gidx ON zaf.prob_hazard USING GIST (the_geom);
