@@ -2,8 +2,8 @@ CREATE INDEX IF NOT EXISTS demog_sas_ofa_lz_code_dc_mn_code_idx
   ON zaf.demog_sas_ofa(dc_code, mn_code, lz_code, lz_affected);
 CREATE INDEX IF NOT EXISTS tbl_lz_mapping_lz_code_idx ON zaf.tbl_lz_mapping(lz_code, lz_analysis_code);
 CREATE INDEX IF NOT EXISTS tbl_demog_sas_ofa_dc_code_idx ON zaf.demog_sas_ofa(dc_code);
-CREATE INDEX IF NOT EXISTS tbl_ofa_outcomes_lz_wg_code_affected_ofa_year_month_idx
-  ON zaf.tbl_ofa_outcomes(lz_code, lz_affected, wg_code, ofa_year, ofa_month);
+CREATE INDEX IF NOT EXISTS tbl_ofa_analysis_lz_wg_code_affected_ofa_year_month_idx
+  ON zaf.tbl_ofa_analysis(lz_code, lz_affected, wg_code, ofa_year, ofa_month);
 CREATE INDEX IF NOT EXISTS demog_sas_mn_code_name_idx ON zaf.demog_sas(mn_code, mn_name);
 CREATE INDEX IF NOT EXISTS admin3_dists_dist_code_idx ON zaf.admin3_dists(distcode);
 CREATE INDEX IF NOT EXISTS tbl_livezones_list_lz_code_idx ON zaf.tbl_livezones_list(lz_code);
@@ -13,7 +13,7 @@ CREATE INDEX IF NOT EXISTS admin3_dists_dist_mdb_code_idx
   ON zaf.admin3_dists(dist_mdb_code);
 CREATE INDEX IF NOT EXISTS tbl_wgs_wg_code_idx ON zaf.tbl_wgs(wg_code);
 
-CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes_sas (
+CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes (
   "tid" serial primary key,
   ofa_year integer,
   ofa_month integer,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes_sas (
 
 
 DELETE FROM
-  zaf.tbl_ofa_outcomes_sas
+  zaf.tbl_ofa_outcomes
 WHERE
     ofa_year = EXTRACT(year FROM current_date)
   AND
@@ -49,7 +49,7 @@ WHERE
 ;
 
 
-INSERT INTO zaf.tbl_ofa_outcomes_sas (
+INSERT INTO zaf.tbl_ofa_outcomes (
   ofa_year,
   ofa_month,
   sa_code,
@@ -101,7 +101,7 @@ INSERT INTO zaf.tbl_ofa_outcomes_sas (
     FROM
       zaf.demog_sas_ofa AS f,
       zaf.tbl_lz_mapping AS g,
-      zaf.tbl_ofa_outcomes AS h,
+      zaf.tbl_ofa_analysis AS h,
       (SELECT DISTINCT mn_code, mn_name FROM zaf.demog_sas) AS i,
       zaf.admin3_dists AS j,
       zaf.tbl_livezones_list AS k,
@@ -174,7 +174,7 @@ COPY (
 		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_food_def,
 		round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4) AS def_maize_eq
 	FROM
-		zaf.tbl_ofa_outcomes_sas,
+		zaf.tbl_ofa_outcomes,
 		(VALUES
 				(1, 'very poor'),
 				(1, 'casuals'),
@@ -228,7 +228,7 @@ COPY (
 		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_fpl_def,
 		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS fpl_deficit
 	FROM
-		zaf.tbl_ofa_outcomes_sas,
+		zaf.tbl_ofa_outcomes,
 		(VALUES
 				(1, 'very poor'),
 				(1, 'casuals'),
@@ -282,7 +282,7 @@ COPY (
 		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_lbpl_def,
 		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS lbpl_deficit
 	FROM
-		zaf.tbl_ofa_outcomes_sas,
+		zaf.tbl_ofa_outcomes,
 		(VALUES
 				(1, 'very poor'),
 				(1, 'casuals'),
@@ -336,7 +336,7 @@ COPY (
 		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_ubpl_def,
 		round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4) AS ubpl_deficit
 	FROM
-		zaf.tbl_ofa_outcomes_sas,
+		zaf.tbl_ofa_outcomes,
 		(VALUES
 				(1, 'very poor'),
 				(1, 'casuals'),
@@ -394,7 +394,7 @@ CREATE VIEW zaf.vw_demog_sas_fooddef AS
 		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4)) AS def_maize_eq
 	FROM
     zaf.demog_sas AS f,
-		zaf.tbl_ofa_outcomes_sas AS g
+		zaf.tbl_ofa_outcomes AS g
 	WHERE
 		  threshold = 'Food energy deficit'
     AND
@@ -435,7 +435,7 @@ CREATE VIEW zaf.vw_demog_sas_fpl AS
 		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS fpl_deficit
 	FROM
     zaf.demog_sas AS f,
-		zaf.tbl_ofa_outcomes_sas AS g
+		zaf.tbl_ofa_outcomes AS g
 	WHERE
 		  threshold = 'FPL deficit'
     AND
@@ -475,7 +475,7 @@ CREATE VIEW zaf.vw_demog_sas_lbpl AS
 		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS lbpl_deficit
 	FROM
     zaf.demog_sas AS f,
-		zaf.tbl_ofa_outcomes_sas AS g
+		zaf.tbl_ofa_outcomes AS g
 	WHERE
 		  threshold = 'LBPL deficit'
     AND
@@ -515,7 +515,7 @@ CREATE VIEW zaf.vw_demog_sas_ubpl AS
 		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit / hh_size, 4)) AS ubpl_deficit
 	FROM
     zaf.demog_sas AS f,
-		zaf.tbl_ofa_outcomes_sas AS g
+		zaf.tbl_ofa_outcomes AS g
 	WHERE
 		  threshold = 'UBPL deficit'
     AND
@@ -544,7 +544,7 @@ SELECT
 	lz_affected,
 	count(sa_code) AS num_records
 	FROM
-		zaf.tbl_ofa_outcomes_sas
+		zaf.tbl_ofa_outcomes
   WHERE
       ofa_year = EXTRACT(year FROM current_date)
     AND
@@ -557,7 +557,7 @@ SELECT
 	'TOTAL' AS lz_affected,
 	count(sa_code) AS num_records
 FROM
-	zaf.tbl_ofa_outcomes_sas
+	zaf.tbl_ofa_outcomes
 WHERE
     ofa_year = EXTRACT(year FROM current_date)
   AND
