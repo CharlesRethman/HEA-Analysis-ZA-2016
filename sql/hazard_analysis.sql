@@ -154,7 +154,7 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 			pr_code,
 			pop_size,
 			lz_code,
-			'border drought' AS lz_affected
+			'drought' AS lz_affected
 		FROM
 			(
 				SELECT
@@ -224,7 +224,7 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 			pr_code,
 			pop_size,
 			lz_code,
-			'border normal' AS lz_affected
+			'normal' AS lz_affected
 		FROM
 			(
 				SELECT
