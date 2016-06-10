@@ -8,6 +8,7 @@
 -- Index transaction: to speed up the the main insert query
 BEGIN;
 
+--Drop indices to so they can be recreated
 DROP INDEX IF EXISTS zaf.prob_hazard_gidx;
 
 DROP INDEX IF EXISTS zaf.demog_sas_gidx;
@@ -32,8 +33,8 @@ ON zaf.tbl_pop_agegender_12y
 USING btree (sa_code);
 
 
--- Remove any old table of affected small areas
-DROP TABLE IF EXISTS zaf.demog_sas_ofa;
+-- [records deleted instead] Remove any old table of affected small areas
+-- DROP TABLE IF EXISTS zaf.demog_sas_ofa;
 
 -- If it doesn't exist already, create a new table with the key outcome information for all affected
 -- enumeration areas, with admin, livelihood zone, wealth group definition
@@ -48,10 +49,8 @@ CREATE TABLE IF NOT EXISTS zaf.demog_sas_ofa (
 	mn_code varchar(6),
 	dc_code varchar(6),
 	pr_code integer,
-	-- population
+	-- population (census data only, current year will be added in next step)
 	pop_size integer,
---	pop_curr numeric,
---	hh_curr numeric,
 	-- livelihood zones: code, abbrev, name and wealth group
 	lz_code integer,
 	lz_affected varchar(30)
@@ -87,8 +86,6 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	dc_code,
 	pr_code,
 	pop_size,
---	pop_curr,
---	hh_curr,
 	lz_code,
 	lz_affected
 	)
@@ -139,8 +136,6 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	dc_code,
 	pr_code,
 	pop_size,
---	pop_curr,
---	hh_curr,
 	lz_code,
 	lz_affected
 	)
@@ -211,8 +206,6 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	dc_code,
 	pr_code,
 	pop_size,
---	pop_curr,
---	hh_curr,
 	lz_code,
 	lz_affected
 	)
@@ -282,8 +275,6 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	dc_code,
 	pr_code,
 	pop_size,
---	pop_curr,
---	hh_curr,
 	lz_code,
 	lz_affected
 	)
@@ -331,104 +322,10 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 COMMIT;
 
 
-/*
---Transaction to present the data in a file and on StdOut
-BEGIN;
-
--- Output the table to a CSV file for spreadsheet input
-COPY (
-	SELECT
-			sa_code,
-			region_cod AS region_code,
-			region_nam AS region,
-			constituen AS const_code,
-			constitue1 AS constituency,
-			lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
-			hazard,
-			f.ordnum || ' '|| zaf.demog_sas_ofa.wg AS wg,
-			soc_sec,
-			pop_size,
-			pop_curr,
-			round(pop_curr * pc_pop * CAST( surv_def > 0.005 AS INTEGER), 0) AS pop_surv,
-			round(pop_curr * pc_pop * CAST( lhood_def > 0.005 AS INTEGER), 0) AS pop_lhood,
-			round(pop_curr * pc_pop * surv_def * 2100 / 3360.0 / 1000, 4) AS maize_eq,
-			round(hh_curr * pc_pop * lhood_def, 0) AS lhood_nad
-		FROM
-			zaf.demog_sas_ofa,
-			(VALUES (1, 'very poor'), (2, 'poor'), (3, 'middle'), (4, 'rich'), (4, 'better off'), (4, 'better-off')) AS f (ordnum,wg)
-		WHERE
-			lower(zaf.demog_sas_ofa.wg) = f.wg
-	ORDER BY
-		sa_code,
-		hazard,
-		soc_sec,
-		f.ordnum
-	)
-TO
-	'/Users/Charles/Documents/hea_analysis/namibia/2016.05/pop/outcome.csv'
-WITH (
-	FORMAT CSV, DELIMITER ',', HEADER TRUE
-	)
-;
-
-COPY (
-	SELECT
-			row_name[1] AS region,
-			row_name[2] AS constituency,
-			"56101: Kunene cattle and small stock (NAKCS)",
-			"56102: Omusati-Omaheke-Otjozondjupa cattle ranching (NACCR)",
-			"56103: Erongo-Kunene small stock and natural resources (NACSN)",
-			"56105: Southern communal small stock (NACSS)",
-			"56182: Central freehold cattle ranching (NAFCR)",
-			"56184: Southern freehold small stock (NAFSS)",
-			"56201: Northern border upland cereals and livestock (NAUCL)"
-			"56202: North-central upland cereals and non-farm income (NAUCI)",
-			"56203: Caprivi lowland maize and cattle (NALMC)"
-		FROM
-			crosstab('
-				SELECT
-						ARRAY[ region_nam::text, constitue1::text] AS row_name,
-						lz_code || '': '' || lz_name || '' ('' || lz_abbrev || '')'' AS lz,
-						ROUND(SUM(pop_curr * pc_pop * CAST( surv_def > 0.005 AS INTEGER)), 0) AS pop_surv
-					FROM
-						zaf.demog_sas_ofa
-					GROUP BY
-						region_nam,
-						constitue1,
-						lz
-					ORDER BY
-						1,
-						2
-				') AS ct(
-					row_name text[],
-					"56101: Kunene cattle and small stock (NAKCS)" NUMERIC,
-					"56102: Omusati-Omaheke-Otjozondjupa cattle ranching (NACCR)" NUMERIC,
-					"56103: Erongo-Kunene small stock and natural resources (NACSN)" NUMERIC,
-					"56105: Southern communal small stock (NACSS)" NUMERIC,
-					"56182: Central freehold cattle ranching (NAFCR)" NUMERIC,
-					"56184: Southern freehold small stock (NAFSS)" NUMERIC,
-					"56201: Northern border upland cereals and livestock (NAUCL)" NUMERIC,
-					"56202: North-central upland cereals and non-farm income (NAUCI)" NUMERIC,
-					"56203: Caprivi lowland maize and cattle (NALMC)" NUMERIC
-				)
-	)
-TO
-	'/Users/Charles/Documents/hea_analysis/namibia/2016.05/pop/outcome_xtab.csv'
-WITH (
-	FORMAT CSV, DELIMITER ',', HEADER TRUE
-	)
-;
-*/
-
+-- Present a count of all change SAs (can be checked against original number)
 SELECT
 		count(sa_code),
---		mn_code,
---		dc_code,
---		pr_code,
---		lz_code, -- || ': '  || lz_name || ' (' || lz_abbrev || ')' AS lz,
 		lz_affected
---		pop_size,
---		pop_curr,
 	FROM
 		zaf.demog_sas_ofa
 	GROUP BY
