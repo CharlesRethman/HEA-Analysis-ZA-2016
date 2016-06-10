@@ -1,17 +1,29 @@
-CREATE INDEX IF NOT EXISTS demog_sas_ofa_lz_code_dc_mn_code_idx
+DROP INDEX IF EXISTS zaf.demog_sas_ofa_lz_code_dc_mn_code_idx;
+DROP INDEX IF EXISTS zaf.tbl_lz_mapping_lz_code_idx;
+DROP INDEX IF EXISTS zaf.tbl_demog_sas_ofa_dc_code_idx;
+DROP INDEX IF EXISTS zaf.tbl_ofa_outcomes_lz_wg_code_affected_ofa_year_month_idx;
+DROP INDEX IF EXISTS zaf.demog_sas_mn_code_name_idx;
+DROP INDEX IF EXISTS zaf.admin3_dists_dist_code_idx;
+DROP INDEX IF EXISTS zaf.tbl_livezones_list_lz_code_idx;
+DROP INDEX IF EXISTS zaf.admin3_dists_dist_mdb_code_idx;
+DROP INDEX IF EXISTS zaf.tbl_wgs_wg_code_idx;
+
+
+
+CREATE INDEX demog_sas_ofa_lz_dc_mn_code_idx
   ON zaf.demog_sas_ofa(dc_code, mn_code, lz_code, lz_affected);
-CREATE INDEX IF NOT EXISTS tbl_lz_mapping_lz_code_idx ON zaf.tbl_lz_mapping(lz_code, lz_analysis_code);
-CREATE INDEX IF NOT EXISTS tbl_demog_sas_ofa_dc_code_idx ON zaf.demog_sas_ofa(dc_code);
-CREATE INDEX IF NOT EXISTS tbl_ofa_analysis_lz_wg_code_affected_ofa_year_month_idx
+CREATE INDEX tbl_lz_mapping_lz_code_idx ON zaf.tbl_lz_mapping(lz_code, lz_analysis_code);
+CREATE INDEX tbl_demog_sas_ofa_dc_code_idx ON zaf.demog_sas_ofa(dc_code);
+CREATE INDEX tbl_ofa_analysis_lz_wg_code_affected_ofa_year_month_idx
   ON zaf.tbl_ofa_analysis(lz_code, lz_affected, wg_code, ofa_year, ofa_month);
-CREATE INDEX IF NOT EXISTS demog_sas_mn_code_name_idx ON zaf.demog_sas(mn_code, mn_name);
-CREATE INDEX IF NOT EXISTS admin3_dists_dc_code_idx ON zaf.admin3_dists(dc_code);
-CREATE INDEX IF NOT EXISTS tbl_livezones_list_lz_code_idx ON zaf.tbl_livezones_list(lz_code);
-CREATE INDEX IF NOT EXISTS tbl_pop_proj_dc_mdb_code_idx_year_mid_idx
+CREATE INDEX demog_sas_mn_code_name_idx ON zaf.demog_sas(mn_code, mn_name);
+CREATE INDEX admin3_dists_dc_code_idx ON zaf.admin3_dists(dc_code);
+CREATE INDEX tbl_livezones_list_lz_code_idx ON zaf.tbl_livezones_list(lz_code);
+CREATE INDEX tbl_pop_proj_dc_mdb_code_idx_year_mid_idx
   ON zaf.tbl_pop_proj(dc_mdb_code, year_mid);
-CREATE INDEX IF NOT EXISTS admin3_dists_dc_mdb_code_idx
+CREATE INDEX admin3_dists_dc_mdb_code_idx
   ON zaf.admin3_dists(dc_mdb_code);
-CREATE INDEX IF NOT EXISTS tbl_wgs_wg_code_idx ON zaf.tbl_wgs(wg_code);
+CREATE INDEX tbl_wgs_wg_code_idx ON zaf.tbl_wgs(wg_code);
 
 CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes (
   "tid" serial primary key,
@@ -39,6 +51,9 @@ CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes (
   )
 ;
 
+
+
+BEGIN;
 
 DELETE FROM
   zaf.tbl_ofa_outcomes
@@ -153,6 +168,8 @@ INSERT INTO zaf.tbl_ofa_outcomes (
   wg_affected,
   threshold
 ;
+
+COMMIT;
 
 
 --Transaction to present the data in a file and on StdOut
@@ -584,7 +601,7 @@ SELECT
   municipality,
   district,
   province,
-  left(lz,50) AS lz,
+  left(substr(left(lz, length(lz) - 1), 1), 50) AS lz,
   hazard,
   pop_size,
   pop_curr,
