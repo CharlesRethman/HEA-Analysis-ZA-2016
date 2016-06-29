@@ -343,7 +343,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_outcomes_pop_flp" visible="1">
+  <Composer title="nofa_outcomes_pop_flp" visible="0">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -363,7 +363,7 @@
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="PERCENT OF POPULATION AT RISK OF FOOD POVERTY LINE DEFICITS UNTIL APRIL 2017 IN SOUTH AFRICA" htmlState="0" halign="4">
         <LabelFont description="Helvetica Neue,10,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="19.2695" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="91.7735" y="19.2695" visibility="1" zValue="7" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="104.315" outlineWidth="0.1" excludeFromExports="0" uuid="{db0668cb-7372-4ebc-a6c5-7d6dd0cd3e8b}" height="10.7274" itemRotation="0" frame="true" pagex="91.7735">
+        <ComposerItem pagey="19.2695" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="91.7735" y="19.2695" visibility="1" zValue="4" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="104.315" outlineWidth="0.1" excludeFromExports="0" uuid="{db0668cb-7372-4ebc-a6c5-7d6dd0cd3e8b}" height="10.7274" itemRotation="0" frame="true" pagex="91.7735">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -372,7 +372,7 @@
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Prepared by: CW Rethman, PGP 1287&#xa;Projection: Albers Equal Area with standard parallels at 24.2ºS  and 32.8ºS, the central meridian 25.1ºE." htmlState="0" halign="1">
         <LabelFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="183.476" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="193.093" y="183.476" visibility="1" zValue="6" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="56.2264" outlineWidth="0.1" excludeFromExports="0" uuid="{56cc4e8c-b0db-448c-81ae-654e59fc86a5}" height="9.98758" itemRotation="0" frame="true" pagex="193.093">
+        <ComposerItem pagey="183.476" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="193.093" y="183.476" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="56.2264" outlineWidth="0.1" excludeFromExports="0" uuid="{56cc4e8c-b0db-448c-81ae-654e59fc86a5}" height="9.98758" itemRotation="0" frame="true" pagex="193.093">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -495,7 +495,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_outcomes_def-per-cap" visible="1">
+  <Composer title="nofa_outcomes_def-per-cap" visible="0">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -647,7 +647,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_outcomes_def-per-at-risk" visible="1">
+  <Composer title="nofa_outcomes_def-per-at-risk" visible="0">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -2120,16 +2120,19 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="category">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="municipality">
+        <edittype widgetv2type="TextEdit" name="mn_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="munic_code">
+        <edittype widgetv2type="TextEdit" name="mn_mdb_code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="dist_name">
+        <edittype widgetv2type="TextEdit" name="dc_name">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="area_ha">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="mn_code">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -2254,9 +2257,6 @@ def my_form_open(dialog, layer, feature):
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="lz_affected">
-          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
-        </edittype>
-        <edittype widgetv2type="TextEdit" name="pop_curr">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -4440,17 +4440,18 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer diagramType="Pie">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
           <fontProperties description=".SF NS Text,13,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
 """
 QGIS forms can have a Python function that is called when the form is
@@ -4837,17 +4838,18 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer diagramType="Pie">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
           <fontProperties description=".SF NS Text,13,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
 """
 QGIS forms can have a Python function that is called when the form is
@@ -5250,17 +5252,18 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer diagramType="Pie">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
           <fontProperties description=".SF NS Text,13,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions/>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
 """
 QGIS forms can have a Python function that is called when the form is

@@ -1,11 +1,14 @@
--- Purpose: to construct a table of outcomes by Small Area, Wealth Group, Wealth
--- Group Hazard (receive/don't receive social grants) and Thresholds that can be
--- summarised with a pivot table or filtered and joined to the Small Area layer
--- (zaf.demog_sas) to be map the outcome.
--- The pivot table will calculate total numbers of affected people and their
--- deficits by admin area an livelihood zone.
+/*
+ * Purpose: to construct a table of outcomes by Small Area, Wealth Group, Wealth Group Affected
+ * Category (receive/don't receive social grants) and Thresholds that can be summarised with a pivot
+ * table or filtered and joined to the Small Area layer (zaf.demog_sas) to be map the outcome.
+ *
+ * The pivot table will calculate total numbers of affected people and their deficits by admin area
+ * an livelihood zone.
+ *
+ */
 
--- Index transaction: to speed up the the main insert query
+-- Indices, table creation and preparation transaction
 BEGIN;
 
 --Drop indices to so they can be recreated
@@ -24,13 +27,9 @@ CREATE INDEX prob_hazard_gidx ON zaf.prob_hazard USING GIST (the_geom);
 
 CREATE INDEX demog_sas_gidx ON zaf.demog_sas USING GIST (the_geom);
 
-CREATE INDEX demog_sas_sa_code_idx
-ON zaf.demog_sas
-USING btree (sa_code);
+CREATE INDEX demog_sas_sa_code_idx ON zaf.demog_sas USING btree (sa_code);
 
-CREATE INDEX tbl_pop_agegender_12y_sa_code_idx
-ON zaf.tbl_pop_agegender_12y
-USING btree (sa_code);
+CREATE INDEX tbl_pop_agegender_12y_sa_code_idx ON zaf.tbl_pop_agegender_12y USING btree (sa_code);
 
 
 -- [records deleted instead] Remove any old table of affected small areas
@@ -57,6 +56,15 @@ CREATE TABLE IF NOT EXISTS zaf.demog_sas_ofa (
 	)
 ;
 
+-- Done.
+COMMIT;
+
+
+
+-- Main transaction. Create an output table and populate it with the analysis.
+BEGIN;
+
+
 -- Remove all previous records for the current analysis
 DELETE FROM
 	zaf.demog_sas_ofa
@@ -65,14 +73,6 @@ WHERE
 	AND
 		ofa_month = EXTRACT(month FROM current_date)
 ;
-
--- Done.
-COMMIT;
-
-
-
--- Main transaction. Create an output table and populate it with the analysis.
-BEGIN;
 
 
 SELECT 'Add in the SAS that are completely contained within the hazard area'::text;

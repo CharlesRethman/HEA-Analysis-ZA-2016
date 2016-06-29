@@ -1,3 +1,10 @@
+/*
+ * PURPOSE: To create a single polygon or a group of polygons describing the worst affected areas,
+ * after a raster image has been 'polygonised'.
+ *
+ */
+
+
 DROP TABLE IF EXISTS zaf.vci_1601_buffer;
 DROP TABLE IF EXISTS zaf.asi_16013_buffer;
 

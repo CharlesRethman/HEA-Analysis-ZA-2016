@@ -1,3 +1,13 @@
+/*
+ * Purpose: to calculate the total numbers of affected people and the total amounts of their
+ * deficits across a geographical area and for all wealth/affected groups. This is an entirely
+ * tabular query (it contains no spatial processing, filters or joins). Outputs will be added to the
+ * `zaf.tbl_ofa_outcomes` table and stored under the current or specified date.
+ *
+ */
+
+
+-- Drop old indices and recreate them (to ensure they refreshed)
 DROP INDEX IF EXISTS zaf.demog_sas_ofa_lz_dc_mn_code_idx;
 DROP INDEX IF EXISTS zaf.tbl_lz_mapping_lz_code_idx;
 DROP INDEX IF EXISTS zaf.tbl_demog_sas_ofa_dc_code_idx;
@@ -13,7 +23,8 @@ DROP INDEX IF EXISTS zaf.tbl_wgs_wg_code_idx;
 
 CREATE INDEX demog_sas_ofa_lz_dc_mn_code_idx
   ON zaf.demog_sas_ofa(dc_code, mn_code, lz_code, lz_affected);
-CREATE INDEX tbl_lz_mapping_lz_code_idx ON zaf.tbl_lz_mapping(lz_code, lz_analysis_code);
+CREATE INDEX tbl_lz_mapping_lz_code_idx
+  ON zaf.tbl_lz_mapping(lz_code, lz_analysis_code);
 CREATE INDEX tbl_demog_sas_ofa_dc_code_idx ON zaf.demog_sas_ofa(dc_code);
 CREATE INDEX tbl_ofa_analysis_lz_wg_code_affected_year_month_idx
   ON zaf.tbl_ofa_analysis(lz_code, lz_affected, wg_code, ofa_year, ofa_month);
@@ -26,6 +37,8 @@ CREATE INDEX admin3_dists_dc_mdb_code_idx
   ON zaf.admin3_dists(dc_mdb_code);
 CREATE INDEX tbl_wgs_wg_code_idx ON zaf.tbl_wgs(wg_code);
 
+
+-- If the table exists already this will be skipped
 CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes (
   "tid" serial primary key,
   ofa_year integer,
@@ -53,9 +66,11 @@ CREATE TABLE IF NOT EXISTS zaf.tbl_ofa_outcomes (
 ;
 
 
-
+-- Transaction: roll back to original state if unsuccessful
 BEGIN;
 
+
+-- Remove any previous analyses outcome with the same date
 DELETE FROM
   zaf.tbl_ofa_outcomes
 WHERE
@@ -610,10 +625,6 @@ SELECT
   fpl_deficit
 FROM
   zaf.vw_demog_sas_fpl
-/*WHERE
-    ofa_year = EXTRACT(year FROM current_date)
-  AND
-    ofa_month= EXTRACT(month FROM current_date)*/
 ORDER BY
   sa_code
 ;
