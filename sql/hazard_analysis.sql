@@ -28,8 +28,10 @@ DROP INDEX IF EXISTS zaf.t1_the_geom_gidx;
 
 DROP INDEX IF EXISTS zaf.t1_sa_code_idx;
 
+DROP INDEX IF EXISTS zaf.t2_the_geom_gidx;
+
 -- Create indices if they do not exist
-CREATE INDEX demog_sas_the_geom_gidx ON zaf.demog_sas USING GIST (the_geom);
+CREATE INDEX demog_sas_the_geom_gidx ON zaf.demog_sas USING gist (the_geom);
 
 CREATE INDEX demog_sas_sa_code_idx ON zaf.demog_sas USING btree (sa_code);
 
@@ -114,6 +116,67 @@ WHERE
 CREATE INDEX t1_the_geom_gidx ON zaf.t1 USING GIST (the_geom);
 
 CREATE INDEX t1_sa_code_idx ON zaf.t1 USING btree (sa_code);
+
+
+CREATE TABLE zaf.t2 (
+	gid serial primary key,
+	the_geom geometry(multipolygon, 201100),
+	sa_code integer,
+	ofa_year integer,
+	ofa_month integer
+)
+;
+
+EXPLAIN ANALYZE INSERT INTO zaf.t2 (
+	the_geom,
+	sa_code,
+	ofa_year,
+	ofa_month
+)
+	SELECT
+		ST_Multi(ST_Buffer(ST_Intersection(f.the_geom, g.the_geom),0.0)) AS the_geom,
+		f.sa_code,
+		g.ofa_year,
+		g.ofa_month
+	FROM
+		zaf.demog_sas AS f,
+		zaf.prob_hazard AS g,
+		(
+			SELECT
+            CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y END AS ofa_year,
+	         CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+	      FROM (
+	      	SELECT
+            	p.y,
+	            CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+            FROM (
+	            SELECT
+	            	substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+	            	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+	         ) AS p
+	      ) AS q
+	   ) AS r
+	WHERE
+			ST_Intersects(f.the_geom, g.the_geom)
+		AND
+			f.gid NOT IN (
+				SELECT
+					h.gid
+				FROM
+					zaf.demog_sas AS h,
+					zaf.prob_hazard AS i
+				WHERE
+					ST_Within(h.the_geom, i.the_geom)
+			)
+		AND
+			g.ofa_year = r.ofa_year
+		AND
+			g.ofa_month = r.ofa_month
+;
+
+CREATE INDEX t2_the_geom_gidx ON zaf.t2 USING gist (the_geom);
+
+
 
 -- Remove all previous records for the current analysis specified in the :analysis variable (-v
 -- analysis=M-YYYY in the command line where M is a number (1 to 12) representing the month of
@@ -230,61 +293,23 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	-- The areas crossing, with more than one-third of the intesecting area
 	-- WITHIN
 	SELECT
-		k.the_geom AS the_geom,
-		r.ofa_year,
-		r.ofa_month,
-		k.sa_code,
-		k.mn_code,
-		k.dc_code,
-		k.pr_code,
-		k.pop_size,
-		k.lz_code,
+		f.the_geom AS the_geom,
+		g.ofa_year,
+		g.ofa_month,
+		f.sa_code,
+		f.mn_code,
+		f.dc_code,
+		f.pr_code,
+		f.pop_size,
+		f.lz_code,
 		'drought' AS lz_affected
 	FROM
-		(
-			SELECT
-				ST_Multi(ST_Buffer(ST_Intersection(f.the_geom, g.the_geom),0.0)) AS the_geom,
-				f.sa_code
-			FROM
-				zaf.demog_sas AS f,
-				zaf.prob_hazard AS g
-			WHERE
-					ST_Intersects(f.the_geom, g.the_geom)
-				AND
-					f.gid NOT IN (
-						SELECT
-							h.gid
-						FROM
-							zaf.demog_sas AS h,
-							zaf.prob_hazard AS i
-						WHERE
-							ST_Within(h.the_geom, i.the_geom)
-					)
-		) AS j,
-		zaf.t1 AS k,
-		(
-			SELECT
-            CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y END AS ofa_year,
-	         CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
-	      FROM (
-	      	SELECT
-            	p.y,
-	            CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
-            FROM (
-	            SELECT
-	            	substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
-	            	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
-	         ) AS p
-	      ) AS q
-	   ) AS r
+		zaf.t1 AS f,
+		zaf.t2 AS g
 	WHERE
-			k.sa_code = j.sa_code
+			f.sa_code = g.sa_code
 		AND
-			3 * ST_Area(j.the_geom) > ST_Area(k.the_geom)
-		AND
-			j.ofa_year = r.ofa_year
-		AND
-			j.ofa_month = r.ofa_month
+			3 * ST_Area(g.the_geom) > ST_Area(f.the_geom)
 ;
 
 
@@ -303,61 +328,23 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	lz_affected
 )
 	SELECT
-		k.the_geom AS the_geom,
-		r.ofa_year,
-		r.ofa_month,
-		k.sa_code,
-		k.mn_code,
-		k.dc_code,
-		k.pr_code,
-		k.pop_size,
-		k.lz_code,
+		f.the_geom AS the_geom,
+		g.ofa_year,
+		g.ofa_month,
+		f.sa_code,
+		f.mn_code,
+		f.dc_code,
+		f.pr_code,
+		f.pop_size,
+		f.lz_code,
 		'normal' AS lz_affected
 	FROM
-		(
-			SELECT
-				ST_Multi(ST_Buffer(ST_Intersection(f.the_geom, g.the_geom),0.0)) AS the_geom,
-				f.sa_code
-			FROM
-				zaf.demog_sas AS f,
-				zaf.prob_hazard AS g
-			WHERE
-					ST_Intersects(f.the_geom, g.the_geom)
-				AND
-					f.gid NOT IN (
-						SELECT
-							h.gid
-						FROM
-							zaf.demog_sas AS h,
-							zaf.prob_hazard AS i
-						WHERE
-							ST_Within(h.the_geom, i.the_geom)
-					)
-		) AS j,
-		zaf.t1 AS k,
-		(
-			SELECT
-            CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y END AS ofa_year,
-	         CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
-	      FROM (
-	         SELECT
-	         	p.y,
-	         	CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
-         	FROM (
-               SELECT
-	               substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
-	            	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
-	         ) AS p
-	      ) AS q
-	   ) AS r
+		zaf.t1 AS f,
+		zaf.t2 AS g
 	WHERE
-			k.sa_code = j.sa_code
+			g.sa_code = f.sa_code
 		AND
-			ST_Area(k.the_geom) >= 3 * ST_Area(j.the_geom)
-		AND
-			j.ofa_year = r.ofa_year
-		AND
-			j.ofa_month = r.ofa_month
+			ST_Area(g.the_geom) >= 3 * ST_Area(f.the_geom)
 ;
 
 
@@ -425,6 +412,10 @@ DROP INDEX IF EXISTS zaf.t1_the_geom_gidx;
 DROP INDEX IF EXISTS zaf.t1_sa_code_idx;
 
 DROP TABLE IF EXISTS zaf.t1;
+
+DROP INDEX IF EXISTS zaf.t2_the_geon_gidx;
+
+DROP TABLE IF EXISTS zaf.t2;
 
 
 COMMIT;
