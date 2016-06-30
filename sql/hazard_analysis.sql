@@ -125,7 +125,7 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 			h.dc_code,
 			h.pr_code,
 			h.pop_size,
-			f.lz_code,
+			h.lz_code,
 			'drought' AS lz_affected
 		FROM
 			(
@@ -158,7 +158,7 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
                   	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
                ) AS p
             ) AS q
-         ) AS l
+         ) AS r
 		WHERE
 				ST_Intersects(h.the_geom, i.the_geom)
 			AND
@@ -187,11 +187,11 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 			r.ofa_year,
 			r.ofa_month,
 			m.sa_code,
-			mn_code,
-			dc_code,
-			pr_code,
-			pop_size,
-			lz_code,
+			m.mn_code,
+			m.dc_code,
+			m.pr_code,
+			m.pop_size,
+			m.lz_code,
 			'drought' AS lz_affected
 		FROM
 			(
@@ -351,15 +351,15 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	)
 				-- The areas that do not intersect
 		SELECT
-			the_geom,
+			h.the_geom,
 			r.ofa_year,
 			r.ofa_month,
-			sa_code,
-			mn_code,
-			dc_code,
-			pr_code,
-			pop_size,
-			lz_code,
+			h.sa_code,
+			h.mn_code,
+			h.dc_code,
+			h.pr_code,
+			h.pop_size,
+			h.lz_code,
 			'normal' AS lz_affected
 		FROM
 			(
@@ -410,10 +410,83 @@ COMMIT;
 
 -- Present a count of all change SAs (can be checked against original number)
 SELECT
-		count(sa_code),
+	1 AS num,
+	ofa_month,
+	ofa_year,
+	count(sa_code) AS num_sas,
+	lz_affected AS lz_affected
+FROM
+	zaf.demog_sas_ofa
+WHERE
+WHERE
+ 		ofa_year = (
+			SELECT
+				CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y	END AS ofa_year
+				FROM (
+					SELECT
+						p.y,
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
+	AND
+		ofa_month = (
+			SELECT
+				CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+				FROM (
+					SELECT
+						p.y,
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
+GROUP BY
 		lz_affected
-	FROM
-		zaf.demog_sas_ofa
-	GROUP BY
-		lz_affected
+UNION SELECT
+	2 AS num,
+	ofa_month,
+	ofa_year,
+	count(sa_code) AS num_sas,
+	'TOTAL' AS lz_affected
+WHERE
+WHERE
+ 		ofa_year = (
+			SELECT
+				CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y	END AS ofa_year
+				FROM (
+					SELECT
+						p.y,
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
+	AND
+		ofa_month = (
+			SELECT
+				CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+				FROM (
+					SELECT
+						p.y,
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
+ORDER BY
+	num
 ;
