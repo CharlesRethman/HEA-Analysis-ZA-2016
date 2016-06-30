@@ -94,7 +94,7 @@ INSERT INTO zaf.t2 (
         AND
           prov_code NOTNULL
         AND (
-            zaf.landuse_agricregions."type" = 'Grains'
+            zaf.landuse_agricregions."type" = 'Grains Comm'
 --          OR
 --            zaf.landuse_agricregions."type" = 'Subsistence'
         )
