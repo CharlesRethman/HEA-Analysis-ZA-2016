@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS zaf.t4;
 
 DROP INDEX IF EXISTS zaf.vci_16_01_buffer_gidx;
 DROP INDEX IF EXISTS zaf.landuse_agricregions_gidx;
-DROP INDEX IF EXISTS zaf.t2_gidx;
+DROP INDEX IF EXISTS zaf.t2_the_geom_gidx;
 DROP INDEX IF EXISTS zaf.t3_prov_code_idx;
 --DROP INDEX IF EXISTS zaf.prob_hazard_gidx;
 
@@ -106,13 +106,13 @@ INSERT INTO zaf.t4 (
          ofa_month
 ;
 
-INSERT INTO zaf.crop_hazard (
+INSERT INTO zaf.prob_hazard (
 	the_geom,
    ofa_year,
    ofa_month
 )
    SELECT
-      ST_Multi(ST_Dump(the_geom).geom) AS the_geom,
+      ST_Multi((ST_Dump(the_geom)).geom) AS the_geom,
       ofa_year,
       ofa_month
    FROM
@@ -120,7 +120,7 @@ INSERT INTO zaf.crop_hazard (
 ;
 
 
-REINDEX INDEX prob_hazard_the_geom_gidx;
+REINDEX INDEX zaf.prob_hazard_the_geom_gidx;
 
 CREATE TABLE zaf.t2 (
     gid SERIAL PRIMARY KEY,
@@ -158,7 +158,7 @@ INSERT INTO zaf.t2 (
         )
 ;
 
-CREATE INDEX t2_gidx ON zaf.t2 USING GIST(the_geom);
+CREATE INDEX t2_the_geom_gidx ON zaf.t2 USING GIST(the_geom);
 
 CREATE TABLE ZAF.t3 (
   prov_code INTEGER PRIMARY KEY,
@@ -290,8 +290,8 @@ INSERT INTO zaf.prob_crops (
             'normal' AS hazard,
             sum(ST_Area(g.the_geom)) AS prov_area
          FROM
-            zaf.t4 AS f
-            zaf.t2 AS g,
+            zaf.t4 AS f,
+            zaf.t2 AS g
          WHERE
                ST_Intersects(f.the_geom, g.the_geom)
             AND
@@ -435,7 +435,7 @@ COMMIT;
 
 
 
-DROP INDEX IF EXISTS zaf.t2_gidx;
+DROP INDEX IF EXISTS zaf.t2_the_geon_gidx;
 DROP INDEX IF EXISTS zaf.t3_prov_code_idx;
 DROP TABLE IF EXISTS zaf.t2;
 DROP TABLE IF EXISTS zaf.t3;

@@ -10,13 +10,13 @@
 
 LISTEN warning_notices;
 
-NOTIFY warning_notices, E'\n\nThis query will only work if you have specified an analysis variable switch using the syntax:\n\n-v analysis=M-YYYY\n\nwhere M is a one- or two-digit number representing the month of analysis (1 to 12) and YYYY\nis a four-digit number representing the year of analysis.\n\n\n';
+NOTIFY warning_notices, E'\n\nThis query will only work if you have specified a switch on the command line for the\nanalysis variable using the syntax:\n\n-v analysis=M-YYYY\n\nwhere M is a one- or two-digit number representing the month of analysis (1 to 12) and YYYY\nis a four-digit number representing the year of analysis.\n\n\n';
 
 -- Indices, table creation and preparation transaction
 BEGIN;
 
 --Drop indices to so they can be recreated
-DROP INDEX IF EXISTS zaf.prob_hazard_the_geom_gidx;
+--DROP INDEX IF EXISTS zaf.prob_hazard_the_geom_gidx;
 
 DROP INDEX IF EXISTS zaf.demog_sas_the_geom_gidx;
 
@@ -29,8 +29,6 @@ DROP INDEX IF EXISTS zaf.t1_the_geom_gidx;
 DROP INDEX IF EXISTS zaf.t1_sa_code_idx;
 
 -- Create indices if they do not exist
-CREATE INDEX prob_hazard_the_geom_gidx ON zaf.prob_hazard USING GIST (the_geom);
-
 CREATE INDEX demog_sas_the_geom_gidx ON zaf.demog_sas USING GIST (the_geom);
 
 CREATE INDEX demog_sas_sa_code_idx ON zaf.demog_sas USING btree (sa_code);
@@ -61,6 +59,9 @@ CREATE TABLE IF NOT EXISTS zaf.demog_sas_ofa (
 	lz_affected varchar(30)
 )
 ;
+
+REINDEX INDEX zaf.prob_hazard_the_geom_gidx;
+
 
 -- Done.
 COMMIT;
@@ -114,7 +115,6 @@ CREATE INDEX t1_the_geom_gidx ON zaf.t1 USING GIST (the_geom);
 
 CREATE INDEX t1_sa_code_idx ON zaf.t1 USING btree (sa_code);
 
-
 -- Remove all previous records for the current analysis specified in the :analysis variable (-v
 -- analysis=M-YYYY in the command line where M is a number (1 to 12) representing the month of
 -- analysis and YYYY is a four-digit number (1980 to current year) representing the year of
@@ -158,7 +158,7 @@ WHERE
 ;
 
 
-SELECT 'Adding in the SAS that are completely contained within the hazard area ...'::text;
+SELECT 'Adding in the SAs that are completely contained within the hazard area ...'::text;
 
 EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
@@ -206,10 +206,14 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 			ST_Intersects(f.the_geom, g.the_geom)
 		AND
 			ST_Within(f.the_geom, g.the_geom)
+		AND
+			g.ofa_year = r.ofa_year
+		AND
+			g.ofa_month = r.ofa_month
 ;
 
 
-SELECT 'Add in the EAS that have more than one-third of their area intersecting with the hazard area ...'::text;
+SELECT 'Add in the SAs that have more than one-third of their area intersecting with the hazard area ...'::text;
 
 EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
@@ -277,10 +281,14 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 			k.sa_code = j.sa_code
 		AND
 			3 * ST_Area(j.the_geom) > ST_Area(k.the_geom)
+		AND
+			j.ofa_year = r.ofa_year
+		AND
+			j.ofa_month = r.ofa_month
 ;
 
 
-SELECT 'Add in the EAS that less than one-third of their area intersecting with the hazard area ...'::text;
+SELECT 'Add in the SAs that less than one-third of their area intersecting with the hazard area ...'::text;
 
 EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
@@ -346,10 +354,14 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 			k.sa_code = j.sa_code
 		AND
 			ST_Area(k.the_geom) >= 3 * ST_Area(j.the_geom)
+		AND
+			j.ofa_year = r.ofa_year
+		AND
+			j.ofa_month = r.ofa_month
 ;
 
 
-SELECT 'Add in the EAS that do NOT intersect at all with the hazard area ...'::text;
+SELECT 'Add in the SAs that do NOT intersect at all with the hazard area ...'::text;
 
 EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
@@ -400,7 +412,11 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 				zaf.demog_sas AS h,
 				zaf.prob_hazard AS i
 			WHERE
-				ST_Intersects(h.the_geom, i.the_geom)
+					ST_Intersects(h.the_geom, i.the_geom)
+				AND
+					i.ofa_year = r.ofa_year
+				AND
+					i.ofa_month = r.ofa_month
 		)
 ;
 
