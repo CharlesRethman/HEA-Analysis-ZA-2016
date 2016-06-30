@@ -4,23 +4,60 @@
  */
 
 DROP TABLE IF EXISTS zaf.prob_crops;
-DROP TABLE IF EXISTS zaf.prob_hazard;
+--DROP TABLE IF EXISTS zaf.prob_hazard;
 DROP TABLE IF EXISTS zaf.t2;
 DROP TABLE IF EXISTS zaf.t3;
 
 DROP INDEX IF EXISTS zaf.vci_16_01_buffer_gidx;
 DROP INDEX IF EXISTS zaf.landuse_agricregions_gidx;
-DROP INDEX IF EXISTS zaf.prob_hazard_gidx;
+DROP INDEX IF EXISTS zaf.t2_gidx;
+DROP INDEX IF EXISTS zaf.t3_prov_code_idx;
+--DROP INDEX IF EXISTS zaf.prob_hazard_gidx;
 
 CREATE INDEX vci_16_01_buffer_gidx ON zaf.vci_16_01_buffer USING GIST(the_geom);
 CREATE INDEX landuse_agricregions_gidx ON zaf.landuse_agricregions USING GIST(the_geom);
 
-CREATE TABLE zaf.prob_hazard (
+CREATE TABLE IF NOT EXISTS zaf.prob_hazard (
     id SERIAL PRIMARY KEY,
     the_geom GEOMETRY(MULTIPOLYGON, 201100),
     ofa_year INTEGER,
     ofa_month INTEGER
   )
+;
+
+-- Remove all previous records for the current analysis
+DELETE FROM
+	zaf.prob_hazard
+WHERE
+ 		ofa_year = (
+			SELECT
+				CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y	END AS ofa_year
+				FROM (
+					SELECT
+						p.y,
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
+	AND
+		ofa_month = (
+			SELECT
+				CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+				FROM (
+					SELECT
+						p.y,
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
 ;
 
 
@@ -62,7 +99,7 @@ INSERT INTO zaf.prob_hazard (
 ;
 
 
-CREATE INDEX prob_hazard_gidx ON zaf.prob_hazard USING GIST(the_geom);
+REINDEX INDEX prob_hazard_gidx;
 
 CREATE TABLE zaf.t2 (
     gid SERIAL PRIMARY KEY,
@@ -94,7 +131,7 @@ INSERT INTO zaf.t2 (
         AND
           prov_code NOTNULL
         AND (
-            zaf.landuse_agricregions."type" = 'Grains Comm'
+            zaf.landuse_agricregions."type" = 'Grains'
 --          OR
 --            zaf.landuse_agricregions."type" = 'Subsistence'
         )
@@ -122,6 +159,8 @@ INSERT INTO zaf.t3 (
     (8, 0.66),
     (9, 1.13)
 ;
+
+CREATE INDEX t3_prov_code_idx ON zaf.t3 USING btree (prov_code);
 
 BEGIN;
 
@@ -427,6 +466,7 @@ COMMIT;
 
 
 DROP INDEX IF EXISTS zaf.t2_gidx;
+DROP INDEX IF EXISTS zaf.t3_prov_code_idx;
 DROP TABLE IF EXISTS zaf.t2;
 DROP TABLE IF EXISTS zaf.t3;
 
