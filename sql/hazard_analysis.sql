@@ -293,7 +293,7 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	-- The areas crossing, with more than one-third of the intesecting area
 	-- WITHIN
 	SELECT
-		f.the_geom AS the_geom,
+		f.the_geom,
 		g.ofa_year,
 		g.ofa_month,
 		f.sa_code,
@@ -307,9 +307,19 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 		zaf.t1 AS f,
 		zaf.t2 AS g
 	WHERE
-			f.sa_code = g.sa_code
-		AND
-			3 * ST_Area(g.the_geom) > ST_Area(f.the_geom)
+		f.sa_code = g.sa_code
+	GROUP BY
+		f.the_geom,
+		g.ofa_year,
+		g.ofa_month,
+		f.sa_code,
+		f.mn_code,
+		f.dc_code,
+		f.pr_code,
+		f.pop_size,
+		f.lz_code,
+		lz_affected
+	HAVING 3 * sum(ST_Area(g.the_geom)) > ST_Area(f.the_geom)
 ;
 
 
@@ -342,9 +352,19 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 		zaf.t1 AS f,
 		zaf.t2 AS g
 	WHERE
-			g.sa_code = f.sa_code
-		AND
-			ST_Area(g.the_geom) >= 3 * ST_Area(f.the_geom)
+		g.sa_code = f.sa_code
+	GROUP BY
+		f.the_geom,
+		g.ofa_year,
+		g.ofa_month,
+		f.sa_code,
+		f.mn_code,
+		f.dc_code,
+		f.pr_code,
+		f.pop_size,
+		f.lz_code,
+		lz_affected
+	HAVING sum(ST_Area(g.the_geom)) >= 3 * ST_Area(f.the_geom)
 ;
 
 
@@ -364,15 +384,15 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 )
 	-- The areas that do not intersect
 	SELECT
-		h.the_geom,
+		f.the_geom,
 		r.ofa_year,
 		r.ofa_month,
-		h.sa_code,
-		h.mn_code,
-		h.dc_code,
-		h.pr_code,
-		h.pop_size,
-		h.lz_code,
+		f.sa_code,
+		f.mn_code,
+		f.dc_code,
+		f.pr_code,
+		f.pop_size,
+		f.lz_code,
 		'normal' AS lz_affected
 	FROM
 		zaf.t1 AS f,
@@ -422,7 +442,7 @@ COMMIT;
 
 
 
-NOTIFY warning_notices, E'\n\nDone.\nOutputting a count of affected rows in table \"zaf.demog_sas_ofa\"\n\n\n'
+NOTIFY warning_notices, E'\n\nDone.\nOutputting a count of affected rows in table \"zaf.demog_sas_ofa\"\n\n\n';
 
 
 -- Present a count of all changed SAs (can be checked against original number of SAs) for the
@@ -466,6 +486,9 @@ WHERE
 			) AS q
 		)
 GROUP BY
+	num,
+	ofa_month,
+	ofa_year,
 	lz_affected
 UNION SELECT
 	2 AS num,
@@ -503,6 +526,11 @@ WHERE
 				) AS p
 			) AS q
 		)
+GROUP BY
+	num,
+	ofa_month,
+	ofa_year,
+	lz_affected
 ORDER BY
 	num
 ;
