@@ -69,9 +69,35 @@ BEGIN;
 DELETE FROM
 	zaf.demog_sas_ofa
 WHERE
- 		ofa_year = EXTRACT(year FROM current_date)
+ 		ofa_year = (
+			SELECT
+				CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y	END AS ofa_year
+				FROM (
+					SELECT
+						p.y,
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
 	AND
-		ofa_month = EXTRACT(month FROM current_date)
+		ofa_month = (
+			SELECT
+				CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+				FROM (
+					SELECT
+						p.y,
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
 ;
 
 
@@ -92,14 +118,14 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 		-- The SAs entirely within the affected area
 		SELECT
 			h.the_geom AS the_geom,
-			EXTRACT(year FROM current_date) AS ofa_year,
-			EXTRACT(month FROM current_date) AS ofa_month,
+			r.ofa_year,
+			r.ofa_month,
 			h.sa_code,
-			mn_code,
-			dc_code,
-			pr_code,
-			pop_size,
-			lz_code,
+			h.mn_code,
+			h.dc_code,
+			h.pr_code,
+			h.pop_size,
+			f.lz_code,
 			'drought' AS lz_affected
 		FROM
 			(
@@ -117,7 +143,22 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 				WHERE
 						f.sa_code = g.sa_code
 				) AS h,
-			zaf.prob_hazard AS i
+			zaf.prob_hazard AS i,
+			(
+				SELECT
+            	CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y END AS ofa_year,
+            	CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+         	FROM (
+            	SELECT
+               	p.y,
+               	CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+            	FROM (
+               	SELECT
+                  	substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+                  	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+               ) AS p
+            ) AS q
+         ) AS l
 		WHERE
 				ST_Intersects(h.the_geom, i.the_geom)
 			AND
@@ -143,8 +184,8 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 		-- WITHIN
 		SELECT
 			m.the_geom AS the_geom,
-			EXTRACT(year FROM current_date) AS ofa_year,
-			EXTRACT(month FROM current_date) AS ofa_month,
+			r.ofa_year,
+			r.ofa_month,
 			m.sa_code,
 			mn_code,
 			dc_code,
@@ -171,8 +212,8 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 							zaf.prob_hazard AS i
 						WHERE
 							ST_Within(h.the_geom, i.the_geom)
-						)
-				) AS j,
+					)
+			) AS j,
 			(
 				SELECT
 					the_geom,
@@ -187,7 +228,22 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 					zaf.tbl_pop_agegender_12y AS l
 				WHERE
 					k.sa_code = l.sa_code
-				) AS m
+			) AS m,
+			(
+				SELECT
+            	CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y END AS ofa_year,
+	            CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+	         FROM (
+	         	SELECT
+	            	p.y,
+	            	CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+            	FROM (
+	               SELECT
+	               	substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+	               	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+	            ) AS p
+	         ) AS q
+	      ) AS r
 		WHERE
 				m.sa_code = j.sa_code
 			AND
@@ -211,14 +267,14 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 	)
 		SELECT
 			m.the_geom AS the_geom,
-			EXTRACT(year FROM current_date) AS ofa_year,
-			EXTRACT(month FROM current_date) AS ofa_month,
+			r.ofa_year,
+			r.ofa_month,
 			m.sa_code,
-			mn_code,
-			dc_code,
-			pr_code,
-			pop_size,
-			lz_code,
+			m.mn_code,
+			m.dc_code,
+			m.pr_code,
+			m.pop_size,
+			m.lz_code,
 			'normal' AS lz_affected
 		FROM
 			(
@@ -239,8 +295,8 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 								zaf.prob_hazard AS i
 							WHERE
 								ST_Within(h.the_geom, i.the_geom)
-							)
-				) AS j,
+						)
+			) AS j,
 			(
 				SELECT
 					gid,
@@ -256,7 +312,22 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 					zaf.tbl_pop_agegender_12y AS l
 				WHERE
 					k.sa_code = l.sa_code
-				) AS m
+			) AS m,
+			(
+				SELECT
+            	CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y END AS ofa_year,
+	            CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+	         FROM (
+	         	SELECT
+	            	p.y,
+	            	CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+            	FROM (
+	               SELECT
+	               	substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+	               	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+	            ) AS p
+	         ) AS q
+	      ) AS r
 		WHERE
 				m.sa_code = j.sa_code
 			AND
@@ -281,8 +352,8 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 				-- The areas that do not intersect
 		SELECT
 			the_geom,
-			EXTRACT(year FROM current_date) AS ofa_year,
-			EXTRACT(month FROM current_date) AS ofa_month,
+			r.ofa_year,
+			r.ofa_month,
 			sa_code,
 			mn_code,
 			dc_code,
@@ -306,7 +377,22 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 					zaf.tbl_pop_agegender_12y AS g
 				WHERE
 					f.sa_code = g.sa_code
-				) AS h
+			) AS h,
+			(
+				SELECT
+            	CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y END AS ofa_year,
+	            CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+	         FROM (
+	         	SELECT
+	            	p.y,
+	            	CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+            	FROM (
+	               SELECT
+	               	substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+	               	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+	            ) AS p
+	         ) AS q
+	      ) AS r
 		WHERE
 			h.gid NOT IN (
 				SELECT

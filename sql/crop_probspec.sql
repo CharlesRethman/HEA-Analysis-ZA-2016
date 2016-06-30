@@ -8,39 +8,59 @@ DROP TABLE IF EXISTS zaf.prob_hazard;
 DROP TABLE IF EXISTS zaf.t2;
 DROP TABLE IF EXISTS zaf.t3;
 
-DROP INDEX IF EXISTS zaf.vci_1601_buffer_gidx;
+DROP INDEX IF EXISTS zaf.vci_16_01_buffer_gidx;
 DROP INDEX IF EXISTS zaf.landuse_agricregions_gidx;
 DROP INDEX IF EXISTS zaf.prob_hazard_gidx;
 
-CREATE INDEX vci_1601_buffer_gidx ON zaf.vci_1601_buffer USING GIST(the_geom);
+CREATE INDEX vci_16_01_buffer_gidx ON zaf.vci_16_01_buffer USING GIST(the_geom);
 CREATE INDEX landuse_agricregions_gidx ON zaf.landuse_agricregions USING GIST(the_geom);
 
 CREATE TABLE zaf.prob_hazard (
     id SERIAL PRIMARY KEY,
     the_geom GEOMETRY(MULTIPOLYGON, 201100),
-    "year" INTEGER,
-    "month" INTEGER
+    ofa_year INTEGER,
+    ofa_month INTEGER
   )
 ;
 
+
 INSERT INTO zaf.prob_hazard (
-    the_geom,
-    "year",
-    "month"
-  )
-    SELECT
-        ST_Multi(ST_Union(the_geom)) AS the_geom,
-        EXTRACT(YEAR FROM current_date) AS "year",
-        EXTRACT(MONTH FROM current_date) AS "month"
+   the_geom,
+   ofa_year,
+   ofa_month
+   )
+      SELECT
+         ST_Multi(ST_Union(the_geom)) AS the_geom,
+         r.ofa_year,
+         r.ofa_month
       FROM
-        zaf.vci_1601_buffer
+         zaf.vci_16_01_buffer,
+         (
+            SELECT
+               CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y END AS ofa_year,
+               CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+            FROM (
+               SELECT
+                  p.y,
+                  CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+               FROM (
+                  SELECT
+                     substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+                     substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+               ) AS p
+            ) AS g
+         ) AS r
       WHERE
-          vci = '< 0.15'
-        OR
-          vci = '0.25 - 0.35'
-        OR
-          vci = '0.15 - 0.25'
+            vci = '< 0.15'
+         OR
+            vci = '0.25 - 0.35'
+         OR
+            vci = '0.15 - 0.25'
+      GROUP BY
+         ofa_year,
+         ofa_month
 ;
+
 
 CREATE INDEX prob_hazard_gidx ON zaf.prob_hazard USING GIST(the_geom);
 
