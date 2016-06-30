@@ -16,9 +16,9 @@ NOTIFY warning_notices, E'\n\nThis query will only work if you have specified an
 BEGIN;
 
 --Drop indices to so they can be recreated
-DROP INDEX IF EXISTS zaf.prob_hazard_gidx;
+DROP INDEX IF EXISTS zaf.prob_hazard_the_geom_gidx;
 
-DROP INDEX IF EXISTS zaf.demog_sas_gidx;
+DROP INDEX IF EXISTS zaf.demog_sas_the_geom_gidx;
 
 DROP INDEX IF EXISTS zaf.demog_sas_sa_code_idx;
 
@@ -84,6 +84,7 @@ CREATE TABLE zaf.t1 (
 	pop_size integer,
 	lz_code integer
 )
+;
 
 INSERT INTO zaf.t1 (
 	the_geom,
@@ -110,7 +111,9 @@ WHERE
 ;
 
 CREATE INDEX t1_the_geom_gidx ON zaf.t1 USING GIST (the_geom);
+
 CREATE INDEX t1_sa_code_idx ON zaf.t1 USING btree (sa_code);
+
 
 -- Remove all previous records for the current analysis specified in the :analysis variable (-v
 -- analysis=M-YYYY in the command line where M is a number (1 to 12) representing the month of
@@ -401,9 +404,9 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 		)
 ;
 
-DROP INDEX IF EXISTS t1_the_geom_gidx;
+DROP INDEX IF EXISTS zaf.t1_the_geom_gidx;
 
-DROP INDEX IF EXISTS t1_sa_code_idx;
+DROP INDEX IF EXISTS zaf.t1_sa_code_idx;
 
 DROP TABLE IF EXISTS zaf.t1;
 
