@@ -48,7 +48,7 @@ INSERT INTO zaf.prob_hazard (
                      substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
                      substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
                ) AS p
-            ) AS g
+            ) AS q
          ) AS r
       WHERE
             vci = '< 0.15'
@@ -130,8 +130,8 @@ BEGIN;
 CREATE TABLE zaf.prob_crops (
     id SERIAL PRIMARY KEY,
     the_geom GEOMETRY(MULTIPOLYGON, 201100),
-    "year" INTEGER,
-    "month" INTEGER,
+    ofa_year INTEGER,
+    ofa_month INTEGER,
     ag_type VARCHAR(30),
     prov_code INTEGER,
     cec_probspec NUMERIC,
@@ -146,8 +146,8 @@ CREATE TABLE zaf.prob_crops (
 
 INSERT INTO zaf.prob_crops (
     the_geom,
-    "year",
-    "month",
+    ofa_year,
+    ofa_month,
     ag_type,
     prov_code,
     cec_probspec,
@@ -158,8 +158,8 @@ INSERT INTO zaf.prob_crops (
   )
     SELECT
         the_geom,
-        "year",
-        "month",
+        ofa_year,
+        ofa_month,
         ag_type,
         f.prov_code,
         cec,
@@ -171,8 +171,8 @@ INSERT INTO zaf.prob_crops (
         (
           SELECT
               ST_Multi(ST_Union(ST_Intersection(zaf.t2.the_geom, zaf.prob_hazard.the_geom))) AS the_geom,
-              "year",
-              "month",
+              ofa_year,
+              ofa_month,
               ag_type,
               prov_code,
               'drought' AS hazard,
@@ -185,8 +185,8 @@ INSERT INTO zaf.prob_crops (
               AND
                 NOT ST_IsEmpty(ST_Buffer(ST_Intersection(zaf.t2.the_geom, zaf.prob_hazard.the_geom),0.0))
             GROUP BY
-              "year",
-              "month",
+              ofa_year,
+              ofa_month,
               ag_type,
               prov_code,
               hazard
@@ -200,8 +200,8 @@ INSERT INTO zaf.prob_crops (
 
 INSERT INTO zaf.prob_crops (
     the_geom,
-    "year",
-    "month",
+    ofa_year,
+    ofa_month,
     ag_type,
     prov_code,
     cec_probspec,
@@ -212,8 +212,8 @@ INSERT INTO zaf.prob_crops (
   )
     SELECT
         the_geom,
-        "year",
-        "month",
+        ofa_year,
+        ofa_month,
         ag_type,
         f.prov_code,
         cec,
@@ -225,11 +225,11 @@ INSERT INTO zaf.prob_crops (
         (
           SELECT
               ST_Multi(ST_Union(ST_Difference(zaf.t2.the_geom, zaf.prob_hazard.the_geom))) AS the_geom,
-              "year",
-              "month",
+              ofa_year,
+              ofa_month,
               ag_type,
               prov_code,
-              'less dry' AS hazard,
+              'normal' AS hazard,
               sum(ST_Area(zaf.t2.the_geom)) AS prov_area
             FROM
               zaf.t2,
@@ -239,8 +239,8 @@ INSERT INTO zaf.prob_crops (
               AND
                 NOT ST_IsEmpty(ST_Buffer(ST_Intersection(zaf.t2.the_geom, zaf.prob_hazard.the_geom),0.0))
             GROUP BY
-              "year",
-              "month",
+              ofa_year,
+              ofa_month,
               ag_type,
               prov_code,
               hazard
@@ -252,8 +252,8 @@ INSERT INTO zaf.prob_crops (
 /*
 INSERT INTO zaf.prob_crops (
     the_geom,
-    "year",
-    "month",
+    ofa_year,
+    ofa_month,
     ag_type,
     prov_code,
     cec_probspec,
@@ -262,8 +262,8 @@ INSERT INTO zaf.prob_crops (
   )
     SELECT
         the_geom,
-        "year",
-        "month",
+        ofa_year,
+        ofa_month,
         ag_type,
         f.prov_code,
         cec,
@@ -273,11 +273,11 @@ INSERT INTO zaf.prob_crops (
         (
           SELECT
               the_geom,
-              EXTRACT (YEAR FROM current_date) AS "year",
-              EXTRACT (MONTH FROM current_date) AS "month",
+              EXTRACT (YEAR FROM current_date) AS ofa_year,
+              EXTRACT (MONTH FROM current_date) AS ofa_month,
               ag_type,
               prov_code,
-              'less dry' AS hazard,
+              'normal' AS hazard,
               ST_Area(the_geom) AS prov_area
             FROM
               zaf.t2
@@ -303,8 +303,8 @@ INSERT INTO zaf.prob_crops (
 
 INSERT INTO zaf.prob_crops (
   the_geom,
-  "year",
-  "month",
+  ofa_year,
+  ofa_month,
   ag_type,
   prov_code,
   cec_probspec,
@@ -315,8 +315,8 @@ INSERT INTO zaf.prob_crops (
   )
   SELECT
       the_geom,
-      "year",
-      "month",
+      ofa_year,
+      ofa_month,
       ag_type,
       prov_code,
       cec,
@@ -328,8 +328,8 @@ INSERT INTO zaf.prob_crops (
       (
         SELECT
             ST_Multi(ST_Union(ST_Intersection(f.the_geom, zaf.prob_hazard.the_geom))) AS the_geom,
-            "year",
-            "month",
+            ofa_year,
+            ofa_month,
             ag_type,
             prov_code,
             0.62 AS cec,
@@ -352,8 +352,8 @@ INSERT INTO zaf.prob_crops (
             AND
               NOT ST_IsEmpty(ST_Buffer(ST_Intersection(f.the_geom, zaf.prob_hazard.the_geom),0.0))
           GROUP BY
-            "year",
-            "month",
+            ofa_year,
+            ofa_month,
             ag_type,
             prov_code,
             cec,
@@ -364,8 +364,8 @@ INSERT INTO zaf.prob_crops (
 
 INSERT INTO zaf.prob_crops (
   the_geom,
-  "year",
-  "month",
+  ofa_year,
+  ofa_month,
   ag_type,
   prov_code,
   cec_probspec,
@@ -376,8 +376,8 @@ INSERT INTO zaf.prob_crops (
   )
   SELECT
       the_geom,
-      "year",
-      "month",
+      ofa_year,
+      ofa_month,
       ag_type,
       prov_code,
       cec,
@@ -389,12 +389,12 @@ INSERT INTO zaf.prob_crops (
       (
         SELECT
             ST_Multi(ST_Union(ST_Difference(f.the_geom, zaf.prob_hazard.the_geom))) AS the_geom,
-            "year",
-            "month",
+            ofa_year,
+            ofa_month,
             ag_type,
             prov_code,
             0.62 AS cec,
-            'less dry' AS hazard,
+            'normal' AS hazard,
             sum(ST_Area(f.the_geom)) AS type_area
           FROM
             zaf.prob_hazard,
@@ -413,8 +413,8 @@ INSERT INTO zaf.prob_crops (
             AND
               NOT ST_IsEmpty(ST_Buffer(ST_Intersection(f.the_geom, zaf.prob_hazard.the_geom),0.0))
           GROUP BY
-            "year",
-            "month",
+            ofa_year,
+            ofa_month,
             ag_type,
             prov_code,
             cec,
@@ -432,8 +432,8 @@ DROP TABLE IF EXISTS zaf.t3;
 
 
 SELECT
-    "year",
-    "month",
+    ofa_year,
+    ofa_month,
     province,
     ag_type,
     hazard,
