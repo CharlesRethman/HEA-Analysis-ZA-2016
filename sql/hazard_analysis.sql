@@ -127,7 +127,8 @@ CREATE TABLE zaf.t2 (
 )
 ;
 
-EXPLAIN ANALYZE INSERT INTO zaf.t2 (
+--EXPLAIN ANALYZE
+INSERT INTO zaf.t2 (
 	the_geom,
 	sa_code,
 	ofa_year,
@@ -223,7 +224,8 @@ WHERE
 
 SELECT 'Adding in the SAs that are completely contained within the hazard area ...'::text;
 
-EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
+--EXPLAIN ANALYZE
+INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -278,7 +280,8 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 
 SELECT 'Add in the SAs that have more than one-third of their area intersecting with the hazard area ...'::text;
 
-EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
+--EXPLAIN ANALYZE
+INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -325,7 +328,8 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 
 SELECT 'Add in the SAs that less than one-third of their area intersecting with the hazard area ...'::text;
 
-EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
+--EXPLAIN ANALYZE
+INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	ofa_year,
 	ofa_month,
@@ -370,7 +374,8 @@ EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
 
 SELECT 'Add in the SAs that do NOT intersect at all with the hazard area ...'::text;
 
-EXPLAIN ANALYZE INSERT INTO zaf.demog_sas_ofa (
+EXPLAIN ANALYZE
+INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	ofa_year,
 	ofa_month,
