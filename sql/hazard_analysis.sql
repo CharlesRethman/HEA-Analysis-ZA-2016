@@ -116,7 +116,7 @@ WHERE
 ;
 
 
-SELECT E'Making temporary tables (t1 and t2) and inices for executing the main part of \nthe query \n'::text AS "NOTICE";
+SELECT E'Making temporary tables (t1 and t2) and indices for executing the main part of \nthe query \n'::text AS "NOTICE";
 
 
 -- Create a temporary table with indices that combines the SAs and populations, to speed up the
@@ -171,7 +171,7 @@ CREATE TABLE zaf.t2 (
 )
 ;
 
-EXPLAIN ANALYZE
+--EXPLAIN ANALYZE
 INSERT INTO zaf.t2 (
 	the_geom,
 	sa_code,
@@ -297,7 +297,7 @@ INSERT INTO zaf.demog_sas_ofa (
 ;
 
 
-SELECT E'Add in the SAs that have more than one-third of their area intersecting with \nthe hazard area ... \n'::text AS "NOTICE";
+SELECT E'Add in the SAs that have one-third or more of their area intersecting with \nthe hazard area ... \n'::text AS "NOTICE";
 
 --EXPLAIN ANALYZE
 INSERT INTO zaf.demog_sas_ofa (
@@ -341,7 +341,7 @@ INSERT INTO zaf.demog_sas_ofa (
 		f.pop_size,
 		f.lz_code,
 		lz_affected
-	HAVING 3 * sum(ST_Area(g.the_geom)) > ST_Area(f.the_geom)
+	HAVING 3 * sum(ST_Area(g.the_geom)) >= ST_Area(f.the_geom)
 ;
 
 
@@ -572,5 +572,5 @@ GROUP BY
 	ofa_month,
 	ofa_year
 ORDER BY
-	ofa_year desc, ofa_month desc, affected
+	ofa_year desc, ofa_month desc, affected desc
 ;
