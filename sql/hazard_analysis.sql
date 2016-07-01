@@ -8,7 +8,7 @@
  *
  */
 
-SELECT E'This query will only work if you have specified a switch on the command line \nfor the analysis variable using the syntax:\n\n-v analysis=M-YYYY\n\nwhere M is a one- or two-digit number representing the month of analysis (1 to \n12) and YYYY is a four-digit number representing the year of analysis.\n'::text AS "NOTICE";
+SELECT E'This query will only work if you have specified two switches on the command \nline for the \'analysis\' and \'hazard\' variables, using the syntax:\n\n-v analysis=M-YYYY -v hazard=HAZARD_TYPE\n\nwhere M is a one- or two-digit number representing the month of analysis (1 to \n12), YYYY is a four-digit number representing the year of analysis and \nHAZARD_TYPE is a one-word (no whitespace) description of the hazard.\n'::text AS "NOTICE";
 
 -- Indices, table creation and preparation transaction
 BEGIN;
@@ -73,7 +73,7 @@ SELECT E'Adding in the SAs. This takes quite a while. If any part fails, the ent
 BEGIN;
 
 
--- Remove all previous records for the current analysis specified in the :analysis variable (-v
+-- Remove all previous records for the analysis specified in the :analysis variable (-v
 -- analysis=M-YYYY in the command line where M is a number (1 to 12) representing the month of
 -- analysis and YYYY is a four-digit number (1980 to current year) representing the year of
 -- analysis)
@@ -81,8 +81,9 @@ DELETE FROM
 	zaf.demog_sas_ofa
 WHERE
  		ofa_year = (
+			-- Check that the month and year are not before 01-01-1980 or after the curent date. If
+			-- so, force to the current month and year.
 			SELECT
-				--Check that 01-month-year is not before 01-01-1980 or after the curent date. If so, force to the current month and year.
 				CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y	END AS ofa_year
 				FROM (
 					SELECT
@@ -90,9 +91,9 @@ WHERE
 						--make sure the value of the month number is 1..12 only.
 						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
 					FROM (
+						-- get the year, month values from the :analysis variable (TEXT) and coerces them
+						-- to INTEGERs.
 						SELECT
-							-- gets the year, month values from the :analysis variable (TEXT) and coerces
-							-- them to INTEGERs.
 							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
 							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
 					) AS p
@@ -100,13 +101,18 @@ WHERE
 		)
 	AND
 		ofa_month = (
+			-- Check that the month and year are not before 01-01-1980 or after the curent date. If
+			-- so, force to the current month and year.
 			SELECT
 				CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
 				FROM (
 					SELECT
 						p.y,
+						--make sure the value of the month number is 1..12 only.
 						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
 					FROM (
+						-- get the year, month values from the :analysis variable (TEXT) and coerces them
+						-- to INTEGERs.
 						SELECT
 							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
 							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
@@ -119,8 +125,8 @@ WHERE
 SELECT E'Making temporary tables (t1 and t2) and indices for executing the main part of \nthe query \n'::text AS "NOTICE";
 
 
--- Create a temporary table with indices that combines the SAs and populations, to speed up the
--- queries
+-- Create an populate temporary table that combines the SAs and populations, with indices to speed
+-- up the INSERT queries
 CREATE TABLE zaf.t1 (
 	gid serial primary key,
 	the_geom geometry(multipolygon, 201100),
@@ -162,6 +168,8 @@ CREATE INDEX t1_the_geom_gidx ON zaf.t1 USING GIST (the_geom);
 CREATE INDEX t1_sa_code_idx ON zaf.t1 USING btree (sa_code);
 
 
+-- Create and populate a temporary table to get the intersection all the SAs that are not entirely
+-- within the affected area (these will be SAs that are chopped smaller by the affected area).
 CREATE TABLE zaf.t2 (
 	gid serial primary key,
 	the_geom geometry(multipolygon, 201100),
@@ -267,7 +275,7 @@ INSERT INTO zaf.demog_sas_ofa (
 		f.pr_code,
 		f.pop_size,
 		f.lz_code,
-		'drought' AS lz_affected
+		:'hazard' AS lz_affected
 	FROM
 		zaf.t1 AS f,
 		zaf.prob_hazard AS g,
@@ -287,8 +295,6 @@ INSERT INTO zaf.demog_sas_ofa (
          ) AS q
       ) AS r
 	WHERE
---			ST_Intersects(f.the_geom, g.the_geom)
---		AND
 			ST_Within(f.the_geom, g.the_geom)
 		AND
 			g.ofa_year = r.ofa_year
@@ -324,7 +330,7 @@ INSERT INTO zaf.demog_sas_ofa (
 		f.pr_code,
 		f.pop_size,
 		f.lz_code,
-		'drought' AS lz_affected
+		:'hazard' AS lz_affected
 	FROM
 		zaf.t1 AS f,
 		zaf.t2 AS g

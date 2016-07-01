@@ -3,6 +3,10 @@
  * breaking down averages.
  */
 
+
+SELECT E'This query will only work if you have specified two switches on the command \nline for the \'analysis\' and \'hazard\' variables, using the syntax:\n\n-v analysis=M-YYYY -v hazard=HAZARD_TYPE\n\nwhere M is a one- or two-digit number representing the month of analysis (1 to \n12), YYYY is a four-digit number representing the year of analysis and \nHAZARD_TYPE is a one-word (no whitespace) description of the hazard.\n'::text AS "NOTICE";
+
+
 DROP TABLE IF EXISTS zaf.prob_crops;
 DROP TABLE IF EXISTS zaf.t2;
 DROP TABLE IF EXISTS zaf.t3;
@@ -234,7 +238,7 @@ INSERT INTO zaf.prob_crops (
             f.ofa_month,
             g.ag_type,
             g.prov_code,
-            'drought' AS hazard,
+            :'hazard' AS hazard,
             sum(ST_Area(g.the_geom)) AS prov_area
          FROM
             zaf.t4 AS f,
@@ -341,7 +345,7 @@ INSERT INTO zaf.prob_crops (
             g.ag_type,
             g.prov_code,
             0.62 AS cec,
-            'drought' AS hazard,
+            :'hazard' AS hazard,
             sum(ST_Area(g.the_geom)) AS type_area
          FROM
             zaf.t4 AS f,
