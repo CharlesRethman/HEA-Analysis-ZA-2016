@@ -15,7 +15,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="prob_crops20160601202737153" name="Prob_crops">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="prob_hazard20160601201333451" name="Intensive drought area">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="prob_hazard20160601201333451" name="Intensive drought area">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="landuse_agricregions20160601173909863" name="Landuse_agricregions">
@@ -32,7 +32,7 @@
         <property key="showFeatureCount" value="0"/>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="demog_sas_ofa20160605233445215" name="Demog_sas_ofa">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="demog_sas_ofa20160605233445215" name="Demog_sas_ofa">
       <customproperties>
         <property key="showFeatureCount" value="1"/>
       </customproperties>
@@ -54,10 +54,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>-715227.93509595980867743</xmin>
-      <ymin>-747448.98342482501175255</ymin>
-      <xmax>808425.75674909562803805</xmax>
-      <ymax>708808.77327599900308996</ymax>
+      <xmin>-664023.46770833316259086</xmin>
+      <ymin>-487657.28630208346294239</ymin>
+      <xmax>-387931.67708333319751546</xmax>
+      <ymax>-240594.11286458343965933</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -153,9 +153,9 @@
         <legendlayerfile isInOverview="0" layerid="prob_crops20160601202737153" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Intensive drought area" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Intensive drought area" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="prob_hazard20160601201333451" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="prob_hazard20160601201333451" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Landuse_agricregions" showFeatureCount="0">
@@ -178,9 +178,9 @@
         <legendlayerfile isInOverview="0" layerid="vw_demog_sas_fpl20160608131948221" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Demog_sas_ofa" showFeatureCount="1">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Demog_sas_ofa" showFeatureCount="1">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="demog_sas_ofa20160605233445215" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="demog_sas_ofa20160605233445215" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Provincial boundaries copy" showFeatureCount="0">
@@ -2201,9 +2201,9 @@ def my_form_open(dialog, layer, feature):
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>demog_sas_ofa20160605233445215</id>
-      <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=201100 type=MultiPolygon table="zaf"."demog_sas_ofa" (the_geom) sql=</datasource>
+      <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=201100 type=MultiPolygon table="zaf"."demog_sas_ofa" (the_geom) sql="ofa_year" =  2016 AND "ofa_month" = 4</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2484,7 +2484,7 @@ def my_form_open(dialog, layer, feature):
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
           <fontProperties description=".SF NS Text,13,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -3428,10 +3428,10 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="id">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="year">
+        <edittype widgetv2type="TextEdit" name="ofa_year">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="month">
+        <edittype widgetv2type="TextEdit" name="ofa_month">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="ag_type">
@@ -3552,10 +3552,10 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="id">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="year">
+        <edittype widgetv2type="TextEdit" name="ofa_year">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="month">
+        <edittype widgetv2type="TextEdit" name="ofa_month">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>

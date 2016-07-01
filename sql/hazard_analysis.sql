@@ -62,7 +62,6 @@ CREATE TABLE IF NOT EXISTS zaf.demog_sas_ofa (
 
 REINDEX INDEX zaf.prob_hazard_the_geom_gidx;
 
-
 -- Done.
 COMMIT;
 
@@ -74,7 +73,51 @@ SELECT E'Adding in the SAs. This takes quite a while. If any part fails, the ent
 BEGIN;
 
 
-SELECT E'Making temporary tables (t1 and t2) for executing the main part of the query \n'::text AS "NOTICE";
+-- Remove all previous records for the current analysis specified in the :analysis variable (-v
+-- analysis=M-YYYY in the command line where M is a number (1 to 12) representing the month of
+-- analysis and YYYY is a four-digit number (1980 to current year) representing the year of
+-- analysis)
+DELETE FROM
+	zaf.demog_sas_ofa
+WHERE
+ 		ofa_year = (
+			SELECT
+				--Check that 01-month-year is not before 01-01-1980 or after the curent date. If so, force to the current month and year.
+				CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y	END AS ofa_year
+				FROM (
+					SELECT
+						p.y,
+						--make sure the value of the month number is 1..12 only.
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							-- gets the year, month values from the :analysis variable (TEXT) and coerces
+							-- them to INTEGERs.
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
+	AND
+		ofa_month = (
+			SELECT
+				CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
+				FROM (
+					SELECT
+						p.y,
+						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
+					FROM (
+						SELECT
+							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+					) AS p
+				) AS q
+		)
+;
+
+
+SELECT E'Making temporary tables (t1 and t2) and inices for executing the main part of \nthe query \n'::text AS "NOTICE";
+
 
 -- Create a temporary table with indices that combines the SAs and populations, to speed up the
 -- queries
@@ -128,7 +171,7 @@ CREATE TABLE zaf.t2 (
 )
 ;
 
---EXPLAIN ANALYZE
+EXPLAIN ANALYZE
 INSERT INTO zaf.t2 (
 	the_geom,
 	sa_code,
@@ -166,9 +209,28 @@ INSERT INTO zaf.t2 (
 					h.gid
 				FROM
 					zaf.demog_sas AS h,
-					zaf.prob_hazard AS i
+					zaf.prob_hazard AS i,
+					(
+						SELECT
+			            CASE WHEN (date (t.y::text || '-' || t.m::text || '-01') < date '1980-01-01' OR date (t.y::text || '-' || t.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE t.y END AS ofa_year,
+				         CASE WHEN date (t.y::text || '-' || t.m::text || '-01') < date '1980-01-01' OR date (t.y::text || '-' || t.m::text || '-01') > current_date THEN extract (month from current_date) ELSE t.m END AS ofa_month
+				      FROM (
+				      	SELECT
+			            	s.y,
+				            CASE WHEN s.m > 12 THEN 12 WHEN s.m < 1 THEN 1 ELSE s.m END AS m
+			            FROM (
+				            SELECT
+				            	substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+				            	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+				         ) AS s
+				      ) AS t
+				   ) AS u
 				WHERE
 					ST_Within(h.the_geom, i.the_geom)
+				AND
+					i.ofa_year = u.ofa_year
+				AND
+					i.ofa_month = u.ofa_month
 			)
 		AND
 			g.ofa_year = r.ofa_year
@@ -177,50 +239,6 @@ INSERT INTO zaf.t2 (
 ;
 
 CREATE INDEX t2_the_geom_gidx ON zaf.t2 USING gist (the_geom);
-
-
-
--- Remove all previous records for the current analysis specified in the :analysis variable (-v
--- analysis=M-YYYY in the command line where M is a number (1 to 12) representing the month of
--- analysis and YYYY is a four-digit number (1980 to current year) representing the year of
--- analysis)
-DELETE FROM
-	zaf.demog_sas_ofa
-WHERE
- 		ofa_year = (
-			SELECT
-				--Check that 01-month-year is not before 01-01-1980 or after the curent date. If so, force to the current month and year.
-				CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y	END AS ofa_year
-				FROM (
-					SELECT
-						p.y,
-						--make sure the value of the month number is 1..12 only.
-						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
-					FROM (
-						SELECT
-							-- gets the year, month values from the :analysis variable (TEXT) and coerces
-							-- them to INTEGERs.
-							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
-							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
-					) AS p
-				) AS q
-		)
-	AND
-		ofa_month = (
-			SELECT
-				CASE WHEN date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date THEN extract (month from current_date) ELSE q.m END AS ofa_month
-				FROM (
-					SELECT
-						p.y,
-						CASE WHEN p.m > 12 THEN 12 WHEN p.m < 1 THEN 1 ELSE p.m END AS m
-					FROM (
-						SELECT
-							substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
-							substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
-					) AS p
-				) AS q
-		)
-;
 
 
 SELECT E'Adding in the SAs that are completely contained within the hazard area ... \n'::text AS "NOTICE";
@@ -269,8 +287,8 @@ INSERT INTO zaf.demog_sas_ofa (
          ) AS q
       ) AS r
 	WHERE
-			ST_Intersects(f.the_geom, g.the_geom)
-		AND
+--			ST_Intersects(f.the_geom, g.the_geom)
+--		AND
 			ST_Within(f.the_geom, g.the_geom)
 		AND
 			g.ofa_year = r.ofa_year
@@ -323,7 +341,7 @@ INSERT INTO zaf.demog_sas_ofa (
 		f.pop_size,
 		f.lz_code,
 		lz_affected
-	HAVING 3 * sum(ST_Area(g.the_geom)) >= ST_Area(f.the_geom)
+	HAVING 3 * sum(ST_Area(g.the_geom)) > ST_Area(f.the_geom)
 ;
 
 
@@ -375,7 +393,7 @@ INSERT INTO zaf.demog_sas_ofa (
 
 SELECT E'Add in the SAs that do NOT intersect at all with the hazard area ... \n'::text AS "NOTICE";
 
-EXPLAIN ANALYZE
+--EXPLAIN ANALYZE
 INSERT INTO zaf.demog_sas_ofa (
 	the_geom,
 	ofa_year,
@@ -422,7 +440,7 @@ INSERT INTO zaf.demog_sas_ofa (
 			SELECT
 				h.gid
 			FROM
-				zaf.demog_sas AS h,
+				zaf.t1 AS h,
 				zaf.prob_hazard AS i,
 				(
 					SELECT
@@ -448,15 +466,18 @@ INSERT INTO zaf.demog_sas_ofa (
 		)
 ;
 
+SELECT E'Deleting temporary tables (t1 and t2) and their associated indices\n'::text AS "NOTICE";
+
 DROP INDEX IF EXISTS zaf.t1_the_geom_gidx;
 
 DROP INDEX IF EXISTS zaf.t1_sa_code_idx;
 
 DROP TABLE IF EXISTS zaf.t1;
 
-DROP INDEX IF EXISTS zaf.t2_the_geon_gidx;
+DROP INDEX IF EXISTS t2_the_geom_gidx;
 
 DROP TABLE IF EXISTS zaf.t2;
+
 
 
 COMMIT;
@@ -469,11 +490,10 @@ SELECT E'Done. \nOutputting a count of affected rows in table \"zaf.demog_sas_of
 -- Present a count of all changed SAs (can be checked against original number of SAs) for the
 -- current analysis
 SELECT
-	1 AS num,
-	ofa_month,
 	ofa_year,
+	ofa_month,
 	count(sa_code) AS num_sas,
-	lz_affected
+	lz_affected AS affected
 FROM
 	zaf.demog_sas_ofa
 WHERE
@@ -507,16 +527,14 @@ WHERE
 			) AS q
 		)
 GROUP BY
-	num,
-	ofa_month,
+	affected,
 	ofa_year,
-	lz_affected
+	ofa_month
 UNION SELECT
-	2 AS num,
-	ofa_month,
 	ofa_year,
+	ofa_month,
 	count(sa_code) AS num_sas,
-	'TOTAL' AS lz_affected
+	'TOTAL' AS affected
 FROM
 	zaf.demog_sas_ofa
 WHERE
@@ -550,10 +568,9 @@ WHERE
 			) AS q
 		)
 GROUP BY
-	num,
+	affected,
 	ofa_month,
-	ofa_year,
-	lz_affected
+	ofa_year
 ORDER BY
-	num
+	ofa_year desc, ofa_month desc, affected
 ;

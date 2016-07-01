@@ -24,7 +24,7 @@
     <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="livezones_rural20160606211355028" name="Livezones_rural">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="0" checked="Qt::Checked" id="landuse_agricregions20160601173909863" name="Agricultural regions">
+    <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="landuse_agricregions20160601173909863" name="Agricultural regions">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="buffer_asi20160530013115599" name="Agric Stress Index, dekad 3, January 2016, buffered 1.5 km">
@@ -170,41 +170,46 @@
     </destinationsrs>
     <rendermaptile>0</rendermaptile>
     <layer_coordinate_transform_info>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="Provincial_boundaries_copy20160606044112036"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="Veg_cond_idx_1601_copy20160602111832908"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601173909863"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="rs_mask20160602011143038"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="admin0_201420160606200305330"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="t120160601173948681"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="ZANGI:ZANGI:HBKNO29" srcDatumTransform="-1" destDatumTransform="-1" layerid="Pop_AgricRegion20160531231356639"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="crops_probspecs20160601134630438"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="crops_probspecs20160601142217854"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100149" srcDatumTransform="-1" destDatumTransform="-1" layerid="ag_stress_idx_16_02_1_georef20160601085152435"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="admin2_provs20160529150446467"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas_hazard20160604190732862"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_15_12_georef20160529153412489"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="admin0_201420160606200305330"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="veg_cond_idx_151220160601100522627"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_crops20160607062239815"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas20160605132033463"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601122112244"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_16_01_georef20160529152853204"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160606001920812"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_crops20160601202737153"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="crops_probspecs20160601171328307"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_hazard20160601201333451"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas_ofa20160605233445215"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas_ofa20160606212930810"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="buffer_asi20160530013115599"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="livezones_rural20160606211355028"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_hazard20160606000951226"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="t220160601174041587"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="Provincial_boundaries_copy20160606200354864"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601122321521"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601173836006"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160606000616154"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160601102051107"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions_aea20160601121832086"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="veg_cond_idx_160120160606000554373"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_crops20160606000901640"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160601102051107"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas_hazard20160604190732862"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas20160605132033463"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="crops_probspecs20160601171328307"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601122321521"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="errors20160605131955772"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100149" srcDatumTransform="-1" destDatumTransform="-1" layerid="ag_stress_idx_16_02_1_georef20160601085152435"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="ag_stress_idx_1601320160529234537141"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100149" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_16_01_grscale20160601083721547"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas_ofa20160606212930810"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="ag_stress_idx_16_01_3_grscale20160529183310138"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="t220160601174041587"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601173836006"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="Provincial_boundaries_copy20160606044112036"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas_ofa20160605233445215"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_16_01_georef20160529152853204"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="Provincial_boundaries_copy20160606200354864"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="crops_probspecs20160601142217854"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_crops20160606000901640"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160606001920812"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_hazard20160601201333451"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions_aea20160601121832086"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="crops_probspecs20160601134630438"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160606000616154"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="buffer_asi20160530013115599"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601173909863"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="livezones_rural20160606211355028"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="ZANGI:ZANGI:HBKNO29" srcDatumTransform="-1" destDatumTransform="-1" layerid="Pop_AgricRegion20160531231356639"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_crops20160601202737153"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601122112244"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="rs_mask20160602011143038"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_hazard20160606000951226"/>
     </layer_coordinate_transform_info>
   </mapcanvas>
   <layer-tree-canvas>
@@ -294,9 +299,9 @@
         <legendlayerfile isInOverview="0" layerid="livezones_rural20160606211355028" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Agricultural regions" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Agricultural regions" showFeatureCount="0">
       <filegroup open="false" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="landuse_agricregions20160601173909863" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="landuse_agricregions20160601173909863" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Agric Stress Index, dekad 3, January 2016, buffered 1.5 km" showFeatureCount="0">
@@ -8907,10 +8912,10 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="id">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="year">
+        <edittype widgetv2type="TextEdit" name="ofa_year">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="month">
+        <edittype widgetv2type="TextEdit" name="ofa_month">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="ag_type">
@@ -9031,10 +9036,10 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="id">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="year">
+        <edittype widgetv2type="TextEdit" name="ofa_year">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="month">
+        <edittype widgetv2type="TextEdit" name="ofa_month">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
