@@ -8,9 +8,7 @@
  *
  */
 
-LISTEN warning_notices;
-
-NOTIFY warning_notices, E'\n\nThis query will only work if you have specified a switch on the command line for the\nanalysis variable using the syntax:\n\n-v analysis=M-YYYY\n\nwhere M is a one- or two-digit number representing the month of analysis (1 to 12) and YYYY\nis a four-digit number representing the year of analysis.\n\n\n';
+SELECT E'This query will only work if you have specified a switch on the command line \nfor the analysis variable using the syntax:\n\n-v analysis=M-YYYY\n\nwhere M is a one- or two-digit number representing the month of analysis (1 to \n12) and YYYY is a four-digit number representing the year of analysis.\n'::text AS "NOTICE";
 
 -- Indices, table creation and preparation transaction
 BEGIN;
@@ -71,7 +69,7 @@ COMMIT;
 
 
 -- Main transaction. Create an output table and populate it with the analysis.
-NOTIFY warning_notices, E'\n\nAdding in the SAs. This takes quite a while. If any part fails, the entire process will\nbe rolled back and none of the SAs will be included\n\n\n';
+SELECT E'Adding in the SAs. This takes quite a while. If any part fails, the entire \nprocess will be rolled back and none of the SAs will be included\n'::text AS "NOTICE";
 
 BEGIN;
 
@@ -88,6 +86,8 @@ CREATE TABLE zaf.t1 (
 	lz_code integer
 )
 ;
+
+SELECT E'Making temporary tables (t1 and t2) for executing the main part of the query \n'::text AS "NOTICE";
 
 INSERT INTO zaf.t1 (
 	the_geom,
@@ -222,7 +222,7 @@ WHERE
 ;
 
 
-SELECT 'Adding in the SAs that are completely contained within the hazard area ...'::text;
+SELECT E'Adding in the SAs that are completely contained within the hazard area ... \n'::text AS "NOTICE";
 
 --EXPLAIN ANALYZE
 INSERT INTO zaf.demog_sas_ofa (
@@ -278,7 +278,7 @@ INSERT INTO zaf.demog_sas_ofa (
 ;
 
 
-SELECT 'Add in the SAs that have more than one-third of their area intersecting with the hazard area ...'::text;
+SELECT E'Add in the SAs that have more than one-third of their area intersecting with \nthe hazard area ... \n'::text AS "NOTICE";
 
 --EXPLAIN ANALYZE
 INSERT INTO zaf.demog_sas_ofa (
@@ -322,11 +322,11 @@ INSERT INTO zaf.demog_sas_ofa (
 		f.pop_size,
 		f.lz_code,
 		lz_affected
-	HAVING 3 * sum(ST_Area(g.the_geom)) > ST_Area(f.the_geom)
+	HAVING 3 * sum(ST_Area(g.the_geom)) >= ST_Area(f.the_geom)
 ;
 
 
-SELECT 'Add in the SAs that less than one-third of their area intersecting with the hazard area ...'::text;
+SELECT E'Add in the SAs that less than one-third of their area intersecting with the \nhazard area ... \n'::text AS "NOTICE";
 
 --EXPLAIN ANALYZE
 INSERT INTO zaf.demog_sas_ofa (
@@ -342,7 +342,7 @@ INSERT INTO zaf.demog_sas_ofa (
 	lz_affected
 )
 	SELECT
-		f.the_geom AS the_geom,
+		f.the_geom,
 		g.ofa_year,
 		g.ofa_month,
 		f.sa_code,
@@ -368,11 +368,11 @@ INSERT INTO zaf.demog_sas_ofa (
 		f.pop_size,
 		f.lz_code,
 		lz_affected
-	HAVING sum(ST_Area(g.the_geom)) >= 3 * ST_Area(f.the_geom)
+	HAVING 3 * sum(ST_Area(g.the_geom)) < ST_Area(f.the_geom)
 ;
 
 
-SELECT 'Add in the SAs that do NOT intersect at all with the hazard area ...'::text;
+SELECT E'Add in the SAs that do NOT intersect at all with the hazard area ... \n'::text AS "NOTICE";
 
 EXPLAIN ANALYZE
 INSERT INTO zaf.demog_sas_ofa (
@@ -422,13 +422,28 @@ INSERT INTO zaf.demog_sas_ofa (
 				h.gid
 			FROM
 				zaf.demog_sas AS h,
-				zaf.prob_hazard AS i
+				zaf.prob_hazard AS i,
+				(
+					SELECT
+		         	CASE WHEN (date (t.y::text || '-' || t.m::text || '-01') < date '1980-01-01' OR date (t.y::text || '-' || t.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE t.y END AS ofa_year,
+			         CASE WHEN date (t.y::text || '-' || t.m::text || '-01') < date '1980-01-01' OR date (t.y::text || '-' || t.m::text || '-01') > current_date THEN extract (month from current_date) ELSE t.m END AS ofa_month
+		         FROM (
+			         SELECT
+			         	s.y,
+			         	CASE WHEN s.m > 12 THEN 12 WHEN s.m < 1 THEN 1 ELSE s.m END AS m
+		         	FROM (
+		               SELECT
+			               substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
+			            	substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
+			         ) AS s
+			      ) AS t
+			   ) AS u
 			WHERE
 					ST_Intersects(h.the_geom, i.the_geom)
 				AND
-					i.ofa_year = r.ofa_year
+					i.ofa_year = u.ofa_year
 				AND
-					i.ofa_month = r.ofa_month
+					i.ofa_month = u.ofa_month
 		)
 ;
 
@@ -447,7 +462,7 @@ COMMIT;
 
 
 
-NOTIFY warning_notices, E'\n\nDone.\nOutputting a count of affected rows in table \"zaf.demog_sas_ofa\"\n\n\n';
+SELECT E'Done. \nOutputting a count of affected rows in table \"zaf.demog_sas_ofa\" \n'::text AS "NOTICE";
 
 
 -- Present a count of all changed SAs (can be checked against original number of SAs) for the
@@ -457,7 +472,7 @@ SELECT
 	ofa_month,
 	ofa_year,
 	count(sa_code) AS num_sas,
-	lz_affected AS lz_affected
+	lz_affected
 FROM
 	zaf.demog_sas_ofa
 WHERE
@@ -501,6 +516,8 @@ UNION SELECT
 	ofa_year,
 	count(sa_code) AS num_sas,
 	'TOTAL' AS lz_affected
+FROM
+	zaf.demog_sas_ofa
 WHERE
 		ofa_year = (
 			SELECT
@@ -539,5 +556,3 @@ GROUP BY
 ORDER BY
 	num
 ;
-
-UNLISTEN warning_notices;
