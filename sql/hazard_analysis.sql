@@ -73,6 +73,9 @@ SELECT E'Adding in the SAs. This takes quite a while. If any part fails, the ent
 
 BEGIN;
 
+
+SELECT E'Making temporary tables (t1 and t2) for executing the main part of the query \n'::text AS "NOTICE";
+
 -- Create a temporary table with indices that combines the SAs and populations, to speed up the
 -- queries
 CREATE TABLE zaf.t1 (
@@ -86,8 +89,6 @@ CREATE TABLE zaf.t1 (
 	lz_code integer
 )
 ;
-
-SELECT E'Making temporary tables (t1 and t2) for executing the main part of the query \n'::text AS "NOTICE";
 
 INSERT INTO zaf.t1 (
 	the_geom,
