@@ -1,0 +1,408 @@
+[
+   {
+      "name" : "za_fw",
+      "code" : 59050,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 5
+         },
+         {
+            "sheet" : 1,
+            "wg" : 6
+         },
+         {
+            "sheet" : 2,
+            "wg" : 7
+         }
+      ]
+   },
+   {
+      "name" : "za_up",
+      "code" : 59800,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 8
+         },
+         {
+            "sheet" : 1,
+            "wg" : 9
+         },
+         {
+            "sheet" : 2,
+            "wg" : 10
+         },
+         {
+            "sheet" : 3,
+            "wg" : 11
+         }
+      ]
+   },
+   {
+      "name" : "za1xx",
+      "code" : 59100,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "za2xx",
+      "code" : 59200,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "za3xx",
+      "code" : 59300,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zacni",
+      "code" : 59106,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zakhc",
+      "code" : 59208,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zalof",
+      "code" : 59301,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zaloi",
+      "code" : 59302,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zalrc",
+      "code": 59206,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zammo",
+      "code" : 59210,
+      "wgs" : [
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zancc",
+      "code" : 59304,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zanfl",
+      "code" : 59207,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zanoc",
+      "code" : 59202,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zaocc",
+      "code" : 59209,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zaolo",
+      "code" : 59107,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zasco",
+      "code" : 59305,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zaslc",
+      "code" : 59203,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         },
+         {
+            "sheet" : 3,
+            "wg" : 4
+         }
+      ]
+   },
+   {
+      "name" : "zatgl",
+      "code" : 59105,
+      "wgs" : [
+         {
+            "sheet" : 0,
+            "wg" : 1
+         },
+         {
+            "sheet" : 1,
+            "wg" : 2
+         },
+         {
+            "sheet" : 2,
+            "wg" : 3
+         }
+      ]
+   }
+]

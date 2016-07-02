@@ -1,0 +1,22 @@
+{
+   "fpl" : {
+      "cell" : "T30",
+      "num" : 1,
+      "descr" : "FPL deficit"
+   },
+   "lbpl" : {
+      "cell" : "T31",
+      "num" : 2,
+      "descr" : "LBPL deficit"
+   },
+   "ubpl" : {
+      "cell" : "T32",
+      "num" : 3,
+      "descr" : "UBPL deficit"
+   },
+   "food" : {
+      "cell" : "M31",
+      "num" : 5,
+      "descr" : "Food energy deficit"
+   }
+}
