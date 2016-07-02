@@ -1,5 +1,6 @@
 
 var XLSX = require('xlsx'), pg = require('pg');
+const fs = require('fs');
 
 /*
  * Get a password from stdin.
@@ -130,242 +131,61 @@ function ask(question, format, callback) {
  *
  */
 
-function readSpreadSheets(sqlString, ofa) {
+function readSpreadSheets(sqlString, lzAbbrevs, deficits, ofa) {
    console.log('Reading spreadsheets...');
-
-   // build an object containing info on analysis spreadsheets. 'name' is the LZ abbrev name in the spreadsheet file name, 'code' is the LZ code (for the DB table), 'wgs' array contains objects with worksheet numbers (in the spreadsheet) and WG IDs from tbl_wgs in each LZ analysis.
-   var lzAbbrevs = [
-      {
-         name : "za_fw", code: 59050, wgs : [
-            {sheet : 0, wg : 5},
-            {sheet : 1, wg : 6},
-            {sheet : 2, wg : 7}
-         ]
-      },
-      {
-         name : "za_up", code: 59800, wgs : [
-            {sheet : 0, wg : 8},
-            {sheet : 1, wg : 9},
-            {sheet : 2, wg : 10},
-            {sheet : 3, wg : 11}
-         ]
-      },
-      {
-         name : "za1xx", code: 59100, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "za2xx", code: 59200, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "za3xx", code: 59300, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zacni", code: 59106, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zakhc", code: 59208, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zalof", code: 59301, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zaloi", code: 59302, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zalrc", code: 59206, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zammo", code: 59210, wgs : [
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zancc", code: 59304, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zanfl", code: 59207, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zanoc", code: 59202, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zaocc", code: 59209, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zaolo", code: 59107, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zasco", code: 59305, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zaslc", code: 59203, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3},
-            {sheet : 3, wg : 4}
-         ]
-      },
-      {
-         name : "zatgl", code: 59105, wgs : [
-            {sheet : 0, wg : 1},
-            {sheet : 1, wg : 2},
-            {sheet : 2, wg : 3}
-         ]
-      },
-   ];
-   // Object with the LZ affectedness groupings.
-   var lzAffected = {
-      normal : {
-         code : 0,
-         ext : "_0"
-      },
-      drought : {
-         code: 1,
-         ext : "_1"
+         // Object with the LZ affectedness groupings.
+         var lzAffected = {
+            normal : {
+               code : 0,
+               ext : "_0"
+            },
+            drought : {
+               code: 1,
+               ext : "_1"
+            }
+         };
+      // Object with the wealth group affectedness groupings.
+      var wgAffected = {
+         grants : "",
+         noGrants : "_nogrants"
       }
-   };
-   // Object with the wealth group affectedness groupings.
-   var wgAffected = {
-      grants : "",
-      noGrants : "_nogrants"
-   }
-   // Deficits object
-   var deficit = {
-      fpl : {
-         cell: 'T30',
-         num: 1,
-         descr : 'FPL deficit'
-      },
-      lbpl : {
-         cell : 'T31',
-         num : 2,
-         descr : 'LBPL deficit'
-      },
-      ubpl : {
-         cell : 'T32',
-         num : 3,
-         descr : 'UBPL deficit'
-      },
-//        resilience : {
-//          cell : 'T33',
-//          num : 4,
-//          descr : 'Resilience deficit'
-//        },
-      food : {
-         cell : 'M31',
-         num : 5,
-         descr : 'Food energy deficit'
-      }
-   };
 
-   var outcome = {};
+      var outcome = {};
 
-   for (var i = 0; i < lzAbbrevs.length; i++) {
-      for (var subLz in lzAffected) {
-         for (var subWG in wgAffected) {
-            // Get the workbook
-            var workbook = XLSX.readFile('./spreadsheets/' + lzAbbrevs[i].name + lzAffected[subLz].ext + wgAffected[subWG] + '.xlsx');
-            process.stdout.write('./spreadsheets/' + lzAbbrevs[i].name + lzAffected[subLz].ext +
-            wgAffected[subWG] + '.xlsx\n');
-            // Get the worksheet and assign it to a variable
-            for (var j = 0; j < lzAbbrevs[i].wgs.length; j++) {
-               var sheet_name = workbook.SheetNames[lzAbbrevs[i].wgs[j].sheet];
-               var worksheet = workbook.Sheets[sheet_name];
-               //reset the outcome object
-               outcome = {};
-               // Find desired cell
-               for (var thres in deficit) {
-                  var desired_cell = worksheet[deficit[thres].cell];
-                  // Get the value
-                  var desired_value = desired_cell.v;
-                  if (thres === 'food') {
-                     outcome[thres] = Math.round(desired_value * 100, 0) + '%';
-                  } else {
-                     outcome[thres] = Math.round(desired_value, 0);
-                  };
+      for (var i = 0; i < lzAbbrevs.length; i++) {
+         for (var subLz in lzAffected) {
+            for (var subWG in wgAffected) {
+               // Get the workbook
+               var workbook = XLSX.readFile('./spreadsheets/' + lzAbbrevs[i].name + lzAffected[subLz].ext + wgAffected[subWG] + '.xlsx');
+               process.stdout.write('./spreadsheets/' + lzAbbrevs[i].name + lzAffected[subLz].ext +
+               wgAffected[subWG] + '.xlsx\n');
+               // Get the worksheet and assign it to a variable
+               for (var j = 0; j < lzAbbrevs[i].wgs.length; j++) {
+                  var sheet_name = workbook.SheetNames[lzAbbrevs[i].wgs[j].sheet];
+                  var worksheet = workbook.Sheets[sheet_name];
+                  //reset the outcome object
+                  outcome = {};
+                  // Find desired cell
+                  for (var thres in deficits) {
+                     var desired_cell = worksheet[deficits[thres].cell];
+                     // Get the value
+                     var desired_value = desired_cell.v;
+                     if (thres === 'food') {
+                        outcome[thres] = Math.round(desired_value * 100, 0) + '%';
+                     } else {
+                        outcome[thres] = Math.round(desired_value, 0);
+                     };
 
-                  sqlString += '(' + ofa[1] + ', ' + ofa[0] + ', ' + lzAbbrevs[i].code + ', ' + (lzAbbrevs[i].wgs[j].wg) + ', \u0027' + subLz + '\u0027, \u0027' + subWG + '\u0027, \u0027' + deficit[thres].descr + '\u0027, ' + desired_value + '),\n';
+                     sqlString += '(' + ofa[1] + ', ' + ofa[0] + ', ' + lzAbbrevs[i].code + ', ' + (lzAbbrevs[i].wgs[j].wg) + ', \u0027' + subLz + '\u0027, \u0027' + subWG + '\u0027, \u0027' + deficits[thres].descr + '\u0027, ' + desired_value + '),\n';
+                  }
                }
             }
          }
       }
-   }
-   // Query SQL string for inserting data into zaf.tbl_ofa_analysis postgres table
-   sqlString = sqlString.substring(0, sqlString.length - 2) + '\n;';
-//   console.log(sqlString);
-   return sqlString
+      // Query SQL string for inserting data into zaf.tbl_ofa_analysis postgres table
+      sqlString = sqlString.substring(0, sqlString.length - 2) + '\n;';
+      return sqlString
+//   });
 }
 
 
@@ -417,14 +237,30 @@ function loadTable(pgClient, ofa, deleteOnly) {
       if (!deleteOnly) {
          // Create the INSERT SQL String
          var sqlString = 'INSERT INTO zaf.tbl_ofa_analysis (ofa_year, ofa_month, lz_code, wg_code, ' + 'lz_affected, wg_affected, threshold, deficit) VALUES \n';
-         sqlString = readSpreadSheets(sqlString, ofa);
-         pgClient.query(sqlString, function(err, result) {
-            if(err) {
-               return console.error('error running INSERT query', err);
+         // Read the files containing info on analysis spreadsheets and outcome thresholds. 'name' is the LZ abbrev name in the spreadsheet file name, 'code' is the LZ code (for the DB table), 'wgs' array contains objects with worksheet numbers (in the spreadsheet) and WG IDs from tbl_wgs in each LZ analysis.
+         //Read the config file for the spreadsheet structure
+         fs.readFile("./config_spreadsheets.json", function(err, sSheetData) {
+            if (err) {
+                  console.log("LZ and spreadsheet config file missing or corrupt.");
+                  return;
             }
-            // Success. Output is something like INSERT: 1168 rows affected
-            console.log(result.command + ': ' + result.rowCount + ' rows affected');
-            getDbTime(pgClient);
+            // Success. Read the config file for thresholds
+            fs.readFile("./config_deficits.json", function(err, deficitsData) {
+               if (err) {
+                  console.log("Deficits config file missing or corrupt.");
+                  return
+               }
+               // Success. Parse the files and pass (sic!) them on to the readSpreadSheets function
+               sqlString = readSpreadSheets(sqlString, JSON.parse(sSheetData.toString()), JSON.parse(deficitsData.toString()), ofa);
+               pgClient.query(sqlString, function(err, result) {
+                  if(err) {
+                     return console.error('error running INSERT query', err);
+                  }
+                  // Success. Output is something like INSERT: 1168 rows affected
+                  console.log(result.command + ': ' + result.rowCount + ' rows affected');
+                  getDbTime(pgClient);
+               });
+            });
          });
       } else {
          getDbTime(pgClient);
