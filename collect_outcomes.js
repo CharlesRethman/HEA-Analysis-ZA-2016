@@ -150,8 +150,9 @@ function readSpreadSheets(sqlString, lzAbbrevs, deficits, ofa) {
          noGrants : "_nogrants"
       }
 
+      // Variable for storing outcomes
       var outcome = {};
-
+      //'name' is the LZ abbrev name in the spreadsheet file name, 'code' is the LZ code (for the DB table), 'wgs' array contains objects with worksheet numbers (in the spreadsheet) and WG IDs from tbl_wgs in each LZ analysis.
       for (var i = 0; i < lzAbbrevs.length; i++) {
          for (var subLz in lzAffected) {
             for (var subWG in wgAffected) {
@@ -237,8 +238,8 @@ function loadTable(pgClient, ofa, deleteOnly) {
       if (!deleteOnly) {
          // Create the INSERT SQL String
          var sqlString = 'INSERT INTO zaf.tbl_ofa_analysis (ofa_year, ofa_month, lz_code, wg_code, ' + 'lz_affected, wg_affected, threshold, deficit) VALUES \n';
-         // Read the files containing info on analysis spreadsheets and outcome thresholds. 'name' is the LZ abbrev name in the spreadsheet file name, 'code' is the LZ code (for the DB table), 'wgs' array contains objects with worksheet numbers (in the spreadsheet) and WG IDs from tbl_wgs in each LZ analysis.
-         //Read the config file for the spreadsheet structure
+         // Read the config files containing info on analysis spreadsheets and deficits.
+         // Read the config file for the spreadsheet structure
          fs.readFile("./config_spreadsheets.json", function(err, sSheetData) {
             if (err) {
                   console.log("LZ and spreadsheet config file missing or corrupt.");
