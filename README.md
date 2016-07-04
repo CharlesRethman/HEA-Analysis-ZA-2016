@@ -27,12 +27,23 @@ Collection of directories:
 
 This documents assumes you have the following installed on your system:
 * PostgreSQL with the PostGIS extension
-* QGIS (> 2.8)
-* NodeJS (> 0.12). Node Package Manager (NPM) is also needed but this usually comes bundled with any installion of NodeJS.
+* QGIS (> 2.6)
+* NodeJS (> 4.0). Node Package Manager (NPM) is also needed but this usually comes bundled with any installion of NodeJS.
 
-### Building the database.
+### Building the Database
 
-[more to be added here later]
+[more to be added here]
+
+### File Structure
+
+By clicking "Download zip file"
+
+### The Remote Sensing Images
+
+Georeferencing, obtaining a sliding scale reading for each pixel  [more to be added here later]
+
+### Running the Problem Spec Queries
+
 
 
 ## More ...
