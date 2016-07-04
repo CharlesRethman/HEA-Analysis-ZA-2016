@@ -5,18 +5,18 @@
  */
 
 
-DROP TABLE IF EXISTS zaf.vci_1601_buffer;
-DROP TABLE IF EXISTS zaf.asi_16013_buffer;
+DROP TABLE IF EXISTS zaf.rs_vci_16_01_buffer;
+DROP TABLE IF EXISTS zaf.rs_asi_16_01_3_buffer;
 
-DROP INDEX IF EXISTS zaf.veg_cond_idx_1601_gidx;
-DROP INDEX IF EXISTS zaf.ag_stress_idx_2016013_gidx;
+DROP INDEX IF EXISTS zaf.rs_vci_16_01_the_geom_gidx;
+DROP INDEX IF EXISTS zaf.rs_asi_16_01_3_the_geom_gidx;
 
-CREATE INDEX veg_cond_idx_1601_gidx ON zaf.veg_cond_idx_1601 USING GIST(the_geom);
-CREATE INDEX ag_stress_idx_2016013_gidx ON zaf.ag_stress_idx_2016013 USING GIST(the_geom);
+CREATE INDEX rs_vci_16_01_the_geom_gidx ON zaf.rs_vci_16_01 USING GIST(the_geom);
+CREATE INDEX rs_asi_16_01_3_the_geom_gidx ON zaf.rs_asi_16_01_3 USING GIST(the_geom);
 
 BEGIN;
 
-CREATE TABLE zaf.vci_1601_buffer (
+CREATE TABLE zaf.rs_vci_16_01_buffer (
   gid SERIAL PRIMARY KEY,
   the_geom GEOMETRY(MULTIPOLYGON, 201100),
   vci VARCHAR(15)
@@ -24,14 +24,14 @@ CREATE TABLE zaf.vci_1601_buffer (
 ;
 
 
-CREATE TABLE zaf.asi_16013_buffer (
+CREATE TABLE zaf.rs_asi_16_01_3_buffer (
   gid SERIAL PRIMARY KEY,
   the_geom GEOMETRY(MULTIPOLYGON, 201100),
   asi VARCHAR(15)
   )
 ;
 
-INSERT INTO zaf.vci_1601_buffer (
+INSERT INTO zaf.rs_vci_16_01_buffer (
   the_geom,
   vci
   )
@@ -47,7 +47,7 @@ INSERT INTO zaf.vci_1601_buffer (
                 (ST_Dump(ST_Union(the_geom))).geom AS the_geom,
                 vci
               FROM
-                zaf.veg_cond_idx_1601
+                zaf.rs_vci_16_01
               GROUP BY
                 vci
             ) AS f
@@ -66,7 +66,7 @@ INSERT INTO zaf.vci_1601_buffer (
         g.vci
 ;
 
-INSERT INTO zaf.asi_16013_buffer (
+INSERT INTO zaf.rs_asi_16_01_3_buffer (
   the_geom,
   asi
   )
@@ -82,7 +82,7 @@ INSERT INTO zaf.asi_16013_buffer (
                 (ST_Dump(ST_Union(the_geom))).geom AS the_geom,
                 asi
               FROM
-                zaf.ag_stress_idx_16013
+                zaf.rs_asi_16_01_3
               GROUP BY
                 asi
             ) AS f

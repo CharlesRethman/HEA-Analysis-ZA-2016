@@ -12,14 +12,14 @@ DROP TABLE IF EXISTS zaf.t2;
 DROP TABLE IF EXISTS zaf.t3;
 DROP TABLE IF EXISTS zaf.t4;
 
-DROP INDEX IF EXISTS zaf.vci_16_01_buffer_gidx;
-DROP INDEX IF EXISTS zaf.landuse_agricregions_gidx;
+DROP INDEX IF EXISTS zaf.rs_vci_16_01_buffer_the_geom_gidx;
+DROP INDEX IF EXISTS zaf.landuse_agricregions_the_geom_gidx;
 DROP INDEX IF EXISTS zaf.t2_the_geom_gidx;
 DROP INDEX IF EXISTS zaf.t3_prov_code_idx;
 --DROP INDEX IF EXISTS zaf.prob_hazard_gidx;
 
-CREATE INDEX vci_16_01_buffer_gidx ON zaf.vci_16_01_buffer USING GIST(the_geom);
-CREATE INDEX landuse_agricregions_gidx ON zaf.landuse_agricregions USING GIST(the_geom);
+CREATE INDEX rs_vci_16_01_buffer_the_geom_gidx ON zaf.rs_vci_16_01_buffer USING GIST(the_geom);
+CREATE INDEX landuse_agricregions_the_geom_gidx ON zaf.landuse_agricregions USING GIST(the_geom);
 
 CREATE TABLE IF NOT EXISTS zaf.prob_hazard (
     id serial primary key,
@@ -83,7 +83,7 @@ INSERT INTO zaf.t4 (
          r.ofa_year,
          r.ofa_month
       FROM
-         zaf.vci_16_01_buffer,
+         zaf.rs_vci_16_01_buffer,
          (
             SELECT
                CASE WHEN (date (q.y::text || '-' || q.m::text || '-01') < date '1980-01-01' OR date (q.y::text || '-' || q.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE q.y END AS ofa_year,

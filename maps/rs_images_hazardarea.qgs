@@ -36,7 +36,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="buffer_vci20160530003223216" name="Vegetation Condition Index, December 2015, buffered 1.5 km">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="veg_cond_idx_160120160601100602617" name="Veg_cond_idx_1601">
+    <layer-tree-layer expanded="0" checked="Qt::Checked" id="veg_cond_idx_160120160601100602617" name="Veg_cond_idx_1601">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="Veg_cond_idx_1601_copy20160602111832908" name="Vegetation Condition Index \n for January 2016">
@@ -54,7 +54,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="rs_mask20160602011143038" name="Rs_mask rs_mask Polygon">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_16_01_grscale20160601083721547" name="Vci_16-01_grscale">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="vci_16_01_grscale20160601083721547" name="Vci_16-01_grscale">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_15_12_grscale20160529194644473" name="Vci_15-12_grscale">
@@ -117,7 +117,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_15_12_georef20160529153412489" name="Vci_15-12_georef">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_16_01_georef20160529152853204" name="Vci_16-01_georef">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="vci_16_01_georef20160529152853204" name="Vci_16-01_georef">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_16_01_3_georef20160531120637123" name="Vci_16-01-3_georef">
@@ -149,10 +149,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>-1155500.65248779160901904</xmin>
-      <ymin>-747448.98342482501175255</ymin>
-      <xmax>1248698.47414092719554901</xmax>
-      <ymax>708808.77327599900308996</ymax>
+      <xmin>-502001.89487236714921892</xmin>
+      <ymin>-659611.21397302928380668</ymin>
+      <xmax>-47402.91262184528750367</xmax>
+      <ymax>-386851.82462271628901362</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -200,6 +200,7 @@
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160606001920812"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_hazard20160601201333451"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions_aea20160601121832086"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="buffer_vci20160530003223216"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="crops_probspecs20160601134630438"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160606000616154"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="buffer_asi20160530013115599"/>
@@ -208,6 +209,7 @@
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="ZANGI:ZANGI:HBKNO29" srcDatumTransform="-1" destDatumTransform="-1" layerid="Pop_AgricRegion20160531231356639"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_crops20160601202737153"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601122112244"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="veg_cond_idx_160120160601100602617"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="rs_mask20160602011143038"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_hazard20160606000951226"/>
     </layer_coordinate_transform_info>
@@ -319,9 +321,9 @@
         <legendlayerfile isInOverview="0" layerid="buffer_vci20160530003223216" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Veg_cond_idx_1601" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="Veg_cond_idx_1601" showFeatureCount="0">
       <filegroup open="false" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="veg_cond_idx_160120160601100602617" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="veg_cond_idx_160120160601100602617" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vegetation Condition Index \n for January 2016" showFeatureCount="0">
@@ -349,9 +351,9 @@
         <legendlayerfile isInOverview="0" layerid="rs_mask20160602011143038" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vci_16-01_grscale" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Vci_16-01_grscale" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="vci_16_01_grscale20160601083721547" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="vci_16_01_grscale20160601083721547" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vci_15-12_grscale" showFeatureCount="0">
@@ -454,9 +456,9 @@
         <legendlayerfile isInOverview="0" layerid="vci_15_12_georef20160529153412489" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vci_16-01_georef" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Vci_16-01_georef" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="vci_16_01_georef20160529152853204" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="vci_16_01_georef20160529152853204" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vci_16-01-3_georef" showFeatureCount="0">
@@ -10325,7 +10327,7 @@ def my_form_open(dialog, layer, feature):
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
-    <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
       <id>vci_16_01_georef20160529152853204</id>
       <datasource>../met/vci_16-01_georef.tif</datasource>
       <keywordList>
@@ -10357,13 +10359,8 @@ def my_form_open(dialog, layer, feature):
         <map-layer-style name=""/>
       </map-layer-style-manager>
       <pipe>
-        <rasterrenderer opacity="1" alphaBand="-1" blueBand="3" greenBand="2" type="multibandcolor" redBand="1">
+        <rasterrenderer opacity="1" alphaBand="0" blueBand="3" greenBand="2" type="multibandcolor" redBand="1">
           <rasterTransparency/>
-          <redContrastEnhancement>
-            <minValue>0</minValue>
-            <maxValue>180</maxValue>
-            <algorithm>StretchToMinimumMaximum</algorithm>
-          </redContrastEnhancement>
         </rasterrenderer>
         <brightnesscontrast brightness="0" contrast="0"/>
         <huesaturation colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeBlue="128" grayscaleMode="0" saturation="0" colorizeStrength="100"/>
