@@ -1,10 +1,8 @@
 /*
- * Purpose: to construct a table of outcomes by Small Area, Wealth Group, Wealth Group Affected
- * Category (receive/don't receive social grants) and Thresholds that can be summarised with a pivot
- * table or filtered and joined to the Small Area layer (zaf.demog_sas) to be map the outcome.
+ * Purpose: to construct a table of geographical problem specs by Small Area, so that these can be
+ * mapped and linked to analysis outcomes.
  *
- * The pivot table will calculate total numbers of affected people and their deficits by admin area
- * an livelihood zone.
+ * The table can be mapped, although the GIS rendering package must filter on the analysis.
  *
  */
 

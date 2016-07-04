@@ -1,10 +1,6 @@
 /*
- * Purpose: to construct a table of outcomes by Small Area, Wealth Group, Wealth Group Affected
- * Category (receive/don't receive social grants) and Thresholds that can be summarised with a pivot
- * table or filtered and joined to the Small Area layer (zaf.demog_sas) to be map the outcome.
- *
- * The pivot table will calculate total numbers of affected people and their deficits by admin area
- * an livelihood zone.
+ * Purpose: to remove a table of outcomes of Small Areas that contains OFA hazard information, for a
+ * particular analysis (year, month).
  *
  */
 
