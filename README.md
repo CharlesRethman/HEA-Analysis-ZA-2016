@@ -26,9 +26,10 @@ Collection of directories:
 ### Prerequisites
 
 This documents assumes you have the following installed on your system:
-* PostgreSQL with the PostGIS extension
-* QGIS (> 2.6)
-* NodeJS (> 4.0). Node Package Manager (NPM) is also needed but this usually comes bundled with any installion of NodeJS.
+* PostgreSQL with the PostGIS extension (>= v 9.3). This can be found at
+* QGIS (>= v 2.8)
+Alternatively, PostgreSQL, PostGIS and QGIS all come bundled in a single package by Boundless, which can be obtained [here](http://boundlessgeo.com/products/).
+* NodeJS (>= v 4.2). Node Package Manager (NPM) is also needed but this usually comes bundled with any installion of NodeJS.
 
 ### Building the Database
 
