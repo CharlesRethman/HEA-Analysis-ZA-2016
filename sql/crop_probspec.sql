@@ -16,7 +16,6 @@ DROP INDEX IF EXISTS zaf.rs_vci_16_01_buffer_the_geom_gidx;
 DROP INDEX IF EXISTS zaf.landuse_agricregions_the_geom_gidx;
 DROP INDEX IF EXISTS zaf.t2_the_geom_gidx;
 DROP INDEX IF EXISTS zaf.t3_prov_code_idx;
---DROP INDEX IF EXISTS zaf.prob_hazard_gidx;
 
 CREATE INDEX rs_vci_16_01_buffer_the_geom_gidx ON zaf.rs_vci_16_01_buffer USING GIST(the_geom);
 CREATE INDEX landuse_agricregions_the_geom_gidx ON zaf.landuse_agricregions USING GIST(the_geom);
