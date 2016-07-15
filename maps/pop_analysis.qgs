@@ -54,10 +54,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>-664023.46770833316259086</xmin>
-      <ymin>-487657.28630208346294239</ymin>
-      <xmax>-387931.67708333319751546</xmax>
-      <ymax>-240594.11286458343965933</ymax>
+      <xmin>-1075399.15800814377143979</xmin>
+      <ymin>-715691.40073863335419446</ymin>
+      <xmax>218972.19028588326182216</xmax>
+      <ymax>59698.67362036008853465</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -2525,7 +2525,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>hazard_spi_201520160529112700659</id>
-      <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=4326 type=MultiPolygon table="zaf"."hazard_spi_2015" (the_geom) sql=</datasource>
+      <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=4326 type=MultiPolygon table="zaf"."hydro_catchments_spi_2015" (the_geom) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
