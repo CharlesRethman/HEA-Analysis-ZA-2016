@@ -9,13 +9,13 @@
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="Provincial_boundaries_copy20160606200354864" name="International boundaries">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin2_provs20160529150446467" name="Provincial boundaries">
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="admin2_provs20160529150446467" name="Provincial boundaries">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="prob_crops20160601202737153" name="Prob_crops">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="prob_hazard20160601201333451" name="Intensive drought area">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="prob_hazard20160601201333451" name="Intensive drought area">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="demog_sas_ofa20160606212930810" name="Enumeration small areas - drought identified">
@@ -27,13 +27,13 @@
     <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="landuse_agricregions20160601173909863" name="Agricultural regions">
       <customproperties/>
     </layer-tree-layer>
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="rs_mask20160602011143038" name="Rs_mask rs_mask Polygon">
+      <customproperties/>
+    </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="buffer_asi20160530013115599" name="Agric Stress Index, dekad 3, January 2016, buffered 1.5 km">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="rs_mask20160602011143038" name="Rs_mask rs_mask Polygon">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="veg_cond_idx_160120160601100602617" name="Vegetation Condition Index, January 2016">
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="veg_cond_idx_160120160601100602617" name="Vegetation Condition Index, January 2016">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="rs_vci_16_01_buffer20160725122853752" name="Rs_vci_16_01_buffer">
@@ -68,10 +68,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>364628.23185560415731743</xmin>
-      <ymin>627945.95799362880643457</ymin>
-      <xmax>444955.15043358533876017</xmax>
-      <ymax>676142.10914041742216796</ymax>
+      <xmin>239760.33021277576335706</xmin>
+      <ymin>255993.78967331448802724</ymin>
+      <xmax>645770.35325023077894002</xmax>
+      <ymax>499599.80349578749155626</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -96,8 +96,8 @@
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="admin0_201420160606200305330"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="veg_cond_idx_151220160601100522627"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_crops20160607062239815"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="veg_cond_idx_160120160606000554373"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="rs_vci_16_01_buffer20160725122853752"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="veg_cond_idx_160120160606000554373"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160601102051107"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas_hazard20160604190732862"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas20160605132033463"/>
@@ -120,8 +120,8 @@
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160606001920812"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_hazard20160601201333451"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="buffer_vci20160530003223216"/>
-      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions_aea20160601121832086"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="Vegetation_Condition_Index__n_for_January_2016_copy20160724142455321"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions_aea20160601121832086"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="crops_probspecs20160601134630438"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vci_1601_buffer20160606000616154"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="buffer_asi20160530013115599"/>
@@ -170,9 +170,9 @@
         <legendlayerfile isInOverview="0" layerid="Provincial_boundaries_copy20160606200354864" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Provincial boundaries" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Provincial boundaries" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="admin2_provs20160529150446467" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="admin2_provs20160529150446467" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Prob_crops" showFeatureCount="0">
@@ -180,9 +180,9 @@
         <legendlayerfile isInOverview="0" layerid="prob_crops20160601202737153" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Intensive drought area" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Intensive drought area" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="prob_hazard20160601201333451" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="prob_hazard20160601201333451" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Enumeration small areas - drought identified" showFeatureCount="0">
@@ -200,19 +200,19 @@
         <legendlayerfile isInOverview="0" layerid="landuse_agricregions20160601173909863" visible="0"/>
       </filegroup>
     </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Rs_mask rs_mask Polygon" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="rs_mask20160602011143038" visible="0"/>
+      </filegroup>
+    </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Agric Stress Index, dekad 3, January 2016, buffered 1.5 km" showFeatureCount="0">
       <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="buffer_asi20160530013115599" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Rs_mask rs_mask Polygon" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vegetation Condition Index, January 2016" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="rs_mask20160602011143038" visible="1"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Vegetation Condition Index, January 2016" showFeatureCount="0">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="veg_cond_idx_160120160601100602617" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="veg_cond_idx_160120160601100602617" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Rs_vci_16_01_buffer" showFeatureCount="0">
@@ -261,133 +261,6 @@
       </filegroup>
     </legendlayer>
   </legend>
-  <Composer title="nofa_asi16-01-3_buffer1500" visible="0">
-    <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
-      <symbol alpha="1" clip_to_extent="1" type="fill" name="">
-        <layer pass="0" class="SimpleFill" locked="0">
-          <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="color" v="255,255,255,255"/>
-          <prop k="joinstyle" v="miter"/>
-          <prop k="offset" v="0,0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="outline_color" v="0,0,0,255"/>
-          <prop k="outline_style" v="no"/>
-          <prop k="outline_width" v="0.26"/>
-          <prop k="outline_width_unit" v="MM"/>
-          <prop k="style" v="solid"/>
-        </layer>
-      </symbol>
-      <ComposerLegend symbolWidth="7" title="Legend" boxSpace="2" rasterBorderWidth="0" splitLayer="0" equalColumnWidth="0" map="0" titleAlignment="1" rasterBorder="1" symbolHeight="4" wmsLegendHeight="25" wrapChar="" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1" rasterBorderColor="0,0,0,255">
-        <styles>
-          <style marginBottom="2" name="title">
-            <styleFont description="Helvetica Neue,8,-1,5,50,0,0,0,0,0" style="Light"/>
-          </style>
-          <style marginTop="2" name="group">
-            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
-          </style>
-          <style marginTop="2" name="subgroup">
-            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
-          </style>
-          <style marginTop="2" name="symbol">
-            <styleFont description="Helvetica Neue,13,-1,5,50,0,0,0,0,0" style=""/>
-          </style>
-          <style marginTop="2" marginLeft="2" name="symbolLabel">
-            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
-          </style>
-        </styles>
-        <layer-tree-group expanded="1" checked="Qt::Checked" name="">
-          <customproperties/>
-          <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin2_provs20160529150446467" name="Provincial boundaries">
-            <customproperties/>
-          </layer-tree-layer>
-          <layer-tree-layer expanded="1" checked="Qt::Checked" id="buffer_asi20160530013115599" name="Agric Stress Index, dekad 3, January 2016, buffered 1.5 km">
-            <customproperties/>
-          </layer-tree-layer>
-        </layer-tree-group>
-        <ComposerItem pagey="29.9628" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="28.1132" y="29.9628" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="57.8766" outlineWidth="0.3" excludeFromExports="0" uuid="{75c6a36e-5419-468b-8271-3fd80985f3c8}" height="68.2313" itemRotation="0" frame="false" pagex="28.1132">
-          <FrameColor alpha="255" red="0" blue="0" green="0"/>
-          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
-          <customproperties/>
-        </ComposerItem>
-      </ComposerLegend>
-      <ComposerMap mapRotation="0" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
-        <Extent ymin="-729466.96983769012149423" xmin="-1159516.28547660913318396" ymax="730925.0316519100451842" xmax="952483.71667763101868331"/>
-        <LayerSet/>
-        <Grid/>
-        <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="1" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{adafca57-015e-44ab-aab2-b42211eed6e5}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="2" gridFrameSideFlags="15" intervalY="2" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.29999999999999999" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="5" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
-          <lineStyle>
-            <symbol alpha="1" clip_to_extent="1" type="line" name="">
-              <layer pass="0" class="SimpleLine" locked="0">
-                <prop k="capstyle" v="flat"/>
-                <prop k="customdash" v="5;2"/>
-                <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-                <prop k="customdash_unit" v="MM"/>
-                <prop k="draw_inside_polygon" v="0"/>
-                <prop k="joinstyle" v="bevel"/>
-                <prop k="line_color" v="0,0,0,255"/>
-                <prop k="line_style" v="solid"/>
-                <prop k="line_width" v="0.03"/>
-                <prop k="line_width_unit" v="MM"/>
-                <prop k="offset" v="0"/>
-                <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-                <prop k="offset_unit" v="MM"/>
-                <prop k="use_custom_dash" v="0"/>
-                <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-              </layer>
-            </symbol>
-          </lineStyle>
-          <markerStyle>
-            <symbol alpha="1" clip_to_extent="1" type="marker" name="">
-              <layer pass="0" class="SimpleMarker" locked="0">
-                <prop k="angle" v="0"/>
-                <prop k="color" v="0,0,0,255"/>
-                <prop k="horizontal_anchor_point" v="1"/>
-                <prop k="name" v="circle"/>
-                <prop k="offset" v="0,0"/>
-                <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-                <prop k="offset_unit" v="MM"/>
-                <prop k="outline_color" v="0,0,0,255"/>
-                <prop k="outline_style" v="solid"/>
-                <prop k="outline_width" v="0"/>
-                <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-                <prop k="outline_width_unit" v="MM"/>
-                <prop k="scale_method" v="diameter"/>
-                <prop k="size" v="2"/>
-                <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-                <prop k="size_unit" v="MM"/>
-                <prop k="vertical_anchor_point" v="1"/>
-              </layer>
-            </symbol>
-          </markerStyle>
-          <spatialrefsys>
-            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
-            <srsid>3452</srsid>
-            <srid>4326</srid>
-            <authid>EPSG:4326</authid>
-            <description>WGS 84</description>
-            <projectionacronym>longlat</projectionacronym>
-            <ellipsoidacronym>WGS84</ellipsoidacronym>
-            <geographicflag>true</geographicflag>
-          </spatialrefsys>
-          <annotationFontProperties description="Helvetica Neue,13,-1,5,50,0,0,0,0,0" style=""/>
-        </ComposerMapGrid>
-        <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="17" page="1" id="" lastValidViewScaleFactor="2.70336" positionMode="0" positionLock="false" x="16" y="17" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="264" outlineWidth="0.3" excludeFromExports="0" uuid="{864e7d41-9dcd-43eb-aa74-fa997624fec8}" height="182.549" itemRotation="0" frame="false" pagex="16">
-          <FrameColor alpha="255" red="0" blue="0" green="0"/>
-          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
-          <customproperties/>
-        </ComposerItem>
-      </ComposerMap>
-      <customproperties>
-        <property key="imageCropMarginBottom" value="0"/>
-        <property key="imageCropMarginLeft" value="0"/>
-        <property key="imageCropMarginRight" value="0"/>
-        <property key="imageCropMarginTop" value="0"/>
-        <property key="imageCropToContents" value="true"/>
-      </customproperties>
-    </Composition>
-  </Composer>
   <Composer title="nofa_agricregions_hazard" visible="0">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
@@ -533,7 +406,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_vci_hazard" visible="1">
+  <Composer title="nofa_vci_hazard" visible="0">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -723,7 +596,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_vci" visible="1">
+  <Composer title="nofa_vci" visible="0">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -1612,7 +1485,7 @@
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="VEGETATION CONDITION INDEX (VCI) FOR THE MONTH OF JANUARY 2016" htmlState="0" halign="4">
         <LabelFont description="Helvetica Neue,11,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="17.7557" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="104.481" y="17.7557" visibility="1" zValue="7" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="88.0387" outlineWidth="0.1" excludeFromExports="0" uuid="{4c2a7f66-3c85-4391-a3ac-325ea2eeb0a8}" height="12.9469" itemRotation="0" frame="true" pagex="104.481">
+        <ComposerItem pagey="17.7557" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="104.481" y="17.7557" visibility="1" zValue="4" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="88.0387" outlineWidth="0.1" excludeFromExports="0" uuid="{4c2a7f66-3c85-4391-a3ac-325ea2eeb0a8}" height="12.9469" itemRotation="0" frame="true" pagex="104.481">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -1621,7 +1494,7 @@
       <ComposerLabel valign="32" marginX="1" marginY="0.7" labelText="Prepared by: CW Rethman, PGP 1287&#xa;Projection: Albers Equal Area with standard parallels at 24.2ºS  and 32.8ºS, the central meridian 25.1ºE." htmlState="0" halign="1">
         <LabelFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="182.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="6" positionLock="false" x="194.943" y="182.012" visibility="1" zValue="6" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="56.226" outlineWidth="0.1" excludeFromExports="0" uuid="{937d6ae0-bf3d-4c5a-96a2-059ad07757f2}" height="9.988" itemRotation="0" frame="true" pagex="194.943">
+        <ComposerItem pagey="182.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="6" positionLock="false" x="194.943" y="182.012" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="56.226" outlineWidth="0.1" excludeFromExports="0" uuid="{937d6ae0-bf3d-4c5a-96a2-059ad07757f2}" height="9.988" itemRotation="0" frame="true" pagex="194.943">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -1762,7 +1635,7 @@
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BUFFERING OF VEGETATION CONDITION INDEX (VCI) PIXEL GROUPINGS" htmlState="0" halign="4">
         <LabelFont description="Helvetica Neue,11,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="17.7557" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="81.7897" y="17.7557" visibility="1" zValue="7" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="133.421" outlineWidth="0.1" excludeFromExports="0" uuid="{50ec3ddd-0775-4326-8c25-15b9ce66f4f8}" height="8.50797" itemRotation="0" frame="true" pagex="81.7897">
+        <ComposerItem pagey="17.7557" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="81.7897" y="17.7557" visibility="1" zValue="4" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="133.421" outlineWidth="0.1" excludeFromExports="0" uuid="{50ec3ddd-0775-4326-8c25-15b9ce66f4f8}" height="8.50797" itemRotation="0" frame="true" pagex="81.7897">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -1771,7 +1644,7 @@
       <ComposerLabel valign="32" marginX="1" marginY="0.7" labelText="Prepared by: CW Rethman, PGP 1287&#xa;Projection: Albers Equal Area with standard parallels at 24.2ºS  and 32.8ºS, the central meridian 25.1ºE." htmlState="0" halign="1">
         <LabelFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="182.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="6" positionLock="false" x="194.943" y="182.012" visibility="1" zValue="6" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="56.226" outlineWidth="0.1" excludeFromExports="0" uuid="{c2d5bc7c-1514-4830-bed2-37a0c102f123}" height="9.988" itemRotation="0" frame="true" pagex="194.943">
+        <ComposerItem pagey="182.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="6" positionLock="false" x="194.943" y="182.012" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="56.226" outlineWidth="0.1" excludeFromExports="0" uuid="{c2d5bc7c-1514-4830-bed2-37a0c102f123}" height="9.988" itemRotation="0" frame="true" pagex="194.943">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -1816,7 +1689,7 @@
         </ComposerItem>
       </ComposerLegend>
       <ComposerMap mapRotation="0" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
-        <Extent ymin="-92025.11124566482612863" xmin="-182988.99141567415790632" ymax="90523.88894053516560234" xmax="81011.00885360583197325"/>
+        <Extent ymin="-92025.11124566482612863" xmin="-182988.99141567415790632" ymax="90523.88894053513649851" xmax="81011.00885360583197325"/>
         <LayerSet/>
         <Grid/>
         <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="1" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{adafca57-015e-44ab-aab2-b42211eed6e5}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="2" gridFrameSideFlags="15" intervalY="2" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.29999999999999999" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="5" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
@@ -1878,6 +1751,154 @@
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
         <ComposerItem pagey="13.7255" page="1" id="" lastValidViewScaleFactor="2.70336" positionMode="0" positionLock="false" x="16.5" y="13.7255" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="264" outlineWidth="0.3" excludeFromExports="0" uuid="{70502b13-aeb4-49fc-89e8-9d73619721a5}" height="182.549" itemRotation="0" frame="false" pagex="16.5">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="185" blue="235" green="247"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerMap>
+      <customproperties>
+        <property key="imageCropMarginBottom" value="0"/>
+        <property key="imageCropMarginLeft" value="0"/>
+        <property key="imageCropMarginRight" value="0"/>
+        <property key="imageCropMarginTop" value="0"/>
+        <property key="imageCropToContents" value="true"/>
+      </customproperties>
+    </Composition>
+  </Composer>
+  <Composer title="nofa_hazard" visible="1">
+    <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
+      <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+        <layer pass="0" class="SimpleFill" locked="0">
+          <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="color" v="255,255,255,255"/>
+          <prop k="joinstyle" v="miter"/>
+          <prop k="offset" v="0,0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="outline_color" v="0,0,0,255"/>
+          <prop k="outline_style" v="no"/>
+          <prop k="outline_width" v="0.26"/>
+          <prop k="outline_width_unit" v="MM"/>
+          <prop k="style" v="solid"/>
+        </layer>
+      </symbol>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="IDENTIFIED HAZARD AREA OVERLAID ONTO JANUARY 2016 VEGENTATION CONDITION INDEX" htmlState="0" halign="4">
+        <LabelFont description="Helvetica Neue,11,-1,5,50,0,0,0,0,0" style="Light"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="17.7557" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="102.764" y="17.7557" visibility="1" zValue="7" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="91.4721" outlineWidth="0.1" excludeFromExports="0" uuid="{6dcb0456-53e7-43e8-9c48-81d1ff85595a}" height="12.577" itemRotation="0" frame="true" pagex="102.764">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="0.7" labelText="Prepared by: CW Rethman, PGP 1287&#xa;Projection: Albers Equal Area with standard parallels at 24.2ºS  and 32.8ºS, the central meridian 25.1ºE." htmlState="0" halign="1">
+        <LabelFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="182.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="6" positionLock="false" x="194.943" y="182.012" visibility="1" zValue="6" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="56.226" outlineWidth="0.1" excludeFromExports="0" uuid="{929c7b30-9da9-4bb9-9e8d-2472c6e35e3a}" height="9.988" itemRotation="0" frame="true" pagex="194.943">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLegend symbolWidth="5" title="Legend" boxSpace="1" rasterBorderWidth="0" splitLayer="0" equalColumnWidth="0" map="0" titleAlignment="1" rasterBorder="1" symbolHeight="4" wmsLegendHeight="25" wrapChar="\n" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1" rasterBorderColor="0,0,0,255">
+        <styles>
+          <style marginBottom="1" name="title">
+            <styleFont description="Helvetica Neue,8,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+          <style marginTop="1" name="group">
+            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+          <style marginTop="1" name="subgroup">
+            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+          <style marginTop="0.5" name="symbol">
+            <styleFont description="Helvetica Neue,13,-1,5,50,0,0,0,0,0" style=""/>
+          </style>
+          <style marginTop="0.5" marginLeft="1" name="symbolLabel">
+            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+        </styles>
+        <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
+          <customproperties/>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="Provincial_boundaries_copy20160606200354864" name="International boundaries">
+            <customproperties/>
+          </layer-tree-layer>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin2_provs20160529150446467" name="Provincial boundaries">
+            <customproperties/>
+          </layer-tree-layer>
+          <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="prob_hazard20160601201333451" name="Intensive drought area">
+            <customproperties/>
+          </layer-tree-layer>
+        </layer-tree-group>
+        <ComposerItem pagey="167.268" page="1" id="" lastValidViewScaleFactor="-1" positionMode="6" positionLock="false" x="22" y="167.268" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="29.6422" outlineWidth="0.1" excludeFromExports="0" uuid="{6fc012eb-29f8-4532-9266-a990d0de56f7}" height="24.7313" itemRotation="0" frame="true" pagex="22">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLegend>
+      <ComposerMap mapRotation="0" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
+        <Extent ymin="-729466.96983769012149423" xmin="-1159516.28547660913318396" ymax="730925.0316519100451842" xmax="952483.71667763101868331"/>
+        <LayerSet/>
+        <Grid/>
+        <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="1" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{adafca57-015e-44ab-aab2-b42211eed6e5}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="2" gridFrameSideFlags="15" intervalY="2" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.29999999999999999" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="5" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
+          <lineStyle>
+            <symbol alpha="1" clip_to_extent="1" type="line" name="">
+              <layer pass="0" class="SimpleLine" locked="0">
+                <prop k="capstyle" v="flat"/>
+                <prop k="customdash" v="5;2"/>
+                <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="customdash_unit" v="MM"/>
+                <prop k="draw_inside_polygon" v="0"/>
+                <prop k="joinstyle" v="bevel"/>
+                <prop k="line_color" v="0,0,0,255"/>
+                <prop k="line_style" v="solid"/>
+                <prop k="line_width" v="0.03"/>
+                <prop k="line_width_unit" v="MM"/>
+                <prop k="offset" v="0"/>
+                <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="offset_unit" v="MM"/>
+                <prop k="use_custom_dash" v="0"/>
+                <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+              </layer>
+            </symbol>
+          </lineStyle>
+          <markerStyle>
+            <symbol alpha="1" clip_to_extent="1" type="marker" name="">
+              <layer pass="0" class="SimpleMarker" locked="0">
+                <prop k="angle" v="0"/>
+                <prop k="color" v="0,0,0,255"/>
+                <prop k="horizontal_anchor_point" v="1"/>
+                <prop k="name" v="circle"/>
+                <prop k="offset" v="0,0"/>
+                <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="offset_unit" v="MM"/>
+                <prop k="outline_color" v="0,0,0,255"/>
+                <prop k="outline_style" v="solid"/>
+                <prop k="outline_width" v="0"/>
+                <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="outline_width_unit" v="MM"/>
+                <prop k="scale_method" v="diameter"/>
+                <prop k="size" v="2"/>
+                <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="size_unit" v="MM"/>
+                <prop k="vertical_anchor_point" v="1"/>
+              </layer>
+            </symbol>
+          </markerStyle>
+          <spatialrefsys>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+            <srsid>3452</srsid>
+            <srid>4326</srid>
+            <authid>EPSG:4326</authid>
+            <description>WGS 84</description>
+            <projectionacronym>longlat</projectionacronym>
+            <ellipsoidacronym>WGS84</ellipsoidacronym>
+            <geographicflag>true</geographicflag>
+          </spatialrefsys>
+          <annotationFontProperties description="Helvetica Neue,13,-1,5,50,0,0,0,0,0" style=""/>
+        </ComposerMapGrid>
+        <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
+        <ComposerItem pagey="13.7255" page="1" id="" lastValidViewScaleFactor="2.70336" positionMode="0" positionLock="false" x="16.5" y="13.7255" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="264" outlineWidth="0.3" excludeFromExports="0" uuid="{3c171794-4053-4581-886a-86304433763e}" height="182.549" itemRotation="0" frame="false" pagex="16.5">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="185" blue="235" green="247"/>
           <customproperties/>
@@ -10678,7 +10699,7 @@ def my_form_open(dialog, layer, feature):
         <fieldstyles/>
       </conditionalstyles>
     </maplayer>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>veg_cond_idx_160120160601100602617</id>
       <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=201100 type=MultiPolygon table="zaf"."rs_vci_16_01" (the_geom) sql=</datasource>
       <keywordList>
@@ -10772,7 +10793,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
               <prop k="outline_color" v="0,0,0,255"/>
-              <prop k="outline_style" v="solid"/>
+              <prop k="outline_style" v="no"/>
               <prop k="outline_width" v="0.1"/>
               <prop k="outline_width_unit" v="MM"/>
               <prop k="style" v="solid"/>
@@ -11078,7 +11099,7 @@ def my_form_open(dialog, layer, feature):
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
           <fontProperties description=".SF NS Text,13,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -11172,6 +11193,7 @@ def my_form_open(dialog, layer, feature):
         <value>Provincial_boundaries_copy20160606044112036</value>
         <value>Provincial_boundaries_copy20160606200354864</value>
         <value>Veg_cond_idx_1601_copy20160602111832908</value>
+        <value>Vegetation_Condition_Index__n_for_January_2016_copy20160724142455321</value>
         <value>admin0_201420160606200305330</value>
         <value>admin2_provs20160529150446467</value>
         <value>ag_stress_idx_1601320160529234537141</value>
@@ -11185,17 +11207,17 @@ def my_form_open(dialog, layer, feature):
         <value>prob_crops20160601202737153</value>
         <value>prob_hazard20160601201333451</value>
         <value>rs_mask20160602011143038</value>
+        <value>rs_vci_16_01_buffer20160725122853752</value>
         <value>vci_1601_buffer20160601102051107</value>
         <value>veg_cond_idx_151220160601100522627</value>
         <value>veg_cond_idx_160120160601100602617</value>
-        <value>Vegetation_Condition_Index__n_for_January_2016_copy20160724142455321</value>
-        <value>rs_vci_16_01_buffer20160725122853752</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
         <value>enabled</value>
         <value>enabled</value>
         <value>disabled</value>
         <value>enabled</value>
+        <value>enabled</value>
         <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
@@ -11208,11 +11230,10 @@ def my_form_open(dialog, layer, feature):
         <value>disabled</value>
         <value>disabled</value>
         <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
-        <value>disabled</value>
         <value>enabled</value>
-        <value>enabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
+        <value>disabled</value>
       </LayerSnappingEnabledList>
       <SnappingMode type="QString">advanced</SnappingMode>
       <AvoidIntersectionsList type="QStringList"/>
