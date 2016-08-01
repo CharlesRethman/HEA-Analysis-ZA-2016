@@ -68,10 +68,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>239760.33021277576335706</xmin>
-      <ymin>255993.78967331448802724</ymin>
-      <xmax>645770.35325023077894002</xmax>
-      <ymax>499599.80349578749155626</ymax>
+      <xmin>104810.33207937405677512</xmin>
+      <ymin>314961.91206684953067452</ymin>
+      <xmax>510820.35511682910146192</xmax>
+      <ymax>558567.92588932253420353</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -261,7 +261,7 @@
       </filegroup>
     </legendlayer>
   </legend>
-  <Composer title="nofa_agricregions_hazard" visible="0">
+  <Composer title="nofa_agricregions_hazard" visible="1">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -278,6 +278,18 @@
           <prop k="style" v="solid"/>
         </layer>
       </symbol>
+      <ComposerScaleBar lineCapStyle="square" style="Line Ticks Up" numMapUnitsPerScaleBarUnit="1000" segmentSizeMode="0" alignment="0" numSegments="3" segmentMillimeters="12.5466" lineJoinStyle="miter" minBarWidth="50" numUnitsPerSegment="100000" units="1" labelBarSpace="3" outlineWidth="0.3" numSegmentsLeft="2" maxBarWidth="150" height="2" boxContentSpace="1" mapId="0" unitLabel="km">
+        <scaleBarFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Thin"/>
+        <fillColor alpha="255" red="0" blue="0" green="0"/>
+        <fillColor2 alpha="255" red="255" blue="255" green="255"/>
+        <strokeColor alpha="255" red="0" blue="0" green="0"/>
+        <textColor alpha="255" red="0" blue="0" green="0"/>
+        <ComposerItem pagey="171.269" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="219.677" y="171.269" visibility="1" zValue="12" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="59.5129" outlineWidth="0.3" excludeFromExports="0" uuid="{e3d740b5-2ab5-4ccb-b3b4-e59504e8938b}" height="11.9618" itemRotation="0" frame="false" pagex="219.677">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerScaleBar>
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="AGRICULTURAL REGIONS" htmlState="0" halign="4">
         <LabelFont description="Helvetica Neue,11,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
@@ -596,7 +608,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_vci" visible="0">
+  <Composer title="nofa_vci" visible="1">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -613,6 +625,18 @@
           <prop k="style" v="solid"/>
         </layer>
       </symbol>
+      <ComposerScaleBar lineCapStyle="square" style="Line Ticks Up" numMapUnitsPerScaleBarUnit="1000" segmentSizeMode="0" alignment="0" numSegments="3" segmentMillimeters="12.5466" lineJoinStyle="miter" minBarWidth="50" numUnitsPerSegment="100000" units="1" labelBarSpace="3" outlineWidth="0.3" numSegmentsLeft="2" maxBarWidth="150" height="2" boxContentSpace="1" mapId="0" unitLabel="km">
+        <scaleBarFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Thin"/>
+        <fillColor alpha="255" red="0" blue="0" green="0"/>
+        <fillColor2 alpha="255" red="255" blue="255" green="255"/>
+        <strokeColor alpha="255" red="0" blue="0" green="0"/>
+        <textColor alpha="255" red="0" blue="0" green="0"/>
+        <ComposerItem pagey="169.126" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="194.265" y="169.126" visibility="1" zValue="8" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="59.5129" outlineWidth="0.3" excludeFromExports="0" uuid="{2191a126-16ce-40dd-833d-8f33d48ec8ef}" height="11.9618" itemRotation="0" frame="false" pagex="194.265">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerScaleBar>
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="VEGETATION CONDITION INDEX (VCI) FOR THE MONTH OF JANUARY 2016" htmlState="0" halign="4">
         <LabelFont description="Helvetica Neue,11,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
@@ -770,7 +794,7 @@
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
         <ComposerItem pagey="13.7255" page="1" id="" lastValidViewScaleFactor="2.70336" positionMode="0" positionLock="false" x="16.5" y="13.7255" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="264" outlineWidth="0.3" excludeFromExports="0" uuid="{ac984697-472b-401b-a589-16a6e732ba39}" height="182.549" itemRotation="0" frame="false" pagex="16.5">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
-          <BackgroundColor alpha="255" red="185" blue="235" green="247"/>
+          <BackgroundColor alpha="255" red="222" blue="255" green="244"/>
           <customproperties/>
         </ComposerItem>
       </ComposerMap>
@@ -783,7 +807,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_livezones_hazard" visible="0">
+  <Composer title="nofa_livezones_hazard" visible="1">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -1465,7 +1489,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_vci_vector" visible="1">
+  <Composer title="nofa_vci_vector" visible="0">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -1782,10 +1806,22 @@
           <prop k="style" v="solid"/>
         </layer>
       </symbol>
+      <ComposerScaleBar lineCapStyle="square" style="Line Ticks Up" numMapUnitsPerScaleBarUnit="1000" segmentSizeMode="0" alignment="0" numSegments="3" segmentMillimeters="12.5466" lineJoinStyle="miter" minBarWidth="50" numUnitsPerSegment="100000" units="1" labelBarSpace="3" outlineWidth="0.3" numSegmentsLeft="2" maxBarWidth="150" height="2" boxContentSpace="1" mapId="0" unitLabel="km">
+        <scaleBarFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Thin"/>
+        <fillColor alpha="255" red="0" blue="0" green="0"/>
+        <fillColor2 alpha="255" red="255" blue="255" green="255"/>
+        <strokeColor alpha="255" red="0" blue="0" green="0"/>
+        <textColor alpha="255" red="0" blue="0" green="0"/>
+        <ComposerItem pagey="170" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="194.893" y="170" visibility="1" zValue="12" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="59.5129" outlineWidth="0.3" excludeFromExports="0" uuid="{88b61fd9-e64c-421e-b8dc-784583a21fed}" height="11.9618" itemRotation="0" frame="false" pagex="194.893">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerScaleBar>
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="IDENTIFIED HAZARD AREA OVERLAID ONTO JANUARY 2016 VEGENTATION CONDITION INDEX" htmlState="0" halign="4">
         <LabelFont description="Helvetica Neue,11,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="17.7557" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="102.764" y="17.7557" visibility="1" zValue="7" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="91.4721" outlineWidth="0.1" excludeFromExports="0" uuid="{6dcb0456-53e7-43e8-9c48-81d1ff85595a}" height="12.577" itemRotation="0" frame="true" pagex="102.764">
+        <ComposerItem pagey="17.7557" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="102.764" y="17.7557" visibility="1" zValue="4" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="91.4721" outlineWidth="0.1" excludeFromExports="0" uuid="{6dcb0456-53e7-43e8-9c48-81d1ff85595a}" height="12.577" itemRotation="0" frame="true" pagex="102.764">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -1794,7 +1830,7 @@
       <ComposerLabel valign="32" marginX="1" marginY="0.7" labelText="Prepared by: CW Rethman, PGP 1287&#xa;Projection: Albers Equal Area with standard parallels at 24.2ºS  and 32.8ºS, the central meridian 25.1ºE." htmlState="0" halign="1">
         <LabelFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="182.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="6" positionLock="false" x="194.943" y="182.012" visibility="1" zValue="6" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="56.226" outlineWidth="0.1" excludeFromExports="0" uuid="{929c7b30-9da9-4bb9-9e8d-2472c6e35e3a}" height="9.988" itemRotation="0" frame="true" pagex="194.943">
+        <ComposerItem pagey="182.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="6" positionLock="false" x="194.943" y="182.012" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="56.226" outlineWidth="0.1" excludeFromExports="0" uuid="{929c7b30-9da9-4bb9-9e8d-2472c6e35e3a}" height="9.988" itemRotation="0" frame="true" pagex="194.943">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -1900,7 +1936,7 @@
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
         <ComposerItem pagey="13.7255" page="1" id="" lastValidViewScaleFactor="2.70336" positionMode="0" positionLock="false" x="16.5" y="13.7255" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="264" outlineWidth="0.3" excludeFromExports="0" uuid="{3c171794-4053-4581-886a-86304433763e}" height="182.549" itemRotation="0" frame="false" pagex="16.5">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
-          <BackgroundColor alpha="255" red="185" blue="235" green="247"/>
+          <BackgroundColor alpha="255" red="222" blue="255" green="244"/>
           <customproperties/>
         </ComposerItem>
       </ComposerMap>

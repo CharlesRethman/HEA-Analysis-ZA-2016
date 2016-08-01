@@ -9,7 +9,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="Provincial_boundaries_copy20160606200354864" name="International boundaries">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin2_provs20160529150446467" name="Provincial boundaries">
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="admin2_provs20160529150446467" name="Provincial boundaries">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="prob_crops20160601202737153" name="Prob_crops">
@@ -40,9 +40,6 @@
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="ag_stress_idx_1601320160529234537141" name="Ag_stress_idx_16013">
-      <customproperties/>
-    </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="Provincial_boundaries_copy20160606044112036" name="Provincial boundaries copy">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_16_01_grscale20160601083721547" name="Vci_16-01_grscale">
@@ -108,7 +105,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_15_12_georef20160529153412489" name="Vci_15-12_georef">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_16_01_georef20160529152853204" name="Vci_16-01_georef">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="vci_16_01_georef20160529152853204" name="Vci_16-01_georef">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_16_01_3_georef20160531120637123" name="Vci_16-01-3_georef">
@@ -127,6 +124,9 @@
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vci_15_12_1_georef20160531120236204" name="Vci_15-12-1_georef">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="Provincial_boundaries_copy20160606044112036" name="Provincial boundaries copy">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="hazard_spi_201520160529112700659" name="Hazard_spi_2015">
@@ -202,6 +202,7 @@
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_crops20160601202737153"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="landuse_agricregions20160601122112244"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="veg_cond_idx_160120160601100602617"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="hazard_spi_201520160529112700659"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="rs_mask20160602011143038"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="prob_hazard20160606000951226"/>
     </layer_coordinate_transform_info>
@@ -265,9 +266,9 @@
         <legendlayerfile isInOverview="0" layerid="Provincial_boundaries_copy20160606200354864" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Provincial boundaries" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Provincial boundaries" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="admin2_provs20160529150446467" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="admin2_provs20160529150446467" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Prob_crops" showFeatureCount="0">
@@ -318,11 +319,6 @@
     <legendlayer drawingOrder="-1" open="false" checked="Qt::Unchecked" name="Ag_stress_idx_16013" showFeatureCount="0">
       <filegroup open="false" hidden="false">
         <legendlayerfile isInOverview="0" layerid="ag_stress_idx_1601320160529234537141" visible="0"/>
-      </filegroup>
-    </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Provincial boundaries copy" showFeatureCount="0">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="Provincial_boundaries_copy20160606044112036" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vci_16-01_grscale" showFeatureCount="0">
@@ -430,9 +426,9 @@
         <legendlayerfile isInOverview="0" layerid="vci_15_12_georef20160529153412489" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vci_16-01_georef" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Vci_16-01_georef" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="vci_16_01_georef20160529152853204" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="vci_16_01_georef20160529152853204" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vci_16-01-3_georef" showFeatureCount="0">
@@ -463,6 +459,11 @@
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Vci_15-12-1_georef" showFeatureCount="0">
       <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="vci_15_12_1_georef20160531120236204" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Provincial boundaries copy" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="Provincial_boundaries_copy20160606044112036" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Hazard_spi_2015" showFeatureCount="0">
@@ -621,7 +622,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_vci_hazard" visible="0">
+  <Composer title="nofa_vci_hazard" visible="1">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -638,6 +639,18 @@
           <prop k="style" v="solid"/>
         </layer>
       </symbol>
+      <ComposerScaleBar lineCapStyle="square" style="Line Ticks Up" numMapUnitsPerScaleBarUnit="1000" segmentSizeMode="0" alignment="0" numSegments="3" segmentMillimeters="12.5466" lineJoinStyle="miter" minBarWidth="50" numUnitsPerSegment="100000" units="1" labelBarSpace="3" outlineWidth="0.3" numSegmentsLeft="2" maxBarWidth="150" height="2" boxContentSpace="1" mapId="0" unitLabel="km">
+        <scaleBarFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Thin"/>
+        <fillColor alpha="255" red="0" blue="0" green="0"/>
+        <fillColor2 alpha="255" red="255" blue="255" green="255"/>
+        <strokeColor alpha="255" red="0" blue="0" green="0"/>
+        <textColor alpha="255" red="0" blue="0" green="0"/>
+        <ComposerItem pagey="170" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="192.286" y="170" visibility="1" zValue="15" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="59.5129" outlineWidth="0.3" excludeFromExports="0" uuid="{cfe665fc-d773-4cbc-91e2-ffb3f2aa491c}" height="11.9618" itemRotation="0" frame="false" pagex="192.286">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerScaleBar>
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="IDENTIFIED HAZARD AREA OVERLAID ONTO JANUARY 2016 VEGENTATION CONDITION INDEX" htmlState="0" halign="4">
         <LabelFont description="Helvetica Neue,11,-1,5,50,0,0,0,0,0" style="Light"/>
         <FontColor red="0" blue="0" green="0"/>
@@ -798,7 +811,7 @@
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
         <ComposerItem pagey="13.7255" page="1" id="" lastValidViewScaleFactor="2.70336" positionMode="0" positionLock="false" x="16.5" y="13.7255" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="264" outlineWidth="0.3" excludeFromExports="0" uuid="{c3927c55-554e-4187-bcac-0846eaa973f3}" height="182.549" itemRotation="0" frame="false" pagex="16.5">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
-          <BackgroundColor alpha="255" red="185" blue="235" green="247"/>
+          <BackgroundColor alpha="255" red="222" blue="255" green="244"/>
           <customproperties/>
         </ComposerItem>
       </ComposerMap>
