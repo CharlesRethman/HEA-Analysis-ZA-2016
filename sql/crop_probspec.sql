@@ -226,7 +226,7 @@ INSERT INTO zaf.prob_crops (
       h.prov_code,
       i.cec,
       h.hazard,
-      (i.cec * h.prov_area - 1.0 * (h.prov_area - ST_Area(h.the_geom)))/ST_Area(h.the_geom) AS local_probspec,
+      (i.cec * h.prov_area - 2.0 * (h.prov_area - ST_Area(h.the_geom)))/ST_Area(h.the_geom) AS local_probspec,
       h.prov_area,
       ST_Area(h.the_geom) AS area_local
    FROM
@@ -256,9 +256,10 @@ INSERT INTO zaf.prob_crops (
       zaf.t3 AS i
    WHERE
          h.prov_code = i.prov_code
-      AND i.prov_code != 8
-      AND i.prov_code != 4
-      AND i.prov_code != 5
+      AND
+         (
+            i.prov_code = 1 OR i.prov_code = 3
+         )
 ;
 
 
@@ -282,7 +283,7 @@ INSERT INTO zaf.prob_crops (
       h.prov_code,
       i.cec,
       h.hazard,
-      1.0 AS local_probspec,
+      2.0 AS local_probspec,
       h.prov_area,
       ST_Area(h.the_geom)
    FROM
@@ -312,9 +313,10 @@ INSERT INTO zaf.prob_crops (
       zaf.t3 AS i
    WHERE
          h.prov_code = i.prov_code
-      AND i.prov_code != 8
-      AND i.prov_code != 4
-      AND i.prov_code != 5
+      AND
+         (
+            i.prov_code = 1 OR i.prov_code = 3
+         )
 ;
 
 
@@ -370,7 +372,7 @@ INSERT INTO zaf.prob_crops (
          h.prov_code = i.prov_code
       AND
          (
-            i.prov_code = 4 OR i.prov_code = 5
+            i.prov_code = 2 OR (i.prov_code > 3 AND i.prov_code < 8)
          )
 ;
 
@@ -427,7 +429,7 @@ INSERT INTO zaf.prob_crops (
          h.prov_code = i.prov_code
       AND
          (
-            i.prov_code = 4 OR i.prov_code = 5
+            i.prov_code = 2 OR (i.prov_code > 3 AND i.prov_code < 8)
          )
 ;
 
@@ -541,6 +543,114 @@ INSERT INTO zaf.prob_crops (
          i.prov_code = 8
 ;
 
+INSERT INTO zaf.prob_crops (
+   the_geom,
+   ofa_year,
+   ofa_month,
+   ag_type,
+   prov_code,
+   cec_probspec,
+   hazard,
+   local_probspec,
+   area_total,
+   area_local
+)
+   SELECT
+      h.the_geom,
+      h.ofa_year,
+      h.ofa_month,
+      h.ag_type,
+      h.prov_code,
+      i.cec,
+      h.hazard,
+      (i.cec * h.prov_area - 1.40 * (h.prov_area - ST_Area(h.the_geom)))/ST_Area(h.the_geom) AS local_probspec,
+      h.prov_area,
+      ST_Area(h.the_geom) AS area_local
+   FROM
+      (
+         SELECT
+            ST_Multi(ST_Union(ST_Intersection(g.the_geom, f.the_geom))) AS the_geom,
+            f.ofa_year,
+            f.ofa_month,
+            g.ag_type,
+            g.prov_code,
+            :'hazard' AS hazard,
+            sum(ST_Area(g.the_geom)) AS prov_area
+         FROM
+            zaf.t4 AS f,
+            zaf.t2 AS g
+         WHERE
+               ST_Intersects(g.the_geom, f.the_geom)
+            AND
+               NOT ST_IsEmpty(ST_Buffer(ST_Intersection(g.the_geom, f.the_geom),0.0))
+         GROUP BY
+            f.ofa_year,
+            f.ofa_month,
+            g.ag_type,
+            g.prov_code,
+            hazard
+      ) AS h,
+      zaf.t3 AS i
+   WHERE
+         h.prov_code = i.prov_code
+      AND
+         i.prov_code = 9
+;
+
+
+INSERT INTO zaf.prob_crops (
+   the_geom,
+   ofa_year,
+   ofa_month,
+   ag_type,
+   prov_code,
+   cec_probspec,
+   hazard,
+   local_probspec,
+   area_total,
+   area_local
+)
+   SELECT
+      h.the_geom,
+      h.ofa_year,
+      h.ofa_month,
+      h.ag_type,
+      h.prov_code,
+      i.cec,
+      h.hazard,
+      1.40 AS local_probspec,
+      h.prov_area,
+      ST_Area(h.the_geom)
+   FROM
+      (
+         SELECT
+            ST_Multi(ST_Union(ST_Difference(g.the_geom, f.the_geom))) AS the_geom,
+            f.ofa_year,
+            f.ofa_month,
+            g.ag_type,
+            g.prov_code,
+            'normal' AS hazard,
+            sum(ST_Area(g.the_geom)) AS prov_area
+         FROM
+            zaf.t4 AS f,
+            zaf.t2 AS g
+         WHERE
+               ST_Intersects(f.the_geom, g.the_geom)
+            AND
+               NOT ST_IsEmpty(ST_Buffer(ST_Intersection(f.the_geom, g.the_geom),0.0))
+         GROUP BY
+            f.ofa_year,
+            f.ofa_month,
+            g.ag_type,
+            g.prov_code,
+            hazard
+      ) AS h,
+      zaf.t3 AS i
+   WHERE
+         h.prov_code = i.prov_code
+      AND
+            i.prov_code = 9
+;
 
 
 INSERT INTO zaf.prob_crops (
