@@ -1,0 +1,75 @@
+                                     NOTICE                                      
+---------------------------------------------------------------------------------
+ This query will only work if you have specified two switches on the command    +
+ line for the 'analysis' and 'hazard' variables, using the syntax:              +
+                                                                                +
+ -v analysis=M-YYYY -v hazard=HAZARD_TYPE                                       +
+                                                                                +
+ where M is a one- or two-digit number representing the month of analysis (1 to +
+ 12), YYYY is a four-digit number representing the year of analysis and         +
+ HAZARD_TYPE is a one-word (no whitespace) description of the hazard.           +
+ 
+(1 row)
+
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP INDEX
+DROP INDEX
+DROP INDEX
+DROP INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE TABLE
+CREATE TABLE
+DELETE 217
+INSERT 0 1
+INSERT 0 217
+REINDEX
+CREATE TABLE
+INSERT 0 16
+CREATE INDEX
+CREATE TABLE
+INSERT 0 9
+CREATE INDEX
+BEGIN
+CREATE TABLE
+INSERT 0 6
+INSERT 0 6
+INSERT 0 2
+INSERT 0 2
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+COMMIT
+DROP INDEX
+DROP INDEX
+DROP TABLE
+DROP TABLE
+DROP TABLE
+ ofa_year | ofa_month |   province    |   ag_type   | ha_total | pspec_cec | hazard  | ha_local | pc_ha_affected | pspec_local 
+----------+-----------+---------------+-------------+----------+-----------+---------+----------+----------------+-------------
+     2016 |         4 | All provinces | Subsistence | 13198889 | 62%       | drought |  7884053 | 60%            | 30%
+     2016 |         4 | All provinces | Subsistence | 13198889 | 62%       | normal  |  5314836 | 40%            | 110%
+     2016 |         4 | Eastern Cape  | Grains      |   288584 | 54%       | drought |   139844 | 48%            | 5%
+     2016 |         4 | Eastern Cape  | Grains      |   288584 | 54%       | normal  |   148740 | 52%            | 100%
+     2016 |         4 | Free State    | Grains      |  7987746 | 42%       | drought |  6804745 | 85%            | 36%
+     2016 |         4 | Free State    | Grains      |  7987746 | 42%       | normal  |  1183001 | 15%            | 77%
+     2016 |         4 | Gauteng       | Grains      |   271004 | 56%       | drought |   137155 | 51%            | 13%
+     2016 |         4 | Gauteng       | Grains      |   271004 | 56%       | normal  |   133849 | 49%            | 100%
+     2016 |         4 | KwaZulu-Natal | Grains      |      492 | 75%       | drought |       20 | 4%             | 27%
+     2016 |         4 | KwaZulu-Natal | Grains      |      492 | 75%       | normal  |      472 | 96%            | 77%
+     2016 |         4 | Limpopo       | Grains      |  1023062 | 113%      | drought |   285091 | 28%            | 147%
+     2016 |         4 | Limpopo       | Grains      |  1023062 | 113%      | normal  |   737971 | 72%            | 100%
+     2016 |         4 | Mpumalanga    | Grains      |  2974656 | 66%       | drought |   287721 | 10%            | 29%
+     2016 |         4 | Mpumalanga    | Grains      |  2974656 | 66%       | normal  |  2686935 | 90%            | 70%
+     2016 |         4 | North West    | Grains      |  4640096 | 59%       | drought |  3004416 | 65%            | 37%
+     2016 |         4 | North West    | Grains      |  4640096 | 59%       | normal  |  1635680 | 35%            | 100%
+     2016 |         4 | Northern Cape | Grains      |       97 | 141%      | drought |       88 | 91%            | 145%
+     2016 |         4 | Northern Cape | Grains      |       97 | 141%      | normal  |        9 | 9%             | 100%
+     2016 |         4 | Western Cape  | Grains      |  2097713 | 167%      | drought |   508228 | 24%            | 377%
+     2016 |         4 | Western Cape  | Grains      |  2097713 | 167%      | normal  |  1589485 | 76%            | 100%
+(20 rows)
+
