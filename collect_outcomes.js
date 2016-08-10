@@ -1,3 +1,8 @@
+/*
+ * @file_name: collect_oucomes.js
+ *
+ */
+
 
 var XLSX = require('xlsx'), pg = require('pg');
 const fs = require('fs');
