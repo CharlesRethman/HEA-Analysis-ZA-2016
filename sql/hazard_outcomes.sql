@@ -216,8 +216,7 @@ INSERT INTO zaf.tbl_ofa_outcomes (
                         CASE WHEN s.m > 12 THEN 12 WHEN s.m < 1 THEN 1 ELSE s.m END AS m
                      FROM (
                         SELECT
-                           -- gets the year, month values from the :analysis variable (TEXT) and coerces
-                           -- them to INTEGERs.
+                           -- gets the year, month values from the :analysis variable (TEXT) and coerces them to INTEGERs.
                            substring( :'analysis' from  position( '-' in :'analysis' ) + 1 for length( :'analysis' ) - position( '-' in :'analysis' ))::integer AS y,
                            substring( :'analysis' from 1 for position( '-' in :'analysis' ) - 1)::integer AS m
                      ) AS s
@@ -241,9 +240,9 @@ INSERT INTO zaf.tbl_ofa_outcomes (
       AND
          f.lz_affected = h.lz_affected
       AND
-         CAST(f.mn_code AS integer) = i.mn_code
+         f.mn_code::integer = i.mn_code
       AND
-         CAST(f.dc_code AS integer) = j.dc_code
+         f.dc_code::integer = j.dc_code
       AND
          f.lz_code = k.lz_code
       AND
@@ -281,7 +280,7 @@ INSERT INTO zaf.tbl_ofa_outcomes (
                ) AS q
          )
       AND
-         n.dc_code = CAST(f.dc_code AS integer)
+         n.dc_code = f.dc_code::integer
       AND
          p.dc_code = f.dc_code
       AND
