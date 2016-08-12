@@ -322,18 +322,17 @@ COPY (
 		(VALUES
 				(1, 'very poor'),
 				(1, 'casuals'),
-				(1, 'quintile1'),
+				(1, 'quartile1'),
 				(2, 'poor'),
 				(2, 'temporary'),
-				(2, 'quintile2'),
+				(2, 'quartile2'),
 				(3, 'middle'),
 				(3, 'full-time'),
-				(3, 'quintile3'),
+				(3, 'quartile3'),
 				(4, 'rich'),
 				(4, 'better off'),
 				(4, 'better-off'),
-				(4, 'quintile4'),
-				(5, 'quintile5')
+				(4, 'quartile4')
 				) AS f (ordnum,wg)
 	WHERE
 			threshold = 'Food energy deficit'
@@ -404,20 +403,19 @@ COPY (
 	FROM
 		zaf.tbl_ofa_outcomes,
 		(VALUES
-				(1, 'very poor'),
-				(1, 'casuals'),
-				(1, 'quintile1'),
-				(2, 'poor'),
-				(2, 'temporary'),
-				(2, 'quintile2'),
-				(3, 'middle'),
-				(3, 'full-time'),
-				(3, 'quintile3'),
-				(4, 'rich'),
-				(4, 'better off'),
-				(4, 'better-off'),
-				(4, 'quintile4'),
-				(5, 'quintile5')
+         (1, 'very poor'),
+         (1, 'casuals'),
+         (1, 'quartile1'),
+         (2, 'poor'),
+         (2, 'temporary'),
+         (2, 'quartile2'),
+         (3, 'middle'),
+         (3, 'full-time'),
+         (3, 'quartile3'),
+         (4, 'rich'),
+         (4, 'better off'),
+         (4, 'better-off'),
+         (4, 'quartile4')
 				) AS f (ordnum,wg)
 	WHERE
 			threshold = 'FPL deficit'
@@ -488,20 +486,19 @@ COPY (
 	FROM
 		zaf.tbl_ofa_outcomes,
 		(VALUES
-				(1, 'very poor'),
-				(1, 'casuals'),
-				(1, 'quintile1'),
-				(2, 'poor'),
-				(2, 'temporary'),
-				(2, 'quintile2'),
-				(3, 'middle'),
-				(3, 'full-time'),
-				(3, 'quintile3'),
-				(4, 'rich'),
-				(4, 'better off'),
-				(4, 'better-off'),
-				(4, 'quintile4'),
-				(5, 'quintile5')
+         (1, 'very poor'),
+         (1, 'casuals'),
+         (1, 'quartile1'),
+         (2, 'poor'),
+         (2, 'temporary'),
+         (2, 'quartile2'),
+         (3, 'middle'),
+         (3, 'full-time'),
+         (3, 'quartile3'),
+         (4, 'rich'),
+         (4, 'better off'),
+         (4, 'better-off'),
+         (4, 'quartile4')
 				) AS f (ordnum,wg)
 	WHERE
 			threshold = 'LBPL deficit'
@@ -572,20 +569,19 @@ COPY (
 	FROM
 		zaf.tbl_ofa_outcomes,
 		(VALUES
-				(1, 'very poor'),
-				(1, 'casuals'),
-				(1, 'quintile1'),
-				(2, 'poor'),
-				(2, 'temporary'),
-				(2, 'quintile2'),
-				(3, 'middle'),
-				(3, 'full-time'),
-				(3, 'quintile3'),
-				(4, 'rich'),
-				(4, 'better off'),
-				(4, 'better-off'),
-				(4, 'quintile4'),
-				(5, 'quintile5')
+         (1, 'very poor'),
+         (1, 'casuals'),
+         (1, 'quartile1'),
+         (2, 'poor'),
+         (2, 'temporary'),
+         (2, 'quartile2'),
+         (3, 'middle'),
+         (3, 'full-time'),
+         (3, 'quartile3'),
+         (4, 'rich'),
+         (4, 'better off'),
+         (4, 'better-off'),
+         (4, 'quartile4')
 				) AS f (ordnum,wg)
 	WHERE
 			threshold = 'UBPL deficit'
