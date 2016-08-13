@@ -187,8 +187,7 @@ INSERT INTO zaf.tbl_ofa_outcomes (
       wg_name,
       pc_wg,
       CASE wg_affected
-         WHEN 'grants'
-         THEN 0.8
+         WHEN 'grants' THEN 0.8
          ELSE 0.2
       END AS pc_wg_affected,
       wg_affected,
