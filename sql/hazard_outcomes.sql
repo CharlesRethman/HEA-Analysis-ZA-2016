@@ -308,14 +308,14 @@ COPY (
 		municipality,
 		district,
 		province,
-      E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+      lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
 		lz_affected as hazard,
 		f.ordnum ||'-' || wg_name AS wg,
 		wg_affected as "grant",
 		pop_size,
 		pop_curr,
 		round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0) AS pop_food_def,
-		round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4) AS def_maize_eq
+		round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 * 365 / 3360.0 / 1000.0, 4) AS def_maize_eq
 	FROM
 		zaf.tbl_ofa_outcomes,
 		(VALUES
@@ -391,7 +391,7 @@ COPY (
 		municipality,
 		district,
 		province,
-    E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+      lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
 		lz_affected as hazard,
 		f.ordnum ||'-' || wg_name AS wg,
 		wg_affected as "grant",
@@ -474,7 +474,7 @@ COPY (
 		municipality,
 		district,
 		province,
-		E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+		lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
 		lz_affected as hazard,
 		f.ordnum ||'-' || wg_name AS wg,
 		wg_affected as "grant",
@@ -557,7 +557,7 @@ COPY (
 		municipality,
 		district,
 		province,
-      E'\'' || lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+      lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' AS lz,
 		lz_affected as hazard,
 		f.ordnum ||'-' || wg_name AS wg_name,
 		wg_affected as "grant",
@@ -638,21 +638,21 @@ COMMIT;
 
 
 CREATE VIEW zaf.vw_demog_sas_fooddef AS
-  SELECT
-    gid,
-    the_geom,
+   SELECT
+      gid,
+      the_geom,
 		f.sa_code,
 		mn_name AS municipality,
 		dc_name AS district,
 		pr_name AS province,
-    E'\'' || f.lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
+      E'\'' || f.lz_code || ': ' || lz_name || ' (' || lz_abbrev || ')' || E'\'' AS lz,
 		lz_affected as hazard,
 		min(pop_size) AS pop_size,
 		min(pop_curr) AS pop_curr,
-    sum(round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0)) AS pop_food_def,
-		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 / 3360.0 / 1000, 4)) AS def_maize_eq
+      sum(round(pop_curr * pc_wg * pc_wg_affected * CAST( deficit > 0.005 AS INTEGER), 0)) AS pop_food_def,
+		sum(round(pop_curr * pc_wg * pc_wg_affected * deficit * 2100 * 365 / 3360.0 / 1000.0, 4)) AS def_maize_eq
 	FROM
-    zaf.demog_sas AS f,
+      zaf.demog_sas AS f,
 		zaf.tbl_ofa_outcomes AS g
 	WHERE
          threshold = 'Food energy deficit'
@@ -661,12 +661,12 @@ CREATE VIEW zaf.vw_demog_sas_fooddef AS
       AND
          ofa_year = (
             SELECT
-               --Check that the month and year are not before 01-01-1980 or after the curent date. If so, force to the current month and year.
+               -- check that the month and year are not before 01-01-1980 or after the curent date. If so, force to the current month and year.
                CASE WHEN (date (t.y::text || '-' || t.m::text || '-01') < date '1980-01-01' OR date (t.y::text || '-' || t.m::text || '-01') > current_date) THEN extract (year from current_date) ELSE t.y	END AS ofa_year
             FROM (
                SELECT
                   s.y,
-                  --make sure the value of the month number is 1..12 only.
+                  -- make sure the value of the month number is 1..12 only.
                   CASE WHEN s.m > 12 THEN 12 WHEN s.m < 1 THEN 1 ELSE s.m END AS m
                FROM (
                   SELECT

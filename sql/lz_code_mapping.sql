@@ -36,11 +36,15 @@ INSERT INTO zaf.tbl_lz_mapping (
     FROM
       zaf.tbl_livezones_list AS h
     WHERE
-        h.lz_code < 59700
-      AND
-        TO_NUMBER (substring (TO_CHAR (h.lz_code, '99999') FROM 4 FOR 1), '9') < 6
-      AND
-        TO_NUMBER (substring (TO_CHAR (h.lz_code, '99999') FROM 5 FOR 1), '9') > 4
+      (
+            h.lz_code < 59700
+         AND
+            TO_NUMBER (substring (TO_CHAR (h.lz_code, '99999') FROM 4 FOR 1), '9') < 6
+         AND
+            TO_NUMBER (substring (TO_CHAR (h.lz_code, '99999') FROM 5 FOR 1), '9') > 4
+      ) OR (
+            h.lz_code >= 59890 AND h.lz_code < 59900
+      )
 
     UNION
     -- other open access zones
@@ -84,9 +88,14 @@ INSERT INTO zaf.tbl_lz_mapping (
     FROM
       zaf.tbl_livezones_list
     WHERE
-        (lz_code > 59810 AND lz_code < 59860)
+         -- INCLUDE the fishing LZs as kind of 'urban poor'
+         (lz_code > 59700 AND lz_code < 59800)
       OR
-        (lz_code > 59700 AND lz_code < 59800)
+         -- EXCLUDE 800 to 810 as these are just service LZs (e.g. commercial, industrial, transport, etc.) 830 to 839 are informal settlements (MUST INCLUDE) and 840 to 849 are combined informal/formal settlements (e.g. with lots of backyard dwellings) (MUST INCLUDE)
+         (lz_code > 59810 AND lz_code < 59850)
+      OR
+         -- INCLUDE 852+, 862+, 872+ and 882+ as these have high unemployment and income poverty. 851, 861, 871 and 881 are all middle- to high-income, so EXCLUDE. Exclude 890 as these are urban smallholdings, should go under ZA_FW (050).
+         (lz_code >= 59850 AND lz_code < 59890 AND TO_NUMBER(substring (TO_CHAR (lz_code, '99999') FROM 6 FOR 1), '9') > 1)
 
 ;
 COMMIT;
