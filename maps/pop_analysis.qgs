@@ -27,10 +27,16 @@
     <layer-tree-layer expanded="0" checked="Qt::Unchecked" id="landuse_agricregions20160601173909863" name="Landuse_agricregions">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_demog_sas_fpl20160608145947410" name="Annual FPL deficit per person at risk (ZAR)">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_demog_sas_ubpl20160815125618505" name="Annual UBPL deficit per person at risk (ZAR)">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_demog_sas_fpl20160608143037679" name="Annual FPL deficit per cap total (ZAR)">
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_demog_sas_ubpl20160815124132206" name="Annual UBPL deficit per cap total (ZAR)">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="Annual_FPL_deficit_per_person_at_risk__ZAR__copy20160815122004721" name="Annual FPL deficit per person at risk (ZAR) copy">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_demog_sas_fpl20160608143037679" name="Annual FPL deficit per cap total (ZAR)">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="vw_demog_sas_fooddef20160813210130959" name="Annual food energy deficit per cap at risk (kg)">
@@ -90,11 +96,15 @@
     </destinationsrs>
     <rendermaptile>0</rendermaptile>
     <layer_coordinate_transform_info>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_demog_sas_ubpl20160815125618505"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="Annual_FPL_deficit_per_person_at_risk__ZAR__copy20160815122045302"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="admin2_provs20160606095415028"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_demog_sas_fooddef20160813210130959"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="vw_demog_sas_ubpl20160815124132206"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="admin2_provs20160529150446467"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="admin3_dists20160813123448412"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="Provincial_boundaries_copy20160606044112036"/>
+      <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="Annual_FPL_deficit_per_person_at_risk__ZAR__copy20160815122004721"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="admin4_munics20160813123713888"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="admin0_201420160606095723921"/>
       <layer_coordinate_transform destAuthId="USER:100100" srcAuthId="USER:100100" srcDatumTransform="-1" destDatumTransform="-1" layerid="demog_sas_ofa20160605233445215"/>
@@ -120,12 +130,14 @@
       <item>admin0_201420160606095723921</item>
       <item>vw_demog_sas_fpl20160608131948221</item>
       <item>vw_demog_sas_fpl20160608143037679</item>
-      <item>vw_demog_sas_fpl20160608145947410</item>
       <item>admin3_dists20160813123448412</item>
       <item>admin4_munics20160813123713888</item>
       <item>vw_demog_sas_fooddef20160813210130959</item>
       <item>__population_at_risk_food_energy_deficit_copy20160813211321335</item>
       <item>Annual_food_energy_deficit_per_cap__kg__copy20160813221350691</item>
+      <item>Annual_FPL_deficit_per_person_at_risk__ZAR__copy20160815122004721</item>
+      <item>vw_demog_sas_ubpl20160815124132206</item>
+      <item>vw_demog_sas_ubpl20160815125618505</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
@@ -169,14 +181,24 @@
         <legendlayerfile isInOverview="0" layerid="landuse_agricregions20160601173909863" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Annual FPL deficit per person at risk (ZAR)" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Annual UBPL deficit per person at risk (ZAR)" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="vw_demog_sas_fpl20160608145947410" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="vw_demog_sas_ubpl20160815125618505" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Annual FPL deficit per cap total (ZAR)" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Annual UBPL deficit per cap total (ZAR)" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="vw_demog_sas_fpl20160608143037679" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="vw_demog_sas_ubpl20160815124132206" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Annual FPL deficit per person at risk (ZAR) copy" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="Annual_FPL_deficit_per_person_at_risk__ZAR__copy20160815122004721" visible="0"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Annual FPL deficit per cap total (ZAR)" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
+        <legendlayerfile isInOverview="0" layerid="vw_demog_sas_fpl20160608143037679" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Annual food energy deficit per cap at risk (kg)" showFeatureCount="0">
@@ -525,7 +547,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_outcomes_fpl-def-per-cap" visible="1">
+  <Composer title="nofa_outcomes_fpl-def-per-cap" visible="0">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -683,7 +705,7 @@
       </customproperties>
     </Composition>
   </Composer>
-  <Composer title="nofa_outcomes_fpl-def-per-at-risk" visible="1">
+  <Composer title="nofa_outcomes_fpl-def-per-at-risk" visible="0">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -748,11 +770,11 @@
               <property key="legend/title-style" value="hidden"/>
             </customproperties>
           </layer-tree-layer>
-          <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_demog_sas_fpl20160608145947410" name="Annual FPL deficit per person at risk (ZAR)">
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="Annual_FPL_deficit_per_person_at_risk__ZAR__copy20160815122004721" name="Annual FPL deficit per person at risk (ZAR) copy">
             <customproperties/>
           </layer-tree-layer>
         </layer-tree-group>
-        <ComposerItem pagey="139.827" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="23.6743" y="139.827" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.1203" outlineWidth="0.1" excludeFromExports="0" uuid="{d33fc1bb-4c79-4da9-94bb-7ce8c0450731}" height="48.2313" itemRotation="0" frame="true" pagex="23.6743">
+        <ComposerItem pagey="139.827" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="23.6743" y="139.827" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="45.1359" outlineWidth="0.1" excludeFromExports="0" uuid="{d33fc1bb-4c79-4da9-94bb-7ce8c0450731}" height="44.2313" itemRotation="0" frame="true" pagex="23.6743">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -1299,7 +1321,715 @@
       </customproperties>
     </Composition>
   </Composer>
+  <Composer title="nofa_outcomes_ubpl-def-per-cap" visible="0">
+    <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
+      <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+        <layer pass="0" class="SimpleFill" locked="0">
+          <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="color" v="255,255,255,255"/>
+          <prop k="joinstyle" v="miter"/>
+          <prop k="offset" v="0,0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="outline_color" v="0,0,0,255"/>
+          <prop k="outline_style" v="no"/>
+          <prop k="outline_width" v="0.26"/>
+          <prop k="outline_width_unit" v="MM"/>
+          <prop k="style" v="solid"/>
+        </layer>
+      </symbol>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ANNUAL UPPER BOUND POVERTY LINE DEFICITS PER CAPITA (TOTAL) FOR ENUMERATION SMALL AREAS IN SOUTH AFRICA" htmlState="0" halign="4">
+        <LabelFont description="Helvetica Neue,10,-1,5,50,0,0,0,0,0" style="Light"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="21.0849" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="90.2582" y="21.0849" visibility="1" zValue="4" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="104.315" outlineWidth="0.1" excludeFromExports="0" uuid="{0bf25b5f-c35a-4806-b4be-53b4220a4d7f}" height="10.7274" itemRotation="0" frame="true" pagex="90.2582">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Prepared by: CW Rethman, PGP 1287&#xa;Projection: Albers Equal Area with standard parallels at 24.2ºS  and 32.8ºS, the central meridian 25.1ºE." htmlState="0" halign="1">
+        <LabelFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="183.681" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="198.488" y="183.681" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="54.0069" outlineWidth="0.1" excludeFromExports="0" uuid="{bf6e7db1-0469-45b4-859f-2291c9fa2fcd}" height="9.98758" itemRotation="0" frame="true" pagex="198.488">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLegend symbolWidth="5" title="Legend" boxSpace="1" rasterBorderWidth="0" splitLayer="0" equalColumnWidth="0" map="0" titleAlignment="1" rasterBorder="0" symbolHeight="4" wmsLegendHeight="25" wrapChar="\n" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1" rasterBorderColor="0,0,0,255">
+        <styles>
+          <style marginBottom="1" name="title">
+            <styleFont description="Helvetica Neue,8,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+          <style marginTop="1" name="group">
+            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+          <style marginTop="1" name="subgroup">
+            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+          <style name="symbol">
+            <styleFont description="Helvetica Neue,13,-1,5,50,0,0,0,0,0" style=""/>
+          </style>
+          <style marginLeft="1" name="symbolLabel">
+            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+        </styles>
+        <layer-tree-group expanded="1" checked="Qt::Checked" name="">
+          <customproperties/>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin2_provs20160529150446467" name="Provincial boundaries">
+            <customproperties>
+              <property key="legend/title-style" value="hidden"/>
+            </customproperties>
+          </layer-tree-layer>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin2_provs20160606095415028" name="Provincial boundaries">
+            <customproperties>
+              <property key="legend/title-style" value="hidden"/>
+            </customproperties>
+          </layer-tree-layer>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin3_dists20160813123448412" name="District boundaries">
+            <customproperties/>
+          </layer-tree-layer>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin4_munics20160813123713888" name="Municipality boundaries">
+            <customproperties/>
+          </layer-tree-layer>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_demog_sas_ubpl20160815124132206" name="Annual UBPL deficit per cap total (ZAR)">
+            <customproperties/>
+          </layer-tree-layer>
+        </layer-tree-group>
+        <ComposerItem pagey="139.827" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="23.6743" y="139.827" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.4406" outlineWidth="0.1" excludeFromExports="0" uuid="{b4d71d79-f3a1-41ba-819e-23b1090d2392}" height="52.2313" itemRotation="0" frame="true" pagex="23.6743">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLegend>
+      <ComposerMap mapRotation="0" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
+        <Extent ymin="-729466.96983769012149423" xmin="-1159516.28547660913318396" ymax="730925.0316519100451842" xmax="952483.71667763101868331"/>
+        <LayerSet/>
+        <Grid/>
+        <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="1" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{adafca57-015e-44ab-aab2-b42211eed6e5}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="2" gridFrameSideFlags="15" intervalY="2" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.29999999999999999" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="5" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
+          <lineStyle>
+            <symbol alpha="1" clip_to_extent="1" type="line" name="">
+              <layer pass="0" class="SimpleLine" locked="0">
+                <prop k="capstyle" v="flat"/>
+                <prop k="customdash" v="5;2"/>
+                <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="customdash_unit" v="MM"/>
+                <prop k="draw_inside_polygon" v="0"/>
+                <prop k="joinstyle" v="bevel"/>
+                <prop k="line_color" v="0,0,0,255"/>
+                <prop k="line_style" v="solid"/>
+                <prop k="line_width" v="0.03"/>
+                <prop k="line_width_unit" v="MM"/>
+                <prop k="offset" v="0"/>
+                <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="offset_unit" v="MM"/>
+                <prop k="use_custom_dash" v="0"/>
+                <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+              </layer>
+            </symbol>
+          </lineStyle>
+          <markerStyle>
+            <symbol alpha="1" clip_to_extent="1" type="marker" name="">
+              <layer pass="0" class="SimpleMarker" locked="0">
+                <prop k="angle" v="0"/>
+                <prop k="color" v="0,0,0,255"/>
+                <prop k="horizontal_anchor_point" v="1"/>
+                <prop k="name" v="circle"/>
+                <prop k="offset" v="0,0"/>
+                <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="offset_unit" v="MM"/>
+                <prop k="outline_color" v="0,0,0,255"/>
+                <prop k="outline_style" v="solid"/>
+                <prop k="outline_width" v="0"/>
+                <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="outline_width_unit" v="MM"/>
+                <prop k="scale_method" v="diameter"/>
+                <prop k="size" v="2"/>
+                <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="size_unit" v="MM"/>
+                <prop k="vertical_anchor_point" v="1"/>
+              </layer>
+            </symbol>
+          </markerStyle>
+          <spatialrefsys>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+            <srsid>3452</srsid>
+            <srid>4326</srid>
+            <authid>EPSG:4326</authid>
+            <description>WGS 84</description>
+            <projectionacronym>longlat</projectionacronym>
+            <ellipsoidacronym>WGS84</ellipsoidacronym>
+            <geographicflag>true</geographicflag>
+          </spatialrefsys>
+          <annotationFontProperties description="Helvetica Neue,13,-1,5,50,0,0,0,0,0" style=""/>
+        </ComposerMapGrid>
+        <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
+        <ComposerItem pagey="17" page="1" id="" lastValidViewScaleFactor="2.70336" positionMode="0" positionLock="false" x="16" y="17" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="264" outlineWidth="0.3" excludeFromExports="0" uuid="{8225c875-3178-473e-abac-f6146a51586e}" height="182.549" itemRotation="0" frame="false" pagex="16">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="201" blue="247" green="240"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerMap>
+      <customproperties>
+        <property key="imageCropMarginBottom" value="0"/>
+        <property key="imageCropMarginLeft" value="0"/>
+        <property key="imageCropMarginRight" value="0"/>
+        <property key="imageCropMarginTop" value="0"/>
+        <property key="imageCropToContents" value="true"/>
+      </customproperties>
+    </Composition>
+  </Composer>
+  <Composer title="nofa_outcomes_ubpl-def-per-at-risk" visible="1">
+    <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
+      <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+        <layer pass="0" class="SimpleFill" locked="0">
+          <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="color" v="255,255,255,255"/>
+          <prop k="joinstyle" v="miter"/>
+          <prop k="offset" v="0,0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="outline_color" v="0,0,0,255"/>
+          <prop k="outline_style" v="no"/>
+          <prop k="outline_width" v="0.26"/>
+          <prop k="outline_width_unit" v="MM"/>
+          <prop k="style" v="solid"/>
+        </layer>
+      </symbol>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ANNUAL UPPER BOUND POVERTY LINE DEFICITS PER PERSON AT RISK FOR ENUMERATION SMALL AREAS IN SOUTH AFRICA" htmlState="0" halign="4">
+        <LabelFont description="Helvetica Neue,10,-1,5,50,0,0,0,0,0" style="Light"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="21.0849" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="90.2582" y="21.0849" visibility="1" zValue="4" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="104.315" outlineWidth="0.1" excludeFromExports="0" uuid="{a06d71dc-f8e4-408e-9007-858794422198}" height="10.7274" itemRotation="0" frame="true" pagex="90.2582">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Prepared by: CW Rethman, PGP 1287&#xa;Projection: Albers Equal Area with standard parallels at 24.2ºS  and 32.8ºS, the central meridian 25.1ºE." htmlState="0" halign="1">
+        <LabelFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="183.681" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="198.488" y="183.681" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="54.0069" outlineWidth="0.1" excludeFromExports="0" uuid="{9a57fa12-8845-4ae5-a9b6-f287fba77dab}" height="9.98758" itemRotation="0" frame="true" pagex="198.488">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLegend symbolWidth="5" title="Legend" boxSpace="1" rasterBorderWidth="0" splitLayer="0" equalColumnWidth="0" map="0" titleAlignment="1" rasterBorder="0" symbolHeight="4" wmsLegendHeight="25" wrapChar="\n" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1" rasterBorderColor="0,0,0,255">
+        <styles>
+          <style marginBottom="1" name="title">
+            <styleFont description="Helvetica Neue,8,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+          <style marginTop="1" name="group">
+            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+          <style marginTop="1" name="subgroup">
+            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+          <style name="symbol">
+            <styleFont description="Helvetica Neue,13,-1,5,50,0,0,0,0,0" style=""/>
+          </style>
+          <style marginLeft="1" name="symbolLabel">
+            <styleFont description="Helvetica Neue,6,-1,5,50,0,0,0,0,0" style="Light"/>
+          </style>
+        </styles>
+        <layer-tree-group expanded="1" checked="Qt::Checked" name="">
+          <customproperties/>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin2_provs20160529150446467" name="Provincial boundaries">
+            <customproperties>
+              <property key="legend/title-style" value="hidden"/>
+            </customproperties>
+          </layer-tree-layer>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="admin2_provs20160606095415028" name="Provincial boundaries">
+            <customproperties>
+              <property key="legend/title-style" value="hidden"/>
+            </customproperties>
+          </layer-tree-layer>
+          <layer-tree-layer expanded="1" checked="Qt::Checked" id="vw_demog_sas_ubpl20160815125618505" name="Annual UBPL deficit per person at risk (ZAR)">
+            <customproperties/>
+          </layer-tree-layer>
+        </layer-tree-group>
+        <ComposerItem pagey="139.827" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="23.6743" y="139.827" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="41.8312" outlineWidth="0.1" excludeFromExports="0" uuid="{6a912162-692f-4282-bac7-1e598e6cdcf7}" height="44.2313" itemRotation="0" frame="true" pagex="23.6743">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLegend>
+      <ComposerMap mapRotation="0" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
+        <Extent ymin="-729466.96983769012149423" xmin="-1159516.28547660913318396" ymax="730925.0316519100451842" xmax="952483.71667763101868331"/>
+        <LayerSet/>
+        <Grid/>
+        <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="1" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{adafca57-015e-44ab-aab2-b42211eed6e5}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="2" gridFrameSideFlags="15" intervalY="2" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.29999999999999999" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="5" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
+          <lineStyle>
+            <symbol alpha="1" clip_to_extent="1" type="line" name="">
+              <layer pass="0" class="SimpleLine" locked="0">
+                <prop k="capstyle" v="flat"/>
+                <prop k="customdash" v="5;2"/>
+                <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="customdash_unit" v="MM"/>
+                <prop k="draw_inside_polygon" v="0"/>
+                <prop k="joinstyle" v="bevel"/>
+                <prop k="line_color" v="0,0,0,255"/>
+                <prop k="line_style" v="solid"/>
+                <prop k="line_width" v="0.03"/>
+                <prop k="line_width_unit" v="MM"/>
+                <prop k="offset" v="0"/>
+                <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="offset_unit" v="MM"/>
+                <prop k="use_custom_dash" v="0"/>
+                <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+              </layer>
+            </symbol>
+          </lineStyle>
+          <markerStyle>
+            <symbol alpha="1" clip_to_extent="1" type="marker" name="">
+              <layer pass="0" class="SimpleMarker" locked="0">
+                <prop k="angle" v="0"/>
+                <prop k="color" v="0,0,0,255"/>
+                <prop k="horizontal_anchor_point" v="1"/>
+                <prop k="name" v="circle"/>
+                <prop k="offset" v="0,0"/>
+                <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="offset_unit" v="MM"/>
+                <prop k="outline_color" v="0,0,0,255"/>
+                <prop k="outline_style" v="solid"/>
+                <prop k="outline_width" v="0"/>
+                <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="outline_width_unit" v="MM"/>
+                <prop k="scale_method" v="diameter"/>
+                <prop k="size" v="2"/>
+                <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+                <prop k="size_unit" v="MM"/>
+                <prop k="vertical_anchor_point" v="1"/>
+              </layer>
+            </symbol>
+          </markerStyle>
+          <spatialrefsys>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+            <srsid>3452</srsid>
+            <srid>4326</srid>
+            <authid>EPSG:4326</authid>
+            <description>WGS 84</description>
+            <projectionacronym>longlat</projectionacronym>
+            <ellipsoidacronym>WGS84</ellipsoidacronym>
+            <geographicflag>true</geographicflag>
+          </spatialrefsys>
+          <annotationFontProperties description="Helvetica Neue,13,-1,5,50,0,0,0,0,0" style=""/>
+        </ComposerMapGrid>
+        <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
+        <ComposerItem pagey="17" page="1" id="" lastValidViewScaleFactor="2.70336" positionMode="0" positionLock="false" x="16" y="17" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="264" outlineWidth="0.3" excludeFromExports="0" uuid="{9e737679-ba36-442f-a3d1-e1340544820a}" height="182.549" itemRotation="0" frame="false" pagex="16">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="201" blue="247" green="240"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerMap>
+      <customproperties>
+        <property key="imageCropMarginBottom" value="0"/>
+        <property key="imageCropMarginLeft" value="0"/>
+        <property key="imageCropMarginRight" value="0"/>
+        <property key="imageCropMarginTop" value="0"/>
+        <property key="imageCropToContents" value="true"/>
+      </customproperties>
+    </Composition>
+  </Composer>
   <projectlayers>
+    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>Annual_FPL_deficit_per_person_at_risk__ZAR__copy20160815122004721</id>
+      <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=201100 type=MultiPolygon table="zaf"."vw_demog_sas_fpl" (the_geom) sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Annual FPL deficit per person at risk (ZAR) copy</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=aea +lat_1=-24.2 +lat_2=-32.8 +lat_0=-28.5 +lon_0=25.1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>100100</srsid>
+          <srid>0</srid>
+          <authid>USER:100100</authid>
+          <description>201100 South Africa Albers Equal Area</description>
+          <projectionacronym>aea</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="gid">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="sa_code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="municipality">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="district">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="province">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="lz">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="hazard">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="pop_size">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="pop_curr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="pop_fpl_def">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="fpl_deficit">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 attr="fpl_deficit / pop_fpl_def" forceraster="0" symbollevels="0" type="graduatedSymbol" graduatedMethod="GraduatedColor" enableorderby="0">
+        <ranges>
+          <range render="true" symbol="0" lower="0.000000000000000" upper="550.000000000000000" label=" 0 - 550 "/>
+          <range render="true" symbol="1" lower="550.000000000000000" upper="1100.000000000000000" label=" 550 - 1100 "/>
+          <range render="true" symbol="2" lower="1100.000000000000000" upper="1650.000000000000000" label=" 1100 - 1650 "/>
+          <range render="true" symbol="3" lower="1650.000000000000000" upper="2200.000000000000000" label=" 1650 - 2200 "/>
+          <range render="true" symbol="4" lower="2200.000000000000000" upper="2750.000000000000000" label=" 2200 - 2750 "/>
+          <range render="true" symbol="5" lower="2750.000000000000000" upper="50000.000000000000000" label=" > 2750"/>
+        </ranges>
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="241,238,246,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="1">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="220,192,222,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="2">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="219,133,192,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="3">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="222,71,153,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="4">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="207,22,108,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="5">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="152,0,67,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+        </symbols>
+        <source-symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="79,82,233,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+        </source-symbol>
+        <colorramp type="gradient" name="[source]">
+          <prop k="color1" v="241,238,246,255"/>
+          <prop k="color2" v="152,0,67,255"/>
+          <prop k="discrete" v="0"/>
+          <prop k="stops" v="0.25;215,181,216,255:0.5;223,101,176,255:0.75;221,28,119,255"/>
+        </colorramp>
+        <invertedcolorramp value="0"/>
+        <mode name="quantile"/>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+        <labelformat format=" %1 - %2 " trimtrailingzeroes="false" decimalplaces="-1"/>
+      </renderer-v2>
+      <labeling type="simple"/>
+      <customproperties>
+        <property key="labeling" value="pal"/>
+        <property key="labeling/addDirectionSymbol" value="false"/>
+        <property key="labeling/angleOffset" value="0"/>
+        <property key="labeling/blendMode" value="0"/>
+        <property key="labeling/bufferBlendMode" value="0"/>
+        <property key="labeling/bufferColorA" value="255"/>
+        <property key="labeling/bufferColorB" value="255"/>
+        <property key="labeling/bufferColorG" value="255"/>
+        <property key="labeling/bufferColorR" value="255"/>
+        <property key="labeling/bufferDraw" value="false"/>
+        <property key="labeling/bufferJoinStyle" value="64"/>
+        <property key="labeling/bufferNoFill" value="false"/>
+        <property key="labeling/bufferSize" value="1"/>
+        <property key="labeling/bufferSizeInMapUnits" value="false"/>
+        <property key="labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/bufferTransp" value="0"/>
+        <property key="labeling/centroidInside" value="false"/>
+        <property key="labeling/centroidWhole" value="false"/>
+        <property key="labeling/decimals" value="3"/>
+        <property key="labeling/displayAll" value="false"/>
+        <property key="labeling/dist" value="0"/>
+        <property key="labeling/distInMapUnits" value="false"/>
+        <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/drawLabels" value="false"/>
+        <property key="labeling/enabled" value="false"/>
+        <property key="labeling/fieldName" value=""/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
+        <property key="labeling/fontCapitals" value="0"/>
+        <property key="labeling/fontFamily" value=".SF NS Text"/>
+        <property key="labeling/fontItalic" value="false"/>
+        <property key="labeling/fontLetterSpacing" value="0"/>
+        <property key="labeling/fontLimitPixelSize" value="false"/>
+        <property key="labeling/fontMaxPixelSize" value="10000"/>
+        <property key="labeling/fontMinPixelSize" value="3"/>
+        <property key="labeling/fontSize" value="13"/>
+        <property key="labeling/fontSizeInMapUnits" value="false"/>
+        <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/fontStrikeout" value="false"/>
+        <property key="labeling/fontUnderline" value="false"/>
+        <property key="labeling/fontWeight" value="50"/>
+        <property key="labeling/fontWordSpacing" value="0"/>
+        <property key="labeling/formatNumbers" value="false"/>
+        <property key="labeling/isExpression" value="true"/>
+        <property key="labeling/labelOffsetInMapUnits" value="true"/>
+        <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/labelPerPart" value="false"/>
+        <property key="labeling/leftDirectionSymbol" value="&lt;"/>
+        <property key="labeling/limitNumLabels" value="false"/>
+        <property key="labeling/maxCurvedCharAngleIn" value="20"/>
+        <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
+        <property key="labeling/maxNumLabels" value="2000"/>
+        <property key="labeling/mergeLines" value="false"/>
+        <property key="labeling/minFeatureSize" value="0"/>
+        <property key="labeling/multilineAlign" value="0"/>
+        <property key="labeling/multilineHeight" value="1"/>
+        <property key="labeling/namedStyle" value=""/>
+        <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
+        <property key="labeling/offsetType" value="0"/>
+        <property key="labeling/placeDirectionSymbol" value="0"/>
+        <property key="labeling/placement" value="1"/>
+        <property key="labeling/placementFlags" value="10"/>
+        <property key="labeling/plussign" value="false"/>
+        <property key="labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
+        <property key="labeling/preserveRotation" value="true"/>
+        <property key="labeling/previewBkgrdColor" value="#ffffff"/>
+        <property key="labeling/priority" value="5"/>
+        <property key="labeling/quadOffset" value="4"/>
+        <property key="labeling/repeatDistance" value="0"/>
+        <property key="labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/repeatDistanceUnit" value="1"/>
+        <property key="labeling/reverseDirectionSymbol" value="false"/>
+        <property key="labeling/rightDirectionSymbol" value=">"/>
+        <property key="labeling/scaleMax" value="10000000"/>
+        <property key="labeling/scaleMin" value="1"/>
+        <property key="labeling/scaleVisibility" value="false"/>
+        <property key="labeling/shadowBlendMode" value="6"/>
+        <property key="labeling/shadowColorB" value="0"/>
+        <property key="labeling/shadowColorG" value="0"/>
+        <property key="labeling/shadowColorR" value="0"/>
+        <property key="labeling/shadowDraw" value="false"/>
+        <property key="labeling/shadowOffsetAngle" value="135"/>
+        <property key="labeling/shadowOffsetDist" value="1"/>
+        <property key="labeling/shadowOffsetGlobal" value="true"/>
+        <property key="labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shadowOffsetUnits" value="1"/>
+        <property key="labeling/shadowRadius" value="1.5"/>
+        <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
+        <property key="labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shadowRadiusUnits" value="1"/>
+        <property key="labeling/shadowScale" value="100"/>
+        <property key="labeling/shadowTransparency" value="30"/>
+        <property key="labeling/shadowUnder" value="0"/>
+        <property key="labeling/shapeBlendMode" value="0"/>
+        <property key="labeling/shapeBorderColorA" value="255"/>
+        <property key="labeling/shapeBorderColorB" value="128"/>
+        <property key="labeling/shapeBorderColorG" value="128"/>
+        <property key="labeling/shapeBorderColorR" value="128"/>
+        <property key="labeling/shapeBorderWidth" value="0"/>
+        <property key="labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shapeBorderWidthUnits" value="1"/>
+        <property key="labeling/shapeDraw" value="false"/>
+        <property key="labeling/shapeFillColorA" value="255"/>
+        <property key="labeling/shapeFillColorB" value="255"/>
+        <property key="labeling/shapeFillColorG" value="255"/>
+        <property key="labeling/shapeFillColorR" value="255"/>
+        <property key="labeling/shapeJoinStyle" value="64"/>
+        <property key="labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shapeOffsetUnits" value="1"/>
+        <property key="labeling/shapeOffsetX" value="0"/>
+        <property key="labeling/shapeOffsetY" value="0"/>
+        <property key="labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shapeRadiiUnits" value="1"/>
+        <property key="labeling/shapeRadiiX" value="0"/>
+        <property key="labeling/shapeRadiiY" value="0"/>
+        <property key="labeling/shapeRotation" value="0"/>
+        <property key="labeling/shapeRotationType" value="0"/>
+        <property key="labeling/shapeSVGFile" value=""/>
+        <property key="labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shapeSizeType" value="0"/>
+        <property key="labeling/shapeSizeUnits" value="1"/>
+        <property key="labeling/shapeSizeX" value="0"/>
+        <property key="labeling/shapeSizeY" value="0"/>
+        <property key="labeling/shapeTransparency" value="0"/>
+        <property key="labeling/shapeType" value="0"/>
+        <property key="labeling/textColorA" value="255"/>
+        <property key="labeling/textColorB" value="0"/>
+        <property key="labeling/textColorG" value="0"/>
+        <property key="labeling/textColorR" value="0"/>
+        <property key="labeling/textTransp" value="0"/>
+        <property key="labeling/upsidedownLabels" value="0"/>
+        <property key="labeling/wrapChar" value=""/>
+        <property key="labeling/xOffset" value="0"/>
+        <property key="labeling/yOffset" value="0"/>
+        <property key="labeling/zIndex" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>gid</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name=".SF NS Text"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+          <fontProperties description=".SF NS Text,13,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
+      <annotationform>.</annotationform>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from PyQt4.QtGui import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
     <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>Annual_food_energy_deficit_per_cap__kg__copy20160813221350691</id>
       <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=201100 type=MultiPolygon table="zaf"."vw_demog_sas_fooddef" (the_geom) sql=</datasource>
@@ -7210,12 +7940,12 @@ def my_form_open(dialog, layer, feature):
       </conditionalstyles>
     </maplayer>
     <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <id>vw_demog_sas_fpl20160608145947410</id>
-      <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=201100 type=MultiPolygon table="zaf"."vw_demog_sas_fpl" (the_geom) sql=</datasource>
+      <id>vw_demog_sas_ubpl20160815124132206</id>
+      <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=201100 type=MultiPolygon table="zaf"."vw_demog_sas_ubpl" (the_geom) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>Annual FPL deficit per person at risk (ZAR)</layername>
+      <layername>Annual UBPL deficit per cap total (ZAR)</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=aea +lat_1=-24.2 +lat_2=-32.8 +lat_0=-28.5 +lon_0=25.1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
@@ -7264,40 +7994,24 @@ def my_form_open(dialog, layer, feature):
         <edittype widgetv2type="TextEdit" name="pop_curr">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="pop_fpl_def">
+        <edittype widgetv2type="TextEdit" name="pop_ubpl_def">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="fpl_deficit">
+        <edittype widgetv2type="TextEdit" name="ubpl_deficit">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
-      <renderer-v2 attr="fpl_deficit / pop_fpl_def" forceraster="0" symbollevels="0" type="graduatedSymbol" graduatedMethod="GraduatedColor" enableorderby="0">
+      <renderer-v2 attr=" &quot;ubpl_deficit&quot;  /  &quot;pop_curr&quot; " forceraster="0" symbollevels="0" type="graduatedSymbol" graduatedMethod="GraduatedColor" enableorderby="0">
         <ranges>
-          <range render="true" symbol="0" lower="0.000000000000000" upper="0.000000000000000" label="      Zero"/>
-          <range render="true" symbol="1" lower="136.890099999999990" upper="1262.764636904762028" label=" 140 - 1260 "/>
-          <range render="true" symbol="2" lower="1262.764636904762028" upper="1319.120947115384752" label=" 1260 - 1320 "/>
-          <range render="true" symbol="3" lower="1319.120947115384752" upper="1704.897304687500082" label=" 1320 - 1700 "/>
-          <range render="true" symbol="4" lower="1704.897304687500082" upper="2551.937381443298818" label=" 1700 - 2550 "/>
-          <range render="true" symbol="5" lower="2551.937381443298818" upper="2758.689128260869893" label=" 2550 - 2760 "/>
-          <range render="true" symbol="6" lower="2758.689128260869893" upper="3936.327450000000226" label=" 2760 - 3940 "/>
+          <range render="true" symbol="0" lower="0.000000000000000" upper="2500.000000000000000" label=" 0 - 2500 "/>
+          <range render="true" symbol="1" lower="2500.000000000000000" upper="3500.000000000000000" label=" 2500 - 3500 "/>
+          <range render="true" symbol="2" lower="3500.000000000000000" upper="4500.000000000000000" label=" 3500 - 4500 "/>
+          <range render="true" symbol="3" lower="4500.000000000000000" upper="5500.000000000000000" label=" 4500 - 5500 "/>
+          <range render="true" symbol="4" lower="5500.000000000000000" upper="6500.000000000000000" label=" 5500 - 6500 "/>
+          <range render="true" symbol="5" lower="6500.000000000000000" upper="100000.000000000000000" label="> 6500"/>
         </ranges>
         <symbols>
           <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
-            <layer pass="0" class="SimpleFill" locked="0">
-              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="color" v="255,255,255,255"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="111,62,196,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0.03"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="style" v="no"/>
-            </layer>
-          </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="1">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="color" v="252,251,253,255"/>
@@ -7312,7 +8026,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="style" v="solid"/>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="2">
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="1">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="color" v="227,226,239,255"/>
@@ -7327,7 +8041,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="style" v="solid"/>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="3">
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="2">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="color" v="185,186,218,255"/>
@@ -7342,7 +8056,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="style" v="solid"/>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="4">
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="3">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="color" v="139,136,191,255"/>
@@ -7357,7 +8071,7 @@ def my_form_open(dialog, layer, feature):
               <prop k="style" v="solid"/>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="5">
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="4">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="color" v="98,66,156,255"/>
@@ -7372,7 +8086,405 @@ def my_form_open(dialog, layer, feature):
               <prop k="style" v="solid"/>
             </layer>
           </symbol>
-          <symbol alpha="1" clip_to_extent="1" type="fill" name="6">
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="5">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="63,0,125,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+        </symbols>
+        <source-symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="79,82,233,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+        </source-symbol>
+        <colorramp type="gradient" name="[source]">
+          <prop k="color1" v="252,251,253,255"/>
+          <prop k="color2" v="63,0,125,255"/>
+          <prop k="discrete" v="0"/>
+          <prop k="stops" v="0.13;239,237,245,255:0.26;218,218,235,255:0.39;188,189,220,255:0.52;158,154,200,255:0.65;128,125,186,255:0.75;106,81,163,255:0.9;84,39,143,255"/>
+        </colorramp>
+        <invertedcolorramp value="0"/>
+        <mode name="quantile"/>
+        <rotation/>
+        <sizescale scalemethod="diameter"/>
+        <labelformat format=" %1 - %2 " trimtrailingzeroes="false" decimalplaces="-1"/>
+      </renderer-v2>
+      <labeling type="simple"/>
+      <customproperties>
+        <property key="labeling" value="pal"/>
+        <property key="labeling/addDirectionSymbol" value="false"/>
+        <property key="labeling/angleOffset" value="0"/>
+        <property key="labeling/blendMode" value="0"/>
+        <property key="labeling/bufferBlendMode" value="0"/>
+        <property key="labeling/bufferColorA" value="255"/>
+        <property key="labeling/bufferColorB" value="255"/>
+        <property key="labeling/bufferColorG" value="255"/>
+        <property key="labeling/bufferColorR" value="255"/>
+        <property key="labeling/bufferDraw" value="false"/>
+        <property key="labeling/bufferJoinStyle" value="64"/>
+        <property key="labeling/bufferNoFill" value="false"/>
+        <property key="labeling/bufferSize" value="1"/>
+        <property key="labeling/bufferSizeInMapUnits" value="false"/>
+        <property key="labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/bufferTransp" value="0"/>
+        <property key="labeling/centroidInside" value="false"/>
+        <property key="labeling/centroidWhole" value="false"/>
+        <property key="labeling/decimals" value="3"/>
+        <property key="labeling/displayAll" value="false"/>
+        <property key="labeling/dist" value="0"/>
+        <property key="labeling/distInMapUnits" value="false"/>
+        <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/drawLabels" value="false"/>
+        <property key="labeling/enabled" value="false"/>
+        <property key="labeling/fieldName" value=""/>
+        <property key="labeling/fitInPolygonOnly" value="false"/>
+        <property key="labeling/fontCapitals" value="0"/>
+        <property key="labeling/fontFamily" value=".SF NS Text"/>
+        <property key="labeling/fontItalic" value="false"/>
+        <property key="labeling/fontLetterSpacing" value="0"/>
+        <property key="labeling/fontLimitPixelSize" value="false"/>
+        <property key="labeling/fontMaxPixelSize" value="10000"/>
+        <property key="labeling/fontMinPixelSize" value="3"/>
+        <property key="labeling/fontSize" value="13"/>
+        <property key="labeling/fontSizeInMapUnits" value="false"/>
+        <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/fontStrikeout" value="false"/>
+        <property key="labeling/fontUnderline" value="false"/>
+        <property key="labeling/fontWeight" value="50"/>
+        <property key="labeling/fontWordSpacing" value="0"/>
+        <property key="labeling/formatNumbers" value="false"/>
+        <property key="labeling/isExpression" value="true"/>
+        <property key="labeling/labelOffsetInMapUnits" value="true"/>
+        <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/labelPerPart" value="false"/>
+        <property key="labeling/leftDirectionSymbol" value="&lt;"/>
+        <property key="labeling/limitNumLabels" value="false"/>
+        <property key="labeling/maxCurvedCharAngleIn" value="20"/>
+        <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
+        <property key="labeling/maxNumLabels" value="2000"/>
+        <property key="labeling/mergeLines" value="false"/>
+        <property key="labeling/minFeatureSize" value="0"/>
+        <property key="labeling/multilineAlign" value="0"/>
+        <property key="labeling/multilineHeight" value="1"/>
+        <property key="labeling/namedStyle" value=""/>
+        <property key="labeling/obstacle" value="true"/>
+        <property key="labeling/obstacleFactor" value="1"/>
+        <property key="labeling/obstacleType" value="0"/>
+        <property key="labeling/offsetType" value="0"/>
+        <property key="labeling/placeDirectionSymbol" value="0"/>
+        <property key="labeling/placement" value="1"/>
+        <property key="labeling/placementFlags" value="10"/>
+        <property key="labeling/plussign" value="false"/>
+        <property key="labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
+        <property key="labeling/preserveRotation" value="true"/>
+        <property key="labeling/previewBkgrdColor" value="#ffffff"/>
+        <property key="labeling/priority" value="5"/>
+        <property key="labeling/quadOffset" value="4"/>
+        <property key="labeling/repeatDistance" value="0"/>
+        <property key="labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/repeatDistanceUnit" value="1"/>
+        <property key="labeling/reverseDirectionSymbol" value="false"/>
+        <property key="labeling/rightDirectionSymbol" value=">"/>
+        <property key="labeling/scaleMax" value="10000000"/>
+        <property key="labeling/scaleMin" value="1"/>
+        <property key="labeling/scaleVisibility" value="false"/>
+        <property key="labeling/shadowBlendMode" value="6"/>
+        <property key="labeling/shadowColorB" value="0"/>
+        <property key="labeling/shadowColorG" value="0"/>
+        <property key="labeling/shadowColorR" value="0"/>
+        <property key="labeling/shadowDraw" value="false"/>
+        <property key="labeling/shadowOffsetAngle" value="135"/>
+        <property key="labeling/shadowOffsetDist" value="1"/>
+        <property key="labeling/shadowOffsetGlobal" value="true"/>
+        <property key="labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shadowOffsetUnits" value="1"/>
+        <property key="labeling/shadowRadius" value="1.5"/>
+        <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
+        <property key="labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shadowRadiusUnits" value="1"/>
+        <property key="labeling/shadowScale" value="100"/>
+        <property key="labeling/shadowTransparency" value="30"/>
+        <property key="labeling/shadowUnder" value="0"/>
+        <property key="labeling/shapeBlendMode" value="0"/>
+        <property key="labeling/shapeBorderColorA" value="255"/>
+        <property key="labeling/shapeBorderColorB" value="128"/>
+        <property key="labeling/shapeBorderColorG" value="128"/>
+        <property key="labeling/shapeBorderColorR" value="128"/>
+        <property key="labeling/shapeBorderWidth" value="0"/>
+        <property key="labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shapeBorderWidthUnits" value="1"/>
+        <property key="labeling/shapeDraw" value="false"/>
+        <property key="labeling/shapeFillColorA" value="255"/>
+        <property key="labeling/shapeFillColorB" value="255"/>
+        <property key="labeling/shapeFillColorG" value="255"/>
+        <property key="labeling/shapeFillColorR" value="255"/>
+        <property key="labeling/shapeJoinStyle" value="64"/>
+        <property key="labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shapeOffsetUnits" value="1"/>
+        <property key="labeling/shapeOffsetX" value="0"/>
+        <property key="labeling/shapeOffsetY" value="0"/>
+        <property key="labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shapeRadiiUnits" value="1"/>
+        <property key="labeling/shapeRadiiX" value="0"/>
+        <property key="labeling/shapeRadiiY" value="0"/>
+        <property key="labeling/shapeRotation" value="0"/>
+        <property key="labeling/shapeRotationType" value="0"/>
+        <property key="labeling/shapeSVGFile" value=""/>
+        <property key="labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
+        <property key="labeling/shapeSizeType" value="0"/>
+        <property key="labeling/shapeSizeUnits" value="1"/>
+        <property key="labeling/shapeSizeX" value="0"/>
+        <property key="labeling/shapeSizeY" value="0"/>
+        <property key="labeling/shapeTransparency" value="0"/>
+        <property key="labeling/shapeType" value="0"/>
+        <property key="labeling/textColorA" value="255"/>
+        <property key="labeling/textColorB" value="0"/>
+        <property key="labeling/textColorG" value="0"/>
+        <property key="labeling/textColorR" value="0"/>
+        <property key="labeling/textTransp" value="0"/>
+        <property key="labeling/upsidedownLabels" value="0"/>
+        <property key="labeling/wrapChar" value=""/>
+        <property key="labeling/xOffset" value="0"/>
+        <property key="labeling/yOffset" value="0"/>
+        <property key="labeling/zIndex" value="0"/>
+        <property key="variableNames" value="_fields_"/>
+        <property key="variableValues" value=""/>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerTransparency>0</layerTransparency>
+      <displayfield>gid</displayfield>
+      <label>0</label>
+      <labelattributes>
+        <label fieldname="" text="Label"/>
+        <family fieldname="" name=".SF NS Text"/>
+        <size fieldname="" units="pt" value="12"/>
+        <bold fieldname="" on="0"/>
+        <italic fieldname="" on="0"/>
+        <underline fieldname="" on="0"/>
+        <strikeout fieldname="" on="0"/>
+        <color fieldname="" red="0" blue="0" green="0"/>
+        <x fieldname=""/>
+        <y fieldname=""/>
+        <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+        <angle fieldname="" value="0" auto="0"/>
+        <alignment fieldname="" value="center"/>
+        <buffercolor fieldname="" red="255" blue="255" green="255"/>
+        <buffersize fieldname="" units="pt" value="1"/>
+        <bufferenabled fieldname="" on=""/>
+        <multilineenabled fieldname="" on=""/>
+        <selectedonly on=""/>
+      </labelattributes>
+      <SingleCategoryDiagramRenderer diagramType="Pie">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
+          <fontProperties description=".SF NS Text,13,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings yPosColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
+      <annotationform>.</annotationform>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <attributeactions/>
+      <editform>.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from PyQt4.QtGui import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+    </maplayer>
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Polygon" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <id>vw_demog_sas_ubpl20160815125618505</id>
+      <datasource>dbname='albers_ea' host=Localhost port=5432 user='Charles' sslmode=disable key='gid' srid=201100 type=MultiPolygon table="zaf"."vw_demog_sas_ubpl" (the_geom) sql=</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>Annual UBPL deficit per person at risk (ZAR)</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=aea +lat_1=-24.2 +lat_2=-32.8 +lat_0=-28.5 +lon_0=25.1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>100100</srsid>
+          <srid>0</srid>
+          <authid>USER:100100</authid>
+          <description>201100 South Africa Albers Equal Area</description>
+          <projectionacronym>aea</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <provider encoding="System">postgres</provider>
+      <previewExpression></previewExpression>
+      <vectorjoins/>
+      <layerDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="">
+        <map-layer-style name=""/>
+      </map-layer-style-manager>
+      <edittypes>
+        <edittype widgetv2type="TextEdit" name="gid">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="sa_code">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="municipality">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="district">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="province">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="lz">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="hazard">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="pop_size">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="pop_curr">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="pop_ubpl_def">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="ubpl_deficit">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+      </edittypes>
+      <renderer-v2 attr=" &quot;ubpl_deficit&quot;  /  &quot;pop_ubpl_def&quot; " forceraster="0" symbollevels="0" type="graduatedSymbol" graduatedMethod="GraduatedColor" enableorderby="0">
+        <ranges>
+          <range render="true" symbol="0" lower="0.000000000000000" upper="3500.000000000000000" label=" 0 - 3500 "/>
+          <range render="true" symbol="1" lower="3500.000000000000000" upper="4700.000000000000000" label=" 3500 - 4700 "/>
+          <range render="true" symbol="2" lower="4700.000000000000000" upper="5900.000000000000000" label=" 4700 - 5900 "/>
+          <range render="true" symbol="3" lower="5900.000000000000000" upper="7100.000000000000000" label=" 5900 - 7100 "/>
+          <range render="true" symbol="4" lower="7100.000000000000000" upper="8300.000000000000000" label=" 7100 - 8300 "/>
+          <range render="true" symbol="5" lower="8300.000000000000000" upper="100000.000000000000000" label=" > 8300"/>
+        </ranges>
+        <symbols>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="252,251,253,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="1">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="227,226,239,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="2">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="185,186,218,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="3">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="139,136,191,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="4">
+            <layer pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="color" v="98,66,156,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="111,62,196,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.03"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+            </layer>
+          </symbol>
+          <symbol alpha="1" clip_to_extent="1" type="fill" name="5">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="color" v="63,0,125,255"/>
@@ -7691,10 +8803,12 @@ def my_form_open(dialog, layer, feature):
         <value>rs_mask20160602011143038</value>
         <value>vw_demog_sas_fpl20160608131948221</value>
         <value>vw_demog_sas_fpl20160608143037679</value>
-        <value>vw_demog_sas_fpl20160608145947410</value>
         <value>vw_demog_sas_fooddef20160813210130959</value>
         <value>__population_at_risk_food_energy_deficit_copy20160813211321335</value>
         <value>Annual_food_energy_deficit_per_cap__kg__copy20160813221350691</value>
+        <value>Annual_FPL_deficit_per_person_at_risk__ZAR__copy20160815122004721</value>
+        <value>vw_demog_sas_ubpl20160815124132206</value>
+        <value>vw_demog_sas_ubpl20160815125618505</value>
       </LayerSnappingList>
       <LayerSnappingEnabledList type="QStringList">
         <value>enabled</value>
@@ -7717,10 +8831,14 @@ def my_form_open(dialog, layer, feature):
         <value>enabled</value>
         <value>enabled</value>
         <value>enabled</value>
+        <value>enabled</value>
+        <value>enabled</value>
       </LayerSnappingEnabledList>
       <SnappingMode type="QString">advanced</SnappingMode>
       <AvoidIntersectionsList type="QStringList"/>
       <LayerSnappingToleranceUnitList type="QStringList">
+        <value>1</value>
+        <value>1</value>
         <value>1</value>
         <value>1</value>
         <value>1</value>
@@ -7763,11 +8881,15 @@ def my_form_open(dialog, layer, feature):
         <value>to_vertex</value>
         <value>to_vertex</value>
         <value>to_vertex</value>
+        <value>to_vertex</value>
+        <value>to_vertex</value>
       </LayerSnapToList>
       <DefaultSnapType type="QString">to vertex</DefaultSnapType>
       <DefaultSnapTolerance type="double">15</DefaultSnapTolerance>
       <TopologicalEditing type="bool">false</TopologicalEditing>
       <LayerSnappingToleranceList type="QStringList">
+        <value>15.000000</value>
+        <value>15.000000</value>
         <value>15.000000</value>
         <value>15.000000</value>
         <value>15.000000</value>
