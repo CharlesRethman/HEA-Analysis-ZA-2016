@@ -75,9 +75,9 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>-11057.47523026331327856</xmin>
+      <xmin>-6743.1099416445940733</xmin>
       <ymin>197239.43643197230994701</ymin>
-      <xmax>742759.91473838337697089</xmax>
+      <xmax>747074.28002700209617615</xmax>
       <ymax>650247.79173694003839046</ymax>
     </extent>
     <rotation>0</rotation>
