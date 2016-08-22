@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+
 /*
  * @file_name: collect_oucomes.js
  *
@@ -28,24 +31,29 @@ function ask(question, format, callback) {
    else stdout.write(question + '? ');
    if (format === undefined) format = /\w+|\s+/;
    stdin.setEncoding('utf8');
+//   stdin.setRawMode(true);
 
+   // still typing
    stdin.resume();
+
+   // return
    stdin.once('data', function(data) {
-      if (data.length > 1) {
+
+/*      if (data.length > 1) {
          data = data.toString().trim();
       } else {
          data = data.toString();
-      }
+      }*/
+      // Ctrl-C pressed
       if (data == '\u0003') {
          callback(true);
          stdout.write('\n'); // add a line and quit
          process.exit();
       }
+      // check the string in StdIn adn trim off the whitespace at end (incl CR)
       if (format.test(data)) {
-         // clear any extraneous single characters in StdOut
-         stdout.write('\u0008');
-         stdout.write('\u007F');
-         stdout.write('\u0008');
+         data = data.toString().trim();
+         // take the callback and pass the answer
          callback(false, data);
       } else {
          stdout.write("It should match: "+ format +"\n");
@@ -80,10 +88,9 @@ function getPassword(prompt, callback) {
       stdout.write(prompt + ": ");
    }
 
-   stdin.resume();
+   stdin.setEncoding('utf8');
    stdin.setRawMode(true);
    stdin.resume();
-   stdin.setEncoding('utf8');
 
    var password = '';
    stdin.on('data', function (ch) {
@@ -105,10 +112,10 @@ function getPassword(prompt, callback) {
          process.exit();
          break;
       case '\u007F':
-         // Backspace: BS to backup, DEL to remove character (but moves one forward), so BS again
+         // Backspace: move back one place (\u0008), sp over the unwanted •, then back one more time
          if (password.length > 0) {
-            stdout.write('\u0008');
-            stdout.write('\u007F');
+            stdout.write('\u0008'); // backspace one character
+            stdout.write('\u0020'); // sp character
             stdout.write('\u0008');
             password = password.slice(0, password.length - 1); // snip the password one char at end
          }
