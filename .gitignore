@@ -1,0 +1,19 @@
+# Tempoorary Excel files
+~$*.xl*
+
+# NPM files
+node_modules/*
+
+# QGIS and CSV backup files
+*.qgs~
+*.csv~
+
+# Libre Office back up files
+.~lock*
+
+# OSX folder system files
+.DS_Store, .DS_STORE
+
+
+# These .gitignore files! --Keep (remove '#' to add to ignore)
+# .gitignore
