@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-
 /*
- * @file_name: collect_oucomes.js
+ * @file_name: collect_analysis.js
  *
  */
 
