@@ -14,24 +14,24 @@ BEGIN;
 --Drop indices to so they can be recreated
 --DROP INDEX IF EXISTS zaf.prob_hazard_the_geom_gidx;
 
-DROP INDEX IF EXISTS zaf.demog_sas_the_geom_gidx;
+DROP INDEX IF EXISTS zaf.demog_sas_thegeom_gidx;
 
-DROP INDEX IF EXISTS zaf.demog_sas_sa_code_idx;
+DROP INDEX IF EXISTS zaf.demog_sas_sacode_idx;
 
-DROP INDEX IF EXISTS zaf.tbl_pop_agegender_12y_sa_code_idx;
+DROP INDEX IF EXISTS zaf.tbl_pop_agegender_12y_sacode_idx;
 
-DROP INDEX IF EXISTS zaf.t1_the_geom_gidx;
+DROP INDEX IF EXISTS zaf.t1_thegeom_gidx;
 
-DROP INDEX IF EXISTS zaf.t1_sa_code_idx;
+DROP INDEX IF EXISTS zaf.t1_sacode_idx;
 
-DROP INDEX IF EXISTS zaf.t2_the_geom_gidx;
+DROP INDEX IF EXISTS zaf.t2_thegeom_gidx;
 
 -- Create indices if they do not exist
-CREATE INDEX demog_sas_the_geom_gidx ON zaf.demog_sas USING gist (the_geom);
+CREATE INDEX demog_sas_thegeom_gidx ON zaf.demog_sas USING gist (the_geom);
 
-CREATE INDEX demog_sas_sa_code_idx ON zaf.demog_sas USING btree (sa_code);
+CREATE INDEX demog_sas_sacode_idx ON zaf.demog_sas USING btree (sa_code);
 
-CREATE INDEX tbl_pop_agegender_12y_sa_code_idx ON zaf.tbl_pop_agegender_12y USING btree (sa_code);
+CREATE INDEX tbl_pop_agegender_12y_sacode_idx ON zaf.tbl_pop_agegender_12y USING btree (sa_code);
 
 
 -- [records deleted instead] Remove any old table of affected small areas
@@ -161,9 +161,9 @@ WHERE
 	f.sa_code = g.sa_code
 ;
 
-CREATE INDEX t1_the_geom_gidx ON zaf.t1 USING GIST (the_geom);
+CREATE INDEX t1_thegeom_gidx ON zaf.t1 USING GIST (the_geom);
 
-CREATE INDEX t1_sa_code_idx ON zaf.t1 USING btree (sa_code);
+CREATE INDEX t1_sacode_idx ON zaf.t1 USING btree (sa_code);
 
 
 -- Create and populate a temporary table to get the intersection all the SAs that are not entirely
@@ -244,7 +244,7 @@ INSERT INTO zaf.t2 (
 			g.ofa_month = r.ofa_month
 ;
 
-CREATE INDEX t2_the_geom_gidx ON zaf.t2 USING gist (the_geom);
+CREATE INDEX t2_thegeom_gidx ON zaf.t2 USING gist (the_geom);
 
 
 SELECT E'Adding in the SAs that are completely contained within the hazard area ... \n'::text AS "NOTICE";
@@ -472,13 +472,13 @@ INSERT INTO zaf.demog_sas_ofa (
 
 SELECT E'Deleting temporary tables (t1 and t2) and their associated indices\n'::text AS "NOTICE";
 
-DROP INDEX IF EXISTS zaf.t1_the_geom_gidx;
+DROP INDEX IF EXISTS zaf.t1_thegeom_gidx;
 
-DROP INDEX IF EXISTS zaf.t1_sa_code_idx;
+DROP INDEX IF EXISTS zaf.t1_sacode_idx;
 
 DROP TABLE IF EXISTS zaf.t1;
 
-DROP INDEX IF EXISTS t2_the_geom_gidx;
+DROP INDEX IF EXISTS t2_thegeom_gidx;
 
 DROP TABLE IF EXISTS zaf.t2;
 

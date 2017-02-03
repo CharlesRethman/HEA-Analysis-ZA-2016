@@ -8,11 +8,11 @@
 DROP TABLE IF EXISTS zaf.rs_vci_16_01_buffer;
 DROP TABLE IF EXISTS zaf.rs_asi_16_01_3_buffer;
 
-DROP INDEX IF EXISTS zaf.rs_vci_16_01_the_geom_gidx;
-DROP INDEX IF EXISTS zaf.rs_asi_16_01_3_the_geom_gidx;
+DROP INDEX IF EXISTS zaf.rs_vci_16_01_thegeom_gidx;
+DROP INDEX IF EXISTS zaf.rs_asi_16_01_3_thegeom_gidx;
 
-CREATE INDEX rs_vci_16_01_the_geom_gidx ON zaf.rs_vci_16_01 USING GIST(the_geom);
-CREATE INDEX rs_asi_16_01_3_the_geom_gidx ON zaf.rs_asi_16_01_3 USING GIST(the_geom);
+CREATE INDEX rs_vci_16_01_thegeom_gidx ON zaf.rs_vci_16_01 USING GIST(the_geom);
+CREATE INDEX rs_asi_16_01_3_thegeom_gidx ON zaf.rs_asi_16_01_3 USING GIST(the_geom);
 
 BEGIN;
 

@@ -10,9 +10,9 @@ SELECT E'This query will only work if you have specified a switch on the command
 
 
 -- Drop old indices and recreate them (to ensure they refreshed)
-DROP INDEX IF EXISTS zaf.tbl_ofa_outcomes_year_month_idx;
+DROP INDEX IF EXISTS zaf.tbl_ofa_outcomes_ofayear_ofamonth_idx;
 
-CREATE INDEX tbl_ofa_outcomes_year_month_idx ON zaf.tbl_ofa_outcomes USING btree (ofa_year, ofa_month);
+CREATE INDEX tbl_ofa_outcomes_ofayear_ofamonth_idx ON zaf.tbl_ofa_outcomes USING btree (ofa_year, ofa_month);
 
 -- Remove any previous analyses outcome with the same date
 DELETE FROM

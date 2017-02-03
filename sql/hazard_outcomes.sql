@@ -11,55 +11,55 @@ SELECT E'This query will only work if you have specified a switch on the command
 
 
 -- Drop old indices and recreate them (to ensure they refreshed)
-DROP INDEX IF EXISTS zaf.admin3_dists_dc_code_idx;
+DROP INDEX IF EXISTS zaf.admin3_dists_dccode_idx;
 
-DROP INDEX IF EXISTS zaf.admin3_dists_dc_mdb_code_idx;
+DROP INDEX IF EXISTS zaf.admin3_dists_dcmdbcode_idx;
 
-DROP INDEX IF EXISTS zaf.demog_sas_mn_code_name_idx;
+DROP INDEX IF EXISTS zaf.demog_sas_mncode_mnname_idx;
 
-DROP INDEX IF EXISTS zaf.demog_sas_ofa_lz_dc_mn_code_idx;
+DROP INDEX IF EXISTS zaf.demog_sas_ofa_dccode_mncode_lzcode_idx;
 
-DROP INDEX IF EXISTS zaf.demog_sas_ofa_year_month_idx;
+DROP INDEX IF EXISTS zaf.demog_sas_ofa_ofayear_ofamonth_idx;
 
-DROP INDEX IF EXISTS zaf.tbl_demog_sas_ofa_dc_code_idx;
+DROP INDEX IF EXISTS zaf.demog_sas_ofa_dccode_idx;
 
-DROP INDEX IF EXISTS zaf.tbl_livezones_list_lz_code_idx;
+DROP INDEX IF EXISTS zaf.tbl_livezones_list_lzcode_idx;
 
-DROP INDEX IF EXISTS zaf.tbl_lz_mapping_lz_code_idx;
+DROP INDEX IF EXISTS zaf.tbl_lz_mapping_lzcode_lzanalysiscode_idx;
 
-DROP INDEX IF EXISTS zaf.tbl_ofa_analysis_lz_wg_code_affected_year_month_idx;
+DROP INDEX IF EXISTS zaf.tbl_ofa_analysis_lzcode_lzaffected_wgcode_ofayear_ofamonth_idx;
 
-DROP INDEX IF EXISTS zaf.tbl_ofa_outcomes_year_month_idx;
+DROP INDEX IF EXISTS zaf.tbl_ofa_outcomes_ofayear_ofamonth_idx;
 
-DROP INDEX IF EXISTS zaf.tbl_pop_proj_dc_mdb_code_year_mid_idx;
+DROP INDEX IF EXISTS zaf.tbl_pop_proj_dcmdbcode_yearmid_idx;
 
-DROP INDEX IF EXISTS zaf.tbl_wgs_wg_code_idx;
+DROP INDEX IF EXISTS zaf.tbl_wgs_wgcode_idx;
 
 
 
-CREATE INDEX admin3_dists_dc_code_idx ON zaf.admin3_dists(dc_code);
+CREATE INDEX admin3_dists_dccode_idx ON zaf.admin3_dists(dc_code);
 
-CREATE INDEX admin3_dists_dc_mdb_code_idx ON zaf.admin3_dists(dc_mdb_code);
+CREATE INDEX admin3_dists_dcmdbcode_idx ON zaf.admin3_dists(dc_mdb_code);
 
-CREATE INDEX demog_sas_mn_code_name_idx ON zaf.demog_sas(mn_code, mn_name);
+CREATE INDEX demog_sas_mncode_mnname_idx ON zaf.demog_sas(mn_code, mn_name);
 
-CREATE INDEX demog_sas_ofa_lz_dc_mn_code_idx ON zaf.demog_sas_ofa(dc_code, mn_code, lz_code, lz_affected);
+CREATE INDEX demog_sas_ofa_dccode_mncode_lzcode_idx ON zaf.demog_sas_ofa(dc_code, mn_code, lz_code, lz_affected);
 
-CREATE INDEX demog_sas_ofa_year_month_idx ON zaf.demog_sas_ofa USING btree (ofa_year, ofa_month);
+CREATE INDEX demog_sas_ofa_ofayear_ofamonth_idx ON zaf.demog_sas_ofa USING btree (ofa_year, ofa_month);
 
-CREATE INDEX tbl_demog_sas_ofa_dc_code_idx ON zaf.demog_sas_ofa(dc_code);
+CREATE INDEX demog_sas_ofa_dccode_idx ON zaf.demog_sas_ofa(dc_code);
 
-CREATE INDEX tbl_livezones_list_lz_code_idx ON zaf.tbl_livezones_list(lz_code);
+CREATE INDEX tbl_livezones_list_lzcode_idx ON zaf.tbl_livezones_list(lz_code);
 
-CREATE INDEX tbl_lz_mapping_lz_code_idx ON zaf.tbl_lz_mapping(lz_code, lz_analysis_code);
+CREATE INDEX tbl_lz_mapping_lzcode_lzanalysiscode_idx ON zaf.tbl_lz_mapping(lz_code, lz_analysis_code);
 
-CREATE INDEX tbl_ofa_analysis_lz_wg_code_affected_year_month_idx ON zaf.tbl_ofa_analysis(lz_code, lz_affected, wg_code, ofa_year, ofa_month);
+CREATE INDEX tbl_ofa_analysis_lzcode_lzaffected_wgcode_ofayear_ofamonth_idx ON zaf.tbl_ofa_analysis(lz_code, lz_affected, wg_code, ofa_year, ofa_month);
 
-CREATE INDEX tbl_ofa_outcomes_year_month_idx ON zaf.tbl_ofa_outcomes USING btree (ofa_year, ofa_month);
+CREATE INDEX tbl_ofa_outcomes_ofayear_ofamonth_idx ON zaf.tbl_ofa_outcomes USING btree (ofa_year, ofa_month);
 
-CREATE INDEX tbl_pop_proj_dc_mdb_code_year_mid_idx ON zaf.tbl_pop_proj(dc_mdb_code, year_mid);
+CREATE INDEX tbl_pop_proj_dcmdbcode_yearmid_idx ON zaf.tbl_pop_proj(dc_mdb_code, year_mid);
 
-CREATE INDEX tbl_wgs_wg_code_idx ON zaf.tbl_wgs(wg_code);
+CREATE INDEX tbl_wgs_wgcode_idx ON zaf.tbl_wgs(wg_code);
 
 
 

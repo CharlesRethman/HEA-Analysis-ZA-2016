@@ -10,9 +10,9 @@ SELECT E'This query will only work if you have specified a switch on the command
 BEGIN;
 
 -- Indices, table creation and preparation transaction
-DROP INDEX IF EXISTS zaf.demog_sas_ofa_year_month_idx;
+DROP INDEX IF EXISTS zaf.demog_sas_ofa_ofayear_ofamonth_idx;
 
-CREATE INDEX demog_sas_ofa_year_month_idx ON zaf.demog_sas_ofa USING btree (ofa_year, ofa_month);
+CREATE INDEX demog_sas_ofa_ofayear_ofamonth_idx ON zaf.demog_sas_ofa USING btree (ofa_year, ofa_month);
 
 
 -- Remove records for the analysis specified in the :analysis variable (-v

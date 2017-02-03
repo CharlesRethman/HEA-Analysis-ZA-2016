@@ -12,13 +12,13 @@ DROP TABLE IF EXISTS zaf.t2;
 DROP TABLE IF EXISTS zaf.t3;
 DROP TABLE IF EXISTS zaf.t4;
 
-DROP INDEX IF EXISTS zaf.rs_vci_16_01_buffer_the_geom_gidx;
-DROP INDEX IF EXISTS zaf.landuse_agricregions_the_geom_gidx;
-DROP INDEX IF EXISTS zaf.t2_the_geom_gidx;
-DROP INDEX IF EXISTS zaf.t3_prov_code_idx;
+DROP INDEX IF EXISTS zaf.rs_vci_16_01_buffer_thegeom_gidx;
+DROP INDEX IF EXISTS zaf.landuse_agricregions_thegeom_gidx;
+DROP INDEX IF EXISTS zaf.t2_thegeom_gidx;
+DROP INDEX IF EXISTS zaf.t3_provcode_idx;
 
-CREATE INDEX rs_vci_16_01_buffer_the_geom_gidx ON zaf.rs_vci_16_01_buffer USING GIST(the_geom);
-CREATE INDEX landuse_agricregions_the_geom_gidx ON zaf.landuse_agricregions USING GIST(the_geom);
+CREATE INDEX rs_vci_16_01_buffer_thegeom_gidx ON zaf.rs_vci_16_01_buffer USING GIST(the_geom);
+CREATE INDEX landuse_agricregions_thegeom_gidx ON zaf.landuse_agricregions USING GIST(the_geom);
 
 CREATE TABLE IF NOT EXISTS zaf.prob_hazard (
     id serial primary key,
@@ -123,7 +123,7 @@ INSERT INTO zaf.prob_hazard (
 ;
 
 
-REINDEX INDEX zaf.prob_hazard_the_geom_gidx;
+REINDEX INDEX zaf.prob_hazard_thegeom_gidx;
 
 CREATE TABLE zaf.t2 (
     gid SERIAL PRIMARY KEY,
@@ -161,7 +161,7 @@ INSERT INTO zaf.t2 (
         )
 ;
 
-CREATE INDEX t2_the_geom_gidx ON zaf.t2 USING GIST(the_geom);
+CREATE INDEX t2_thegeom_gidx ON zaf.t2 USING GIST(the_geom);
 
 CREATE TABLE ZAF.t3 (
   prov_code INTEGER PRIMARY KEY,
@@ -184,7 +184,7 @@ INSERT INTO zaf.t3 (
     (9, 1.13)
 ;
 
-CREATE INDEX t3_prov_code_idx ON zaf.t3 USING btree (prov_code);
+CREATE INDEX t3_provcode_idx ON zaf.t3 USING btree (prov_code);
 
 BEGIN;
 
@@ -779,8 +779,8 @@ COMMIT;
 
 
 
-DROP INDEX IF EXISTS zaf.t2_the_geon_gidx;
-DROP INDEX IF EXISTS zaf.t3_prov_code_idx;
+DROP INDEX IF EXISTS zaf.t2_thegeom_gidx;
+DROP INDEX IF EXISTS zaf.t3_provcode_idx;
 DROP TABLE IF EXISTS zaf.t2;
 DROP TABLE IF EXISTS zaf.t3;
 DROP TABLE IF EXISTS zaf.t4;
